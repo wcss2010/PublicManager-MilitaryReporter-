@@ -24,7 +24,7 @@ namespace PublicManager.DB
             factory = new System.Data.SQLite.SQLiteFactory(); 
             Context = new DbContext(schemaName, connStr, factory); 
             //是否在执入后执行查询（主要针对Sqlite）
-            Context.IsSupportInsertAfterSelectIdentity = false; 
+            Context.IsSupportSelectIdentityAfterInsert = false; 
             //是否在Dispose后执行GC用于解决Dispose后无法删除的问题（主要针对Sqlite）
             Context.IsSupportGCAfterDispose = true; 
         } 
@@ -46,4 +46,4 @@ namespace PublicManager.DB
             Context = null; 
         } 
     } 
-} 
+}
