@@ -250,35 +250,32 @@ namespace PublicManager
 
             if (subFiles != null && File.Exists(zipFile))
             {
-                using (ZipInputStream s = new ZipInputStream(File.OpenRead(zipFile)))
+                ZipFile zfe = new ZipFile(zipFile);
+                try
                 {
-                    try
+                    foreach (ZipEntry theEntry in zfe)
                     {
-                        ZipEntry theEntry;
-                        while ((theEntry = s.GetNextEntry()) != null)
+                        if (theEntry.IsFile)
                         {
-                            if (theEntry.IsFile)
+                            foreach (string subF in subFiles)
                             {
-                                foreach (string subF in subFiles)
+                                if (theEntry.Name != null && theEntry.Name.EndsWith(subF))
                                 {
-                                    if (theEntry.Name != null && theEntry.Name.EndsWith(subF))
-                                    {
-                                        isFileIn = true;
-                                        break;
-                                    }
-                                }
-
-                                if (isFileIn)
-                                {
+                                    isFileIn = true;
                                     break;
                                 }
                             }
+
+                            if (isFileIn)
+                            {
+                                break;
+                            }
                         }
                     }
-                    finally
-                    {
-                        s.Close();
-                    }
+                }
+                finally
+                {
+                    zfe.Close();
                 }
             }
 
