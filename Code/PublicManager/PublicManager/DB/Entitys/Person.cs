@@ -18,14 +18,13 @@ namespace PublicManager.DB.Entitys
             query.set("PersonID", PersonID);
             query.set("CatalogID", CatalogID);
             query.set("ProjectID", ProjectID);
-            query.set("SubjectID", SubjectID);
             query.set("PersonName", PersonName);
             query.set("PersonIDCard", PersonIDCard);
+            query.set("PersonNation", PersonNation);
             query.set("PersonSex", PersonSex);
+            query.set("PersonBirthday", PersonBirthday);
             query.set("PersonJob", PersonJob);
             query.set("PersonSpecialty", PersonSpecialty);
-            query.set("TotalTime", TotalTime);
-            query.set("TaskContent", TaskContent);
             query.set("JobInProject", JobInProject);
             query.set("IsProjectMaster", IsProjectMaster);
             query.set("WorkUnit", WorkUnit);
@@ -38,14 +37,13 @@ namespace PublicManager.DB.Entitys
         public string PersonID { get; set; }
         public string CatalogID { get; set; }
         public string ProjectID { get; set; }
-        public string SubjectID { get; set; }
         public string PersonName { get; set; }
         public string PersonIDCard { get; set; }
+        public string PersonNation { get; set; }
         public string PersonSex { get; set; }
+        public datetime PersonBirthday { get; set; }
         public string PersonJob { get; set; }
         public string PersonSpecialty { get; set; }
-        public int TotalTime { get; set; }
-        public string TaskContent { get; set; }
         public string JobInProject { get; set; }
         public string IsProjectMaster { get; set; }
         public string WorkUnit { get; set; }
@@ -54,17 +52,16 @@ namespace PublicManager.DB.Entitys
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
-            PersonID = source("PersonID").value<string>(Guid.NewGuid().ToString());
+            PersonID = source("PersonID").value<string>("");
             CatalogID = source("CatalogID").value<string>("");
             ProjectID = source("ProjectID").value<string>("");
-            SubjectID = source("SubjectID").value<string>("");
             PersonName = source("PersonName").value<string>("");
             PersonIDCard = source("PersonIDCard").value<string>("");
+            PersonNation = source("PersonNation").value<string>("");
             PersonSex = source("PersonSex").value<string>("");
+            PersonBirthday = source("PersonBirthday").value<datetime>("");
             PersonJob = source("PersonJob").value<string>("");
             PersonSpecialty = source("PersonSpecialty").value<string>("");
-            TotalTime = source("TotalTime").value<int>(0);
-            TaskContent = source("TaskContent").value<string>("");
             JobInProject = source("JobInProject").value<string>("");
             IsProjectMaster = source("IsProjectMaster").value<string>("");
             WorkUnit = source("WorkUnit").value<string>("");

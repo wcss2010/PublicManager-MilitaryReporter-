@@ -32,7 +32,7 @@ namespace PublicManager.DB.Entitys
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
-            CatalogID = source("CatalogID").value<string>(Guid.NewGuid().ToString());
+            CatalogID = source("CatalogID").value<string>("");
             CatalogNumber = source("CatalogNumber").value<string>("");
             CatalogName = source("CatalogName").value<string>("");
             CatalogType = source("CatalogType").value<string>("");

@@ -18,15 +18,26 @@ namespace PublicManager.DB.Entitys
             query.set("ProjectID", ProjectID);
             query.set("CatalogID", CatalogID);
             query.set("ProjectName", ProjectName);
-            query.set("SecretLevel", SecretLevel);
-            query.set("TotalMoney", TotalMoney);
-            query.set("Keywords", Keywords);
-            query.set("Domains", Domains);
+            query.set("StudyDest", StudyDest);
+            query.set("StudyContent", StudyContent);
+            query.set("WillResult", WillResult);
+            query.set("StudyTime", StudyTime);
+            query.set("StudyMoney", StudyMoney);
+            query.set("ProjectSort", ProjectSort);
             query.set("DutyUnit", DutyUnit);
-            query.set("DutyUnitOrg", DutyUnitOrg);
-            query.set("DutyUnitAddress", DutyUnitAddress);
-            query.set("ProjectNumber", ProjectNumber);
-            query.set("TotalTime", TotalTime);
+            query.set("NextUnit", NextUnit);
+            query.set("Memo", Memo);
+            query.set("Worker", Worker);
+            query.set("WorkerCardID", WorkerCardID);
+            query.set("WorkerSex", WorkerSex);
+            query.set("WorkerNation", WorkerNation);
+            query.set("WorkerBirthday", WorkerBirthday);
+            query.set("WorkerTelephone", WorkerTelephone);
+            query.set("WorkerMobilephone", WorkerMobilephone);
+            query.set("SectionJobCateGory", SectionJobCateGory);
+            query.set("AllStudyUnit", AllStudyUnit);
+            query.set("RequestMoney", RequestMoney);
+            query.set("TaskCompleteTime", TaskCompleteTime);
 
             return query;
         }
@@ -34,30 +45,52 @@ namespace PublicManager.DB.Entitys
         public string ProjectID { get; set; }
         public string CatalogID { get; set; }
         public string ProjectName { get; set; }
-        public string SecretLevel { get; set; }
-        public decimal TotalMoney { get; set; }
-        public string Keywords { get; set; }
-        public string Domains { get; set; }
+        public string StudyDest { get; set; }
+        public string StudyContent { get; set; }
+        public string WillResult { get; set; }
+        public single StudyTime { get; set; }
+        public single StudyMoney { get; set; }
+        public string ProjectSort { get; set; }
         public string DutyUnit { get; set; }
-        public string DutyUnitOrg { get; set; }
-        public string DutyUnitAddress { get; set; }
-        public string ProjectNumber { get; set; }
-        public int TotalTime { get; set; }
+        public string NextUnit { get; set; }
+        public string Memo { get; set; }
+        public string Worker { get; set; }
+        public string WorkerCardID { get; set; }
+        public string WorkerSex { get; set; }
+        public string WorkerNation { get; set; }
+        public datetime WorkerBirthday { get; set; }
+        public string WorkerTelephone { get; set; }
+        public string WorkerMobilephone { get; set; }
+        public string SectionJobCateGory { get; set; }
+        public string AllStudyUnit { get; set; }
+        public single RequestMoney { get; set; }
+        public datetime TaskCompleteTime { get; set; }
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
-            ProjectID = source("ProjectID").value<string>(Guid.NewGuid().ToString());
+            ProjectID = source("ProjectID").value<string>("");
             CatalogID = source("CatalogID").value<string>("");
             ProjectName = source("ProjectName").value<string>("");
-            SecretLevel = source("SecretLevel").value<string>("");
-            TotalMoney = source("TotalMoney").value<decimal>(0);
-            Keywords = source("Keywords").value<string>("");
-            Domains = source("Domains").value<string>("");
+            StudyDest = source("StudyDest").value<string>("");
+            StudyContent = source("StudyContent").value<string>("");
+            WillResult = source("WillResult").value<string>("");
+            StudyTime = source("StudyTime").value<single>("");
+            StudyMoney = source("StudyMoney").value<single>("");
+            ProjectSort = source("ProjectSort").value<string>("");
             DutyUnit = source("DutyUnit").value<string>("");
-            DutyUnitOrg = source("DutyUnitOrg").value<string>("");
-            DutyUnitAddress = source("DutyUnitAddress").value<string>("");
-            ProjectNumber = source("ProjectNumber").value<string>("");
-            TotalTime = source("TotalTime").value<int>(0);
+            NextUnit = source("NextUnit").value<string>("");
+            Memo = source("Memo").value<string>("");
+            Worker = source("Worker").value<string>("");
+            WorkerCardID = source("WorkerCardID").value<string>("");
+            WorkerSex = source("WorkerSex").value<string>("");
+            WorkerNation = source("WorkerNation").value<string>("");
+            WorkerBirthday = source("WorkerBirthday").value<datetime>("");
+            WorkerTelephone = source("WorkerTelephone").value<string>("");
+            WorkerMobilephone = source("WorkerMobilephone").value<string>("");
+            SectionJobCateGory = source("SectionJobCateGory").value<string>("");
+            AllStudyUnit = source("AllStudyUnit").value<string>("");
+            RequestMoney = source("RequestMoney").value<single>("");
+            TaskCompleteTime = source("TaskCompleteTime").value<datetime>("");
         }
 
         public override Noear.Weed.IBinder clone()

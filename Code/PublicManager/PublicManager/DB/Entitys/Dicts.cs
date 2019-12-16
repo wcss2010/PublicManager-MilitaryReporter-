@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Text;
 
-namespace PublicManager.DB.Entitys
+namespace PublicManager.DB.Entitys 
 {
     /// <summary>
     /// 类Dicts。
@@ -18,7 +18,6 @@ namespace PublicManager.DB.Entitys
             query.set("DictID", DictID);
             query.set("CatalogID", CatalogID);
             query.set("ProjectID", ProjectID);
-            query.set("SubjectID", SubjectID);
             query.set("PersonID", PersonID);
             query.set("DictType", DictType);
             query.set("DictName", DictName);
@@ -32,7 +31,6 @@ namespace PublicManager.DB.Entitys
         public string DictID { get; set; }
         public string CatalogID { get; set; }
         public string ProjectID { get; set; }
-        public string SubjectID { get; set; }
         public string PersonID { get; set; }
         public string DictType { get; set; }
         public string DictName { get; set; }
@@ -42,10 +40,9 @@ namespace PublicManager.DB.Entitys
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
-            DictID = source("DictID").value<string>(Guid.NewGuid().ToString());
+            DictID = source("DictID").value<string>("");
             CatalogID = source("CatalogID").value<string>("");
             ProjectID = source("ProjectID").value<string>("");
-            SubjectID = source("SubjectID").value<string>("");
             PersonID = source("PersonID").value<string>("");
             DictType = source("DictType").value<string>("");
             DictName = source("DictName").value<string>("");
