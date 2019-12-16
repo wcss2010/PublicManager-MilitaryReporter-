@@ -99,7 +99,7 @@
             // 
             // colNumber
             // 
-            this.colNumber.HeaderText = "项目编号";
+            this.colNumber.HeaderText = "文件名称";
             this.colNumber.MinimumWidth = 110;
             this.colNumber.Name = "colNumber";
             this.colNumber.ReadOnly = true;
@@ -115,7 +115,7 @@
             // 
             // colCreater
             // 
-            this.colCreater.HeaderText = "申请人";
+            this.colCreater.HeaderText = "牵头人";
             this.colCreater.MinimumWidth = 80;
             this.colCreater.Name = "colCreater";
             this.colCreater.ReadOnly = true;
@@ -124,7 +124,7 @@
             // colCreaterUnit
             // 
             this.colCreaterUnit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCreaterUnit.HeaderText = "申请人单位";
+            this.colCreaterUnit.HeaderText = "联合研究单位";
             this.colCreaterUnit.Name = "colCreaterUnit";
             this.colCreaterUnit.ReadOnly = true;
             // 

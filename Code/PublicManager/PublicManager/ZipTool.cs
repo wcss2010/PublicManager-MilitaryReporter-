@@ -237,5 +237,52 @@ namespace PublicManager
                 s.Close();
             }
         }
+
+        /// <summary>
+        /// 检查压缩包内是否包括指定文件
+        /// </summary>
+        /// <param name="zipFile"></param>
+        /// <param name="subFiles"></param>
+        /// <returns></returns>
+        public static bool isFileInZip(string zipFile, string[] subFiles)
+        {
+            bool isFileIn = false;
+
+            if (subFiles != null && File.Exists(zipFile))
+            {
+                using (ZipInputStream s = new ZipInputStream(File.OpenRead(zipFile)))
+                {
+                    try
+                    {
+                        ZipEntry theEntry;
+                        while ((theEntry = s.GetNextEntry()) != null)
+                        {
+                            if (theEntry.IsFile)
+                            {
+                                foreach (string subF in subFiles)
+                                {
+                                    if (theEntry.Name != null && theEntry.Name.EndsWith(subF))
+                                    {
+                                        isFileIn = true;
+                                        break;
+                                    }
+                                }
+
+                                if (isFileIn)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    finally
+                    {
+                        s.Close();
+                    }
+                }
+            }
+
+            return isFileIn;
+        }
     }
 }

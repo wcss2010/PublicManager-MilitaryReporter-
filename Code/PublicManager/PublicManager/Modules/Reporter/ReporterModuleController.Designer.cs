@@ -107,7 +107,7 @@
             this.rpbLoad,
             this.rpgExport});
             this.rpMaster.Name = "rpMaster";
-            this.rpMaster.Text = "建议书";
+            this.rpMaster.Text = "论证报告书";
             // 
             // rpgDir
             // 
