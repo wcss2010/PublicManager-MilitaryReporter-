@@ -177,55 +177,6 @@
     <Compile Include="Modules\BaseModuleController.Designer.cs">
       <DependentUpon>BaseModuleController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Contract\ContractModuleController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\Contract\ContractModuleController.Designer.cs">
-      <DependentUpon>ContractModuleController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Contract\DBImporter.cs" />
-    <Compile Include="Modules\Contract\Forms\ImporterForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modules\Contract\Forms\ImporterForm.Designer.cs">
-      <DependentUpon>ImporterForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Contract\MainView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\Contract\MainView.Designer.cs">
-      <DependentUpon>MainView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\DataCheck\PersonCheck\ModuleController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\DataCheck\PersonCheck\ModuleController.Designer.cs">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\DataCheck\ProjectPersonCheck\ModuleController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\DataCheck\ProjectPersonCheck\ModuleController.Designer.cs">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\DataCheck\ProjectSubjectCheck\ModuleController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\DataCheck\ProjectSubjectCheck\ModuleController.Designer.cs">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\DataCheck\AddressCheck\ModuleController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\DataCheck\AddressCheck\ModuleController.Designer.cs">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\DataCheck\ProjectSubjectUnitCheck\ModuleController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\DataCheck\ProjectSubjectUnitCheck\ModuleController.Designer.cs">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Modules\DataGridViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -254,24 +205,6 @@
     <Compile Include="Modules\Reporter\ReporterModuleController.Designer.cs">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Teacher\TeacherManager\Forms\AddOrUpdateTeacherCommentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modules\Teacher\TeacherManager\Forms\AddOrUpdateTeacherCommentForm.Designer.cs">
-      <DependentUpon>AddOrUpdateTeacherCommentForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Teacher\TeacherManager\Forms\AddOrUpdateTeacherForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modules\Teacher\TeacherManager\Forms\AddOrUpdateTeacherForm.Designer.cs">
-      <DependentUpon>AddOrUpdateTeacherForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Modules\Teacher\TeacherManager\ModuleController.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Modules\Teacher\TeacherManager\ModuleController.Designer.cs">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProgressForm.cs">
       <SubType>Form</SubType>
@@ -293,30 +226,6 @@
     <EmbeddedResource Include="Modules\BaseModuleController.resx">
       <DependentUpon>BaseModuleController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Contract\ContractModuleController.resx">
-      <DependentUpon>ContractModuleController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Contract\Forms\ImporterForm.resx">
-      <DependentUpon>ImporterForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Contract\MainView.resx">
-      <DependentUpon>MainView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataCheck\PersonCheck\ModuleController.resx">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataCheck\ProjectPersonCheck\ModuleController.resx">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataCheck\ProjectSubjectCheck\ModuleController.resx">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataCheck\AddressCheck\ModuleController.resx">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataCheck\ProjectSubjectUnitCheck\ModuleController.resx">
-      <DependentUpon>ModuleController.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Modules\MainMenuController.resx">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </EmbeddedResource>
@@ -328,15 +237,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Reporter\ReporterModuleController.resx">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Teacher\TeacherManager\Forms\AddOrUpdateTeacherCommentForm.resx">
-      <DependentUpon>AddOrUpdateTeacherCommentForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Teacher\TeacherManager\Forms\AddOrUpdateTeacherForm.resx">
-      <DependentUpon>AddOrUpdateTeacherForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Teacher\TeacherManager\ModuleController.resx">
-      <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>

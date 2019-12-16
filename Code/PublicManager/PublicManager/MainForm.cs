@@ -5,7 +5,6 @@ using DevExpress.XtraEditors.ColorWheel;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraTreeList;
 using PublicManager.Modules;
-using PublicManager.Modules.Contract;
 using PublicManager.Modules.Reporter;
 using System;
 using System.Collections.Generic;
@@ -56,14 +55,7 @@ namespace PublicManager
         /// </summary>
         private void loadModules()
         {
-            ModuleDict["合同书汇总"] = new ContractModuleController();
-            ModuleDict["建议书汇总"] = new ReporterModuleController();
-            ModuleDict["项目课题关系"] = new Modules.DataCheck.ProjectSubjectCheck.ModuleController();
-            ModuleDict["项目成员关系"] = new Modules.DataCheck.ProjectPersonCheck.ModuleController();
-            ModuleDict["成员分析"] = new Modules.DataCheck.PersonCheck.ModuleController();
-            ModuleDict["地区分布情况"] = new Modules.DataCheck.AddressCheck.ModuleController();
-            ModuleDict["单位项目课题关系"] = new Modules.DataCheck.ProjectSubjectUnitCheck.ModuleController();
-            moduleDict["专家信息管理"] = new Modules.Teacher.TeacherManager.ModuleController();
+            ModuleDict["数据汇总"] = new ReporterModuleController();
         }
 
         /// <summary>
