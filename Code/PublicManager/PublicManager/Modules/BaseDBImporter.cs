@@ -47,7 +47,7 @@ namespace PublicManager.Modules
             //NDEY数据库连接
             Noear.Weed.DbContext context = new Noear.Weed.DbContext("main", "Data Source = " + sourceFile, factory);
             //是否在执入后执行查询（主要针对Sqlite）
-            context.IsSupportInsertAfterSelectIdentity = false;
+            context.IsSupportSelectIdentityAfterInsert = false;
             //是否在Dispose后执行GC用于解决Dispose后无法删除的问题（主要针对Sqlite）
             context.IsSupportGCAfterDispose = true;
 
