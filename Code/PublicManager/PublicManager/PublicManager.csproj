@@ -183,6 +183,12 @@
     <Compile Include="Modules\MainMenuController.Designer.cs">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Manager\ModuleController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Manager\ModuleController.Designer.cs">
+      <DependentUpon>ModuleController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Reporter\DBImporter.cs" />
     <Compile Include="Modules\Reporter\Forms\ImporterForm.cs">
       <SubType>Form</SubType>
@@ -225,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\MainMenuController.resx">
       <DependentUpon>MainMenuController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Manager\ModuleController.resx">
+      <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Reporter\Forms\ImporterForm.resx">
       <DependentUpon>ImporterForm.cs</DependentUpon>

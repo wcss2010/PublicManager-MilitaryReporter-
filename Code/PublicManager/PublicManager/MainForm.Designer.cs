@@ -222,7 +222,7 @@
             // 
             // nbcTestA
             // 
-            this.nbcTestA.Caption = "数据包汇总";
+            this.nbcTestA.Caption = "数据汇总";
             this.nbcTestA.ControlContainer = this.navBarGroupControlContainer1;
             this.nbcTestA.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None;
             this.nbcTestA.Expanded = true;
@@ -251,7 +251,9 @@
             this.tlTestA.Name = "tlTestA";
             this.tlTestA.BeginUnboundLoad();
             this.tlTestA.AppendNode(new object[] {
-            "数据汇总"}, -1);
+            "数据包汇总"}, -1);
+            this.tlTestA.AppendNode(new object[] {
+            "数据管理"}, -1);
             this.tlTestA.EndUnboundLoad();
             this.tlTestA.OptionsBehavior.Editable = false;
             this.tlTestA.OptionsView.ShowColumns = false;

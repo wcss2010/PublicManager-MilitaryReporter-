@@ -55,7 +55,8 @@ namespace PublicManager
         /// </summary>
         private void loadModules()
         {
-            ModuleDict["数据汇总"] = new ReporterModuleController();
+            ModuleDict["数据包汇总"] = new ReporterModuleController();
+            ModuleDict["数据管理"] = new Modules.Manager.ModuleController();
         }
 
         /// <summary>
