@@ -65,7 +65,7 @@ namespace PublicManager.Modules.Reporter
                 cells.Add(proj.StudyMoney);
                 cells.Add(proj.ProjectSort);
                 cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");
-                cells.Add(proj.Memo);
+                cells.Add(proj.Memo != null && proj.Memo.Contains(BaseModuleController.rowFlag) ? proj.Memo.Replace(BaseModuleController.rowFlag, ":") : proj.Memo);
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
                 dgvCatalogs.Rows[rowIndex].Tag = proj;
