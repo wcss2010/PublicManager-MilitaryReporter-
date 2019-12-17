@@ -228,9 +228,9 @@ namespace PublicManager.Modules.Reporter.Forms
                 //解压这个包
                 new ZipTool().UnZipFile(pkgZipFile, unZipDir, string.Empty, true);
                 //校验文件信息
-                string[] foldersValidata = MainConfig.Config.Dict["建议验证_目录"].Split(',');
+                string[] foldersValidata = MainConfig.Config.Dict["报告验证_目录"].Split(',');
                 int foldersLen = foldersValidata.Length;
-                string[] filesValidata = MainConfig.Config.Dict["建议验证_文件"].Split(',');
+                string[] filesValidata = MainConfig.Config.Dict["报告验证_文件"].Split(',');
                 int filesLen = filesValidata.Length;
                 for (int i = 0; i < foldersLen; i++)
                 {
