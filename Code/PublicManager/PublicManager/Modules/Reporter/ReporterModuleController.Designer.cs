@@ -33,11 +33,9 @@
             this.btnSetDestDir = new DevExpress.XtraBars.BarButtonItem();
             this.btnImportAll = new DevExpress.XtraBars.BarButtonItem();
             this.btnImportWithSelected = new DevExpress.XtraBars.BarButtonItem();
-            this.btnExportToExcel = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDir = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpbLoad = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.rpgExport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fbdFolderSelect = new System.Windows.Forms.FolderBrowserDialog();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
@@ -51,8 +49,7 @@
             this.btnSetSourceDir,
             this.btnSetDestDir,
             this.btnImportAll,
-            this.btnImportWithSelected,
-            this.btnExportToExcel});
+            this.btnImportWithSelected});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
             this.rcTopBar.MaxItemId = 6;
             this.rcTopBar.Name = "rcTopBar";
@@ -92,20 +89,11 @@
             this.btnImportWithSelected.Name = "btnImportWithSelected";
             this.btnImportWithSelected.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImportWithSelected_ItemClick);
             // 
-            // btnExportToExcel
-            // 
-            this.btnExportToExcel.Caption = "导出到Excel";
-            this.btnExportToExcel.Id = 5;
-            this.btnExportToExcel.LargeGlyph = global::PublicManager.Properties.Resources.printtoexcel;
-            this.btnExportToExcel.Name = "btnExportToExcel";
-            this.btnExportToExcel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportToExcel_ItemClick);
-            // 
             // rpMaster
             // 
             this.rpMaster.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.rpgDir,
-            this.rpbLoad,
-            this.rpgExport});
+            this.rpbLoad});
             this.rpMaster.Name = "rpMaster";
             this.rpMaster.Text = "论证报告书";
             // 
@@ -122,12 +110,6 @@
             this.rpbLoad.ItemLinks.Add(this.btnImportWithSelected);
             this.rpbLoad.Name = "rpbLoad";
             this.rpbLoad.Text = "导入";
-            // 
-            // rpgExport
-            // 
-            this.rpgExport.ItemLinks.Add(this.btnExportToExcel);
-            this.rpgExport.Name = "rpgExport";
-            this.rpgExport.Text = "导出";
             // 
             // sfdExport
             // 
@@ -152,12 +134,10 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage rpMaster;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgDir;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpbLoad;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgExport;
         private DevExpress.XtraBars.BarButtonItem btnSetSourceDir;
         private DevExpress.XtraBars.BarButtonItem btnSetDestDir;
         private DevExpress.XtraBars.BarButtonItem btnImportAll;
         private DevExpress.XtraBars.BarButtonItem btnImportWithSelected;
-        private DevExpress.XtraBars.BarButtonItem btnExportToExcel;
         private System.Windows.Forms.FolderBrowserDialog fbdFolderSelect;
         private System.Windows.Forms.SaveFileDialog sfdExport;
     }
