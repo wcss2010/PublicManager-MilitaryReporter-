@@ -135,32 +135,31 @@ namespace PublicManager.Modules.Reporter.Forms
                 int progressVal = 0;
                 int index = -1;
                 //导入
-                foreach (string pDir in importList)
+                foreach (string zipFile in importList)
                 {
                     try
                     {
                         progressVal++;
                         index++;
                         //申报文件名
-                        string createFileName = importFileNameList[index].ToString();
-                        string tempname = createFileName.Substring(0, createFileName.IndexOf("-", 5));
+                        string zipName = importFileNameList[index].ToString();
                         List<string> messageList = null;
-                        pf.reportProgress(progressVal, createFileName + "_开始解压");
-                        bool returnContent = unZipFile(pDir, createFileName, out messageList);
+                        pf.reportProgress(progressVal, zipName + "_开始解压");
+                        bool returnContent = unZipFile(zipFile, zipName, out messageList);
                         if (returnContent)
                         {
                             //报告进度
-                            pf.reportProgress(progressVal, createFileName + "_开始导入");
-                            MainForm.writeLog("开始导入__" + createFileName);
+                            pf.reportProgress(progressVal, zipName + "_开始导入");
+                            MainForm.writeLog("开始导入__" + zipName);
 
                             //导入数据库
-                            new DBImporter().addOrReplaceProject(createFileName, Path.Combine(Path.Combine(decompressDir, createFileName), "static.db"));
+                            new DBImporter().addOrReplaceProject(zipName, Path.Combine(Path.Combine(decompressDir, zipName), "static.db"));
 
                             //报告进度
-                            pf.reportProgress(progressVal, createFileName + "_结束导入");
-                            MainForm.writeLog("结束导入__" + createFileName);
+                            pf.reportProgress(progressVal, zipName + "_结束导入");
+                            MainForm.writeLog("结束导入__" + zipName);
                         }
-                        pf.reportProgress(progressVal, createFileName + "_结束解压");
+                        pf.reportProgress(progressVal, zipName + "_结束解压");
                     }
                     catch (Exception ex)
                     {
@@ -201,15 +200,15 @@ namespace PublicManager.Modules.Reporter.Forms
         /// <summary>
         /// 解压项目文件
         /// </summary>
-        /// <param name="pDir">路径</param>
-        /// <param name="createFileName">文件名</param>
+        /// <param name="zipFile">ZIP文件</param>
+        /// <param name="zipName">ZIP名称</param>
         /// <param name="outList">输入错误信息</param>
         /// <returns></returns>
-        private bool unZipFile(string pDir, string createFileName, out List<string> outList)
+        private bool unZipFile(string pkgZipFile, string zipName, out List<string> outList)
         {
             outList = new List<string>();
             //生成路径字段
-            string unZipDir = System.IO.Path.Combine(decompressDir, createFileName);
+            string unZipDir = System.IO.Path.Combine(decompressDir, zipName);
             //删除旧的目录
             try
             {
@@ -218,24 +217,13 @@ namespace PublicManager.Modules.Reporter.Forms
             catch (Exception ex) { }
             //申报主文件夹创建
             Directory.CreateDirectory(unZipDir);
-            MainForm.writeLog("开始解析__" + createFileName);
-            //获取文件列表
-            string[] subFiles = Directory.GetFiles(pDir);
-            //ZIP文件
-            string pkgZipFile = string.Empty;
-            //查找ZIP文件
-            foreach (string sssss in subFiles)
-            {
-                if (sssss.EndsWith(".zip"))
-                {
-                    pkgZipFile = sssss;
-                    break;
-                }
-            }
+
+            MainForm.writeLog("开始解析__" + zipName);
+            
             //判断是否存在申报包
             if (pkgZipFile != null && pkgZipFile.EndsWith(".zip"))
             {
-                MainForm.writeLog("项目" + createFileName + "的解包操作，开始ZIP文件解压");
+                MainForm.writeLog("项目" + zipName + "的解包操作，开始ZIP文件解压");
 
                 //解压这个包
                 new ZipTool().UnZipFile(pkgZipFile, unZipDir, string.Empty, true);
@@ -248,7 +236,7 @@ namespace PublicManager.Modules.Reporter.Forms
                 {
                     if (!System.IO.Directory.Exists(Path.Combine(unZipDir, foldersValidata[i])))
                     {
-                        MainForm.writeLog("项目" + createFileName + "的解包操作，" + foldersValidata[i] + "文件夹不存在");
+                        MainForm.writeLog("项目" + zipName + "的解包操作，" + foldersValidata[i] + "文件夹不存在");
                         outList.Add(foldersValidata[i] + "文件夹 不存在");
                     }
                 }
@@ -256,23 +244,27 @@ namespace PublicManager.Modules.Reporter.Forms
                 {
                     if (!File.Exists(Path.Combine(unZipDir, filesValidata[i])))
                     {
-                        MainForm.writeLog("项目" + createFileName + "的解包操作，" + filesValidata[i] + "不存在");
+                        MainForm.writeLog("项目" + zipName + "的解包操作，" + filesValidata[i] + "不存在");
                         outList.Add(filesValidata[i] + " 不存在");
                     }
                 }
-                MainForm.writeLog("项目" + createFileName + "的解包操作，结束ZIP文件解压");
+                MainForm.writeLog("项目" + zipName + "的解包操作，结束ZIP文件解压");
             }
             else
             {
-                MainForm.writeLog("项目" + createFileName + "没有找到ZIP文件");
+                MainForm.writeLog("项目" + zipName + "没有找到ZIP文件");
                 outList.Add("没有找到ZIP文件");
             }
 
-            MainForm.writeLog("结束解析__" + createFileName);
+            MainForm.writeLog("结束解析__" + zipName);
             if (outList.Count == 0)
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         /// <summary>
