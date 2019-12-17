@@ -38,12 +38,8 @@ namespace PublicManager
             {
                 Config = new MainConfig();
 
-                Config.Dict["合同验证_目录"] = "files";
-                Config.Dict["合同验证_文件"] = "static.db,合同书.doc";
-
-                Config.Dict["建议验证_目录"] = "files";
-                Config.Dict["建议验证_文件"] = "static.db,项目申报书.doc";
-
+                Config.Dict["报告验证_目录"] = "files";
+                Config.Dict["报告验证_文件"] = "static.db";
             }
         }
 
