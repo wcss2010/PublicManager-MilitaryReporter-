@@ -12,13 +12,7 @@ namespace PublicManager.Modules
         /// 根据CatalogID清空本地数据库(除了Catalog表)
         /// </summary>
         /// <param name="catalogID"></param>
-        public void clearProjectDataWithCatalogID(string catalogID)
-        {
-            ConnectionManager.Context.table("Project").where("CatalogID='" + catalogID + "'").delete();
-            ConnectionManager.Context.table("Subject").where("CatalogID='" + catalogID + "'").delete();
-            ConnectionManager.Context.table("Person").where("CatalogID='" + catalogID + "'").delete();
-            ConnectionManager.Context.table("Dicts").where("CatalogID='" + catalogID + "'").delete();
-        }
+        public abstract void clearProjectDataWithCatalogID(string catalogID);
 
         /// <summary>
         /// 删除项目(索引+所有数据)
