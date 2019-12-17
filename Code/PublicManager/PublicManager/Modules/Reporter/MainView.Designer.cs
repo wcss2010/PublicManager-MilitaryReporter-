@@ -41,6 +41,7 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +67,8 @@
             this.Column7,
             this.Column8,
             this.Column9,
-            this.Column10});
+            this.Column10,
+            this.Column11});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F);
@@ -175,6 +177,16 @@
             this.Column10.UseColumnTextForLinkValue = true;
             this.Column10.Width = 60;
             // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "";
+            this.Column11.MinimumWidth = 60;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Text = "删除";
+            this.Column11.UseColumnTextForButtonValue = true;
+            this.Column11.Width = 60;
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -200,6 +212,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewLinkColumn Column9;
         private System.Windows.Forms.DataGridViewLinkColumn Column10;
+        private System.Windows.Forms.DataGridViewButtonColumn Column11;
 
 
     }

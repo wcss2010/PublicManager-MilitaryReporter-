@@ -10,6 +10,8 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Localization;
 using PublicManager.DB;
 using PublicManager.DB.Entitys;
+using System.Diagnostics;
+using System.IO;
 
 namespace PublicManager.Modules.Reporter
 {
@@ -77,27 +79,56 @@ namespace PublicManager.Modules.Reporter
         private void dgvCatalogs_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //检查是否点击的是删除的那一列
-            if (e.ColumnIndex == dgvCatalogs.Columns.Count - 1 && e.RowIndex >= 0)
+            if (dgvCatalogs.Rows.Count > e.RowIndex)
             {
-                //获得要删除的项目ID,项目编号
-                string projectId = ((Catalog)dgvCatalogs.Rows[e.RowIndex].Tag).CatalogID;
-                string projectNumber = ((Catalog)dgvCatalogs.Rows[e.RowIndex].Tag).CatalogNumber;
-
-                //显示删除提示框
-                if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                //获得要删除的项目ID
+                Project proj = ((Project)dgvCatalogs.Rows[e.RowIndex].Tag);
+                string catalogId = proj.CatalogID;
+                
+                if (e.ColumnIndex == dgvCatalogs.Columns.Count - 1)
                 {
-                    //删除项目数据
-                    new DBImporter().deleteProject(projectId);
+                    //显示删除提示框
+                    if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        //删除项目数据
+                        new DBImporter().deleteProject(catalogId);
 
-                    //删除申报包缓存
-                    //try
-                    //{
-                    //    System.IO.Directory.Delete(System.IO.Path.Combine(PackageDir, projectNumber), true);
-                    //}
-                    //catch (Exception ex) { MainForm.writeLog(ex.ToString()); }
+                        //刷新GridView
+                        updateCatalogs();
+                    }
+                }
+                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 2)
+                {
+                    //显示链接提示框
+                    try
+                    {
+                        if (MainConfig.Config.Dict.ContainsKey("论证报告解压目录"))
+                        {
+                            string decompressDir = MainConfig.Config.Dict["论证报告解压目录"];
+                            string catalogNumber = ConnectionManager.Context.table("Catalog").where("CatalogID='" + catalogId + "'").select("CatalogNumber").getValue<string>("");
+                            if (File.Exists(Path.Combine(decompressDir, Path.Combine(catalogNumber, "论证报告.doc"))))
+                            {
+                                Process.Start(Path.Combine(decompressDir, Path.Combine(catalogNumber, "论证报告.doc")));
+                            }
+                        }
+                    }
+                    catch (Exception ex) { }
+                }
+                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 3)
+                {
+                    //显示详细提示框
+                    StringBuilder sb = new StringBuilder();
+                    Form f = new Form();
+                    RichTextBox rtb = new RichTextBox();
+                    f.Controls.Add(rtb);
 
-                    //刷新GridView
-                    updateCatalogs();
+                    sb.Append("研究目标：").AppendLine();
+                    sb.Append(proj.StudyDest).AppendLine();
+                    sb.Append("研究内容：").AppendLine();
+                    sb.Append(proj.StudyContent).AppendLine();
+
+                    rtb.Text = sb.ToString();
+                    f.ShowDialog();
                 }
             }
         }

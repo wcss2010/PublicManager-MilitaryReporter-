@@ -122,9 +122,9 @@ namespace PublicManager.Modules.Reporter
         /// <param name="catalogID"></param>
         public override void clearProjectDataWithCatalogID(string catalogID)
         {
-            ConnectionManager.Context.table("Project").delete();
-            ConnectionManager.Context.table("Person").delete();
-            ConnectionManager.Context.table("Dicts").delete();
+            ConnectionManager.Context.table("Project").where("CatalogID='" + catalogID + "'").delete();
+            ConnectionManager.Context.table("Person").where("CatalogID='" + catalogID + "'").delete();
+            ConnectionManager.Context.table("Dicts").where("CatalogID='" + catalogID + "'").delete();
         }
     }
 }
