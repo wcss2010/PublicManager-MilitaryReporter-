@@ -119,15 +119,32 @@ namespace PublicManager.Modules.Reporter
                     //显示详细提示框
                     StringBuilder sb = new StringBuilder();
                     Form f = new Form();
+                    f.Text = "详细";
+                    f.MaximizeBox = false;
+                    f.MinimizeBox = false;
+                    f.ShowInTaskbar = false;
+                    f.ShowIcon = false;
+                    f.Size = new System.Drawing.Size(600, 600);
                     RichTextBox rtb = new RichTextBox();
+                    rtb.Dock = DockStyle.Fill;
                     f.Controls.Add(rtb);
 
                     sb.Append("研究目标：").AppendLine();
                     sb.Append(proj.StudyDest).AppendLine();
                     sb.Append("研究内容：").AppendLine();
-                    sb.Append(proj.StudyContent).AppendLine();
+                    if (proj.StudyContent != null)
+                    {
+                        string[] cList = proj.StudyContent.Split(new string[] { BaseModuleController.rowFlag }, StringSplitOptions.None);
+                        if (cList != null && cList.Length >= 1)
+                        {
+                            foreach (string s in cList)
+                            {
+                                sb.Append(s).AppendLine();
+                            }
+                        }
+                    }
 
-                    rtb.Text = sb.ToString();
+                    rtb.Text = sb.ToString().Trim();
                     f.ShowDialog();
                 }
             }
