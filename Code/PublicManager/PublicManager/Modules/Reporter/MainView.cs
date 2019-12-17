@@ -31,29 +31,46 @@ namespace PublicManager.Modules.Reporter
         {
             dgvCatalogs.Rows.Clear();
 
-            List<Catalog> list = ConnectionManager.Context.table("Catalog").where("CatalogType='建议书'").select("*").getList<Catalog>(new Catalog());
+            List<Project> projList = ConnectionManager.Context.table("Project").select("*").getList<Project>(new Project());
             int indexx = 0;
-            foreach (Catalog catalog in list)
+            foreach (Project proj in projList)
             {
                 indexx++;
 
                 List<object> cells = new List<object>();
                 cells.Add(indexx);
-                cells.Add(catalog.CatalogVersion);
-                cells.Add(catalog.CatalogNumber);
-                cells.Add(catalog.CatalogName);
+                cells.Add(proj.ProjectName);
 
-                Person p = ConnectionManager.Context.table("Person").where("IsProjectMaster='true' and CatalogID = '" + catalog.CatalogID + "'").select("*").getItem<Person>(new Person());
-                if (p != null)
+                StringBuilder sbWillResult = new StringBuilder();
+                if (proj.WillResult != null && proj.WillResult.Contains(BaseModuleController.rowFlag))
                 {
-                    cells.Add(p.PersonName);
-                    cells.Add(p.WorkUnit);
+                    string[] tttt = proj.WillResult.Split(new string[] { BaseModuleController.rowFlag }, StringSplitOptions.None);
+                    if (tttt != null)
+                    {
+                        foreach (string ss in tttt)
+                        {
+                            string[] vvvv = ss.Split(new string[] { BaseModuleController.cellFlag }, StringSplitOptions.None);
+                            if (vvvv != null && vvvv.Length >= 2)
+                            {
+                                if (string.IsNullOrEmpty(vvvv[0])) { continue; }
+
+                                sbWillResult.Append(vvvv[0].Insert(vvvv[0].IndexOf("("), vvvv[1]).Replace("(", string.Empty).Replace(")", string.Empty)).AppendLine();
+                            }
+                        }
+                    }
                 }
+                cells.Add(sbWillResult.ToString());
+
+                cells.Add(proj.StudyTime);
+                cells.Add(proj.StudyMoney);
+                cells.Add(proj.ProjectSort);
+                cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");
+                cells.Add(proj.Memo);
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
-                dgvCatalogs.Rows[rowIndex].Tag = catalog;
+                dgvCatalogs.Rows[rowIndex].Tag = proj;
             }
-
+            
             dgvCatalogs.checkCellSize();
         }
 

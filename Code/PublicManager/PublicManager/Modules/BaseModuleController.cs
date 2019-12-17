@@ -18,6 +18,16 @@ namespace PublicManager.Modules
     public partial class BaseModuleController : UserControl
     {
         /// <summary>
+        /// 行分割符
+        /// </summary>
+        public const string rowFlag = "{{(<<rows>>)}}";
+
+        /// <summary>
+        /// 单元格分割符
+        /// </summary>
+        public const string cellFlag = "{{(<<cells>>)}}";
+
+        /// <summary>
         /// 构造器
         /// </summary>
         public BaseModuleController()

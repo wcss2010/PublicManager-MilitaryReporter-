@@ -31,13 +31,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCatalogs = new PublicManager.Modules.DataGridViewEx();
-            this.colIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCreater = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCreaterUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDel = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,13 +57,16 @@
             this.dgvCatalogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCatalogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCatalogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colIndex,
             this.Column1,
-            this.colNumber,
-            this.colName,
-            this.colCreater,
-            this.colCreaterUnit,
-            this.colDel});
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column8,
+            this.Column9,
+            this.Column10});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F);
@@ -81,62 +87,93 @@
             this.dgvCatalogs.TabIndex = 1;
             this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
             // 
-            // colIndex
-            // 
-            this.colIndex.HeaderText = "序号";
-            this.colIndex.MinimumWidth = 60;
-            this.colIndex.Name = "colIndex";
-            this.colIndex.ReadOnly = true;
-            this.colIndex.Width = 60;
-            // 
             // Column1
             // 
-            this.Column1.HeaderText = "版本";
+            this.Column1.HeaderText = "序号";
             this.Column1.MinimumWidth = 60;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Width = 60;
             // 
-            // colNumber
+            // Column2
             // 
-            this.colNumber.HeaderText = "文件名称";
-            this.colNumber.MinimumWidth = 110;
-            this.colNumber.Name = "colNumber";
-            this.colNumber.ReadOnly = true;
-            this.colNumber.Width = 110;
+            this.Column2.HeaderText = "项目名称";
+            this.Column2.MinimumWidth = 120;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 120;
             // 
-            // colName
+            // Column3
             // 
-            this.colName.HeaderText = "项目名称";
-            this.colName.MinimumWidth = 110;
-            this.colName.Name = "colName";
-            this.colName.ReadOnly = true;
-            this.colName.Width = 110;
+            this.Column3.HeaderText = "预期成果";
+            this.Column3.MinimumWidth = 120;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 120;
             // 
-            // colCreater
+            // Column4
             // 
-            this.colCreater.HeaderText = "牵头人";
-            this.colCreater.MinimumWidth = 80;
-            this.colCreater.Name = "colCreater";
-            this.colCreater.ReadOnly = true;
-            this.colCreater.Width = 80;
+            this.Column4.HeaderText = "周期";
+            this.Column4.MinimumWidth = 60;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 60;
             // 
-            // colCreaterUnit
+            // Column5
             // 
-            this.colCreaterUnit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCreaterUnit.HeaderText = "联合研究单位";
-            this.colCreaterUnit.Name = "colCreaterUnit";
-            this.colCreaterUnit.ReadOnly = true;
+            this.Column5.HeaderText = "经费概算";
+            this.Column5.MinimumWidth = 120;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 120;
             // 
-            // colDel
+            // Column6
             // 
-            this.colDel.HeaderText = "";
-            this.colDel.MinimumWidth = 60;
-            this.colDel.Name = "colDel";
-            this.colDel.ReadOnly = true;
-            this.colDel.Text = "删除";
-            this.colDel.UseColumnTextForButtonValue = true;
-            this.colDel.Width = 60;
+            this.Column6.HeaderText = "项目类别";
+            this.Column6.MinimumWidth = 120;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 120;
+            // 
+            // Column7
+            // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column7.HeaderText = "单位";
+            this.Column7.MinimumWidth = 120;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "备注";
+            this.Column8.MinimumWidth = 120;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 120;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "";
+            this.Column9.MinimumWidth = 60;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column9.Text = "详情";
+            this.Column9.UseColumnTextForLinkValue = true;
+            this.Column9.Width = 60;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "";
+            this.Column10.MinimumWidth = 60;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column10.Text = "链接";
+            this.Column10.UseColumnTextForLinkValue = true;
+            this.Column10.Width = 60;
             // 
             // MainView
             // 
@@ -153,13 +190,16 @@
         #endregion
 
         private PublicManager.Modules.DataGridViewEx dgvCatalogs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colIndex;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCreater;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCreaterUnit;
-        private System.Windows.Forms.DataGridViewButtonColumn colDel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewLinkColumn Column9;
+        private System.Windows.Forms.DataGridViewLinkColumn Column10;
 
 
     }
