@@ -202,7 +202,7 @@ namespace PublicManager.Modules.Reporter
                         cells.Add(p.ProjectName);
 
                         //项目领域
-                        cells.Add(p.Domains);
+                        //cells.Add(p.Domains);
 
                         //项目牵头单位
                         cells.Add(p.DutyUnit);
@@ -214,10 +214,10 @@ namespace PublicManager.Modules.Reporter
                         cells.Add(projectMaster.Telephone);
 
                         //研究周期
-                        cells.Add(p.TotalTime);
+                        //cells.Add(p.TotalTime);
 
                         //总经费
-                        cells.Add(p.TotalMoney);
+                        //cells.Add(p.TotalMoney);
 
                         ////研究目标
                         //cells.Add(getTxtContent(c, "研究目标"));
@@ -230,19 +230,18 @@ namespace PublicManager.Modules.Reporter
                         StringBuilder sbSubjectPersons = new StringBuilder();
                         StringBuilder sbSubjectPhones = new StringBuilder();
 
-                        //课题列表
-                        List<Subject> subjectList = ConnectionManager.Context.table("Subject").where("CatalogID = '" + c.CatalogID + "'").select("*").getList<Subject>(new Subject());
-                        foreach (Subject s in subjectList)
-                        {
-                            sbSubjectNames.AppendLine(s.SubjectName);
-                            sbSubjectUnits.AppendLine(s.DutyUnit);
+                        ////课题列表
+                        //List<Subject> subjectList = ConnectionManager.Context.table("Subject").where("CatalogID = '" + c.CatalogID + "'").select("*").getList<Subject>(new Subject());
+                        //foreach (Subject s in subjectList)
+                        //{
+                        //    sbSubjectNames.AppendLine(s.SubjectName);
+                        //    sbSubjectUnits.AppendLine(s.DutyUnit);
 
-                            Person subjectMaster = ConnectionManager.Context.table("Person").where("JobInProject='负责人' and CatalogID = '" + c.CatalogID + "' and SubjectID = '" + s.SubjectID + "'").select("*").getItem<Person>(new Person());
-                            sbSubjectPersons.AppendLine(subjectMaster.PersonName);
-                            sbSubjectPhones.AppendLine(subjectMaster.Telephone);
-                        }
-
-
+                        //    Person subjectMaster = ConnectionManager.Context.table("Person").where("JobInProject='负责人' and CatalogID = '" + c.CatalogID + "' and SubjectID = '" + s.SubjectID + "'").select("*").getItem<Person>(new Person());
+                        //    sbSubjectPersons.AppendLine(subjectMaster.PersonName);
+                        //    sbSubjectPhones.AppendLine(subjectMaster.Telephone);
+                        //}
+                        
                         cells.Add(sbSubjectNames.ToString());
                         cells.Add(sbSubjectUnits.ToString());
                         cells.Add(sbSubjectPersons.ToString());
@@ -269,11 +268,11 @@ namespace PublicManager.Modules.Reporter
 
                         //项目信息
                         Project p = ConnectionManager.Context.table("Project").where("CatalogID = '" + c.CatalogID + "'").select("*").getItem<Project>(new Project());
-                        cells.Add(p.Domains);
+                        //cells.Add(p.Domains);
                         cells.Add(p.ProjectName);
                         //cells.Add(p.ProjectNumber);
-                        cells.Add(p.TotalTime);
-                        cells.Add(p.TotalMoney);
+                        //cells.Add(p.TotalTime);
+                        //cells.Add(p.TotalMoney);
 
                         //生成各年度经费和时间字符串
                         StringBuilder sbMoneyNum = new StringBuilder();
