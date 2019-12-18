@@ -59,7 +59,7 @@
             // 
             this.btnExportToExcel.Caption = "导出Excel";
             this.btnExportToExcel.Id = 6;
-            this.btnExportToExcel.LargeGlyph = global::PublicManager.Properties.Resources.Mail_32x32;
+            this.btnExportToExcel.LargeGlyph = global::PublicManager.Properties.Resources.export;
             this.btnExportToExcel.Name = "btnExportToExcel";
             this.btnExportToExcel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportToExcel_ItemClick);
             // 
