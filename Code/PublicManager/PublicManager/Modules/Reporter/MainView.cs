@@ -41,6 +41,7 @@ namespace PublicManager.Modules.Reporter
 
                 List<object> cells = new List<object>();
                 cells.Add(indexx);
+                cells.Add(getProjectType(proj.CatalogID));
                 cells.Add(proj.ProjectName);
 
                 StringBuilder sbWillResult = new StringBuilder();
@@ -149,6 +150,29 @@ namespace PublicManager.Modules.Reporter
                     f.ShowDialog();
                 }
             }
+        }
+
+        /// <summary>
+        /// 获得项目类型
+        /// </summary>
+        /// <param name="catalogID"></param>
+        /// <returns></returns>
+        public string getProjectType(string catalogID)
+        {
+            long personCount = 0;
+            long dictsCount = 0;
+            try
+            {
+                personCount = long.Parse(ConnectionManager.Context.table("Person").where("CatalogID='" + catalogID + "'").select("count(*)").getValue().ToString());
+            }
+            catch (Exception ex) { }
+            try
+            {
+                dictsCount = long.Parse(ConnectionManager.Context.table("Dicts").where("CatalogID='" + catalogID + "'").select("count(*)").getValue().ToString());
+            }
+            catch (Exception ex) { }
+
+            return (personCount >= 1 && dictsCount >= 1) ? "从填报工具导入" : "专项项目";
         }
     }
 }

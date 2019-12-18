@@ -98,6 +98,7 @@ namespace PublicManager.Modules
 
                     //一行可以放几个
                     int lineWordCount = rect.Width / wordWidth;
+                    if (lineWordCount == 0) { continue; }
                     int rowCounts = str.Length / lineWordCount;
                     if (str.Length % lineWordCount > 0)
                     {
