@@ -148,5 +148,76 @@ namespace PublicManager.Modules.Manager
                 }
             }
         }
+
+        /// <summary>
+        /// 导出到DataTable
+        /// </summary>
+        /// <returns></returns>
+        public DataTable exportToDataTable()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("项目名称", typeof(string));
+            dt.Columns.Add("研究目标", typeof(string));
+            dt.Columns.Add("研究内容", typeof(string));
+            dt.Columns.Add("预期成果", typeof(string));
+            dt.Columns.Add("周期", typeof(string));
+            dt.Columns.Add("经费概算", typeof(string));
+            dt.Columns.Add("项目类别", typeof(string));
+            dt.Columns.Add("责任单位", typeof(string));
+            dt.Columns.Add("下级单位", typeof(string));
+            dt.Columns.Add("备注", typeof(string));
+
+            List<Project> projList = ConnectionManager.Context.table("Project").select("*").getList<Project>(new Project());
+            foreach (Project proj in projList)
+            {
+                List<object> cells = new List<object>();
+                cells.Add(proj.ProjectName);
+                cells.Add(proj.StudyDest);
+
+                StringBuilder sb = new StringBuilder();
+                if (proj.StudyContent != null)
+                {
+                    string[] cList = proj.StudyContent.Split(new string[] { BaseModuleController.rowFlag }, StringSplitOptions.None);
+                    if (cList != null && cList.Length >= 1)
+                    {
+                        foreach (string s in cList)
+                        {
+                            sb.Append(s).AppendLine(" ");
+                        }
+                    }
+                }
+                cells.Add(sb.ToString());
+
+                StringBuilder sbWillResult = new StringBuilder();
+                if (proj.WillResult != null && proj.WillResult.Contains(BaseModuleController.rowFlag))
+                {
+                    string[] tttt = proj.WillResult.Split(new string[] { BaseModuleController.rowFlag }, StringSplitOptions.None);
+                    if (tttt != null)
+                    {
+                        foreach (string ss in tttt)
+                        {
+                            string[] vvvv = ss.Split(new string[] { BaseModuleController.cellFlag }, StringSplitOptions.None);
+                            if (vvvv != null && vvvv.Length >= 2)
+                            {
+                                if (string.IsNullOrEmpty(vvvv[0])) { continue; }
+
+                                sbWillResult.Append(vvvv[0].Insert(vvvv[0].IndexOf("("), vvvv[1]).Replace("(", string.Empty).Replace(")", string.Empty)).AppendLine(" ");
+                            }
+                        }
+                    }
+                }
+                cells.Add(sbWillResult.ToString());
+
+                cells.Add(proj.StudyTime + "个月");
+                cells.Add(proj.StudyMoney + "万元");
+                cells.Add(proj.ProjectSort);
+                cells.Add(proj.DutyUnit);
+                cells.Add(proj.NextUnit);
+                cells.Add(proj.Memo != null && proj.Memo.Contains(BaseModuleController.rowFlag) ? proj.Memo.Replace(BaseModuleController.rowFlag, ":") : proj.Memo);
+
+                dt.Rows.Add(cells.ToArray());
+            }
+            return dt;
+        }
     }
 }

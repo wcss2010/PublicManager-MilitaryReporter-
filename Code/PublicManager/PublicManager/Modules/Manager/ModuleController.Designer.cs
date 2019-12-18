@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.rcTopBar = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.btnSetSourceDir = new DevExpress.XtraBars.BarButtonItem();
-            this.btnSetDestDir = new DevExpress.XtraBars.BarButtonItem();
-            this.btnImportAll = new DevExpress.XtraBars.BarButtonItem();
-            this.btnImportWithSelected = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportToExcel = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAddProject = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDeleteProject = new DevExpress.XtraBars.BarButtonItem();
+            this.btnEditProject = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rpgPrivateProject = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,49 +44,70 @@
             this.rcTopBar.ExpandCollapseItem.Id = 0;
             this.rcTopBar.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.rcTopBar.ExpandCollapseItem,
-            this.btnSetSourceDir,
-            this.btnSetDestDir,
-            this.btnImportAll,
-            this.btnImportWithSelected});
+            this.btnExportToExcel,
+            this.btnAddProject,
+            this.btnDeleteProject,
+            this.btnEditProject});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
-            this.rcTopBar.MaxItemId = 6;
+            this.rcTopBar.MaxItemId = 10;
             this.rcTopBar.Name = "rcTopBar";
             this.rcTopBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpMaster});
             this.rcTopBar.Size = new System.Drawing.Size(1106, 145);
             // 
-            // btnSetSourceDir
+            // btnExportToExcel
             // 
-            this.btnSetSourceDir.Caption = "设置主目录";
-            this.btnSetSourceDir.Id = 1;
-            this.btnSetSourceDir.LargeGlyph = global::PublicManager.Properties.Resources.folderA;
-            this.btnSetSourceDir.Name = "btnSetSourceDir";
+            this.btnExportToExcel.Caption = "导出Excel";
+            this.btnExportToExcel.Id = 6;
+            this.btnExportToExcel.LargeGlyph = global::PublicManager.Properties.Resources.Mail_32x32;
+            this.btnExportToExcel.Name = "btnExportToExcel";
+            this.btnExportToExcel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportToExcel_ItemClick);
             // 
-            // btnSetDestDir
+            // btnAddProject
             // 
-            this.btnSetDestDir.Caption = "设置解压目录";
-            this.btnSetDestDir.Id = 2;
-            this.btnSetDestDir.LargeGlyph = global::PublicManager.Properties.Resources.folderB;
-            this.btnSetDestDir.Name = "btnSetDestDir";
+            this.btnAddProject.Caption = "新增专项项目";
+            this.btnAddProject.Id = 7;
+            this.btnAddProject.LargeGlyph = global::PublicManager.Properties.Resources.add;
+            this.btnAddProject.Name = "btnAddProject";
+            this.btnAddProject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddProject_ItemClick);
             // 
-            // btnImportAll
+            // btnDeleteProject
             // 
-            this.btnImportAll.Caption = "导入所有";
-            this.btnImportAll.Id = 3;
-            this.btnImportAll.LargeGlyph = global::PublicManager.Properties.Resources.importA;
-            this.btnImportAll.Name = "btnImportAll";
+            this.btnDeleteProject.Caption = "删除专项项目";
+            this.btnDeleteProject.Id = 8;
+            this.btnDeleteProject.LargeGlyph = global::PublicManager.Properties.Resources.delete;
+            this.btnDeleteProject.Name = "btnDeleteProject";
+            this.btnDeleteProject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDeleteProject_ItemClick);
             // 
-            // btnImportWithSelected
+            // btnEditProject
             // 
-            this.btnImportWithSelected.Caption = "选择性导入";
-            this.btnImportWithSelected.Id = 4;
-            this.btnImportWithSelected.LargeGlyph = global::PublicManager.Properties.Resources.importB;
-            this.btnImportWithSelected.Name = "btnImportWithSelected";
+            this.btnEditProject.Caption = "编辑专项项目";
+            this.btnEditProject.Id = 9;
+            this.btnEditProject.LargeGlyph = global::PublicManager.Properties.Resources.edit;
+            this.btnEditProject.Name = "btnEditProject";
+            this.btnEditProject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEditProject_ItemClick);
             // 
             // rpMaster
             // 
+            this.rpMaster.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rpgPrivateProject,
+            this.rpgElse});
             this.rpMaster.Name = "rpMaster";
             this.rpMaster.Text = "论证报告书";
+            // 
+            // rpgPrivateProject
+            // 
+            this.rpgPrivateProject.ItemLinks.Add(this.btnAddProject);
+            this.rpgPrivateProject.ItemLinks.Add(this.btnDeleteProject);
+            this.rpgPrivateProject.ItemLinks.Add(this.btnEditProject);
+            this.rpgPrivateProject.Name = "rpgPrivateProject";
+            this.rpgPrivateProject.Text = "专项项目";
+            // 
+            // rpgElse
+            // 
+            this.rpgElse.ItemLinks.Add(this.btnExportToExcel);
+            this.rpgElse.Name = "rpgElse";
+            this.rpgElse.Text = "其它";
             // 
             // ModuleController
             // 
@@ -102,10 +125,12 @@
         #endregion
 
         private DevExpress.XtraBars.Ribbon.RibbonControl rcTopBar;
-        private DevExpress.XtraBars.BarButtonItem btnSetSourceDir;
-        private DevExpress.XtraBars.BarButtonItem btnSetDestDir;
-        private DevExpress.XtraBars.BarButtonItem btnImportAll;
-        private DevExpress.XtraBars.BarButtonItem btnImportWithSelected;
         private DevExpress.XtraBars.Ribbon.RibbonPage rpMaster;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgPrivateProject;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgElse;
+        private DevExpress.XtraBars.BarButtonItem btnExportToExcel;
+        private DevExpress.XtraBars.BarButtonItem btnAddProject;
+        private DevExpress.XtraBars.BarButtonItem btnDeleteProject;
+        private DevExpress.XtraBars.BarButtonItem btnEditProject;
     }
 }
