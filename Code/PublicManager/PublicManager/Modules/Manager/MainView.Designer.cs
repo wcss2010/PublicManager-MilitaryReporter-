@@ -85,7 +85,8 @@
             this.dgvCatalogs.RowHeadersVisible = false;
             this.dgvCatalogs.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 10.5F);
             this.dgvCatalogs.RowTemplate.Height = 23;
-            this.dgvCatalogs.Size = new System.Drawing.Size(1108, 607);
+            this.dgvCatalogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCatalogs.Size = new System.Drawing.Size(1293, 708);
             this.dgvCatalogs.TabIndex = 2;
             this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
             // 
@@ -189,11 +190,11 @@
             // 
             // MainView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgvCatalogs);
             this.Name = "MainView";
-            this.Size = new System.Drawing.Size(1108, 607);
+            this.Size = new System.Drawing.Size(1293, 708);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).EndInit();
             this.ResumeLayout(false);
 

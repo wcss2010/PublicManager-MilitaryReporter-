@@ -125,6 +125,7 @@ namespace PublicManager.Modules.Manager
                     f.ShowIcon = false;
                     f.Size = new System.Drawing.Size(600, 600);
                     RichTextBox rtb = new RichTextBox();
+                    rtb.Font = new System.Drawing.Font("宋体", 14);
                     rtb.Dock = DockStyle.Fill;
                     f.Controls.Add(rtb);
 
@@ -218,6 +219,20 @@ namespace PublicManager.Modules.Manager
                 dt.Rows.Add(cells.ToArray());
             }
             return dt;
+        }
+
+        /// <summary>
+        /// 获得当前的对象
+        /// </summary>
+        /// <returns></returns>
+        public Project getCurrentProject()
+        {
+            Project proj = null;
+            if (dgvCatalogs.SelectedRows.Count >= 1 && dgvCatalogs.SelectedRows[0].Tag != null)
+            {
+                proj = (Project)dgvCatalogs.SelectedRows[0].Tag;
+            }
+            return proj;
         }
     }
 }

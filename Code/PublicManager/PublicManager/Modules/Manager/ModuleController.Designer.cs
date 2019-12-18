@@ -77,6 +77,7 @@
             this.btnDeleteProject.Id = 8;
             this.btnDeleteProject.LargeGlyph = global::PublicManager.Properties.Resources.delete;
             this.btnDeleteProject.Name = "btnDeleteProject";
+            this.btnDeleteProject.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnDeleteProject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDeleteProject_ItemClick);
             // 
             // btnEditProject
