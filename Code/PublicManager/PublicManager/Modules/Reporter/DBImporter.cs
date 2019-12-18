@@ -97,13 +97,13 @@ namespace PublicManager.Modules.Reporter
                 #endregion
 
                 #region 导入经费信息表
-                DataList dlMoneys = localContext.table("MoneyAndYear").select("*").getDataList();
+                DataList dlMoneys = localContext.table("YuSuanBiao").select("*").getDataList();
                 if (dlMoneys != null && dlMoneys.getRowCount() >= 1)
                 {
                     foreach (DataItem di in dlMoneys.getRows())
                     {
                         //添加字典
-                        addDict(catalog, proj, "Money,Info", di.getString("Name"), di.getString("Value"), string.Empty);
+                        addDict(catalog, proj, "Money,Info", di.getString("MingCheng"), di.getString("ShuJu"), string.Empty);
                     }
                 }
                 #endregion
