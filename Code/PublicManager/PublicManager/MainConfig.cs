@@ -25,7 +25,7 @@ namespace PublicManager
         /// <summary>
         /// 配置文件路径
         /// </summary>
-        public const string constConfigFile = Path.Combine(Application.StartupPath, "config.json");
+        public static string constConfigFile = string.Empty;
 
         /// <summary>
         /// 配置

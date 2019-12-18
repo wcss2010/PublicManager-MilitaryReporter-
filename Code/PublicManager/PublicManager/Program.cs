@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -18,6 +19,7 @@ namespace PublicManager
             PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + System.IO.Path.Combine(Application.StartupPath, "static.db"));
 
             //载入配置
+            MainConfig.constConfigFile = Path.Combine(Application.StartupPath, "config.json");
             MainConfig.loadConfig();
 
             //加载皮肤
