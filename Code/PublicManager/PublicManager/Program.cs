@@ -21,19 +21,19 @@ namespace PublicManager
             MainConfig.loadConfig();
 
             //加载皮肤
-            if (MainConfig.Config.Dict.ContainsKey("当前皮肤"))
+            if (MainConfig.Config.StringDict.ContainsKey("当前皮肤"))
             {
-                string skinName = MainConfig.Config.Dict["当前皮肤"];
+                string skinName = MainConfig.Config.StringDict["当前皮肤"];
                 DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle(string.IsNullOrEmpty(skinName) ? "Office 2010 Blue" : skinName);
             }
-            if (MainConfig.Config.Dict.ContainsKey("皮肤颜色1"))
+            if (MainConfig.Config.StringDict.ContainsKey("皮肤颜色1"))
             {
-                int colorVal = int.Parse(MainConfig.Config.Dict["皮肤颜色1"]);
+                int colorVal = int.Parse(MainConfig.Config.StringDict["皮肤颜色1"]);
                 DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinMaskColor = Color.FromArgb(colorVal);
             }
-            if (MainConfig.Config.Dict.ContainsKey("皮肤颜色2"))
+            if (MainConfig.Config.StringDict.ContainsKey("皮肤颜色2"))
             {
-                int colorVal = int.Parse(MainConfig.Config.Dict["皮肤颜色2"]);
+                int colorVal = int.Parse(MainConfig.Config.StringDict["皮肤颜色2"]);
                 DevExpress.LookAndFeel.UserLookAndFeel.Default.SkinMaskColor2 = Color.FromArgb(colorVal);
             }
 

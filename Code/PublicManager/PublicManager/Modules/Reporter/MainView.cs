@@ -103,9 +103,9 @@ namespace PublicManager.Modules.Reporter
                     //显示链接提示框
                     try
                     {
-                        if (MainConfig.Config.Dict.ContainsKey("论证报告解压目录"))
+                        if (MainConfig.Config.StringDict.ContainsKey("论证报告解压目录"))
                         {
-                            string decompressDir = MainConfig.Config.Dict["论证报告解压目录"];
+                            string decompressDir = MainConfig.Config.StringDict["论证报告解压目录"];
                             string catalogNumber = ConnectionManager.Context.table("Catalog").where("CatalogID='" + catalogId + "'").select("CatalogNumber").getValue<string>("");
                             if (File.Exists(Path.Combine(decompressDir, Path.Combine(catalogNumber, "论证报告.doc"))))
                             {

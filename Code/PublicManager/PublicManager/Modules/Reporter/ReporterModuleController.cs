@@ -42,14 +42,14 @@ namespace PublicManager.Modules.Reporter
         /// </summary>
         private void updateDirectoryHint()
         {
-            if (MainConfig.Config.Dict.ContainsKey("论证报告总目录"))
+            if (MainConfig.Config.StringDict.ContainsKey("论证报告总目录"))
             {
-                totalDir = MainConfig.Config.Dict["论证报告总目录"];
+                totalDir = MainConfig.Config.StringDict["论证报告总目录"];
             }
 
-            if (MainConfig.Config.Dict.ContainsKey("论证报告解压目录"))
+            if (MainConfig.Config.StringDict.ContainsKey("论证报告解压目录"))
             {
-                decompressDir = MainConfig.Config.Dict["论证报告解压目录"];
+                decompressDir = MainConfig.Config.StringDict["论证报告解压目录"];
             }
 
             StatusLabelControl.Caption = "主目录:" + totalDir + ",解压目录:" + decompressDir;
@@ -79,7 +79,7 @@ namespace PublicManager.Modules.Reporter
             {
                 totalDir = fbdFolderSelect.SelectedPath;
 
-                MainConfig.Config.Dict["论证报告总目录"] = totalDir;
+                MainConfig.Config.StringDict["论证报告总目录"] = totalDir;
                 MainConfig.saveConfig();
 
                 updateDirectoryHint();
@@ -93,7 +93,7 @@ namespace PublicManager.Modules.Reporter
             {
                 decompressDir = fbdFolderSelect.SelectedPath;
 
-                MainConfig.Config.Dict["论证报告解压目录"] = decompressDir;
+                MainConfig.Config.StringDict["论证报告解压目录"] = decompressDir;
                 MainConfig.saveConfig();
 
                 updateDirectoryHint();

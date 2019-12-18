@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperCodeFactoryLib.Collections;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -12,35 +13,80 @@ namespace PublicManager
     public class MainConfig
     {
         /// <summary>
+        /// 行分割符
+        /// </summary>
+        public const string rowFlag = "{{(<<rows>>)}}";
+
+        /// <summary>
+        /// 单元格分割符
+        /// </summary>
+        public const string cellFlag = "{{(<<cells>>)}}";
+
+        /// <summary>
+        /// 配置文件路径
+        /// </summary>
+        public const string constConfigFile = Path.Combine(Application.StartupPath, "config.json");
+
+        /// <summary>
         /// 配置
         /// </summary>
         public static MainConfig Config { get; set; }
 
-        private Dictionary<string, string> dict = new Dictionary<string, string>();
+        private SerialDictionary<string, string> stringDict = new SerialDictionary<string, string>();
         /// <summary>
-        /// 数据字典
+        /// 字符数据字典
         /// </summary>
-        public Dictionary<string, string> Dict
+        public SerialDictionary<string, string> StringDict
         {
-            get { return dict; }
+            get { return stringDict; }
         }
 
+        private SerialDictionary<string, object> objectDict = new SerialDictionary<string, object>();
+        /// <summary>
+        /// 对象数据字典
+        /// </summary>
+        public SerialDictionary<string, object> ObjectDict
+        {
+            get { return objectDict; }
+        }
+        
         /// <summary>
         /// 载入配置
         /// </summary>
         public static void loadConfig()
         {
-            if (File.Exists(Path.Combine(Application.StartupPath, "config.json")))
+            try
             {
-                Config = Newtonsoft.Json.JsonConvert.DeserializeObject<MainConfig>(File.ReadAllText(Path.Combine(Application.StartupPath, "config.json")));
+                //检查是不是存在配置文件
+                if (File.Exists(constConfigFile))
+                {
+                    //读取配置文件
+                    Config = Newtonsoft.Json.JsonConvert.DeserializeObject<MainConfig>(File.ReadAllText(constConfigFile));
+                }
+                else
+                {
+                    //初始化
+                    initConfig();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Config = new MainConfig();
+                //初始化
+                initConfig();
+            }
+        }
 
-                Config.Dict["报告验证_目录"] = "files";
-                Config.Dict["报告验证_文件"] = "static.db";
-            }
+        /// <summary>
+        /// 初始化配置
+        /// </summary>
+        public static void initConfig()
+        {
+            Config = new MainConfig();
+            Config.StringDict["报告验证_目录"] = "files";
+            Config.StringDict["报告验证_文件"] = "static.db";
+            Config.ObjectDict.Add("责任单位", new string[] { "东部战区", "南部战区", "西部战区", "北部战区", "中部战区", "陆军", "海军", "空军", "火箭军", "战略支援部队", "联勤保障部队", "军委办公厅", "军委联合参谋部", "军委政治工作部", "军委后勤保障部", "军委装备发展部", "军委训练管理部", "军委国防动员部", "军委纪律检察委员会", "军委政法委员会", "军委科学技术委员会", "军委战略规划办公室", "军委改革和编制办公室", "军委国际军事合作办公室", "军委审计署", "军委机关事务管理总局", "军事科学院", "国防大学", "国防科技大学", "武装警察部队" });
+
+            saveConfig();
         }
 
         /// <summary>
@@ -49,7 +95,7 @@ namespace PublicManager
         public static void saveConfig()
         {
             string cnt = Newtonsoft.Json.JsonConvert.SerializeObject(Config, Newtonsoft.Json.Formatting.Indented);
-            File.WriteAllText(Path.Combine(Application.StartupPath, "config.json"), cnt);
+            File.WriteAllText(constConfigFile, cnt);
         }
     }
 }

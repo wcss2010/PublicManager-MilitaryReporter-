@@ -158,10 +158,10 @@ namespace PublicManager
             form.SkinMaskColor2 = UserLookAndFeel.Default.SkinMaskColor2;
             form.ShowDialog(this);
 
-            MainConfig.Config.Dict["皮肤颜色1"] = UserLookAndFeel.Default.SkinMaskColor != null ? UserLookAndFeel.Default.SkinMaskColor.ToArgb().ToString() : "-1";
-            MainConfig.Config.Dict["皮肤颜色2"] = UserLookAndFeel.Default.SkinMaskColor2 != null ? UserLookAndFeel.Default.SkinMaskColor2.ToArgb().ToString() : "-1";
+            MainConfig.Config.StringDict["皮肤颜色1"] = UserLookAndFeel.Default.SkinMaskColor != null ? UserLookAndFeel.Default.SkinMaskColor.ToArgb().ToString() : "-1";
+            MainConfig.Config.StringDict["皮肤颜色2"] = UserLookAndFeel.Default.SkinMaskColor2 != null ? UserLookAndFeel.Default.SkinMaskColor2.ToArgb().ToString() : "-1";
 
-            MainConfig.Config.Dict["当前皮肤"] = UserLookAndFeel.Default.ActiveSkinName;
+            MainConfig.Config.StringDict["当前皮肤"] = UserLookAndFeel.Default.ActiveSkinName;
             MainConfig.saveConfig();
         }
 
@@ -246,7 +246,7 @@ namespace PublicManager
 
         private void skinRibbonGalleryBarItem1_GalleryItemClick(object sender, GalleryItemClickEventArgs e)
         {
-            MainConfig.Config.Dict["当前皮肤"] = string.Concat(e.Item.Tag);
+            MainConfig.Config.StringDict["当前皮肤"] = string.Concat(e.Item.Tag);
             MainConfig.saveConfig();
         }
     }

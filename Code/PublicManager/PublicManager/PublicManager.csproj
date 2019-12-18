@@ -183,6 +183,12 @@
     <Compile Include="Modules\MainMenuController.Designer.cs">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Manager\Forms\AddOrUpdateProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Manager\Forms\AddOrUpdateProjectForm.Designer.cs">
+      <DependentUpon>AddOrUpdateProjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Manager\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\MainMenuController.resx">
       <DependentUpon>MainMenuController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Manager\Forms\AddOrUpdateProjectForm.resx">
+      <DependentUpon>AddOrUpdateProjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Manager\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
