@@ -56,7 +56,7 @@ namespace PublicManager.Modules.Manager
                             {
                                 if (string.IsNullOrEmpty(vvvv[0])) { continue; }
 
-                                sbWillResult.Append(vvvv[0].Insert(vvvv[0].IndexOf("("), vvvv[1]).Replace("(", string.Empty).Replace(")", string.Empty)).AppendLine();
+                                sbWillResult.Append(vvvv[0].Insert(vvvv[0].IndexOf("("), vvvv[1]).Replace("(", string.Empty).Replace(")", string.Empty)).Append(",");
                             }
                         }
                     }

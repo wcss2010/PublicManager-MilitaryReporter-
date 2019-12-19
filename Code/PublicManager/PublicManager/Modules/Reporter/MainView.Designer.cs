@@ -126,19 +126,19 @@
             // 
             // Column4
             // 
-            this.Column4.HeaderText = "周期";
-            this.Column4.MinimumWidth = 60;
+            this.Column4.HeaderText = "周期(月)";
+            this.Column4.MinimumWidth = 90;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            this.Column4.Width = 60;
+            this.Column4.Width = 90;
             // 
             // Column5
             // 
-            this.Column5.HeaderText = "经费概算";
-            this.Column5.MinimumWidth = 120;
+            this.Column5.HeaderText = "经费概算(万元)";
+            this.Column5.MinimumWidth = 150;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
-            this.Column5.Width = 120;
+            this.Column5.Width = 150;
             // 
             // Column6
             // 
