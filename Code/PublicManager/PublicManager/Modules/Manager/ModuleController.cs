@@ -72,6 +72,23 @@ namespace PublicManager.Modules.Manager
                 proj.StudyTime = form.StudyTime != null ? form.StudyTime.Tag : 0;
                 proj.StudyMoney = decimal.Parse(form.StudyMoney);
                 proj.DutyUnit = form.DutyUnit;
+                proj.StudyDest = "*专项项目*";
+                proj.StudyContent = "*专项项目*";
+                proj.WillResult = "*专项项目*";
+                proj.ProjectSort = "*专项项目*";
+                proj.NextUnit = "*专项项目*";
+                proj.Memo = "其他" + MainConfig.rowFlag + "*专项项目*";
+                proj.Worker = "*专项项目*";
+                proj.WorkerCardID = "*专项项目*";
+                proj.WorkerSex = "男";
+                proj.WorkerNation = "*专项项目*";
+                proj.WorkerBirthday = DateTime.Now;
+                proj.WorkerTelephone = "*专项项目*";
+                proj.WorkerMobilephone = "*专项项目*";
+                proj.SectionJobCateGory = "*专项项目*";
+                proj.AllStudyUnit = "*专项项目*";
+                proj.RequestMoney = 0;
+                proj.TaskCompleteTime = DateTime.Now;
                 proj.copyTo(ConnectionManager.Context.table("Project")).insert();
 
                 tc.updateCatalogs();
@@ -129,6 +146,23 @@ namespace PublicManager.Modules.Manager
                         newProj.StudyTime = ff.StudyTime != null ? ff.StudyTime.Tag : 0;
                         newProj.StudyMoney = decimal.Parse(ff.StudyMoney);
                         newProj.DutyUnit = ff.DutyUnit;
+                        newProj.StudyDest = "*专项项目*";
+                        newProj.StudyContent = "*专项项目*";
+                        newProj.WillResult = "*专项项目*";
+                        newProj.ProjectSort = "*专项项目*";
+                        newProj.NextUnit = "*专项项目*";
+                        newProj.Memo = "其他" + MainConfig.rowFlag + "*专项项目*";
+                        newProj.Worker = "*专项项目*";
+                        newProj.WorkerCardID = "*专项项目*";
+                        newProj.WorkerSex = "男";
+                        newProj.WorkerNation = "*专项项目*";
+                        newProj.WorkerBirthday = DateTime.Now;
+                        newProj.WorkerTelephone = "*专项项目*";
+                        newProj.WorkerMobilephone = "*专项项目*";
+                        newProj.SectionJobCateGory = "*专项项目*";
+                        newProj.AllStudyUnit = "*专项项目*";
+                        newProj.RequestMoney = 0;
+                        newProj.TaskCompleteTime = DateTime.Now;
                         newProj.copyTo(ConnectionManager.Context.table("Project")).insert();
 
                         tc.updateCatalogs();
