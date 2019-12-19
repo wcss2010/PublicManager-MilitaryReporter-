@@ -85,6 +85,17 @@ namespace PublicManager.Modules.Manager.Forms
             }
         }
 
+        /// <summary>
+        /// 研究周期选项
+        /// </summary>
+        public ComboBox.ObjectCollection StudyTimeItems
+        {
+            get
+            {
+                return txtStudyTime.Items;
+            }
+        }
+
         public AddOrUpdateProjectForm()
         {
             InitializeComponent();

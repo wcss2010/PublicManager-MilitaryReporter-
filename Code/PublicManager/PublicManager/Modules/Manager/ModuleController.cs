@@ -81,7 +81,52 @@ namespace PublicManager.Modules.Manager
 
         private void btnEditProject_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (tc.getCurrentProject() != null)
+            {
+                Project proj = tc.getCurrentProject();
+                AddOrUpdateProjectForm ff = new AddOrUpdateProjectForm();
+                ff.ProjectName = proj.ProjectName;
 
+                foreach (object obj in ff.StudyTimeItems)
+                {
+                    if (obj is ComboBoxObject<int>)
+                    {
+                        ComboBoxObject<int> itemObj = ((ComboBoxObject<int>)obj);
+                        if (itemObj.Tag == proj.StudyTime)
+                        {
+                            ff.StudyTime = itemObj;
+                            break;
+                        }
+                    }
+                }
+                ff.StudyMoney = proj.StudyMoney + "";
+                ff.DutyUnit = proj.DutyUnit;
+
+                if (ff.ShowDialog() == DialogResult.OK)
+                {
+                    //删除旧的工程
+                    new PublicManager.Modules.Reporter.DBImporter().deleteProject(proj.CatalogID);
+
+                    Catalog catalog = new Catalog();
+                    catalog.CatalogID = Guid.NewGuid().ToString();
+                    catalog.CatalogNumber = "XXXXXXXXX专项项目XXXXXXXXX";
+                    catalog.CatalogName = ff.ProjectName;
+                    catalog.CatalogType = "论证报告书";
+                    catalog.CatalogVersion = "v1.0";
+                    catalog.copyTo(ConnectionManager.Context.table("Catalog")).insert();
+
+                    Project newProj = new Project();
+                    newProj.ProjectID = catalog.CatalogID;
+                    newProj.CatalogID = catalog.CatalogID;
+                    newProj.ProjectName = catalog.CatalogName;
+                    newProj.StudyTime = ff.StudyTime != null ? ff.StudyTime.Tag : 0;
+                    newProj.StudyMoney = decimal.Parse(ff.StudyMoney);
+                    newProj.DutyUnit = ff.DutyUnit;
+                    newProj.copyTo(ConnectionManager.Context.table("Project")).insert();
+
+                    tc.updateCatalogs();
+                }
+            }
         }
 
         private void btnExportToExcel_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
