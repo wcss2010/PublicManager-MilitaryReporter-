@@ -151,7 +151,7 @@
             // Column7
             // 
             this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column7.HeaderText = "单位";
+            this.Column7.HeaderText = "责任单位(下级单位)";
             this.Column7.MinimumWidth = 120;
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
