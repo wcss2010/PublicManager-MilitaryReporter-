@@ -128,6 +128,7 @@ namespace PublicManager.Modules.Reporter
                     f.Size = new System.Drawing.Size(600, 600);
                     RichTextBox rtb = new RichTextBox();
                     rtb.Font = new System.Drawing.Font("宋体", 14);
+                    rtb.ReadOnly = true;
                     rtb.Dock = DockStyle.Fill;
                     f.Controls.Add(rtb);
 
