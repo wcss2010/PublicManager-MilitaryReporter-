@@ -8,6 +8,9 @@ using System.Windows.Forms;
 using PublicManager.Modules.Manager.Forms;
 using PublicManager.DB.Entitys;
 using PublicManager.DB;
+using SuperCodeFactoryUILib.Forms;
+using System.IO;
+using Noear.Weed;
 
 namespace PublicManager.Modules.Manager
 {
@@ -145,7 +148,132 @@ namespace PublicManager.Modules.Manager
 
         private void btnExportToPkg_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (tc.getCurrentProject() != null)
+            {
+                Project proj = tc.getCurrentProject();
 
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "ZIP数据包|*.zip";
+                sfd.FileName = getExportName(proj);
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    if (MessageBox.Show("真的要导出吗?", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        CircleProgressBarDialog dialoga = new CircleProgressBarDialog();
+                        dialoga.TransparencyKey = dialoga.BackColor;
+                        dialoga.ProgressBar.ForeColor = Color.Red;
+                        dialoga.MessageLabel.ForeColor = Color.Blue;
+                        dialoga.FormBorderStyle = FormBorderStyle.None;
+                        dialoga.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
+                        {
+                            //当前窗体
+                            CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
+
+                            senderForm.ReportProgress(10, 100);
+                            senderForm.ReportInfo("准备导出...");
+                            try { System.Threading.Thread.Sleep(1000); } catch (Exception ex) { }
+
+                            #region 准备环境
+                            //数据文件
+                            string tempDBFile = Path.Combine(Application.StartupPath, "mtp-static.db");
+
+                            //目标目录
+                            string destDir = Path.Combine(Application.StartupPath, Path.Combine("Temps", Guid.NewGuid().ToString()));
+                            try
+                            {
+                                Directory.CreateDirectory(destDir);
+                            }
+                            catch (Exception ex) { }
+                            try
+                            {
+                                Directory.CreateDirectory(Path.Combine(destDir, "Files"));
+                            }
+                            catch (Exception ex) { }
+                            File.WriteAllText(Path.Combine(Path.Combine(destDir, "Files"), "temp.txt"), string.Empty);
+
+                            //目标文件
+                            string destDBFile = Path.Combine(destDir, "static.db");
+
+                            //复制
+                            File.Copy(tempDBFile, destDBFile, true);
+                            
+                            #endregion
+
+                            senderForm.ReportProgress(40, 100);
+                            senderForm.ReportInfo("准备写入数据...");
+                            try { System.Threading.Thread.Sleep(1000); } catch (Exception ex) { }
+
+                            #region 往临时DB中写入数据
+                            //SQLite数据库工厂
+                            System.Data.SQLite.SQLiteFactory factory = new System.Data.SQLite.SQLiteFactory();
+
+                            //NDEY数据库连接
+                            Noear.Weed.DbContext context = new Noear.Weed.DbContext("main", "Data Source = " + destDBFile, factory);
+                            //是否在执入后执行查询（主要针对Sqlite）
+                            context.IsSupportSelectIdentityAfterInsert = false;
+                            //是否在Dispose后执行GC用于解决Dispose后无法删除的问题（主要针对Sqlite）
+                            context.IsSupportGCAfterDispose = true;
+
+                            try
+                            {
+                                var tableTemp = context.table("JiBenXinXiBiao");
+                                tableTemp.set("BianHao", Guid.NewGuid().ToString());
+                                tableTemp.set("XiangMuMingCheng", proj.ProjectName);
+                                tableTemp.set("YanJiuMuBiao", "*****专项项目*****");
+                                tableTemp.set("YanJiuNeiRong", "*****专项项目*****");
+                                tableTemp.set("YuQiChengGuo", "*****专项项目*****");
+                                tableTemp.set("YanJiuZhouQi", proj.StudyTime);
+                                tableTemp.set("JingFeiYuSuan", proj.StudyMoney);
+                                tableTemp.set("XiangMuLeiBie", "专题活动");
+                                tableTemp.set("ZeRenDanWei", proj.DutyUnit);
+                                tableTemp.set("XiaJiDanWei", "*****专项项目*****");
+                                tableTemp.set("BeiZhu", "其他" + MainConfig.rowFlag + "");
+                                tableTemp.set("QianTouRen", "*****专项项目*****");
+                                tableTemp.set("QianTouRenShenFenZheng", "*****专项项目*****");
+                                tableTemp.set("QianTouRenXingBie", "男");
+                                tableTemp.set("QianTouRenMinZu", "*****专项项目*****");
+                                tableTemp.set("QianTouRenShengRi", DateTime.Now);
+                                tableTemp.set("QianTouRenDianHua", "*****专项项目*****");
+                                tableTemp.set("QianTouRenShouJi", "*****专项项目*****");
+                                tableTemp.set("BuZhiBie", "*****专项项目*****");
+                                tableTemp.set("LianHeYanJiuDanWei", "*****专项项目*****");
+                                tableTemp.set("ShenQingJingFei", 0);
+                                tableTemp.set("JiHuaWanChengShiJian", DateTime.Now);
+                                tableTemp.set("ZhuangTai", 0);
+                                tableTemp.set("ModifyTime", DateTime.Now);
+                                tableTemp.insert();                                
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Console.WriteLine(ex.ToString());
+                            }
+                            finally
+                            {
+                                factory.Dispose();
+                                context.Dispose();
+                            }
+                            #endregion
+
+                            senderForm.ReportProgress(80, 100);
+                            senderForm.ReportInfo("准备打包数据包...");
+                            try { System.Threading.Thread.Sleep(1000); } catch (Exception ex) { }
+
+                            #region 打包
+                            new ZipTool().ZipFileDirectory(destDir, sfd.FileName);
+                            #endregion
+
+                            senderForm.ReportProgress(99, 100);
+                            senderForm.ReportInfo("导出完成...");
+                            try { System.Threading.Thread.Sleep(1000); } catch (Exception ex) { }
+                        }));
+                    }
+                }
+            }
+        }
+
+        private string getExportName(Project proj)
+        {
+            return proj.ProjectName + "-" + "专项项目" + ".zip";
         }
     }
 }
