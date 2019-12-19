@@ -75,7 +75,7 @@ namespace PublicManager.Modules.Manager
                 proj.StudyDest = "*专项项目*";
                 proj.StudyContent = "*专项项目*";
                 proj.WillResult = "*专项项目*";
-                proj.ProjectSort = "*专项项目*";
+                proj.ProjectSort = "专题活动";
                 proj.NextUnit = "*专项项目*";
                 proj.Memo = "其他" + MainConfig.rowFlag + "*专项项目*";
                 proj.Worker = "*专项项目*";
@@ -149,7 +149,7 @@ namespace PublicManager.Modules.Manager
                         newProj.StudyDest = "*专项项目*";
                         newProj.StudyContent = "*专项项目*";
                         newProj.WillResult = "*专项项目*";
-                        newProj.ProjectSort = "*专项项目*";
+                        newProj.ProjectSort = "专题活动";
                         newProj.NextUnit = "*专项项目*";
                         newProj.Memo = "其他" + MainConfig.rowFlag + "*专项项目*";
                         newProj.Worker = "*专项项目*";
