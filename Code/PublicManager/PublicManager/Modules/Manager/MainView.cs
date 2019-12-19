@@ -97,7 +97,7 @@ namespace PublicManager.Modules.Manager
                         updateCatalogs();
                     }
                 }
-                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 2)
+                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 2 && !getProjectType(proj.CatalogID).Contains("专项"))
                 {
                     //显示链接提示框
                     try
@@ -114,7 +114,7 @@ namespace PublicManager.Modules.Manager
                     }
                     catch (Exception ex) { }
                 }
-                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 3)
+                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 3 && !getProjectType(proj.CatalogID).Contains("专项"))
                 {
                     //显示详细提示框
                     StringBuilder sb = new StringBuilder();
