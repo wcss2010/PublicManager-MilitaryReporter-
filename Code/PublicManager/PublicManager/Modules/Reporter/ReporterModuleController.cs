@@ -62,9 +62,10 @@ namespace PublicManager.Modules.Reporter
         {
             DisplayControl.Controls.Clear();
             tc = new MainView();
-            tc.updateCatalogs();
             tc.Dock = DockStyle.Fill;
             DisplayControl.Controls.Add(tc);
+
+            tc.updateCatalogs();
         }
 
         public override void stop()
