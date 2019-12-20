@@ -67,6 +67,7 @@ namespace PublicManager.Modules.Reporter
                 cells.Add(proj.StudyTime);
                 cells.Add(proj.StudyMoney);
                 cells.Add(proj.ProjectSort);
+                cells.Add(proj.ProfessionSort);
                 cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");
                 cells.Add(proj.Memo != null && proj.Memo.Contains(BaseModuleController.rowFlag) ? proj.Memo.Replace(BaseModuleController.rowFlag, ":") : proj.Memo);
 
