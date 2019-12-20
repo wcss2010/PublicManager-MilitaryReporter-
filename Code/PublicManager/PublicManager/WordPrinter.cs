@@ -44,6 +44,36 @@ namespace PublicManager
                 Table curTable = (Table)ncTables[tableTempleteIndex];
                 wd.WordDoc.AppendChild(curTable);
 
+                DataTable dtData = new DataTable();
+                if (curTable.GetText().StartsWith("类别"))
+                {
+                    //前头带类别（专业类别）的表
+                    dtData.Columns.Add("类别", typeof(string));
+                    dtData.Columns.Add("序号", typeof(string));
+                    dtData.Columns.Add("项目名称", typeof(string));
+                    dtData.Columns.Add("目标与内容", typeof(string));
+                    dtData.Columns.Add("预期成果", typeof(string));
+                    dtData.Columns.Add("周期", typeof(string));
+                    dtData.Columns.Add("经费概算", typeof(string));
+                    dtData.Columns.Add("项目类别", typeof(string));
+                    dtData.Columns.Add("责任单位", typeof(string));
+                    dtData.Columns.Add("备注", typeof(string));
+                }
+                else
+                {
+                    //前头不带类别（专业类别）的表
+                    dtData.Columns.Add("序号", typeof(string));
+                    dtData.Columns.Add("项目名称", typeof(string));
+                    dtData.Columns.Add("目标与内容", typeof(string));
+                    dtData.Columns.Add("预期成果", typeof(string));
+                    dtData.Columns.Add("周期", typeof(string));
+                    dtData.Columns.Add("经费概算", typeof(string));
+                    dtData.Columns.Add("项目类别", typeof(string));
+                    dtData.Columns.Add("责任单位", typeof(string));
+                    dtData.Columns.Add("备注", typeof(string));
+
+                }
+
                 Report(progressDialog, 20, "准备数据...", 1000);
                 
                 Report(progressDialog, 30, "写入基本信息...", 1000);

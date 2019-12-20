@@ -160,6 +160,7 @@ namespace PublicManager.Modules.Manager
         public DataTable exportToDataTable()
         {
             DataTable dt = new DataTable();
+            dt.Columns.Add("专业类别", typeof(string));
             dt.Columns.Add("项目名称", typeof(string));
             dt.Columns.Add("研究目标", typeof(string));
             dt.Columns.Add("研究内容", typeof(string));
@@ -175,6 +176,7 @@ namespace PublicManager.Modules.Manager
             foreach (Project proj in projList)
             {
                 List<object> cells = new List<object>();
+                cells.Add(proj.ProfessionSort);
                 cells.Add(proj.ProjectName);
                 cells.Add(proj.StudyDest);
 
