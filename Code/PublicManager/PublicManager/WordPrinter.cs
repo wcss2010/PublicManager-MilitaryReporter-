@@ -18,11 +18,11 @@ namespace PublicManager
         /// 输出word内容
         /// </summary>
         /// <param name="progressDialog"></param>
-        public static void wordOutput(CircleProgressBarDialog progressDialog, DataTable dtBase, int tableTempleteIndex, string destDocFile)
+        public static void wordOutput(ProgressForm progressDialog, DataTable dt, int tableTempleteIndex, string destDocFile)
         {
             Report(progressDialog, 10, "准备Word...", 1000);
 
-            if (dtBase == null)
+            if (dt == null)
             {
                 return;
             }
@@ -41,12 +41,15 @@ namespace PublicManager
 
             try
             {
+                Report(progressDialog, 20, "准备数据...", 1000);
+
                 Table curTable = (Table)ncTables[tableTempleteIndex];
                 wd.WordDoc.AppendChild(curTable);
 
                 DataTable dtData = new DataTable();
                 if (curTable.GetText().StartsWith("类别"))
                 {
+                    #region 填充数据
                     //前头带类别（专业类别）的表
                     dtData.Columns.Add("类别", typeof(string));
                     dtData.Columns.Add("序号", typeof(string));
@@ -57,10 +60,95 @@ namespace PublicManager
                     dtData.Columns.Add("经费概算", typeof(string));
                     dtData.Columns.Add("项目类别", typeof(string));
                     dtData.Columns.Add("责任单位", typeof(string));
-                    dtData.Columns.Add("备注", typeof(string));
+                    dtData.Columns.Add("备  注", typeof(string));
+
+                    int indexxx = 0;
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        indexxx++;
+
+                        List<object> cells = new List<object>();
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add(dr["专业类别"] != null ? dr["专业类别"].ToString() : string.Empty);
+                        }
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add(indexxx.ToString());
+                        }
+
+                        cells.Add(dr["项目名称"] != null ? dr["项目名称"].ToString() : string.Empty);
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            StringBuilder destAndContentString = new StringBuilder();
+                            destAndContentString.Append("研究目标：");
+                            destAndContentString.AppendLine(dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty);
+                            destAndContentString.Append("研究内容：");
+                            destAndContentString.Append(dr["研究内容"] != null ? dr["研究内容"].ToString() : string.Empty);
+                            cells.Add(destAndContentString.ToString());
+                        }
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add(dr["预期成果"] != null ? dr["预期成果"].ToString() : string.Empty);
+                        }
+
+                        cells.Add(dr["周期"] != null ? dr["周期"].ToString() : string.Empty);
+                        cells.Add(dr["经费概算"] != null ? dr["经费概算"].ToString() : string.Empty);
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add(dr["项目类别"] != null ? dr["项目类别"].ToString() : string.Empty);
+                        }
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add(dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty);
+                        }
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add((dr["备注"] != null ? dr["备注"].ToString() : string.Empty).Replace("其他:", string.Empty));
+                        }
+
+                        dtData.Rows.Add(cells.ToArray());
+                    }
+                    #endregion
                 }
                 else
                 {
+                    #region 填充数据
                     //前头不带类别（专业类别）的表
                     dtData.Columns.Add("序号", typeof(string));
                     dtData.Columns.Add("项目名称", typeof(string));
@@ -70,18 +158,89 @@ namespace PublicManager
                     dtData.Columns.Add("经费概算", typeof(string));
                     dtData.Columns.Add("项目类别", typeof(string));
                     dtData.Columns.Add("责任单位", typeof(string));
-                    dtData.Columns.Add("备注", typeof(string));
+                    dtData.Columns.Add("备  注", typeof(string));
 
+                    int indexxx = 0;
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        indexxx++;
+
+                        List<object> cells = new List<object>();
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add(indexxx.ToString());
+                        }
+
+                        cells.Add(dr["项目名称"] != null ? dr["项目名称"].ToString() : string.Empty);
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            StringBuilder destAndContentString = new StringBuilder();
+                            destAndContentString.Append("研究目标：");
+                            destAndContentString.AppendLine(dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty);
+                            destAndContentString.Append("研究内容：");
+                            destAndContentString.Append(dr["研究内容"] != null ? dr["研究内容"].ToString() : string.Empty);
+                            cells.Add(destAndContentString.ToString());
+                        }
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add(dr["预期成果"] != null ? dr["预期成果"].ToString() : string.Empty);
+                        }
+
+                        cells.Add(dr["周期"] != null ? dr["周期"].ToString() : string.Empty);
+                        cells.Add(dr["经费概算"] != null ? dr["经费概算"].ToString() : string.Empty);
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add(dr["项目类别"] != null ? dr["项目类别"].ToString() : string.Empty);
+                        }
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add(dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty);
+                        }
+
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        {
+                            cells.Add(string.Empty);
+                        }
+                        else
+                        {
+                            cells.Add((dr["备注"] != null ? dr["备注"].ToString() : string.Empty).Replace("其他:", string.Empty));
+                        }
+
+                        dtData.Rows.Add(cells.ToArray());
+                    }
+                    #endregion
                 }
+                                
+                Report(progressDialog, 60, "填充数据到表格...", 1000);
 
-                Report(progressDialog, 20, "准备数据...", 1000);
-                
-                Report(progressDialog, 30, "写入基本信息...", 1000);
-                
-                Report(progressDialog, 40, "写入文档文件...", 1000);
-                
-                Report(progressDialog, 60, "写入表格数据...", 1000);
-                
+                wd.fillDataToTable(curTable, dtData);                
+                wd.WordDoc.AppendChild(curTable);
+
                 Report(progressDialog, 90, "生成文档...", 1000);
 
                 #region 显示文档或生成文档
@@ -107,10 +266,10 @@ namespace PublicManager
         /// <param name="progress"></param>
         /// <param name="txt"></param>
         /// <param name="sleepTime"></param>
-        private static void Report(CircleProgressBarDialog progressDialog, int progress, string txt, int sleepTime)
+        private static void Report(ProgressForm progressDialog, int progress, string txt, int sleepTime)
         {
-            progressDialog.ReportProgress(progress, 100);
-            progressDialog.ReportInfo(txt);
+            progressDialog.reportProgress(progress, txt);
+
             try
             {
                 Thread.Sleep(sleepTime);
