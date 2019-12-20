@@ -73,21 +73,21 @@ namespace PublicManager.Modules.Manager
                 proj.StudyTime = form.StudyTime != null ? form.StudyTime.Tag : 0;
                 proj.StudyMoney = decimal.Parse(form.StudyMoney);
                 proj.DutyUnit = form.DutyUnit;
-                proj.StudyDest = "*专项项目*";
-                proj.StudyContent = "*专项项目*";
-                proj.WillResult = "*专项项目*";
-                proj.ProjectSort = "专题活动";
-                proj.NextUnit = "*专项项目*";
-                proj.Memo = "其他" + MainConfig.rowFlag + "*专项项目*";
-                proj.Worker = "*专项项目*";
-                proj.WorkerCardID = "*专项项目*";
+                proj.StudyDest = "";
+                proj.StudyContent = "";
+                proj.WillResult = "";
+                proj.ProjectSort = "";
+                proj.NextUnit = "";
+                proj.Memo = "";
+                proj.Worker = "";
+                proj.WorkerCardID = "";
                 proj.WorkerSex = "男";
-                proj.WorkerNation = "*专项项目*";
+                proj.WorkerNation = "";
                 proj.WorkerBirthday = DateTime.Now;
-                proj.WorkerTelephone = "*专项项目*";
-                proj.WorkerMobilephone = "*专项项目*";
-                proj.SectionJobCateGory = "*专项项目*";
-                proj.AllStudyUnit = "*专项项目*";
+                proj.WorkerTelephone = "";
+                proj.WorkerMobilephone = "";
+                proj.SectionJobCateGory = "";
+                proj.AllStudyUnit = "";
                 proj.RequestMoney = 0;
                 proj.TaskCompleteTime = DateTime.Now;
                 proj.copyTo(ConnectionManager.Context.table("Project")).insert();
@@ -147,21 +147,21 @@ namespace PublicManager.Modules.Manager
                         newProj.StudyTime = ff.StudyTime != null ? ff.StudyTime.Tag : 0;
                         newProj.StudyMoney = decimal.Parse(ff.StudyMoney);
                         newProj.DutyUnit = ff.DutyUnit;
-                        newProj.StudyDest = "*专项项目*";
-                        newProj.StudyContent = "*专项项目*";
-                        newProj.WillResult = "*专项项目*";
-                        newProj.ProjectSort = "专题活动";
-                        newProj.NextUnit = "*专项项目*";
-                        newProj.Memo = "其他" + MainConfig.rowFlag + "*专项项目*";
-                        newProj.Worker = "*专项项目*";
-                        newProj.WorkerCardID = "*专项项目*";
+                        newProj.StudyDest = "";
+                        newProj.StudyContent = "";
+                        newProj.WillResult = "";
+                        newProj.ProjectSort = "";
+                        newProj.NextUnit = "";
+                        newProj.Memo = "";
+                        newProj.Worker = "";
+                        newProj.WorkerCardID = "";
                         newProj.WorkerSex = "男";
-                        newProj.WorkerNation = "*专项项目*";
+                        newProj.WorkerNation = "";
                         newProj.WorkerBirthday = DateTime.Now;
-                        newProj.WorkerTelephone = "*专项项目*";
-                        newProj.WorkerMobilephone = "*专项项目*";
-                        newProj.SectionJobCateGory = "*专项项目*";
-                        newProj.AllStudyUnit = "*专项项目*";
+                        newProj.WorkerTelephone = "";
+                        newProj.WorkerMobilephone = "";
+                        newProj.SectionJobCateGory = "";
+                        newProj.AllStudyUnit = "";
                         newProj.RequestMoney = 0;
                         newProj.TaskCompleteTime = DateTime.Now;
                         newProj.copyTo(ConnectionManager.Context.table("Project")).insert();
@@ -251,7 +251,7 @@ namespace PublicManager.Modules.Manager
 
                         List<object> cells = new List<object>();
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
                         {
                             cells.Add(string.Empty);
                         }
@@ -262,7 +262,7 @@ namespace PublicManager.Modules.Manager
 
                         cells.Add(dr["项目名称"] != null ? dr["项目名称"].ToString() : string.Empty);
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
                         {
                             cells.Add(string.Empty);
                         }
@@ -276,7 +276,7 @@ namespace PublicManager.Modules.Manager
                             cells.Add(destAndContentString.ToString());
                         }
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
                         {
                             cells.Add(string.Empty);
                         }
@@ -288,7 +288,7 @@ namespace PublicManager.Modules.Manager
                         cells.Add(dr["周期"] != null ? dr["周期"].ToString() : string.Empty);
                         cells.Add(dr["经费概算"] != null ? dr["经费概算"].ToString() : string.Empty);
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
                         {
                             cells.Add(string.Empty);
                         }
@@ -297,7 +297,7 @@ namespace PublicManager.Modules.Manager
                             cells.Add(dr["项目类别"] != null ? dr["项目类别"].ToString() : string.Empty);
                         }
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
                         {
                             cells.Add(string.Empty);
                         }
@@ -306,7 +306,7 @@ namespace PublicManager.Modules.Manager
                             cells.Add(dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty);
                         }
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
                         {
                             cells.Add(string.Empty);
                         }
@@ -440,24 +440,24 @@ namespace PublicManager.Modules.Manager
                                     var tableTemp = context.table("JiBenXinXiBiao");
                                     tableTemp.set("BianHao", Guid.NewGuid().ToString());
                                     tableTemp.set("XiangMuMingCheng", proj.ProjectName);
-                                    tableTemp.set("YanJiuMuBiao", "*专项项目*");
-                                    tableTemp.set("YanJiuNeiRong", "*专项项目*");
-                                    tableTemp.set("YuQiChengGuo", "*专项项目*");
+                                    tableTemp.set("YanJiuMuBiao", "");
+                                    tableTemp.set("YanJiuNeiRong", "");
+                                    tableTemp.set("YuQiChengGuo", "");
                                     tableTemp.set("YanJiuZhouQi", proj.StudyTime);
                                     tableTemp.set("JingFeiYuSuan", proj.StudyMoney);
-                                    tableTemp.set("XiangMuLeiBie", "专题活动");
+                                    tableTemp.set("XiangMuLeiBie", "");
                                     tableTemp.set("ZeRenDanWei", proj.DutyUnit);
-                                    tableTemp.set("XiaJiDanWei", "*专项项目*");
-                                    tableTemp.set("BeiZhu", "其他" + MainConfig.rowFlag + "*专项项目*");
-                                    tableTemp.set("QianTouRen", "*专项项目*");
-                                    tableTemp.set("QianTouRenShenFenZheng", "*专项项目*");
+                                    tableTemp.set("XiaJiDanWei", "");
+                                    tableTemp.set("BeiZhu", "");
+                                    tableTemp.set("QianTouRen", "");
+                                    tableTemp.set("QianTouRenShenFenZheng", "");
                                     tableTemp.set("QianTouRenXingBie", "男");
-                                    tableTemp.set("QianTouRenMinZu", "*专项项目*");
+                                    tableTemp.set("QianTouRenMinZu", "");
                                     tableTemp.set("QianTouRenShengRi", DateTime.Now);
-                                    tableTemp.set("QianTouRenDianHua", "*专项项目*");
-                                    tableTemp.set("QianTouRenShouJi", "*专项项目*");
-                                    tableTemp.set("BuZhiBie", "*专项项目*");
-                                    tableTemp.set("LianHeYanJiuDanWei", "*专项项目*");
+                                    tableTemp.set("QianTouRenDianHua", "");
+                                    tableTemp.set("QianTouRenShouJi", "");
+                                    tableTemp.set("BuZhiBie", "");
+                                    tableTemp.set("LianHeYanJiuDanWei", "");
                                     tableTemp.set("ShenQingJingFei", 0);
                                     tableTemp.set("JiHuaWanChengShiJian", DateTime.Now);
                                     tableTemp.set("ZhuangTai", 0);
