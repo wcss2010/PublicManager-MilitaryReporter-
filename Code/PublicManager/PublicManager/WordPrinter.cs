@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -18,11 +19,11 @@ namespace PublicManager
         /// 输出word内容
         /// </summary>
         /// <param name="progressDialog"></param>
-        public static void wordOutput(ProgressForm progressDialog, DataTable dt, int tableTempleteIndex, string destDocFile)
+        public static void wordOutput(ProgressForm progressDialog, DataTable source, int tableTempleteIndex, string destDocFile)
         {
             Report(progressDialog, 10, "准备Word...", 1000);
 
-            if (dt == null)
+            if (source == null)
             {
                 return;
             }
@@ -65,7 +66,7 @@ namespace PublicManager
                     string lastPSort = string.Empty;
                     int dirIndex = 0;
                     int itemIndex = 0;
-                    foreach (DataRow dr in dt.Rows)
+                    foreach (DataRow dr in source.Rows)
                     {
                         List<object> cells = new List<object>();
 
@@ -125,7 +126,7 @@ namespace PublicManager
                     dtData.Columns.Add("备  注", typeof(string));
 
                     int indexxx = 0;
-                    foreach (DataRow dr in dt.Rows)
+                    foreach (DataRow dr in source.Rows)
                     {
                         indexxx++;
 
