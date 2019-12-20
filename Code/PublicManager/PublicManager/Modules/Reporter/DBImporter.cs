@@ -52,6 +52,7 @@ namespace PublicManager.Modules.Reporter
                 proj.StudyTime = diProject.get("YanJiuZhouQi") != null ? decimal.Parse(diProject.get("YanJiuZhouQi").ToString()) : 0;
                 proj.StudyMoney = diProject.get("JingFeiYuSuan") != null ? decimal.Parse(diProject.get("JingFeiYuSuan").ToString()) : 0;
                 proj.ProjectSort = diProject.get("XiangMuLeiBie") != null ? diProject.get("XiangMuLeiBie").ToString() : string.Empty;
+                proj.ProfessionSort = diProject.get("ZhuanYeLeiBie") != null ? diProject.get("ZhuanYeLeiBie").ToString() : string.Empty;
                 proj.DutyUnit = diProject.get("ZeRenDanWei") != null ? diProject.get("ZeRenDanWei").ToString() : string.Empty;
                 proj.NextUnit = diProject.get("XiaJiDanWei") != null ? diProject.get("XiaJiDanWei").ToString() : string.Empty;
                 proj.Memo = diProject.get("BeiZhu") != null ? diProject.get("BeiZhu").ToString() : string.Empty;
