@@ -42,10 +42,7 @@ namespace PublicManager
             try
             {
                 Report(progressDialog, 20, "准备数据...", 1000);
-
                 Table curTable = (Table)ncTables[tableTempleteIndex];
-                wd.WordDoc.AppendChild(curTable);
-
                 DataTable dtData = new DataTable();
                 if (curTable.GetText().StartsWith("类别"))
                 {
@@ -238,9 +235,9 @@ namespace PublicManager
                                 
                 Report(progressDialog, 60, "填充数据到表格...", 1000);
 
-                wd.fillDataToTable(curTable, dtData);                
-                wd.WordDoc.AppendChild(curTable);
+                wd.fillDataToTable(curTable, dtData);
 
+                wd.WordDoc.FirstSection.Body.AppendChild(new NodeImporter(tableTemplete.WordDoc, wd.WordDoc, ImportFormatMode.UseDestinationStyles).ImportNode(curTable, true));
                 Report(progressDialog, 90, "生成文档...", 1000);
 
                 #region 显示文档或生成文档

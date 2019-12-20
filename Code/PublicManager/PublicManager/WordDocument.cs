@@ -108,7 +108,7 @@ namespace Aspose.Words
         /// <param name="bookmark"></param>
         /// <param name="isNeedDeleteEnter"></param>
         /// <returns></returns>
-        public Document insertDocumentAfterBookMark(Document tobeInserted, string bookmark,bool isNeedDeleteEnter)
+        public Document insertDocumentAfterBookMark(Document tobeInserted, string bookmark, bool isNeedDeleteEnter)
         {
             // check to be inserted doc
             if (tobeInserted == null)
@@ -278,30 +278,37 @@ namespace Aspose.Words
         /// <param name="table"></param>
         public void fillDataToTable(Table table, DataTable dataTable)
         {
-            //获得列数
-            int cellCount = table.Rows[table.Rows.Count - 1].Cells.Count;
-            //填充数据
-            foreach (DataRow dr in dataTable.Rows)
+            if (table.Rows.Count >= 1)
             {
-                //创建新行
-                Aspose.Words.Tables.Row rowObj = new Row(table.Document);
-                for (int k = 0; k < dataTable.Columns.Count; k++)
-                {
-                    if (k >= cellCount)
-                    {
-                        continue;
-                    }
+                //获得列数
+                int cellCount = table.Rows[table.Rows.Count - 1].Cells.Count;
 
-                    //创建列
-                    Aspose.Words.Tables.Cell cellObj = new Cell(table.Document);
-                    cellObj.AppendChild(newParagraph(table.Document, dr[k] != null ? dr[k].ToString() : string.Empty));
-                    rowObj.Cells.Add(cellObj);
+                //添加行
+                int addRowCount = dataTable.Rows.Count - (table.Rows.Count - 1);
+                for (int kkk = 0; kkk < addRowCount; kkk++)
+                {
+                    table.Rows.Add(table.Rows[table.Rows.Count - 1].Clone(true));
                 }
-
-                //保存列
-                if (rowObj.Cells.Count >= 1)
+                
+                //填充数据
+                int rowIndex = 0;
+                foreach (DataRow dr in dataTable.Rows)
                 {
-                    table.Rows.Add(rowObj);
+                    rowIndex++;
+
+                    //创建新行
+                    Aspose.Words.Tables.Row rowObj = table.Rows[rowIndex];
+                    for (int k = 0; k < dataTable.Columns.Count; k++)
+                    {
+                        if (k >= cellCount)
+                        {
+                            continue;
+                        }
+
+                        //创建列
+                        Aspose.Words.Tables.Cell cellObj = rowObj.Cells[k];
+                        cellObj.AppendChild(newParagraph(table.Document, dr[k] != null ? dr[k].ToString() : string.Empty));
+                    }
                 }
             }
         }
@@ -318,7 +325,7 @@ namespace Aspose.Words
             //创建对象
             Aspose.Words.Paragraph p = new Paragraph(docs);
             p.AppendChild(new Run(docs, text != null ? text : string.Empty));
-            
+
             //是否使用默认字体
             if (isUseDefaultFont)
             {
@@ -352,7 +359,7 @@ namespace Aspose.Words
             tableDoc.FirstSection.Body.AppendChild(new NodeImporter(table.Document, tableDoc, ImportFormatMode.KeepSourceFormatting).ImportNode(table, true));
             insertDocumentAfterNode(insertAfterNode, tableDoc);
         }
-        
+
         /// <summary>
         /// 插入水印文本
         /// </summary>
@@ -568,7 +575,7 @@ namespace Aspose.Words
         /// <param name="cell"></param>
         /// <param name="fontName"></param>
         /// <param name="fontSize"></param>
-        public void setFontInCell(Cell cell,string fontName,double fontSize)
+        public void setFontInCell(Cell cell, string fontName, double fontSize)
         {
             foreach (Node nn in cell.ChildNodes)
             {
