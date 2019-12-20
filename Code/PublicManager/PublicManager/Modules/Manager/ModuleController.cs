@@ -194,7 +194,7 @@ namespace PublicManager.Modules.Manager
                         //输出的Excel路径
                         string excelFile = sfd.FileName;
 
-                        WordPrinter.wordOutput(senderForm, tc.exportToDataTable(), 0, sfd.FileName);
+                        WordPrinter.wordOutput(senderForm, tc.exportToDataTable(), 1, sfd.FileName);
                     }
                     catch (Exception ex)
                     {

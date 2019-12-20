@@ -62,15 +62,34 @@ namespace PublicManager
                     dtData.Columns.Add("责任单位", typeof(string));
                     dtData.Columns.Add("备  注", typeof(string));
 
-                    int indexxx = 0;
+                    string lastPSort = string.Empty;
+                    int dirIndex = 0;
+                    int itemIndex = 0;
                     foreach (DataRow dr in dt.Rows)
                     {
-                        indexxx++;
-
                         List<object> cells = new List<object>();
 
-                        cells.Add(dr["专业类别"] != null ? dr["专业类别"].ToString() : string.Empty);
-                        cells.Add(indexxx.ToString());
+                        string indexStr = string.Empty;
+                        string professionSortStr = dr["专业类别"] != null ? dr["专业类别"].ToString() : string.Empty;
+                        if (string.IsNullOrEmpty(professionSortStr))
+                        {
+                            professionSortStr = "其他";
+                        }
+                        if (professionSortStr == lastPSort)
+                        {
+                            itemIndex++;
+                        }
+                        else
+                        {
+                            lastPSort = professionSortStr;
+                            dirIndex++;
+                            itemIndex = 1;
+                        }
+
+                        indexStr = dirIndex + "." + itemIndex;
+
+                        cells.Add(professionSortStr);
+                        cells.Add(indexStr);
                         cells.Add(dr["项目名称"] != null ? dr["项目名称"].ToString() : string.Empty);
 
                         StringBuilder destAndContentString = new StringBuilder();
@@ -141,7 +160,61 @@ namespace PublicManager
                 wd.fillDataToTable(curTable, dtData);
                 wd.WordDoc.FirstSection.Body.AppendChild(new NodeImporter(tableTemplete.WordDoc, wd.WordDoc, ImportFormatMode.UseDestinationStyles).ImportNode(curTable, true));
                 #endregion
+                
+                #region 合并类别单元格
+                Table nowTable = (Table)wd.WordDoc.GetChild(NodeType.Table, 0, true);
+                if (nowTable.GetText().StartsWith("类别"))
+                {
+                    #region 带类别的表格
+                    int rowIndex = 0;
+                    foreach (DataRow dr in dtData.Rows)
+                    {
+                        if (dr["项目类别"] == null || dr["项目类别"] == "")
+                        {
+                            //需要合并
+                            if ((nowTable.Rows[rowIndex + 1].Cells[2].ChildNodes.Count >= 1))
+                            {
+                                nowTable.Rows[rowIndex + 1].Cells[0].RemoveAllChildren();
+                                foreach (Node node in nowTable.Rows[rowIndex + 1].Cells[2].ChildNodes)
+                                {
+                                    nowTable.Rows[rowIndex + 1].Cells[0].AppendChild(node.Clone(true));
+                                }
+                                nowTable.Rows[rowIndex + 1].Cells[2].RemoveAllChildren();
+                            }
+                            wd.mergeCells(nowTable.Rows[rowIndex + 1].Cells[0], nowTable.Rows[rowIndex + 1].Cells[3], nowTable);
+                        }
 
+                        rowIndex++;
+                    }
+                    #endregion
+                }
+                else
+                {
+                    #region 不带类别的表格
+                    int rowIndex = 0;
+                    foreach (DataRow dr in dtData.Rows)
+                    {
+                        if (dr["项目类别"] == null || dr["项目类别"] == "")
+                        {
+                            //需要合并
+                            if ((nowTable.Rows[rowIndex + 1].Cells[1].ChildNodes.Count >= 1))
+                            {
+                                nowTable.Rows[rowIndex + 1].Cells[0].RemoveAllChildren();
+                                foreach (Node node in nowTable.Rows[rowIndex + 1].Cells[1].ChildNodes)
+                                {
+                                    nowTable.Rows[rowIndex + 1].Cells[0].AppendChild(node.Clone(true));
+                                }
+                                nowTable.Rows[rowIndex + 1].Cells[1].RemoveAllChildren();
+                            }
+                            wd.mergeCells(nowTable.Rows[rowIndex + 1].Cells[0], nowTable.Rows[rowIndex + 1].Cells[2], nowTable);
+                        }
+
+                        rowIndex++;
+                    }
+                    #endregion
+                }
+                #endregion
+                
                 Report(progressDialog, 90, "生成文档...", 1000);
 
                 #region 显示文档或生成文档
