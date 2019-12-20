@@ -251,7 +251,7 @@ namespace PublicManager.Modules.Manager
 
                         List<object> cells = new List<object>();
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
                         {
                             cells.Add(string.Empty);
                         }
@@ -262,7 +262,7 @@ namespace PublicManager.Modules.Manager
 
                         cells.Add(dr["项目名称"] != null ? dr["项目名称"].ToString() : string.Empty);
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
                         {
                             cells.Add(string.Empty);
                         }
@@ -276,7 +276,7 @@ namespace PublicManager.Modules.Manager
                             cells.Add(destAndContentString.ToString());
                         }
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
                         {
                             cells.Add(string.Empty);
                         }
@@ -288,7 +288,7 @@ namespace PublicManager.Modules.Manager
                         cells.Add(dr["周期"] != null ? dr["周期"].ToString() : string.Empty);
                         cells.Add(dr["经费概算"] != null ? dr["经费概算"].ToString() : string.Empty);
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
                         {
                             cells.Add(string.Empty);
                         }
@@ -297,7 +297,7 @@ namespace PublicManager.Modules.Manager
                             cells.Add(dr["项目类别"] != null ? dr["项目类别"].ToString() : string.Empty);
                         }
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
                         {
                             cells.Add(string.Empty);
                         }
@@ -306,7 +306,7 @@ namespace PublicManager.Modules.Manager
                             cells.Add(dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty);
                         }
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
+                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains("*专项项目*"))
                         {
                             cells.Add(string.Empty);
                         }
