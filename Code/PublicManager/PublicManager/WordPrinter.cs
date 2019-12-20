@@ -29,6 +29,7 @@ namespace PublicManager
 
             //创建word文档
             WordDocument wd = new WordDocument();
+            wd.WordDocBuilder.PageSetup.Orientation = Aspose.Words.Orientation.Landscape;
 
             //打开表格模板
             WordDocument tableTemplete = new WordDocument(Path.Combine(Application.StartupPath, Path.Combine("Templetes", "tables.docx")));
