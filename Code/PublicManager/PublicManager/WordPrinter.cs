@@ -43,6 +43,8 @@ namespace PublicManager
             try
             {
                 Report(progressDialog, 20, "准备数据...", 1000);
+
+                #region 准备数据
                 Table curTable = (Table)ncTables[tableTempleteIndex];
                 DataTable dtData = new DataTable();
                 if (curTable.GetText().StartsWith("类别"))
@@ -67,78 +69,23 @@ namespace PublicManager
 
                         List<object> cells = new List<object>();
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add(dr["专业类别"] != null ? dr["专业类别"].ToString() : string.Empty);
-                        }
-
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add(indexxx.ToString());
-                        }
-
+                        cells.Add(dr["专业类别"] != null ? dr["专业类别"].ToString() : string.Empty);
+                        cells.Add(indexxx.ToString());
                         cells.Add(dr["项目名称"] != null ? dr["项目名称"].ToString() : string.Empty);
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            StringBuilder destAndContentString = new StringBuilder();
-                            destAndContentString.Append("研究目标：");
-                            destAndContentString.AppendLine(dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty);
-                            destAndContentString.Append("研究内容：");
-                            destAndContentString.Append(dr["研究内容"] != null ? dr["研究内容"].ToString() : string.Empty);
-                            cells.Add(destAndContentString.ToString());
-                        }
+                        StringBuilder destAndContentString = new StringBuilder();
+                        destAndContentString.Append("研究目标：");
+                        destAndContentString.AppendLine(dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty);
+                        destAndContentString.Append("研究内容：");
+                        destAndContentString.Append(dr["研究内容"] != null ? dr["研究内容"].ToString() : string.Empty);
+                        cells.Add(destAndContentString.ToString());
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add(dr["预期成果"] != null ? dr["预期成果"].ToString() : string.Empty);
-                        }
-
+                        cells.Add(dr["预期成果"] != null ? dr["预期成果"].ToString() : string.Empty);
                         cells.Add(dr["周期"] != null ? dr["周期"].ToString() : string.Empty);
                         cells.Add(dr["经费概算"] != null ? dr["经费概算"].ToString() : string.Empty);
-
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add(dr["项目类别"] != null ? dr["项目类别"].ToString() : string.Empty);
-                        }
-
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add(dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty);
-                        }
-
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add((dr["备注"] != null ? dr["备注"].ToString() : string.Empty).Replace("其他:", string.Empty));
-                        }
+                        cells.Add(dr["项目类别"] != null ? dr["项目类别"].ToString() : string.Empty);
+                        cells.Add(dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty);
+                        cells.Add((dr["备注"] != null ? dr["备注"].ToString() : string.Empty).Replace("其他:", string.Empty));
 
                         dtData.Rows.Add(cells.ToArray());
                     }
@@ -165,80 +112,36 @@ namespace PublicManager
 
                         List<object> cells = new List<object>();
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add(indexxx.ToString());
-                        }
-
+                        cells.Add(indexxx.ToString());
                         cells.Add(dr["项目名称"] != null ? dr["项目名称"].ToString() : string.Empty);
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            StringBuilder destAndContentString = new StringBuilder();
-                            destAndContentString.Append("研究目标：");
-                            destAndContentString.AppendLine(dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty);
-                            destAndContentString.Append("研究内容：");
-                            destAndContentString.Append(dr["研究内容"] != null ? dr["研究内容"].ToString() : string.Empty);
-                            cells.Add(destAndContentString.ToString());
-                        }
+                        StringBuilder destAndContentString = new StringBuilder();
+                        destAndContentString.Append("研究目标：");
+                        destAndContentString.AppendLine(dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty);
+                        destAndContentString.Append("研究内容：");
+                        destAndContentString.Append(dr["研究内容"] != null ? dr["研究内容"].ToString() : string.Empty);
+                        cells.Add(destAndContentString.ToString());
 
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add(dr["预期成果"] != null ? dr["预期成果"].ToString() : string.Empty);
-                        }
-
+                        cells.Add(dr["预期成果"] != null ? dr["预期成果"].ToString() : string.Empty);
                         cells.Add(dr["周期"] != null ? dr["周期"].ToString() : string.Empty);
                         cells.Add(dr["经费概算"] != null ? dr["经费概算"].ToString() : string.Empty);
-
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add(dr["项目类别"] != null ? dr["项目类别"].ToString() : string.Empty);
-                        }
-
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add(dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty);
-                        }
-
-                        if ((dr["研究目标"] != null ? dr["研究目标"].ToString() : string.Empty).Contains(""))
-                        {
-                            cells.Add(string.Empty);
-                        }
-                        else
-                        {
-                            cells.Add((dr["备注"] != null ? dr["备注"].ToString() : string.Empty).Replace("其他:", string.Empty));
-                        }
+                        cells.Add(dr["项目类别"] != null ? dr["项目类别"].ToString() : string.Empty);
+                        cells.Add(dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty);
+                        cells.Add((dr["备注"] != null ? dr["备注"].ToString() : string.Empty).Replace("其他:", string.Empty));
 
                         dtData.Rows.Add(cells.ToArray());
                     }
                     #endregion
                 }
-                                
+                #endregion
+
                 Report(progressDialog, 60, "填充数据到表格...", 1000);
 
+                #region 写表格
                 wd.fillDataToTable(curTable, dtData);
-
                 wd.WordDoc.FirstSection.Body.AppendChild(new NodeImporter(tableTemplete.WordDoc, wd.WordDoc, ImportFormatMode.UseDestinationStyles).ImportNode(curTable, true));
+                #endregion
+
                 Report(progressDialog, 90, "生成文档...", 1000);
 
                 #region 显示文档或生成文档
