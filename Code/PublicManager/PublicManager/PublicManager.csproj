@@ -235,6 +235,7 @@
       <DependentUpon>TestControl.cs</DependentUpon>
     </Compile>
     <Compile Include="WordDocument.cs" />
+    <Compile Include="WordPrinter.cs" />
     <Compile Include="ZipTool.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -295,7 +296,7 @@
     <None Include="static.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Templetes\teacherList.xlsx">
+    <None Include="Templetes\tables.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="汇总数据表.xlsx" />
@@ -338,9 +339,6 @@
     <None Include="Resources\edit.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\add.png" />
-    <None Include="Templetes\TeacherColumnExportTempletes.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
