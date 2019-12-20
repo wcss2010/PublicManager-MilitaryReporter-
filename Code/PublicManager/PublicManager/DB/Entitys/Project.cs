@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.Text;
 
-namespace PublicManager.DB.Entitys 
+namespace PublicManager.DB.Entitys
 {
     /// <summary>
     /// 类Project。
@@ -24,6 +24,7 @@ namespace PublicManager.DB.Entitys
             query.set("StudyTime", StudyTime);
             query.set("StudyMoney", StudyMoney);
             query.set("ProjectSort", ProjectSort);
+            query.set("ProfessionSort", ProfessionSort);
             query.set("DutyUnit", DutyUnit);
             query.set("NextUnit", NextUnit);
             query.set("Memo", Memo);
@@ -51,6 +52,7 @@ namespace PublicManager.DB.Entitys
         public decimal StudyTime { get; set; }
         public decimal StudyMoney { get; set; }
         public string ProjectSort { get; set; }
+        public string ProfessionSort { get; set; }
         public string DutyUnit { get; set; }
         public string NextUnit { get; set; }
         public string Memo { get; set; }
@@ -77,6 +79,7 @@ namespace PublicManager.DB.Entitys
             StudyTime = source("StudyTime").value<decimal>(0);
             StudyMoney = source("StudyMoney").value<decimal>(0);
             ProjectSort = source("ProjectSort").value<string>("");
+            ProfessionSort = source("ProfessionSort").value<string>("");
             DutyUnit = source("DutyUnit").value<string>("");
             NextUnit = source("NextUnit").value<string>("");
             Memo = source("Memo").value<string>("");
