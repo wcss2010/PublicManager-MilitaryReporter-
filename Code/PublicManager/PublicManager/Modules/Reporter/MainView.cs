@@ -45,14 +45,14 @@ namespace PublicManager.Modules.Reporter
                 cells.Add(proj.ProjectName);
 
                 StringBuilder sbWillResult = new StringBuilder();
-                if (proj.WillResult != null && proj.WillResult.Contains(BaseModuleController.rowFlag))
+                if (proj.WillResult != null && proj.WillResult.Contains(MainConfig.rowFlag))
                 {
-                    string[] tttt = proj.WillResult.Split(new string[] { BaseModuleController.rowFlag }, StringSplitOptions.None);
+                    string[] tttt = proj.WillResult.Split(new string[] { MainConfig.rowFlag }, StringSplitOptions.None);
                     if (tttt != null)
                     {
                         foreach (string ss in tttt)
                         {
-                            string[] vvvv = ss.Split(new string[] { BaseModuleController.cellFlag }, StringSplitOptions.None);
+                            string[] vvvv = ss.Split(new string[] { MainConfig.cellFlag }, StringSplitOptions.None);
                             if (vvvv != null && vvvv.Length >= 2)
                             {
                                 if (string.IsNullOrEmpty(vvvv[0])) { continue; }
@@ -69,7 +69,7 @@ namespace PublicManager.Modules.Reporter
                 cells.Add(proj.ProjectSort);
                 cells.Add(proj.ProfessionSort);
                 cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");
-                cells.Add(proj.Memo != null && proj.Memo.Contains(BaseModuleController.rowFlag) ? proj.Memo.Replace(BaseModuleController.rowFlag, ":") : proj.Memo);
+                cells.Add(proj.Memo != null && proj.Memo.Contains(MainConfig.rowFlag) ? proj.Memo.Replace(MainConfig.rowFlag, ":") : proj.Memo);
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
                 dgvCatalogs.Rows[rowIndex].Tag = proj;
@@ -138,7 +138,7 @@ namespace PublicManager.Modules.Reporter
                     sb.Append("研究内容：").AppendLine();
                     if (proj.StudyContent != null)
                     {
-                        string[] cList = proj.StudyContent.Split(new string[] { BaseModuleController.rowFlag }, StringSplitOptions.None);
+                        string[] cList = proj.StudyContent.Split(new string[] { MainConfig.rowFlag }, StringSplitOptions.None);
                         if (cList != null && cList.Length >= 1)
                         {
                             foreach (string s in cList)
