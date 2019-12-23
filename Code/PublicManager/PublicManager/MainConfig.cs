@@ -15,12 +15,12 @@ namespace PublicManager
         /// <summary>
         /// 行分割符
         /// </summary>
-        public const string rowFlag = "{{(<<rows>>)}}";
+        public const string rowFlag = "{(<r>)}";
 
         /// <summary>
         /// 单元格分割符
         /// </summary>
-        public const string cellFlag = "{{(<<cells>>)}}";
+        public const string cellFlag = "{(<c>)}";
 
         /// <summary>
         /// 配置文件路径

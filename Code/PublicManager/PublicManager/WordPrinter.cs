@@ -194,6 +194,8 @@ namespace PublicManager
                             {
                                 //合并
                                 wd.mergeCells(nowTable.Rows[lastMergeStartIndex].Cells[0], nowTable.Rows[rowIndex + 1].Cells[0], nowTable);
+
+                                nowTable.Rows[lastMergeStartIndex].Cells[0].CellFormat.VerticalAlignment = CellVerticalAlignment.Center;
                             }
                             else
                             {
