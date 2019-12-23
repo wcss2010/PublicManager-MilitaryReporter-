@@ -163,6 +163,9 @@ namespace PublicManager
                 #endregion
                 
                 #region 合并类别单元格
+                int lastMergeStartIndex = -1;
+                string lastMergeStartSort = string.Empty;
+
                 Table nowTable = (Table)wd.WordDoc.GetChild(NodeType.Table, 0, true);
                 if (nowTable.GetText().StartsWith("类别"))
                 {
@@ -183,6 +186,21 @@ namespace PublicManager
                                 nowTable.Rows[rowIndex + 1].Cells[2].RemoveAllChildren();
                             }
                             wd.mergeCells(nowTable.Rows[rowIndex + 1].Cells[0], nowTable.Rows[rowIndex + 1].Cells[3], nowTable);
+                        }
+                        else
+                        {
+                            string professionStr = dr["类别"] != null ? dr["类别"].ToString() : string.Empty;
+                            if (professionStr == lastMergeStartSort)
+                            {
+                                //合并
+                                wd.mergeCells(nowTable.Rows[lastMergeStartIndex].Cells[0], nowTable.Rows[rowIndex + 1].Cells[0], nowTable);
+                            }
+                            else
+                            {
+                                //记录开始
+                                lastMergeStartSort = professionStr;
+                                lastMergeStartIndex = rowIndex + 1;
+                            }
                         }
 
                         rowIndex++;
