@@ -183,43 +183,74 @@ namespace PublicManager.Modules.Manager
             sfd.Filter = "*.doc|*.doc";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                ProgressForm pf = new ProgressForm();
-                pf.Show();
-                pf.run(100, 0, new EventHandler(delegate(object senders, EventArgs ee)
+                DutyUnitForm duf = new DutyUnitForm();
+                if (duf.ShowDialog() == DialogResult.OK)
                 {
-                    ProgressForm senderForm = (ProgressForm)senders;
-
-                    try
+                    int tableIndex = 0;
+                    if (duf.DutyUnitToProfessonLinks.Contains(duf.SelectedItem))
                     {
-                        //输出的Excel路径
-                        string excelFile = sfd.FileName;
-
-                        WordPrinter.wordOutput(senderForm, tc.exportToDataTable(), 1, sfd.FileName);
+                        //有类别
+                        tableIndex = 1;
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show("对不起，导出失败！Ex:" + ex.ToString());
+                        //无类别
+                        tableIndex = 0;
                     }
-                    finally
+
+                    ProgressForm pf = new ProgressForm();
+                    pf.Show();
+                    pf.run(100, 0, new EventHandler(delegate(object senders, EventArgs ee)
                     {
-                        //检查是否已创建句柄，并调用委托执行UI方法
-                        if (pf.IsHandleCreated)
+                        ProgressForm senderForm = (ProgressForm)senders;
+
+                        try
                         {
-                            pf.Invoke(new MethodInvoker(delegate()
+                            //输出的Excel路径
+                            string excelFile = sfd.FileName;
+
+                            //筛选责任单位
+                            List<DataRow> delList = new List<DataRow>();
+                            DataTable dtSource = tc.exportToDataTable();
+                            foreach (DataRow dr in dtSource.Rows)
                             {
-                                try
+                                string dutyUnitStr = dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty;
+                                if (dutyUnitStr != duf.SelectedItem)
                                 {
-                                    //关闭进度窗口
-                                    pf.Close();
+                                    delList.Add(dr);
                                 }
-                                catch (Exception ex)
-                                {
-                                    MainForm.writeLog(ex.ToString());
-                                }
-                            }));
+                            }
+                            foreach (DataRow drr in delList)
+                            {
+                                dtSource.Rows.Remove(drr);
+                            }
+                            WordPrinter.wordOutput(senderForm, dtSource, tableIndex, sfd.FileName);
                         }
-                    }
-                }));
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("对不起，导出失败！Ex:" + ex.ToString());
+                        }
+                        finally
+                        {
+                            //检查是否已创建句柄，并调用委托执行UI方法
+                            if (pf.IsHandleCreated)
+                            {
+                                pf.Invoke(new MethodInvoker(delegate()
+                                {
+                                    try
+                                    {
+                                        //关闭进度窗口
+                                        pf.Close();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MainForm.writeLog(ex.ToString());
+                                    }
+                                }));
+                            }
+                        }
+                    }));
+                }
             }
         }
 
