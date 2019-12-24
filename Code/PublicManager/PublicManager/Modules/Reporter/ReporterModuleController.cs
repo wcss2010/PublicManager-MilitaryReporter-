@@ -78,10 +78,17 @@ namespace PublicManager.Modules.Reporter
             fbdFolderSelect.SelectedPath = totalDir == "(未设置)" ? string.Empty : totalDir;
             if (fbdFolderSelect.ShowDialog() == DialogResult.OK)
             {
-                totalDir = fbdFolderSelect.SelectedPath;
+                if (fbdFolderSelect.SelectedPath == MainConfig.Config.StringDict["论证报告解压目录"])
+                {
+                    MessageBox.Show("对不起，总目录和解压目录不能是一个目录！");
+                }
+                else
+                {
+                    totalDir = fbdFolderSelect.SelectedPath;
 
-                MainConfig.Config.StringDict["论证报告总目录"] = totalDir;
-                MainConfig.saveConfig();
+                    MainConfig.Config.StringDict["论证报告总目录"] = totalDir;
+                    MainConfig.saveConfig();
+                }
 
                 updateDirectoryHint();
             }
@@ -92,10 +99,17 @@ namespace PublicManager.Modules.Reporter
             fbdFolderSelect.SelectedPath = decompressDir == "(未设置)" ? string.Empty : decompressDir;
             if (fbdFolderSelect.ShowDialog() == DialogResult.OK)
             {
-                decompressDir = fbdFolderSelect.SelectedPath;
+                if (fbdFolderSelect.SelectedPath == MainConfig.Config.StringDict["论证报告总目录"])
+                {
+                    MessageBox.Show("对不起，总目录和解压目录不能是一个目录！");
+                }
+                else
+                {
+                    decompressDir = fbdFolderSelect.SelectedPath;
 
-                MainConfig.Config.StringDict["论证报告解压目录"] = decompressDir;
-                MainConfig.saveConfig();
+                    MainConfig.Config.StringDict["论证报告解压目录"] = decompressDir;
+                    MainConfig.saveConfig();
+                }
 
                 updateDirectoryHint();
             }
