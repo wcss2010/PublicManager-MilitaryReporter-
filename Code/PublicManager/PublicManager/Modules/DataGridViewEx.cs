@@ -93,7 +93,7 @@ namespace PublicManager.Modules
 
                     if (rect.Width <= 0)
                     {
-                        return;
+                        continue;
                     }
 
                     //一行可以放几个
