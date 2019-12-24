@@ -33,11 +33,18 @@ namespace PublicManager.Modules.Reporter
         {
             dgvCatalogs.Rows.Clear();
 
-            List<Project> projList = ConnectionManager.Context.table("Project").select("*").getList<Project>(new Project());
+            List<Catalog> projList = ConnectionManager.Context.table("Catalog").orderBy("ImportTime").select("*").getList<Catalog>(new Catalog());
             int indexx = 0;
-            foreach (Project proj in projList)
+            foreach (Catalog catalog in projList)
             {
                 indexx++;
+
+                //项目信息
+                Project proj = ConnectionManager.Context.table("Project").where("CatalogID='" + catalog.CatalogID + "'").select("*").getItem<Project>(new Project());
+                if (proj == null)
+                {
+                    continue;
+                }
 
                 List<object> cells = new List<object>();
                 cells.Add(indexx);

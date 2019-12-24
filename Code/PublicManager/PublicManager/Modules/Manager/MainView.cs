@@ -32,7 +32,7 @@ namespace PublicManager.Modules.Manager
         {
             dgvCatalogs.Rows.Clear();
 
-            List<Project> projList = ConnectionManager.Context.table("Project").select("*").getList<Project>(new Project());
+            List<Project> projList = ConnectionManager.Context.table("Project").orderBy("ProfessionID,ProfessionSort").select("*").getList<Project>(new Project());
             int indexx = 0;
             foreach (Project proj in projList)
             {
