@@ -190,6 +190,12 @@
     <Compile Include="Modules\DataGridViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\DataManager\Forms\ProjectSortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\DataManager\Forms\ProjectSortForm.Designer.cs">
+      <DependentUpon>ProjectSortForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\DictManager\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -208,28 +214,28 @@
     <Compile Include="Modules\MainMenuController.Designer.cs">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Manager\Forms\AddOrUpdateProjectForm.cs">
+    <Compile Include="Modules\DataManager\Forms\AddOrUpdateProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\Manager\Forms\AddOrUpdateProjectForm.Designer.cs">
+    <Compile Include="Modules\DataManager\Forms\AddOrUpdateProjectForm.Designer.cs">
       <DependentUpon>AddOrUpdateProjectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Manager\Forms\DutyUnitForm.cs">
+    <Compile Include="Modules\DataManager\Forms\DutyUnitForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\Manager\Forms\DutyUnitForm.Designer.cs">
+    <Compile Include="Modules\DataManager\Forms\DutyUnitForm.Designer.cs">
       <DependentUpon>DutyUnitForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Manager\MainView.cs">
+    <Compile Include="Modules\DataManager\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Manager\MainView.Designer.cs">
+    <Compile Include="Modules\DataManager\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Manager\ModuleController.cs">
+    <Compile Include="Modules\DataManager\ModuleController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Manager\ModuleController.Designer.cs">
+    <Compile Include="Modules\DataManager\ModuleController.Designer.cs">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Reporter\DBImporter.cs" />
@@ -266,7 +272,7 @@
       <DependentUpon>TestControl.cs</DependentUpon>
     </Compile>
     <Compile Include="WordDocument.cs" />
-    <Compile Include="Modules\Manager\WordPrinter.cs" />
+    <Compile Include="Modules\DataManager\WordPrinter.cs" />
     <Compile Include="ZipTool.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -280,6 +286,9 @@
     <EmbeddedResource Include="Modules\DataExport\ModuleController.resx">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\DataManager\Forms\ProjectSortForm.resx">
+      <DependentUpon>ProjectSortForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\DictManager\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
@@ -289,16 +298,16 @@
     <EmbeddedResource Include="Modules\MainMenuController.resx">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Manager\Forms\AddOrUpdateProjectForm.resx">
+    <EmbeddedResource Include="Modules\DataManager\Forms\AddOrUpdateProjectForm.resx">
       <DependentUpon>AddOrUpdateProjectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Manager\Forms\DutyUnitForm.resx">
+    <EmbeddedResource Include="Modules\DataManager\Forms\DutyUnitForm.resx">
       <DependentUpon>DutyUnitForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Manager\MainView.resx">
+    <EmbeddedResource Include="Modules\DataManager\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Manager\ModuleController.resx">
+    <EmbeddedResource Include="Modules\DataManager\ModuleController.resx">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Reporter\Forms\ImporterForm.resx">

@@ -67,7 +67,8 @@ namespace PublicManager.Modules.Reporter
                 proj.RequestMoney = diProject.get("ShenQingJingFei") != null ? decimal.Parse(diProject.get("ShenQingJingFei").ToString()) : 0;
                 proj.TaskCompleteTime = diProject.get("JiHuaWanChengShiJian") != null ? DateTime.Parse(diProject.get("JiHuaWanChengShiJian").ToString()) : DateTime.Now;
                 proj.IsPrivateProject = "false";
-                
+                proj.ProfessionSort = 0;
+
                 //过滤文本--处理备注
                 proj.Memo = proj.Memo != null && proj.Memo.Contains(MainConfig.rowFlag) ? proj.Memo.Replace(MainConfig.rowFlag, ":") : proj.Memo;
 
