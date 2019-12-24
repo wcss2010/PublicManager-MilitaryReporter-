@@ -176,7 +176,8 @@ namespace PublicManager.Modules.Reporter
         {
             ConnectionManager.Context.table("Project").where("CatalogID='" + catalogID + "'").delete();
             ConnectionManager.Context.table("Person").where("CatalogID='" + catalogID + "'").delete();
-            ConnectionManager.Context.table("Dicts").where("CatalogID='" + catalogID + "'").delete();
+            ConnectionManager.Context.table("Moneys").where("CatalogID='" + catalogID + "'").delete();
+            ConnectionManager.Context.table("Professions").where("CatalogID='" + catalogID + "'").delete();
         }
 
         /// <summary>
