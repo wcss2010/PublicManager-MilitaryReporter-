@@ -104,6 +104,11 @@ namespace PublicManager.Modules.Reporter
                         {
                             indexx++;
 
+                            if (string.IsNullOrEmpty(s))
+                            {
+                                continue;
+                            }
+
                             sbStudyContent.Append(indexx).Append(". ").Append(s).AppendLine();
                         }
                     }

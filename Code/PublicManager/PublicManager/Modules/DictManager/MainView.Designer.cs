@@ -81,6 +81,7 @@
             this.Column3.HeaderText = "类型排序";
             this.Column3.MinimumWidth = 90;
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             this.Column3.Width = 90;
             // 
             // Column1
