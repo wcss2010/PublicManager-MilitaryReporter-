@@ -2,7 +2,7 @@ using System;
 using System.Data;
 using System.Text;
 
-namespace PublicManager.DB.Entitys
+namespace PublicManager.DB.Entitys 
 {
     /// <summary>
     /// 类Project。
@@ -24,7 +24,7 @@ namespace PublicManager.DB.Entitys
             query.set("StudyTime", StudyTime);
             query.set("StudyMoney", StudyMoney);
             query.set("ProjectSort", ProjectSort);
-            query.set("ProfessionSort", ProfessionSort);
+            query.set("ProfessionID", ProfessionID);
             query.set("DutyUnit", DutyUnit);
             query.set("NextUnit", NextUnit);
             query.set("Memo", Memo);
@@ -39,6 +39,8 @@ namespace PublicManager.DB.Entitys
             query.set("AllStudyUnit", AllStudyUnit);
             query.set("RequestMoney", RequestMoney);
             query.set("TaskCompleteTime", TaskCompleteTime);
+            query.set("IsPrivateProject", IsPrivateProject);
+            query.set("ProfessionSort", ProfessionSort);
 
             return query;
         }
@@ -49,10 +51,10 @@ namespace PublicManager.DB.Entitys
         public string StudyDest { get; set; }
         public string StudyContent { get; set; }
         public string WillResult { get; set; }
-        public decimal StudyTime { get; set; }
-        public decimal StudyMoney { get; set; }
+        public single StudyTime { get; set; }
+        public single StudyMoney { get; set; }
         public string ProjectSort { get; set; }
-        public string ProfessionSort { get; set; }
+        public string ProfessionID { get; set; }
         public string DutyUnit { get; set; }
         public string NextUnit { get; set; }
         public string Memo { get; set; }
@@ -60,13 +62,15 @@ namespace PublicManager.DB.Entitys
         public string WorkerCardID { get; set; }
         public string WorkerSex { get; set; }
         public string WorkerNation { get; set; }
-        public DateTime WorkerBirthday { get; set; }
+        public datetime WorkerBirthday { get; set; }
         public string WorkerTelephone { get; set; }
         public string WorkerMobilephone { get; set; }
         public string SectionJobCateGory { get; set; }
         public string AllStudyUnit { get; set; }
-        public decimal RequestMoney { get; set; }
-        public DateTime TaskCompleteTime { get; set; }
+        public single RequestMoney { get; set; }
+        public datetime TaskCompleteTime { get; set; }
+        public string IsPrivateProject { get; set; }
+        public single ProfessionSort { get; set; }
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
@@ -76,10 +80,10 @@ namespace PublicManager.DB.Entitys
             StudyDest = source("StudyDest").value<string>("");
             StudyContent = source("StudyContent").value<string>("");
             WillResult = source("WillResult").value<string>("");
-            StudyTime = source("StudyTime").value<decimal>(0);
-            StudyMoney = source("StudyMoney").value<decimal>(0);
+            StudyTime = source("StudyTime").value<single>("");
+            StudyMoney = source("StudyMoney").value<single>("");
             ProjectSort = source("ProjectSort").value<string>("");
-            ProfessionSort = source("ProfessionSort").value<string>("");
+            ProfessionID = source("ProfessionID").value<string>("");
             DutyUnit = source("DutyUnit").value<string>("");
             NextUnit = source("NextUnit").value<string>("");
             Memo = source("Memo").value<string>("");
@@ -87,13 +91,15 @@ namespace PublicManager.DB.Entitys
             WorkerCardID = source("WorkerCardID").value<string>("");
             WorkerSex = source("WorkerSex").value<string>("");
             WorkerNation = source("WorkerNation").value<string>("");
-            WorkerBirthday = source("WorkerBirthday").value<DateTime>(DateTime.Now);
+            WorkerBirthday = source("WorkerBirthday").value<datetime>("");
             WorkerTelephone = source("WorkerTelephone").value<string>("");
             WorkerMobilephone = source("WorkerMobilephone").value<string>("");
             SectionJobCateGory = source("SectionJobCateGory").value<string>("");
             AllStudyUnit = source("AllStudyUnit").value<string>("");
-            RequestMoney = source("RequestMoney").value<decimal>(0);
-            TaskCompleteTime = source("TaskCompleteTime").value<DateTime>(DateTime.Now);
+            RequestMoney = source("RequestMoney").value<single>("");
+            TaskCompleteTime = source("TaskCompleteTime").value<datetime>("");
+            IsPrivateProject = source("IsPrivateProject").value<string>("");
+            ProfessionSort = source("ProfessionSort").value<single>("");
         }
 
         public override Noear.Weed.IBinder clone()

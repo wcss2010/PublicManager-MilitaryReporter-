@@ -41,7 +41,7 @@ namespace PublicManager.DB.Entitys
         public string PersonIDCard { get; set; }
         public string PersonNation { get; set; }
         public string PersonSex { get; set; }
-        public DateTime PersonBirthday { get; set; }
+        public datetime PersonBirthday { get; set; }
         public string PersonJob { get; set; }
         public string PersonSpecialty { get; set; }
         public string JobInProject { get; set; }
@@ -59,7 +59,7 @@ namespace PublicManager.DB.Entitys
             PersonIDCard = source("PersonIDCard").value<string>("");
             PersonNation = source("PersonNation").value<string>("");
             PersonSex = source("PersonSex").value<string>("");
-            PersonBirthday = source("PersonBirthday").value<DateTime>(DateTime.Now);
+            PersonBirthday = source("PersonBirthday").value<datetime>("");
             PersonJob = source("PersonJob").value<string>("");
             PersonSpecialty = source("PersonSpecialty").value<string>("");
             JobInProject = source("JobInProject").value<string>("");
