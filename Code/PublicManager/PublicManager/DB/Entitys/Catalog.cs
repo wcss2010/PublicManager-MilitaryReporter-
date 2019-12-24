@@ -30,7 +30,7 @@ namespace PublicManager.DB.Entitys
         public string CatalogName { get; set; }
         public string CatalogType { get; set; }
         public string CatalogVersion { get; set; }
-        public datetime ImportTime { get; set; }
+        public DateTime ImportTime { get; set; }
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
@@ -39,7 +39,7 @@ namespace PublicManager.DB.Entitys
             CatalogName = source("CatalogName").value<string>("");
             CatalogType = source("CatalogType").value<string>("");
             CatalogVersion = source("CatalogVersion").value<string>("");
-            ImportTime = source("ImportTime").value<datetime>("");
+            ImportTime = source("ImportTime").value<DateTime>(DateTime.Now);
         }
 
         public override Noear.Weed.IBinder clone()

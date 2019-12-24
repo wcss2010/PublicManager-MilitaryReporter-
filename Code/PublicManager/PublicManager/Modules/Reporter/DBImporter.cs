@@ -104,7 +104,7 @@ namespace PublicManager.Modules.Reporter
                     foreach (DataItem di in dlMoneys.getRows())
                     {
                         //添加字典
-                        addDict(catalog, proj, "Money,Info", di.getString("MingCheng"), di.getString("ShuJu"), string.Empty);
+                        addMoney(catalog, proj, di.getString("MingCheng"), di.getString("ShuJu"));
                     }
                 }
                 #endregion
@@ -126,6 +126,24 @@ namespace PublicManager.Modules.Reporter
             ConnectionManager.Context.table("Project").where("CatalogID='" + catalogID + "'").delete();
             ConnectionManager.Context.table("Person").where("CatalogID='" + catalogID + "'").delete();
             ConnectionManager.Context.table("Dicts").where("CatalogID='" + catalogID + "'").delete();
+        }
+
+        /// <summary>
+        /// 添加金额数据
+        /// </summary>
+        /// <param name="catalog"></param>
+        /// <param name="project"></param>
+        /// <param name="dName"></param>
+        /// <param name="dValue"></param>
+        protected void addMoney(Catalog catalog, Project project, string dName, string dValue)
+        {
+            Moneys dict = new Moneys();
+            dict.MoneyID = Guid.NewGuid().ToString();
+            dict.CatalogID = catalog.CatalogID;
+            dict.ProjectID = project.ProjectID;
+            dict.MoneyName = dName;
+            dict.MoneyValue = dValue;
+            dict.copyTo(ConnectionManager.Context.table("Moneys")).insert();
         }
     }
 }

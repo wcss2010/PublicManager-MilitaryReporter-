@@ -51,8 +51,8 @@ namespace PublicManager.DB.Entitys
         public string StudyDest { get; set; }
         public string StudyContent { get; set; }
         public string WillResult { get; set; }
-        public single StudyTime { get; set; }
-        public single StudyMoney { get; set; }
+        public decimal StudyTime { get; set; }
+        public decimal StudyMoney { get; set; }
         public string ProjectSort { get; set; }
         public string ProfessionID { get; set; }
         public string DutyUnit { get; set; }
@@ -62,15 +62,15 @@ namespace PublicManager.DB.Entitys
         public string WorkerCardID { get; set; }
         public string WorkerSex { get; set; }
         public string WorkerNation { get; set; }
-        public datetime WorkerBirthday { get; set; }
+        public DateTime WorkerBirthday { get; set; }
         public string WorkerTelephone { get; set; }
         public string WorkerMobilephone { get; set; }
         public string SectionJobCateGory { get; set; }
         public string AllStudyUnit { get; set; }
-        public single RequestMoney { get; set; }
-        public datetime TaskCompleteTime { get; set; }
+        public decimal RequestMoney { get; set; }
+        public DateTime TaskCompleteTime { get; set; }
         public string IsPrivateProject { get; set; }
-        public single ProfessionSort { get; set; }
+        public decimal ProfessionSort { get; set; }
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
@@ -80,8 +80,8 @@ namespace PublicManager.DB.Entitys
             StudyDest = source("StudyDest").value<string>("");
             StudyContent = source("StudyContent").value<string>("");
             WillResult = source("WillResult").value<string>("");
-            StudyTime = source("StudyTime").value<single>("");
-            StudyMoney = source("StudyMoney").value<single>("");
+            StudyTime = source("StudyTime").value<decimal>(0);
+            StudyMoney = source("StudyMoney").value<decimal>(0);
             ProjectSort = source("ProjectSort").value<string>("");
             ProfessionID = source("ProfessionID").value<string>("");
             DutyUnit = source("DutyUnit").value<string>("");
@@ -91,15 +91,15 @@ namespace PublicManager.DB.Entitys
             WorkerCardID = source("WorkerCardID").value<string>("");
             WorkerSex = source("WorkerSex").value<string>("");
             WorkerNation = source("WorkerNation").value<string>("");
-            WorkerBirthday = source("WorkerBirthday").value<datetime>("");
+            WorkerBirthday = source("WorkerBirthday").value<DateTime>(DateTime.Now);
             WorkerTelephone = source("WorkerTelephone").value<string>("");
             WorkerMobilephone = source("WorkerMobilephone").value<string>("");
             SectionJobCateGory = source("SectionJobCateGory").value<string>("");
             AllStudyUnit = source("AllStudyUnit").value<string>("");
-            RequestMoney = source("RequestMoney").value<single>("");
-            TaskCompleteTime = source("TaskCompleteTime").value<datetime>("");
+            RequestMoney = source("RequestMoney").value<decimal>(0);
+            TaskCompleteTime = source("TaskCompleteTime").value<DateTime>(DateTime.Now);
             IsPrivateProject = source("IsPrivateProject").value<string>("");
-            ProfessionSort = source("ProfessionSort").value<single>("");
+            ProfessionSort = source("ProfessionSort").value<decimal>(0);
         }
 
         public override Noear.Weed.IBinder clone()
