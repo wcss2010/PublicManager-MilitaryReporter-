@@ -478,6 +478,7 @@
             this.Ribbon = this.rcTopBar;
             this.StatusBar = this.rsbStatusBar;
             this.Text = "数据汇总系统";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbcLeftTree)).EndInit();
             this.nbcLeftTree.ResumeLayout(false);

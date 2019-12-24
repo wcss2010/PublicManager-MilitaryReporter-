@@ -1,6 +1,7 @@
 ﻿using PublicManager.DB;
 using PublicManager.DB.Entitys;
 using PublicManager.Modules.Manager.Forms;
+using SuperCodeFactoryLib.Collections;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace PublicManager.Modules.DataManager.Forms
 {
     public partial class ProjectSortForm : Form
     {
-        List<ComboBoxObject<Professions>> professionList = new List<ComboBoxObject<Professions>>();
+        KeyedList<string, ComboBoxObject<Professions>> professionMap = new KeyedList<string, ComboBoxObject<Professions>>();
 
         private string defaultProfessionSort = "其他";
 
@@ -28,15 +29,15 @@ namespace PublicManager.Modules.DataManager.Forms
 
         public void loadComboboxItems()
         {
-            professionList = new List<ComboBoxObject<Professions>>();
+            professionMap = new KeyedList<string, ComboBoxObject<Professions>>();
 
             ((DataGridViewComboBoxColumn)dgvCatalogs.Columns[3]).Items.Clear();
             List<Professions> list = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
             foreach (Professions prf in list)
             {
                 var objj = new ComboBoxObject<Professions>(prf.ProfessionName, prf);
-                ((DataGridViewComboBoxColumn)dgvCatalogs.Columns[3]).Items.Add(objj);
-                professionList.Add(objj);
+                ((DataGridViewComboBoxColumn)dgvCatalogs.Columns[3]).Items.Add(objj.Text);
+                professionMap.Add(objj.Text, objj);
             }
         }
 
@@ -54,7 +55,7 @@ namespace PublicManager.Modules.DataManager.Forms
                 cells.Add(indexx);
                 cells.Add(getProjectType(proj));
                 cells.Add(proj.ProjectName);
-                cells.Add(getProfessionObj(proj));
+                cells.Add(getProfessionObj(proj).Text);
                 cells.Add(proj.ProfessionSort);
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
@@ -72,8 +73,8 @@ namespace PublicManager.Modules.DataManager.Forms
         private ComboBoxObject<Professions> getProfessionObj(Project proj)
         {
             string professionName = ConnectionManager.Context.table("Professions").where("ProfessionID='" + proj.ProfessionID + "'").select("ProfessionName").getValue<string>(defaultProfessionSort);
-            ComboBoxObject<Professions> result = professionList[professionList.Count - 1];
-            foreach (ComboBoxObject<Professions> prf in professionList)
+            ComboBoxObject<Professions> result = professionMap[professionMap.Count - 1].Value;
+            foreach (ComboBoxObject<Professions> prf in professionMap.Values)
             {
                 if (prf.Tag.ProfessionName == professionName)
                 {
@@ -150,9 +151,12 @@ namespace PublicManager.Modules.DataManager.Forms
                 }
 
                 //更新数据
+                int newOrder = 0;
                 foreach (Project projjjj in projList)
                 {
+                    projjjj.ProfessionSort = newOrder;
                     projjjj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + projjjj.ProjectID + "'").update();
+                    newOrder++;
                 }
 
                 //刷新显示
@@ -167,9 +171,17 @@ namespace PublicManager.Modules.DataManager.Forms
                 //获得要删除的项目ID
                 Project proj = ((Project)dgvCatalogs.Rows[e.RowIndex].Tag);
 
-                ComboBoxObject<Professions> currentProfession = (ComboBoxObject<Professions>)((DataGridViewComboBoxCell)dgvCatalogs.Rows[e.RowIndex].Cells[3]).Value;
-                proj.ProfessionID = currentProfession.Tag.ProfessionID;
-                proj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + proj.ProjectID + "'").update();                
+                ComboBoxObject<Professions> currentProfession = null;
+                if (dgvCatalogs.Rows[e.RowIndex].Cells[3].Value != null)
+                {
+                    currentProfession = professionMap[dgvCatalogs.Rows[e.RowIndex].Cells[3].Value.ToString().Trim()];
+                    if (currentProfession != null)
+                    {
+                        proj.ProfessionID = currentProfession.Tag.ProfessionID;
+                        proj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + proj.ProjectID + "'").update();
+                        updateCatalogs();
+                    }
+                }
             }
         }
     }
