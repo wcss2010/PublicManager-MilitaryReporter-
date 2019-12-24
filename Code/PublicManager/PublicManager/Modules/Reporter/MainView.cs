@@ -131,7 +131,7 @@ namespace PublicManager.Modules.Reporter
         /// <returns></returns>
         public string getProjectType(Project proj)
         {
-            return proj.IsPrivateProject == "true" ? "从填报工具导入" : "专项项目";
+            return proj.IsPrivateProject == "true" ? "专项项目" : "从填报工具导入";
         }
     }
 }
