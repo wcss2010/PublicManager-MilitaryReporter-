@@ -50,6 +50,10 @@ namespace PublicManager.Modules.Manager
                 cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");
                 cells.Add(proj.Memo);
 
+                string importTimes = DateTime.Now.ToString("yyyy年MM月dd日 HH:mm:ss");
+                importTimes = ConnectionManager.Context.table("Catalog").where("CatalogID='" + proj.CatalogID + "'").select("ImportTime").getValue<DateTime>(DateTime.Now).ToString("yyyy年MM月dd日 HH:mm:ss");
+                cells.Add(importTimes);
+
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
                 dgvCatalogs.Rows[rowIndex].Tag = proj;
             }

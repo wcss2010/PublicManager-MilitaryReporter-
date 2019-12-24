@@ -41,6 +41,7 @@
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -70,6 +71,7 @@
             this.Column13,
             this.Column7,
             this.Column8,
+            this.Column14,
             this.Column9,
             this.Column10,
             this.Column11});
@@ -90,7 +92,7 @@
             this.dgvCatalogs.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 10.5F);
             this.dgvCatalogs.RowTemplate.Height = 23;
             this.dgvCatalogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCatalogs.Size = new System.Drawing.Size(1028, 684);
+            this.dgvCatalogs.Size = new System.Drawing.Size(1276, 684);
             this.dgvCatalogs.TabIndex = 1;
             this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
             // 
@@ -174,6 +176,14 @@
             this.Column8.ReadOnly = true;
             this.Column8.Width = 120;
             // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "导入时间";
+            this.Column14.MinimumWidth = 120;
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            this.Column14.Width = 120;
+            // 
             // Column9
             // 
             this.Column9.HeaderText = "";
@@ -214,7 +224,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgvCatalogs);
             this.Name = "MainView";
-            this.Size = new System.Drawing.Size(1028, 684);
+            this.Size = new System.Drawing.Size(1276, 684);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).EndInit();
             this.ResumeLayout(false);
 
@@ -233,6 +243,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewLinkColumn Column9;
         private System.Windows.Forms.DataGridViewLinkColumn Column10;
         private System.Windows.Forms.DataGridViewButtonColumn Column11;
