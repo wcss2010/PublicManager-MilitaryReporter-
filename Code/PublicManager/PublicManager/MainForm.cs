@@ -57,6 +57,8 @@ namespace PublicManager
         {
             ModuleDict["数据包汇总"] = new ReporterModuleController();
             ModuleDict["数据管理"] = new Modules.Manager.ModuleController();
+            ModuleDict["字典维护"] = new Modules.DictManager.ModuleController();
+            ModuleDict["数据导出"] = new Modules.DataExport.ModuleController();
         }
 
         /// <summary>

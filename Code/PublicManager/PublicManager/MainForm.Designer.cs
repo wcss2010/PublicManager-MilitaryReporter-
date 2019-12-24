@@ -253,7 +253,11 @@
             this.tlTestA.AppendNode(new object[] {
             "数据包汇总"}, -1);
             this.tlTestA.AppendNode(new object[] {
+            "字典维护"}, -1);
+            this.tlTestA.AppendNode(new object[] {
             "数据管理"}, -1);
+            this.tlTestA.AppendNode(new object[] {
+            "数据导出"}, -1);
             this.tlTestA.EndUnboundLoad();
             this.tlTestA.OptionsBehavior.Editable = false;
             this.tlTestA.OptionsView.ShowColumns = false;
