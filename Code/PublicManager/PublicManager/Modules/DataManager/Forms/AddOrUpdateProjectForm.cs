@@ -195,6 +195,14 @@ namespace PublicManager.Modules.Manager.Forms
     /// <typeparam name="T"></typeparam>
     public class ComboBoxObject<T>
     {
+        public ComboBoxObject() { }
+
+        public ComboBoxObject(string text,T tag)
+        {
+            this.Text = text;
+            this.Tag = tag;
+        }
+
         public string Text { get; set; }
 
         public T Tag { get; set; }

@@ -22,6 +22,13 @@ namespace PublicManager.Modules.DictManager
         {
             base.OnLoad(e);
 
+            initDicts();
+
+            updateCatalogs();
+        }
+
+        public static void initDicts()
+        {
             int rowCount = 0;
             object obj = ConnectionManager.Context.table("Professions").select("count(*)").getValue();
             try
@@ -88,8 +95,6 @@ namespace PublicManager.Modules.DictManager
                 prf.ProfessionName = "其他";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
             }
-
-            updateCatalogs();
         }
 
         public void updateCatalogs()

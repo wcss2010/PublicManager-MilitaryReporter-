@@ -12,6 +12,7 @@ using SuperCodeFactoryUILib.Forms;
 using System.IO;
 using Noear.Weed;
 using NPOI.SS.UserModel;
+using PublicManager.Modules.DataManager.Forms;
 
 namespace PublicManager.Modules.Manager
 {
@@ -263,6 +264,15 @@ namespace PublicManager.Modules.Manager
         private string getExportName(Project proj)
         {
             return proj.ProjectName + "-" + "专项项目" + ".zip";
+        }
+
+        private void btnSorts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            ProjectSortForm form = new ProjectSortForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                tc.updateCatalogs();
+            }
         }
     }
 }
