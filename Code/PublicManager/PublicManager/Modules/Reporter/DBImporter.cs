@@ -51,8 +51,7 @@ namespace PublicManager.Modules.Reporter
                 proj.WillResult = diProject.get("YuQiChengGuo") != null ? diProject.get("YuQiChengGuo").ToString() : string.Empty;
                 proj.StudyTime = diProject.get("YanJiuZhouQi") != null ? decimal.Parse(diProject.get("YanJiuZhouQi").ToString()) : 0;
                 proj.StudyMoney = diProject.get("JingFeiYuSuan") != null ? decimal.Parse(diProject.get("JingFeiYuSuan").ToString()) : 0;
-                proj.ProjectSort = diProject.get("XiangMuLeiBie") != null ? diProject.get("XiangMuLeiBie").ToString() : string.Empty;
-                proj.ProfessionSort = diProject.get("ZhuanYeLeiBie") != null ? diProject.get("ZhuanYeLeiBie").ToString() : string.Empty;
+                proj.ProjectSort = diProject.get("XiangMuLeiBie") != null ? diProject.get("XiangMuLeiBie").ToString() : string.Empty;                
                 proj.DutyUnit = diProject.get("ZeRenDanWei") != null ? diProject.get("ZeRenDanWei").ToString() : string.Empty;
                 proj.NextUnit = diProject.get("XiaJiDanWei") != null ? diProject.get("XiaJiDanWei").ToString() : string.Empty;
                 proj.Memo = diProject.get("BeiZhu") != null ? diProject.get("BeiZhu").ToString() : string.Empty;
@@ -67,6 +66,53 @@ namespace PublicManager.Modules.Reporter
                 proj.AllStudyUnit = diProject.get("LianHeYanJiuDanWei") != null ? diProject.get("LianHeYanJiuDanWei").ToString() : string.Empty;
                 proj.RequestMoney = diProject.get("ShenQingJingFei") != null ? decimal.Parse(diProject.get("ShenQingJingFei").ToString()) : 0;
                 proj.TaskCompleteTime = diProject.get("JiHuaWanChengShiJian") != null ? DateTime.Parse(diProject.get("JiHuaWanChengShiJian").ToString()) : DateTime.Now;
+                proj.IsPrivateProject = "false";
+                
+                //过滤文本--处理备注
+                proj.Memo = proj.Memo != null && proj.Memo.Contains(MainConfig.rowFlag) ? proj.Memo.Replace(MainConfig.rowFlag, ":") : proj.Memo;
+
+                //过滤文本--处理预期成果
+                StringBuilder sbWillResult = new StringBuilder();
+                if (proj.WillResult != null && proj.WillResult.Contains(MainConfig.rowFlag))
+                {
+                    string[] tttt = proj.WillResult.Split(new string[] { MainConfig.rowFlag }, StringSplitOptions.None);
+                    if (tttt != null)
+                    {
+                        foreach (string ss in tttt)
+                        {
+                            string[] vvvv = ss.Split(new string[] { MainConfig.cellFlag }, StringSplitOptions.None);
+                            if (vvvv != null && vvvv.Length >= 2)
+                            {
+                                if (string.IsNullOrEmpty(vvvv[0])) { continue; }
+
+                                sbWillResult.Append(vvvv[0].Insert(vvvv[0].IndexOf("("), vvvv[1]).Replace("(", string.Empty).Replace(")", string.Empty)).Append(",");
+                            }
+                        }
+                    }
+                }
+                proj.WillResult = sbWillResult.ToString();
+
+                //过滤文本--处理研究内容
+                StringBuilder sbStudyContent = new StringBuilder();
+                if (proj.StudyContent != null)
+                {
+                    string[] cList = proj.StudyContent.Split(new string[] { MainConfig.rowFlag }, StringSplitOptions.None);
+                    if (cList != null && cList.Length >= 1)
+                    {
+                        int indexx = 0;
+                        foreach (string s in cList)
+                        {
+                            indexx++;
+
+                            sbStudyContent.Append(indexx).Append(". ").Append(s).AppendLine();
+                        }
+                    }
+                }
+                proj.StudyContent = sbStudyContent.ToString();
+
+                //过滤文本--处理研究目标
+                proj.StudyDest = proj.StudyDest;
+                
                 proj.copyTo(ConnectionManager.Context.table("Project")).insert();
                 #endregion
 
