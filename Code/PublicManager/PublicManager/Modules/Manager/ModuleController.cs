@@ -107,7 +107,7 @@ namespace PublicManager.Modules.Manager
             {
                 Project proj = tc.getCurrentProject();
 
-                if (tc.getProjectType(proj.CatalogID).Contains("专项"))
+                if (tc.getProjectType(proj).Contains("专项"))
                 {
                     AddOrUpdateProjectForm ff = new AddOrUpdateProjectForm();
                     ff.ProjectName = proj.ProjectName;
@@ -260,7 +260,7 @@ namespace PublicManager.Modules.Manager
             {
                 Project proj = tc.getCurrentProject();
 
-                if (tc.getProjectType(proj.CatalogID).Contains("专项"))
+                if (tc.getProjectType(proj).Contains("专项"))
                 {
                     SaveFileDialog sfd = new SaveFileDialog();
                     sfd.Filter = "ZIP数据包|*.zip";

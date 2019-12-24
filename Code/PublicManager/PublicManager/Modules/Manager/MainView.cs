@@ -40,35 +40,15 @@ namespace PublicManager.Modules.Manager
 
                 List<object> cells = new List<object>();
                 cells.Add(indexx);
-                cells.Add(getProjectType(proj.CatalogID));
+                cells.Add(getProjectType(proj));
                 cells.Add(proj.ProjectName);
-
-                StringBuilder sbWillResult = new StringBuilder();
-                if (proj.WillResult != null && proj.WillResult.Contains(MainConfig.rowFlag))
-                {
-                    string[] tttt = proj.WillResult.Split(new string[] { MainConfig.rowFlag }, StringSplitOptions.None);
-                    if (tttt != null)
-                    {
-                        foreach (string ss in tttt)
-                        {
-                            string[] vvvv = ss.Split(new string[] { MainConfig.cellFlag }, StringSplitOptions.None);
-                            if (vvvv != null && vvvv.Length >= 2)
-                            {
-                                if (string.IsNullOrEmpty(vvvv[0])) { continue; }
-
-                                sbWillResult.Append(vvvv[0].Insert(vvvv[0].IndexOf("("), vvvv[1]).Replace("(", string.Empty).Replace(")", string.Empty)).Append(",");
-                            }
-                        }
-                    }
-                }
-                cells.Add(sbWillResult.ToString());
-
+                cells.Add(proj.WillResult);
                 cells.Add(proj.StudyTime);
                 cells.Add(proj.StudyMoney);
                 cells.Add(proj.ProjectSort);
                 cells.Add(proj.ProfessionSort);
                 cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");
-                cells.Add(proj.Memo != null && proj.Memo.Contains(MainConfig.rowFlag) ? proj.Memo.Replace(MainConfig.rowFlag, ":") : proj.Memo);
+                cells.Add(proj.Memo);
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
                 dgvCatalogs.Rows[rowIndex].Tag = proj;
@@ -98,7 +78,7 @@ namespace PublicManager.Modules.Manager
                         updateCatalogs();
                     }
                 }
-                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 2 && !getProjectType(proj.CatalogID).Contains("专项"))
+                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 2 && !getProjectType(proj).Contains("专项"))
                 {
                     //显示链接提示框
                     try
@@ -115,7 +95,7 @@ namespace PublicManager.Modules.Manager
                     }
                     catch (Exception ex) { }
                 }
-                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 3 && !getProjectType(proj.CatalogID).Contains("专项"))
+                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 3 && !getProjectType(proj).Contains("专项"))
                 {
                     //显示详细提示框
                     StringBuilder sb = new StringBuilder();
@@ -245,22 +225,9 @@ namespace PublicManager.Modules.Manager
         /// </summary>
         /// <param name="catalogID"></param>
         /// <returns></returns>
-        public string getProjectType(string catalogID)
+        public string getProjectType(Project proj)
         {
-            long personCount = 0;
-            long dictsCount = 0;
-            try
-            {
-                personCount = long.Parse(ConnectionManager.Context.table("Person").where("CatalogID='" + catalogID + "'").select("count(*)").getValue().ToString());
-            }
-            catch (Exception ex) { }
-            try
-            {
-                dictsCount = long.Parse(ConnectionManager.Context.table("Dicts").where("CatalogID='" + catalogID + "'").select("count(*)").getValue().ToString());
-            }
-            catch (Exception ex) { }
-
-            return (personCount >= 1 && dictsCount >= 1) ? "从填报工具导入" : "专项项目";
+            return proj.IsPrivateProject == "true" ? "从填报工具导入" : "专项项目";
         }
     }
 }
