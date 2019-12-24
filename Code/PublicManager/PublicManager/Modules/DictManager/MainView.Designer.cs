@@ -28,18 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.dgvCatalogs = new PublicManager.Modules.DataGridViewEx();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewButtonColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).BeginInit();
             this.SuspendLayout();
+            // 
+            // dgvCatalogs
+            // 
+            this.dgvCatalogs.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCatalogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvCatalogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCatalogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column3,
+            this.Column1,
+            this.Column2,
+            this.Column11});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCatalogs.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvCatalogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCatalogs.Location = new System.Drawing.Point(0, 0);
+            this.dgvCatalogs.MultiSelect = false;
+            this.dgvCatalogs.Name = "dgvCatalogs";
+            this.dgvCatalogs.RowHeadersVisible = false;
+            this.dgvCatalogs.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.dgvCatalogs.RowTemplate.Height = 23;
+            this.dgvCatalogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCatalogs.Size = new System.Drawing.Size(1107, 593);
+            this.dgvCatalogs.TabIndex = 3;
+            this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
+            this.dgvCatalogs.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellEndEdit);
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "类型排序";
+            this.Column3.MinimumWidth = 90;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 90;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.HeaderText = "类型类别";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "类型名称";
+            this.Column2.Name = "Column2";
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "";
+            this.Column11.MinimumWidth = 60;
+            this.Column11.Name = "Column11";
+            this.Column11.Text = "删除";
+            this.Column11.UseColumnTextForButtonValue = true;
+            this.Column11.Visible = false;
+            this.Column11.Width = 60;
             // 
             // MainView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dgvCatalogs);
             this.Name = "MainView";
-            this.Size = new System.Drawing.Size(468, 306);
+            this.Size = new System.Drawing.Size(1107, 593);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private DataGridViewEx dgvCatalogs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewButtonColumn Column11;
     }
 }

@@ -35,7 +35,6 @@
             this.btnEditProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportToPkg = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,17 +93,8 @@
             // 
             // rpMaster
             // 
-            this.rpMaster.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.rpgElse});
             this.rpMaster.Name = "rpMaster";
             this.rpMaster.Text = "论证报告书";
-            // 
-            // rpgElse
-            // 
-            this.rpgElse.ItemLinks.Add(this.btnExportToExcel);
-            this.rpgElse.ItemLinks.Add(this.btnExportToPkg);
-            this.rpgElse.Name = "rpgElse";
-            this.rpgElse.Text = "其它";
             // 
             // ModuleController
             // 
@@ -128,6 +118,5 @@
         private DevExpress.XtraBars.BarButtonItem btnEditProject;
         private DevExpress.XtraBars.BarButtonItem btnExportToPkg;
         private DevExpress.XtraBars.Ribbon.RibbonPage rpMaster;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgElse;
     }
 }
