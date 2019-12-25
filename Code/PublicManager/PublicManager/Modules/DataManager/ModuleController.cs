@@ -251,7 +251,7 @@ namespace PublicManager.Modules.Manager
                                     }
                                     catch (Exception ex)
                                     {
-                                        MainForm.writeLog(ex.ToString());
+                                        BaseModuleMainForm.writeLog(ex.ToString());
                                     }
                                 }));
                             }

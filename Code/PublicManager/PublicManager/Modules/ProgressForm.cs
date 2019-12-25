@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PublicManager
+namespace PublicManager.Modules
 {
     public partial class ProgressForm : RibbonForm
     {
@@ -50,7 +50,7 @@ namespace PublicManager
                 }
                 catch (Exception ex)
                 {
-                    MainForm.writeLog(ex.ToString());
+                    BaseModuleMainForm.writeLog(ex.ToString());
                 }
             }
 

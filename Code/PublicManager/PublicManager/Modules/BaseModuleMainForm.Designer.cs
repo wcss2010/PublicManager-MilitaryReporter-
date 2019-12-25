@@ -1,6 +1,6 @@
-﻿namespace PublicManager
+﻿namespace PublicManager.Modules
 {
-    partial class MainForm
+    partial class BaseModuleMainForm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseModuleMainForm));
             this.rcTopBar = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.barCheckItem1 = new DevExpress.XtraBars.BarCheckItem();
             this.skinRibbonGalleryBarItem1 = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();

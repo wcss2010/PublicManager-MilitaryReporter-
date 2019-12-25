@@ -15,9 +15,9 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PublicManager
+namespace PublicManager.Modules
 {
-    public partial class MainForm : RibbonForm
+    public partial class BaseModuleMainForm : RibbonForm
     {
         private static Dictionary<string, BaseModuleController> moduleDict = new Dictionary<string, BaseModuleController>();
         /// <summary>
@@ -25,7 +25,7 @@ namespace PublicManager
         /// </summary>
         public static Dictionary<string, BaseModuleController> ModuleDict
         {
-            get { return MainForm.moduleDict; }
+            get { return BaseModuleMainForm.moduleDict; }
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace PublicManager
         /// </summary>
         private MainMenuController menuController = new MainMenuController();
 
-        public MainForm()
+        public BaseModuleMainForm()
         {
             InitializeComponent();
 

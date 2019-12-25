@@ -150,20 +150,20 @@ namespace PublicManager.Modules.Reporter.Forms
                         {
                             //报告进度
                             pf.reportProgress(progressVal, zipName + "_开始导入");
-                            MainForm.writeLog("开始导入__" + zipName);
+                            BaseModuleMainForm.writeLog("开始导入__" + zipName);
 
                             //导入数据库
                             new DBImporter().addOrReplaceProject(zipName, Path.Combine(Path.Combine(decompressDir, zipName), "static.db"));
 
                             //报告进度
                             pf.reportProgress(progressVal, zipName + "_结束导入");
-                            MainForm.writeLog("结束导入__" + zipName);
+                            BaseModuleMainForm.writeLog("结束导入__" + zipName);
                         }
                         pf.reportProgress(progressVal, zipName + "_结束解压");
                     }
                     catch (Exception ex)
                     {
-                        MainForm.writeLog(ex.ToString());
+                        BaseModuleMainForm.writeLog(ex.ToString());
                     }
                 }
 
@@ -185,7 +185,7 @@ namespace PublicManager.Modules.Reporter.Forms
                         }
                         catch (Exception ex)
                         {
-                            MainForm.writeLog(ex.ToString());
+                            BaseModuleMainForm.writeLog(ex.ToString());
                         }
                     }));
                 }
@@ -218,12 +218,12 @@ namespace PublicManager.Modules.Reporter.Forms
             //申报主文件夹创建
             Directory.CreateDirectory(unZipDir);
 
-            MainForm.writeLog("开始解析__" + zipName);
+            BaseModuleMainForm.writeLog("开始解析__" + zipName);
             
             //判断是否存在申报包
             if (pkgZipFile != null && pkgZipFile.EndsWith(".zip"))
             {
-                MainForm.writeLog("项目" + zipName + "的解包操作，开始ZIP文件解压");
+                BaseModuleMainForm.writeLog("项目" + zipName + "的解包操作，开始ZIP文件解压");
 
                 //解压这个包
                 new ZipTool().UnZipFile(pkgZipFile, unZipDir, string.Empty, true);
@@ -236,7 +236,7 @@ namespace PublicManager.Modules.Reporter.Forms
                 {
                     if (!System.IO.Directory.Exists(Path.Combine(unZipDir, foldersValidata[i])))
                     {
-                        MainForm.writeLog("项目" + zipName + "的解包操作，" + foldersValidata[i] + "文件夹不存在");
+                        BaseModuleMainForm.writeLog("项目" + zipName + "的解包操作，" + foldersValidata[i] + "文件夹不存在");
                         outList.Add(foldersValidata[i] + "文件夹 不存在");
                     }
                 }
@@ -244,19 +244,19 @@ namespace PublicManager.Modules.Reporter.Forms
                 {
                     if (!File.Exists(Path.Combine(unZipDir, filesValidata[i])))
                     {
-                        MainForm.writeLog("项目" + zipName + "的解包操作，" + filesValidata[i] + "不存在");
+                        BaseModuleMainForm.writeLog("项目" + zipName + "的解包操作，" + filesValidata[i] + "不存在");
                         outList.Add(filesValidata[i] + " 不存在");
                     }
                 }
-                MainForm.writeLog("项目" + zipName + "的解包操作，结束ZIP文件解压");
+                BaseModuleMainForm.writeLog("项目" + zipName + "的解包操作，结束ZIP文件解压");
             }
             else
             {
-                MainForm.writeLog("项目" + zipName + "没有找到ZIP文件");
+                BaseModuleMainForm.writeLog("项目" + zipName + "没有找到ZIP文件");
                 outList.Add("没有找到ZIP文件");
             }
 
-            MainForm.writeLog("结束解析__" + zipName);
+            BaseModuleMainForm.writeLog("结束解析__" + zipName);
             if (outList.Count == 0)
             {
                 return true;

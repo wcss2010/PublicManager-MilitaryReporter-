@@ -162,18 +162,18 @@
     <Compile Include="DB\Entitys\Project.cs" />
     <Compile Include="ExcelHelper.cs" />
     <Compile Include="MainConfig.cs" />
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Modules\BaseDBImporter.cs" />
     <Compile Include="Modules\BaseModuleController.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\BaseModuleController.Designer.cs">
       <DependentUpon>BaseModuleController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\BaseModuleMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\BaseModuleMainForm.Designer.cs">
+      <DependentUpon>BaseModuleMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\DataExport\MainView.cs">
       <SubType>UserControl</SubType>
@@ -264,10 +264,10 @@
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProgressForm.cs">
+    <Compile Include="Modules\ProgressForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProgressForm.Designer.cs">
+    <Compile Include="Modules\ProgressForm.Designer.cs">
       <DependentUpon>ProgressForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -280,11 +280,11 @@
     <Compile Include="WordDocument.cs" />
     <Compile Include="Modules\DataManager\WordPrinter.cs" />
     <Compile Include="ZipTool.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Modules\BaseModuleController.resx">
       <DependentUpon>BaseModuleController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\BaseModuleMainForm.resx">
+      <DependentUpon>BaseModuleMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\DataExport\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
@@ -328,7 +328,7 @@
     <EmbeddedResource Include="Modules\Reporter\ReporterModuleController.resx">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProgressForm.resx">
+    <EmbeddedResource Include="Modules\ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

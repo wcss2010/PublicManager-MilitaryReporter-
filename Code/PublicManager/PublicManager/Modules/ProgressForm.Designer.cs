@@ -1,4 +1,4 @@
-﻿namespace PublicManager
+﻿namespace PublicManager.Modules
 {
     partial class ProgressForm
     {
