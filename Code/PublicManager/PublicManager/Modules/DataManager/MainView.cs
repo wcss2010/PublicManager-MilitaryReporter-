@@ -32,11 +32,18 @@ namespace PublicManager.Modules.Manager
         {
             dgvCatalogs.Rows.Clear();
 
-            List<Project> projList = ConnectionManager.Context.table("Project").orderBy("ProfessionID,ProfessionSort").select("*").getList<Project>(new Project());
+            List<Catalog> projList = ConnectionManager.Context.table("Catalog").orderBy("ImportTime").select("*").getList<Catalog>(new Catalog());
             int indexx = 0;
-            foreach (Project proj in projList)
+            foreach (Catalog catalog in projList)
             {
                 indexx++;
+
+                //项目信息
+                Project proj = ConnectionManager.Context.table("Project").where("CatalogID='" + catalog.CatalogID + "'").select("*").getItem<Project>(new Project());
+                if (proj == null)
+                {
+                    continue;
+                }
 
                 List<object> cells = new List<object>();
                 cells.Add(indexx);
@@ -46,7 +53,10 @@ namespace PublicManager.Modules.Manager
                 cells.Add(proj.StudyTime);
                 cells.Add(proj.StudyMoney);
                 cells.Add(proj.ProjectSort);
-                cells.Add(proj.ProfessionSort);
+
+                string professionNameStr = ConnectionManager.Context.table("Professions").where("ProfessionID='" + proj.ProfessionID + "'").select("ProfessionName").getValue<string>("其他");
+                cells.Add(professionNameStr + "(" + proj.ProfessionSort + ")");
+
                 cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");
                 cells.Add(proj.Memo);
 

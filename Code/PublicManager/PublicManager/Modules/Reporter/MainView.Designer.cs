@@ -110,15 +110,16 @@
             this.Column12.MinimumWidth = 120;
             this.Column12.Name = "Column12";
             this.Column12.ReadOnly = true;
+            this.Column12.Visible = false;
             this.Column12.Width = 120;
             // 
             // Column2
             // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column2.HeaderText = "项目名称";
             this.Column2.MinimumWidth = 120;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 120;
             // 
             // Column3
             // 
@@ -139,10 +140,10 @@
             // Column5
             // 
             this.Column5.HeaderText = "经费概算(万元)";
-            this.Column5.MinimumWidth = 150;
+            this.Column5.MinimumWidth = 130;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
-            this.Column5.Width = 150;
+            this.Column5.Width = 130;
             // 
             // Column6
             // 
@@ -154,19 +155,20 @@
             // 
             // Column13
             // 
-            this.Column13.HeaderText = "专业类别";
-            this.Column13.MinimumWidth = 120;
+            this.Column13.HeaderText = "专业类别(类别内序号)";
+            this.Column13.MinimumWidth = 180;
             this.Column13.Name = "Column13";
             this.Column13.ReadOnly = true;
-            this.Column13.Width = 120;
+            this.Column13.Visible = false;
+            this.Column13.Width = 180;
             // 
             // Column7
             // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column7.HeaderText = "责任单位(下级单位)";
-            this.Column7.MinimumWidth = 120;
+            this.Column7.MinimumWidth = 160;
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
+            this.Column7.Width = 160;
             // 
             // Column8
             // 
