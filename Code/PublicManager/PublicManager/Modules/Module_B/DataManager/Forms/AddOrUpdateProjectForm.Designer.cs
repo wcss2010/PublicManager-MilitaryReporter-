@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.Module_B.Manager.Forms
+﻿namespace PublicManager.Modules.Module_B.DataManager.Forms
 {
     partial class AddOrUpdateProjectForm
     {

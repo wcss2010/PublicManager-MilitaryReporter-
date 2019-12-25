@@ -245,23 +245,23 @@
     <Compile Include="Modules\Module_A\DataManager\ModuleController.Designer.cs">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_A\Reporter\DBImporter.cs" />
-    <Compile Include="Modules\Module_A\Reporter\Forms\ImporterForm.cs">
+    <Compile Include="Modules\Module_A\PkgImporter\DBImporter.cs" />
+    <Compile Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\Module_A\Reporter\Forms\ImporterForm.Designer.cs">
+    <Compile Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.Designer.cs">
       <DependentUpon>ImporterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_A\Reporter\MainView.cs">
+    <Compile Include="Modules\Module_A\PkgImporter\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Module_A\Reporter\MainView.Designer.cs">
+    <Compile Include="Modules\Module_A\PkgImporter\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_A\Reporter\ReporterModuleController.cs">
+    <Compile Include="Modules\Module_A\PkgImporter\ReporterModuleController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Module_A\Reporter\ReporterModuleController.Designer.cs">
+    <Compile Include="Modules\Module_A\PkgImporter\ReporterModuleController.Designer.cs">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Module_B\DataExport\MainView.cs">
@@ -325,23 +325,23 @@
     <Compile Include="Modules\Module_B\DictManager\ModuleController.Designer.cs">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_B\Reporter\DBImporter.cs" />
-    <Compile Include="Modules\Module_B\Reporter\Forms\ImporterForm.cs">
+    <Compile Include="Modules\Module_B\PkgImporter\DBImporter.cs" />
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\Module_B\Reporter\Forms\ImporterForm.Designer.cs">
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterForm.Designer.cs">
       <DependentUpon>ImporterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_B\Reporter\MainView.cs">
+    <Compile Include="Modules\Module_B\PkgImporter\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Module_B\Reporter\MainView.Designer.cs">
+    <Compile Include="Modules\Module_B\PkgImporter\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_B\Reporter\ReporterModuleController.cs">
+    <Compile Include="Modules\Module_B\PkgImporter\ReporterModuleController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Module_B\Reporter\ReporterModuleController.Designer.cs">
+    <Compile Include="Modules\Module_B\PkgImporter\ReporterModuleController.Designer.cs">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -400,13 +400,13 @@
     <EmbeddedResource Include="Modules\Module_A\DataManager\ModuleController.resx">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Module_A\Reporter\Forms\ImporterForm.resx">
+    <EmbeddedResource Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.resx">
       <DependentUpon>ImporterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Module_A\Reporter\MainView.resx">
+    <EmbeddedResource Include="Modules\Module_A\PkgImporter\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Module_A\Reporter\ReporterModuleController.resx">
+    <EmbeddedResource Include="Modules\Module_A\PkgImporter\ReporterModuleController.resx">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Module_B\DataExport\MainView.resx">
@@ -439,13 +439,13 @@
     <EmbeddedResource Include="Modules\Module_B\DictManager\ModuleController.resx">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Module_B\Reporter\Forms\ImporterForm.resx">
+    <EmbeddedResource Include="Modules\Module_B\PkgImporter\Forms\ImporterForm.resx">
       <DependentUpon>ImporterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Module_B\Reporter\MainView.resx">
+    <EmbeddedResource Include="Modules\Module_B\PkgImporter\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Module_B\Reporter\ReporterModuleController.resx">
+    <EmbeddedResource Include="Modules\Module_B\PkgImporter\ReporterModuleController.resx">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ProgressForm.resx">

@@ -11,7 +11,7 @@ using DevExpress.XtraEditors;
 using PublicManager.DB;
 using PublicManager.DB.Entitys;
 
-namespace PublicManager.Modules.Module_B.Manager
+namespace PublicManager.Modules.Module_B.DataManager
 {
     public partial class MainView : XtraUserControl
     {

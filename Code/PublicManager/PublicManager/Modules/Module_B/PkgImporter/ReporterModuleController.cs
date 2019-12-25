@@ -9,7 +9,7 @@ using PublicManager.DB;
 using PublicManager.DB.Entitys;
 using System.IO;
 
-namespace PublicManager.Modules.Module_B.Reporter
+namespace PublicManager.Modules.Module_B.PkgImporter
 {
     public partial class ReporterModuleController : BaseModuleController
     {

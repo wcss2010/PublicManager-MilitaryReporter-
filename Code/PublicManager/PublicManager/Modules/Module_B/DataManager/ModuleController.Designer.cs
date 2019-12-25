@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.Module_B.Manager
+﻿namespace PublicManager.Modules.Module_B.DataManager
 {
     partial class ModuleController
     {

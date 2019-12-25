@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.Module_A.Reporter.Forms
+﻿namespace PublicManager.Modules.Module_A.PkgImporter.Forms
 {
     partial class ImporterForm
     {

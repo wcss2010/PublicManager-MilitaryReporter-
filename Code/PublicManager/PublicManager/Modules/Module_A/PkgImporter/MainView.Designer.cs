@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.Module_A.Reporter
+﻿namespace PublicManager.Modules.Module_A.PkgImporter
 {
     partial class MainView
     {

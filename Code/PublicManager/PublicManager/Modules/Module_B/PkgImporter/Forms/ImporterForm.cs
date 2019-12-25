@@ -11,7 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace PublicManager.Modules.Module_B.Reporter.Forms
+namespace PublicManager.Modules.Module_B.PkgImporter.Forms
 {
     public partial class ImporterForm : Form
     {

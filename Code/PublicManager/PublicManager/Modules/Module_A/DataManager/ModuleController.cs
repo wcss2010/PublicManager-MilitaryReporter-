@@ -12,7 +12,7 @@ using System.IO;
 using Noear.Weed;
 using NPOI.SS.UserModel;
 
-namespace PublicManager.Modules.Module_A.Manager
+namespace PublicManager.Modules.Module_A.DataManager
 {
     public partial class ModuleController : BaseModuleController
     {
@@ -132,7 +132,7 @@ namespace PublicManager.Modules.Module_A.Manager
                     if (ff.ShowDialog() == DialogResult.OK)
                     {
                         //删除旧的工程
-                        new PublicManager.Modules.Reporter.DBImporter().deleteProject(proj.CatalogID);
+                        new PublicManager.Modules.PkgImporter.DBImporter().deleteProject(proj.CatalogID);
 
                         Catalog catalog = new Catalog();
                         catalog.CatalogID = Guid.NewGuid().ToString();

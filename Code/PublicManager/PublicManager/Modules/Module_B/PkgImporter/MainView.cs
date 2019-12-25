@@ -13,7 +13,7 @@ using PublicManager.DB.Entitys;
 using System.Diagnostics;
 using System.IO;
 
-namespace PublicManager.Modules.Module_B.Reporter
+namespace PublicManager.Modules.Module_B.PkgImporter
 {
     public partial class MainView : XtraUserControl
     {

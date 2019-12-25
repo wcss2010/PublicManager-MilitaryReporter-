@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.Module_B.Reporter
+﻿namespace PublicManager.Modules.Module_B.PkgImporter
 {
     partial class ReporterModuleController
     {
