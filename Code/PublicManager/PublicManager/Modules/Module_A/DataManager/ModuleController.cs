@@ -54,7 +54,7 @@ namespace PublicManager.Modules.Module_A.Manager
 
         private void btnAddProject_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            AddOrUpdateProjectForm ff = new AddOrUpdateProjectForm();
+            Forms.AddOrUpdateProjectForm ff = new Forms.AddOrUpdateProjectForm();
             if (ff.ShowDialog() == DialogResult.OK)
             {
                 Catalog catalog = new Catalog();
@@ -111,7 +111,7 @@ namespace PublicManager.Modules.Module_A.Manager
 
                 if (tc.getProjectType(proj).Contains("专项"))
                 {
-                    AddOrUpdateProjectForm ff = new AddOrUpdateProjectForm();
+                    Forms.AddOrUpdateProjectForm ff = new Forms.AddOrUpdateProjectForm();
                     ff.ProjectName = proj.ProjectName;
 
                     foreach (object obj in ff.StudyTimeItems)
@@ -188,7 +188,7 @@ namespace PublicManager.Modules.Module_A.Manager
             sfd.Filter = "*.doc|*.doc";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                DutyUnitForm duf = new DutyUnitForm();
+                Forms.DutyUnitForm duf = new Forms.DutyUnitForm();
                 if (duf.ShowDialog() == DialogResult.OK)
                 {
                     int tableIndex = 0;
