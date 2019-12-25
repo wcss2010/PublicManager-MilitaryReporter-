@@ -91,6 +91,8 @@ namespace PublicManager.Modules
             this.nbcLeftTree.Controls.Add(tempContainers);
             this.nbcLeftTree.Groups.Add(tempGroup);
 
+            pageDict[pageName] = tempGroup;
+
             return tempGroup;
         }
 
