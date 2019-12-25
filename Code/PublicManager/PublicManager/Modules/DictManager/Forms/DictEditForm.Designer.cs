@@ -32,8 +32,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblTextBoxTitle = new System.Windows.Forms.Label();
             this.txtContent = new System.Windows.Forms.TextBox();
+            this.lblTextBoxTitle = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -45,14 +45,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(551, 37);
+            this.panel1.Size = new System.Drawing.Size(341, 37);
             this.panel1.TabIndex = 18;
             // 
             // btnOK
             // 
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnOK.Font = new System.Drawing.Font("宋体", 10F);
-            this.btnOK.Location = new System.Drawing.Point(427, 0);
+            this.btnOK.Location = new System.Drawing.Point(217, 0);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(62, 37);
             this.btnOK.TabIndex = 1;
@@ -64,7 +64,7 @@
             // 
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnCancel.Font = new System.Drawing.Font("宋体", 10F);
-            this.btnCancel.Location = new System.Drawing.Point(489, 0);
+            this.btnCancel.Location = new System.Drawing.Point(279, 0);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(62, 37);
             this.btnCancel.TabIndex = 0;
@@ -80,8 +80,18 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(18);
-            this.panel2.Size = new System.Drawing.Size(551, 60);
+            this.panel2.Size = new System.Drawing.Size(341, 60);
             this.panel2.TabIndex = 19;
+            // 
+            // txtContent
+            // 
+            this.txtContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtContent.Font = new System.Drawing.Font("宋体", 10F);
+            this.txtContent.Location = new System.Drawing.Point(118, 18);
+            this.txtContent.Multiline = true;
+            this.txtContent.Name = "txtContent";
+            this.txtContent.Size = new System.Drawing.Size(205, 24);
+            this.txtContent.TabIndex = 1;
             // 
             // lblTextBoxTitle
             // 
@@ -94,21 +104,11 @@
             this.lblTextBoxTitle.Text = "类型名称：";
             this.lblTextBoxTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtContent
-            // 
-            this.txtContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtContent.Font = new System.Drawing.Font("宋体", 10F);
-            this.txtContent.Location = new System.Drawing.Point(118, 18);
-            this.txtContent.Multiline = true;
-            this.txtContent.Name = "txtContent";
-            this.txtContent.Size = new System.Drawing.Size(415, 24);
-            this.txtContent.TabIndex = 1;
-            // 
             // DictEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 97);
+            this.ClientSize = new System.Drawing.Size(341, 97);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
