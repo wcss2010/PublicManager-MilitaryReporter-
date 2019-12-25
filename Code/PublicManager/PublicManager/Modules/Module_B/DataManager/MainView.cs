@@ -10,7 +10,6 @@ using System.IO;
 using DevExpress.XtraEditors;
 using PublicManager.DB;
 using PublicManager.DB.Entitys;
-using PublicManager.Modules.Reporter;
 
 namespace PublicManager.Modules.Module_B.Manager
 {

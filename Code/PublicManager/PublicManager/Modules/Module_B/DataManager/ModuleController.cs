@@ -5,14 +5,12 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using PublicManager.Modules.Manager.Forms;
 using PublicManager.DB.Entitys;
 using PublicManager.DB;
 using SuperCodeFactoryUILib.Forms;
 using System.IO;
 using Noear.Weed;
 using NPOI.SS.UserModel;
-using PublicManager.Modules.DataManager.Forms;
 
 namespace PublicManager.Modules.Module_B.Manager
 {

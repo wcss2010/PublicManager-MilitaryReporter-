@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PublicManager.DB.Entitys;
 using PublicManager.DB;
-using PublicManager.Modules.DictManager.Forms;
 
 namespace PublicManager.Modules.Module_B.DictManager
 {

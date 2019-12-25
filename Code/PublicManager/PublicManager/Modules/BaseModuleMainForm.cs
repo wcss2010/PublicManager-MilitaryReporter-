@@ -5,7 +5,6 @@ using DevExpress.XtraEditors.ColorWheel;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraTreeList;
 using PublicManager.Modules;
-using PublicManager.Modules.Reporter;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

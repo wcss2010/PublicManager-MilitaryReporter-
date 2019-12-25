@@ -1,6 +1,5 @@
 ﻿using PublicManager.DB;
 using PublicManager.DB.Entitys;
-using PublicManager.Modules.Manager.Forms;
 using SuperCodeFactoryLib.Collections;
 using System;
 using System.Collections.Generic;
