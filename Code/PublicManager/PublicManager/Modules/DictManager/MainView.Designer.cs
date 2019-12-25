@@ -67,6 +67,7 @@
             this.dgvCatalogs.Location = new System.Drawing.Point(0, 0);
             this.dgvCatalogs.MultiSelect = false;
             this.dgvCatalogs.Name = "dgvCatalogs";
+            this.dgvCatalogs.ReadOnly = true;
             this.dgvCatalogs.RowHeadersVisible = false;
             this.dgvCatalogs.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 10.5F);
             this.dgvCatalogs.RowTemplate.Height = 23;
@@ -74,7 +75,6 @@
             this.dgvCatalogs.Size = new System.Drawing.Size(1107, 593);
             this.dgvCatalogs.TabIndex = 3;
             this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
-            this.dgvCatalogs.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellEndEdit);
             // 
             // Column3
             // 
@@ -89,21 +89,23 @@
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column1.HeaderText = "类型类别";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column2.HeaderText = "类型名称";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
             // Column11
             // 
             this.Column11.HeaderText = "";
             this.Column11.MinimumWidth = 60;
             this.Column11.Name = "Column11";
-            this.Column11.Text = "删除";
+            this.Column11.ReadOnly = true;
+            this.Column11.Text = "编辑";
             this.Column11.UseColumnTextForButtonValue = true;
-            this.Column11.Visible = false;
             this.Column11.Width = 60;
             // 
             // MainView

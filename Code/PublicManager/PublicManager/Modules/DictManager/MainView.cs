@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using PublicManager.DB.Entitys;
 using PublicManager.DB;
+using PublicManager.Modules.DictManager.Forms;
 
 namespace PublicManager.Modules.DictManager
 {
@@ -122,54 +123,30 @@ namespace PublicManager.Modules.DictManager
             if (e.RowIndex >= 0 && dgvCatalogs.Rows.Count > e.RowIndex)
             {
                 //获得要删除的项目ID
-                Professions pfo = ((Professions)dgvCatalogs.Rows[e.RowIndex].Tag);
+                Professions prf = ((Professions)dgvCatalogs.Rows[e.RowIndex].Tag);
 
-                if (pfo != null)
+                if (prf != null)
                 {
                     if (e.ColumnIndex == dgvCatalogs.Columns.Count - 1)
                     {
-                        //显示删除提示框
-                        if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                        //编辑
+                        if (prf.ProfessionCategory == "xx作战" || prf.ProfessionCategory == "xx应用" || prf.ProfessionCategory == "xx建设")
                         {
-                            //删除项目数据
-                            ConnectionManager.Context.table("Professions").where("ProfessionID='" + pfo.ProfessionID + "'").delete();
+                            DictEditForm def = new DictEditForm();
+                            def.Content = prf.ProfessionName.Replace("xx", string.Empty);
+                            if (def.ShowDialog() == DialogResult.OK)
+                            {
+                                prf.ProfessionName = def.Content;
+                                prf.copyTo(ConnectionManager.Context.table("Professions")).where("ProfessionID='" + prf.ProfessionID + "'").update();
 
-                            //刷新GridView
-                            updateCatalogs();
+                                updateCatalogs();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("对不起，只能编辑'xx作战','xx应用','xx建设'！");
                         }
                     }
-                }
-            }
-        }
-
-        private void dgvCatalogs_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvCatalogs.Rows.Count > e.RowIndex && dgvCatalogs.Rows[e.RowIndex].Tag != null)
-            {
-                Professions prf = (Professions)dgvCatalogs.Rows[e.RowIndex].Tag;
-
-                if (dgvCatalogs.Rows[e.RowIndex].Cells[1].Value != null)
-                {
-                    string newValue = dgvCatalogs.Rows[e.RowIndex].Cells[1].Value.ToString();
-
-                    switch (newValue)
-                    {
-                        case "xx作战":
-                            prf.ProfessionName = newValue;
-                            break;
-                        case "xx应用":
-                            prf.ProfessionName = newValue;
-                            break;
-                        case "xx建设":
-                            prf.ProfessionName = newValue;
-                            break;
-
-                        default:
-                            dgvCatalogs.Rows[e.RowIndex].Cells[2].Value = prf.ProfessionName;
-                            dgvCatalogs.EndEdit();
-                            break;
-                    }
-                    prf.copyTo(ConnectionManager.Context.table("Professions")).where("ProfessionID='" + prf.ProfessionID + "'").update();                    
                 }
             }
         }

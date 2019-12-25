@@ -196,6 +196,12 @@
     <Compile Include="Modules\DataManager\Forms\ProjectSortForm.Designer.cs">
       <DependentUpon>ProjectSortForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\DictManager\Forms\DictEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\DictManager\Forms\DictEditForm.Designer.cs">
+      <DependentUpon>DictEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\DictManager\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -288,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\DataManager\Forms\ProjectSortForm.resx">
       <DependentUpon>ProjectSortForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\DictManager\Forms\DictEditForm.resx">
+      <DependentUpon>DictEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\DictManager\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
