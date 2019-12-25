@@ -193,7 +193,7 @@
             this.Name = "ProjectSortForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "项目排序";
+            this.Text = "项目编辑";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).EndInit();
             this.ResumeLayout(false);

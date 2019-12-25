@@ -32,18 +32,11 @@ namespace PublicManager.Modules.Manager
         {
             dgvCatalogs.Rows.Clear();
 
-            List<Catalog> projList = ConnectionManager.Context.table("Catalog").orderBy("ImportTime").select("*").getList<Catalog>(new Catalog());
+            List<Project> projList = ConnectionManager.Context.table("Project").orderBy("ProfessionID,ProfessionSort").select("*").getList<Project>(new Project());
             int indexx = 0;
-            foreach (Catalog catalog in projList)
+            foreach (Project proj in projList)
             {
                 indexx++;
-
-                //项目信息
-                Project proj = ConnectionManager.Context.table("Project").where("CatalogID='" + catalog.CatalogID + "'").select("*").getItem<Project>(new Project());
-                if (proj == null)
-                {
-                    continue;
-                }
 
                 List<object> cells = new List<object>();
                 cells.Add(indexx);

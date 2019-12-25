@@ -33,10 +33,10 @@
             this.btnAddProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnDeleteProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditProject = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSorts = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgPrivateProject = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnSorts = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,6 +90,14 @@
             this.btnEditProject.Name = "btnEditProject";
             this.btnEditProject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnEditProject_ItemClick);
             // 
+            // btnSorts
+            // 
+            this.btnSorts.Caption = "项目编辑";
+            this.btnSorts.Id = 11;
+            this.btnSorts.LargeGlyph = global::PublicManager.Properties.Resources.export2;
+            this.btnSorts.Name = "btnSorts";
+            this.btnSorts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSorts_ItemClick);
+            // 
             // rpMaster
             // 
             this.rpMaster.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -112,14 +120,6 @@
             this.rpgElse.ItemLinks.Add(this.btnSorts);
             this.rpgElse.Name = "rpgElse";
             this.rpgElse.Text = "其它";
-            // 
-            // btnSorts
-            // 
-            this.btnSorts.Caption = "项目排序";
-            this.btnSorts.Id = 11;
-            this.btnSorts.LargeGlyph = global::PublicManager.Properties.Resources.export2;
-            this.btnSorts.Name = "btnSorts";
-            this.btnSorts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSorts_ItemClick);
             // 
             // ModuleController
             // 
