@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuilderGridLocalizer.cs" />
+    <Compile Include="ComboBoxObject.cs" />
     <Compile Include="DB\ConnectionManager.cs" />
     <Compile Include="DB\Entitys\Catalog.cs" />
     <Compile Include="DB\Entitys\IEntity.cs" />
