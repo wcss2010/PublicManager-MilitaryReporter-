@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.DictManager.Forms
+﻿namespace PublicManager.Modules.Module_B.DictManager.Forms
 {
     partial class DictEditForm
     {

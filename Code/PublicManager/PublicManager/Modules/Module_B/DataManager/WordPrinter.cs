@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data;
 using Aspose.Words.Tables;
 
-namespace PublicManager
+namespace PublicManager.Modules.Module_B
 {
     public class WordPrinter
     {

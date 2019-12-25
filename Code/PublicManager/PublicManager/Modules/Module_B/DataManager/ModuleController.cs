@@ -14,7 +14,7 @@ using Noear.Weed;
 using NPOI.SS.UserModel;
 using PublicManager.Modules.DataManager.Forms;
 
-namespace PublicManager.Modules.Manager
+namespace PublicManager.Modules.Module_B.Manager
 {
     public partial class ModuleController : BaseModuleController
     {

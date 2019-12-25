@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.DataExport
+﻿namespace PublicManager.Modules.Module_A.DataExport
 {
     partial class MainView
     {

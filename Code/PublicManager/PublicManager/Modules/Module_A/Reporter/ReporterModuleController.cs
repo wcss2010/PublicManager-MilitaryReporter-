@@ -9,7 +9,7 @@ using PublicManager.DB;
 using PublicManager.DB.Entitys;
 using System.IO;
 
-namespace PublicManager.Modules.Reporter
+namespace PublicManager.Modules.Module_A.Reporter
 {
     public partial class ReporterModuleController : BaseModuleController
     {

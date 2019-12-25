@@ -10,7 +10,7 @@ using PublicManager.DB.Entitys;
 using PublicManager.DB;
 using PublicManager.Modules.DictManager.Forms;
 
-namespace PublicManager.Modules.DictManager
+namespace PublicManager.Modules.Module_B.DictManager
 {
     public partial class MainView : XtraUserControl
     {

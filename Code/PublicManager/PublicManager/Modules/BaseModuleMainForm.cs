@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace PublicManager.Modules
 {
-    public abstract class BaseModuleMainForm : RibbonForm
+    public partial class BaseModuleMainForm : RibbonForm
     {
         private Dictionary<string, DevExpress.XtraNavBar.NavBarGroup> pageDict = new Dictionary<string, NavBarGroup>();
         /// <summary>
@@ -56,11 +56,11 @@ namespace PublicManager.Modules
             initUI();
         }
 
-        protected abstract void initUI();
+        protected virtual void initUI() { }
 
-        protected abstract void initMenus();
+        protected virtual void initMenus() { }
 
-        protected abstract void initModules();
+        protected virtual void initModules() { }
 
         /// <summary>
         /// 添加页面

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PublicManager.Modules.Reporter
+namespace PublicManager.Modules.Module_B.Reporter
 {
     public class DBImporter : BaseDBImporter
     {

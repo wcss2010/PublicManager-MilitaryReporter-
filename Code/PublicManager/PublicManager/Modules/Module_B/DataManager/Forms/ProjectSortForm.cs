@@ -10,7 +10,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PublicManager.Modules.DataManager.Forms
+namespace PublicManager.Modules.Module_B.DataManager.Forms
 {
     public partial class ProjectSortForm : Form
     {

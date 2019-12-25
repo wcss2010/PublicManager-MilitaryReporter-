@@ -175,43 +175,43 @@
     <Compile Include="Modules\BaseModuleMainForm.Designer.cs">
       <DependentUpon>BaseModuleMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DataExport\MainView.cs">
+    <Compile Include="Modules\Module_A\DataExport\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\DataExport\MainView.Designer.cs">
+    <Compile Include="Modules\Module_A\DataExport\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DataExport\ModuleController.cs">
+    <Compile Include="Modules\Module_A\DataExport\ModuleController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\DataExport\ModuleController.Designer.cs">
+    <Compile Include="Modules\Module_A\DataExport\ModuleController.Designer.cs">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\DataGridViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Modules\DataManager\Forms\ProjectSortForm.cs">
+    <Compile Include="Modules\Module_A\DataManager\Forms\ProjectSortForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\DataManager\Forms\ProjectSortForm.Designer.cs">
+    <Compile Include="Modules\Module_A\DataManager\Forms\ProjectSortForm.Designer.cs">
       <DependentUpon>ProjectSortForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DictManager\Forms\DictEditForm.cs">
+    <Compile Include="Modules\Module_A\DictManager\Forms\DictEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\DictManager\Forms\DictEditForm.Designer.cs">
+    <Compile Include="Modules\Module_A\DictManager\Forms\DictEditForm.Designer.cs">
       <DependentUpon>DictEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DictManager\MainView.cs">
+    <Compile Include="Modules\Module_A\DictManager\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\DictManager\MainView.Designer.cs">
+    <Compile Include="Modules\Module_A\DictManager\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DictManager\ModuleController.cs">
+    <Compile Include="Modules\Module_A\DictManager\ModuleController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\DictManager\ModuleController.Designer.cs">
+    <Compile Include="Modules\Module_A\DictManager\ModuleController.Designer.cs">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\MainMenuController.cs">
@@ -220,47 +220,127 @@
     <Compile Include="Modules\MainMenuController.Designer.cs">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DataManager\Forms\AddOrUpdateProjectForm.cs">
+    <Compile Include="Modules\Module_A\DataManager\Forms\AddOrUpdateProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\DataManager\Forms\AddOrUpdateProjectForm.Designer.cs">
+    <Compile Include="Modules\Module_A\DataManager\Forms\AddOrUpdateProjectForm.Designer.cs">
       <DependentUpon>AddOrUpdateProjectForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DataManager\Forms\DutyUnitForm.cs">
+    <Compile Include="Modules\Module_A\DataManager\Forms\DutyUnitForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\DataManager\Forms\DutyUnitForm.Designer.cs">
+    <Compile Include="Modules\Module_A\DataManager\Forms\DutyUnitForm.Designer.cs">
       <DependentUpon>DutyUnitForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DataManager\MainView.cs">
+    <Compile Include="Modules\Module_A\DataManager\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\DataManager\MainView.Designer.cs">
+    <Compile Include="Modules\Module_A\DataManager\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\DataManager\ModuleController.cs">
+    <Compile Include="Modules\Module_A\DataManager\ModuleController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\DataManager\ModuleController.Designer.cs">
+    <Compile Include="Modules\Module_A\DataManager\ModuleController.Designer.cs">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Reporter\DBImporter.cs" />
-    <Compile Include="Modules\Reporter\Forms\ImporterForm.cs">
+    <Compile Include="Modules\Module_A\Reporter\DBImporter.cs" />
+    <Compile Include="Modules\Module_A\Reporter\Forms\ImporterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\Reporter\Forms\ImporterForm.Designer.cs">
+    <Compile Include="Modules\Module_A\Reporter\Forms\ImporterForm.Designer.cs">
       <DependentUpon>ImporterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Reporter\MainView.cs">
+    <Compile Include="Modules\Module_A\Reporter\MainView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Reporter\MainView.Designer.cs">
+    <Compile Include="Modules\Module_A\Reporter\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Reporter\ReporterModuleController.cs">
+    <Compile Include="Modules\Module_A\Reporter\ReporterModuleController.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Modules\Reporter\ReporterModuleController.Designer.cs">
+    <Compile Include="Modules\Module_A\Reporter\ReporterModuleController.Designer.cs">
+      <DependentUpon>ReporterModuleController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataExport\MainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataExport\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataExport\ModuleController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataExport\ModuleController.Designer.cs">
+      <DependentUpon>ModuleController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\Forms\AddOrUpdateProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\Forms\AddOrUpdateProjectForm.Designer.cs">
+      <DependentUpon>AddOrUpdateProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\Forms\DutyUnitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\Forms\DutyUnitForm.Designer.cs">
+      <DependentUpon>DutyUnitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\Forms\ProjectSortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\Forms\ProjectSortForm.Designer.cs">
+      <DependentUpon>ProjectSortForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\MainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\ModuleController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\ModuleController.Designer.cs">
+      <DependentUpon>ModuleController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DataManager\WordPrinter.cs" />
+    <Compile Include="Modules\Module_B\DictManager\Forms\DictEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\DictManager\Forms\DictEditForm.Designer.cs">
+      <DependentUpon>DictEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DictManager\MainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\DictManager\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\DictManager\ModuleController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\DictManager\ModuleController.Designer.cs">
+      <DependentUpon>ModuleController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\Reporter\DBImporter.cs" />
+    <Compile Include="Modules\Module_B\Reporter\Forms\ImporterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\Reporter\Forms\ImporterForm.Designer.cs">
+      <DependentUpon>ImporterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\Reporter\MainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\Reporter\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\Reporter\ReporterModuleController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\Reporter\ReporterModuleController.Designer.cs">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -278,7 +358,7 @@
       <DependentUpon>TestControl.cs</DependentUpon>
     </Compile>
     <Compile Include="WordDocument.cs" />
-    <Compile Include="Modules\DataManager\WordPrinter.cs" />
+    <Compile Include="Modules\Module_A\DataManager\WordPrinter.cs" />
     <Compile Include="ZipTool.cs" />
     <EmbeddedResource Include="Modules\BaseModuleController.resx">
       <DependentUpon>BaseModuleController.cs</DependentUpon>
@@ -286,46 +366,85 @@
     <EmbeddedResource Include="Modules\BaseModuleMainForm.resx">
       <DependentUpon>BaseModuleMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataExport\MainView.resx">
+    <EmbeddedResource Include="Modules\Module_A\DataExport\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataExport\ModuleController.resx">
+    <EmbeddedResource Include="Modules\Module_A\DataExport\ModuleController.resx">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataManager\Forms\ProjectSortForm.resx">
+    <EmbeddedResource Include="Modules\Module_A\DataManager\Forms\ProjectSortForm.resx">
       <DependentUpon>ProjectSortForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DictManager\Forms\DictEditForm.resx">
+    <EmbeddedResource Include="Modules\Module_A\DictManager\Forms\DictEditForm.resx">
       <DependentUpon>DictEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DictManager\MainView.resx">
+    <EmbeddedResource Include="Modules\Module_A\DictManager\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DictManager\ModuleController.resx">
+    <EmbeddedResource Include="Modules\Module_A\DictManager\ModuleController.resx">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\MainMenuController.resx">
       <DependentUpon>MainMenuController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataManager\Forms\AddOrUpdateProjectForm.resx">
+    <EmbeddedResource Include="Modules\Module_A\DataManager\Forms\AddOrUpdateProjectForm.resx">
       <DependentUpon>AddOrUpdateProjectForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataManager\Forms\DutyUnitForm.resx">
+    <EmbeddedResource Include="Modules\Module_A\DataManager\Forms\DutyUnitForm.resx">
       <DependentUpon>DutyUnitForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataManager\MainView.resx">
+    <EmbeddedResource Include="Modules\Module_A\DataManager\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\DataManager\ModuleController.resx">
+    <EmbeddedResource Include="Modules\Module_A\DataManager\ModuleController.resx">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Reporter\Forms\ImporterForm.resx">
+    <EmbeddedResource Include="Modules\Module_A\Reporter\Forms\ImporterForm.resx">
       <DependentUpon>ImporterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Reporter\MainView.resx">
+    <EmbeddedResource Include="Modules\Module_A\Reporter\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Reporter\ReporterModuleController.resx">
+    <EmbeddedResource Include="Modules\Module_A\Reporter\ReporterModuleController.resx">
+      <DependentUpon>ReporterModuleController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DataExport\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DataExport\ModuleController.resx">
+      <DependentUpon>ModuleController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DataManager\Forms\AddOrUpdateProjectForm.resx">
+      <DependentUpon>AddOrUpdateProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DataManager\Forms\DutyUnitForm.resx">
+      <DependentUpon>DutyUnitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DataManager\Forms\ProjectSortForm.resx">
+      <DependentUpon>ProjectSortForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DataManager\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DataManager\ModuleController.resx">
+      <DependentUpon>ModuleController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DictManager\Forms\DictEditForm.resx">
+      <DependentUpon>DictEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DictManager\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\DictManager\ModuleController.resx">
+      <DependentUpon>ModuleController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\Reporter\Forms\ImporterForm.resx">
+      <DependentUpon>ImporterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\Reporter\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\Reporter\ReporterModuleController.resx">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ProgressForm.resx">

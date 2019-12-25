@@ -6,7 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PublicManager.Modules.DictManager
+namespace PublicManager.Modules.Module_A.DictManager
 {
     public partial class ModuleController : BaseModuleController
     {

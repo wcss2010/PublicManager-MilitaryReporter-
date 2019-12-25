@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PublicManager.Modules.Manager.Forms
+namespace PublicManager.Modules.Module_A.Manager.Forms
 {
     public partial class DutyUnitForm : Form
     {

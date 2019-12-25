@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PublicManager.Modules.Manager.Forms
+namespace PublicManager.Modules.Module_B.Manager.Forms
 {
     public partial class AddOrUpdateProjectForm : Form
     {

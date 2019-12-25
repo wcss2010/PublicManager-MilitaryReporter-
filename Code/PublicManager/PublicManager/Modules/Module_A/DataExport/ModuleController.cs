@@ -6,7 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PublicManager.Modules.DataExport
+namespace PublicManager.Modules.Module_A.DataExport
 {
     public partial class ModuleController : BaseModuleController
     {

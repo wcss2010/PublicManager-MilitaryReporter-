@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.Reporter
+﻿namespace PublicManager.Modules.Module_A.Reporter
 {
     partial class ReporterModuleController
     {

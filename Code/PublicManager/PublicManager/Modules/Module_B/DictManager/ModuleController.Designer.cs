@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.DictManager
+﻿namespace PublicManager.Modules.Module_B.DictManager
 {
     partial class ModuleController
     {

@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.Manager.Forms
+﻿namespace PublicManager.Modules.Module_A.Manager.Forms
 {
     partial class DutyUnitForm
     {

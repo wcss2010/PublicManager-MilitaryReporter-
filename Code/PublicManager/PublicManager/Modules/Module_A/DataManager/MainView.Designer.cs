@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.Manager
+﻿namespace PublicManager.Modules.Module_A.Manager
 {
     partial class MainView
     {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PublicManager.Modules.DictManager.Forms
+namespace PublicManager.Modules.Module_A.DictManager.Forms
 {
     public partial class DictEditForm : Form
     {

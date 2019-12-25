@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.DataManager.Forms
+﻿namespace PublicManager.Modules.Module_B.DataManager.Forms
 {
     partial class ProjectSortForm
     {

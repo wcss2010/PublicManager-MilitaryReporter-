@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace PublicManager.Modules.DataExport
+namespace PublicManager.Modules.Module_B.DataExport
 {
     public partial class MainView : XtraUserControl
     {
