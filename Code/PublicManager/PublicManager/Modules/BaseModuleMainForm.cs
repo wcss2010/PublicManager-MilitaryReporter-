@@ -17,8 +17,17 @@ using System.Windows.Forms;
 
 namespace PublicManager.Modules
 {
-    public partial class BaseModuleMainForm : RibbonForm
+    public abstract class BaseModuleMainForm : RibbonForm
     {
+        private Dictionary<string, DevExpress.XtraNavBar.NavBarGroup> pageDict = new Dictionary<string, NavBarGroup>();
+        /// <summary>
+        /// 页字典
+        /// </summary>
+        protected Dictionary<string, DevExpress.XtraNavBar.NavBarGroup> PageDict
+        {
+            get { return pageDict; }
+        }
+
         private static Dictionary<string, BaseModuleController> moduleDict = new Dictionary<string, BaseModuleController>();
         /// <summary>
         /// 模块字典(Key=名称,Value=模块控制器)
@@ -31,34 +40,103 @@ namespace PublicManager.Modules
         /// <summary>
         /// 菜单控制器
         /// </summary>
-        private MainMenuController menuController = new MainMenuController();
+        protected MainMenuController menuController = null;
 
         public BaseModuleMainForm()
         {
             InitializeComponent();
 
             //加载菜单
-            menuController.MenuControl.Width = 0;
-            menuController.MenuControl.Height = 0;
-            Controls.Add(menuController.MenuControl);
-            rcTopBar.ApplicationButtonDropDownControl = menuController.MenuControl;
+            initMenus();
 
             //加载所有模块
-            loadModules();
+            initModules();
 
             //显示第一页
-            nbcLeftTree_ActiveGroupChanged(nbcLeftTree, new NavBarGroupEventArgs(nbcTestA));
+            initUI();
+        }
+
+        protected abstract void initUI();
+
+        protected abstract void initMenus();
+
+        protected abstract void initModules();
+
+        /// <summary>
+        /// 添加页面
+        /// </summary>
+        /// <param name="pageName"></param>
+        /// <param name="pageIco"></param>
+        /// <returns></returns>
+        public virtual DevExpress.XtraNavBar.NavBarGroup appendPage(string pageName, Image pageIco)
+        {
+            DevExpress.XtraNavBar.NavBarGroupControlContainer tempContainers = new NavBarGroupControlContainer();
+            tempContainers.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            tempContainers.Appearance.Options.UseBackColor = true;
+            tempContainers.Name = Guid.NewGuid().ToString();
+            tempContainers.Size = new System.Drawing.Size(176, 402);
+            tempContainers.TabIndex = 0;
+
+            DevExpress.XtraNavBar.NavBarGroup tempGroup = new NavBarGroup();
+            tempGroup.Caption = pageName;
+            tempGroup.ControlContainer = tempContainers;
+            tempGroup.DragDropFlags = DevExpress.XtraNavBar.NavBarDragDrop.None;
+            tempGroup.Expanded = true;
+            tempGroup.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large;
+            tempGroup.GroupClientHeight = 264;
+            tempGroup.GroupStyle = DevExpress.XtraNavBar.NavBarGroupStyle.ControlContainer;
+            tempGroup.LargeImage = pageIco;
+            tempGroup.Name = Guid.NewGuid().ToString();
+
+            this.nbcLeftTree.Controls.Add(tempContainers);
+            this.nbcLeftTree.Groups.Add(tempGroup);
+
+            return tempGroup;
         }
 
         /// <summary>
-        /// 载入模块字典
+        /// 创建树控件
         /// </summary>
-        private void loadModules()
+        public virtual DevExpress.XtraTreeList.TreeList buildTreeControl(string[] cols,string[] nodes)
         {
-            ModuleDict["数据包汇总"] = new ReporterModuleController();
-            ModuleDict["数据管理"] = new Modules.Manager.ModuleController();
-            ModuleDict["字典维护"] = new Modules.DictManager.ModuleController();
-            ModuleDict["数据导出"] = new Modules.DataExport.ModuleController();
+            List<DevExpress.XtraTreeList.Columns.TreeListColumn> colList = new List<DevExpress.XtraTreeList.Columns.TreeListColumn>();
+            foreach (string c in cols)
+            {
+                DevExpress.XtraTreeList.Columns.TreeListColumn colObj = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+                colObj.MinWidth = 52;
+                colObj.Name = Guid.NewGuid().ToString();
+                colObj.Caption = c;
+                colObj.OptionsColumn.AllowFocus = false;
+                colObj.Visible = true;
+                colObj.VisibleIndex = 0;
+                colObj.Width = 100;
+                colList.Add(colObj);
+            }
+
+            DevExpress.XtraTreeList.TreeList resultControl = new TreeList();
+            resultControl.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            resultControl.Columns.AddRange(colList.ToArray());
+            resultControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            resultControl.Location = new System.Drawing.Point(0, 0);
+            resultControl.Name = Guid.NewGuid().ToString();
+            resultControl.BeginUnboundLoad();
+
+            foreach (string n in nodes)
+            {
+                resultControl.AppendNode(new object[] { n }, -1);
+            }
+
+            resultControl.EndUnboundLoad();
+            resultControl.OptionsBehavior.Editable = false;
+            resultControl.OptionsView.ShowColumns = false;
+            resultControl.OptionsView.ShowHorzLines = false;
+            resultControl.OptionsView.ShowIndentAsRowStyle = true;
+            resultControl.OptionsView.ShowIndicator = false;
+            resultControl.OptionsView.ShowVertLines = false;
+            resultControl.Size = new System.Drawing.Size(176, 402);
+            resultControl.TabIndex = 0;
+
+            return resultControl;
         }
 
         /// <summary>
@@ -149,8 +227,6 @@ namespace PublicManager.Modules
         {
 
         }
-
-        private void tlTestA_AfterFocusNode(object sender, DevExpress.XtraTreeList.NodeEventArgs e) { }
         
         private void btnSkinColorModify_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -199,53 +275,7 @@ namespace PublicManager.Modules
             //错误计数
             ProgressForm.errorCount++;
         }
-
-        private void tlTestB_AfterFocusNode(object sender, DevExpress.XtraTreeList.NodeEventArgs e) { }
-        
-        private void tlTestC_AfterFocusNode(object sender, DevExpress.XtraTreeList.NodeEventArgs e) { }
-        
-        private void tlTestA_MouseClick(object sender, MouseEventArgs e)
-        {
-            DevExpress.XtraTreeList.TreeList tree = ((DevExpress.XtraTreeList.TreeList)sender);
-            Point p = new Point(Cursor.Position.X, Cursor.Position.Y);　　//获取到鼠标点击的坐标位置
-            TreeListHitInfo hitInfo = tree.CalcHitInfo(e.Location);
-            if (hitInfo.HitInfoType == HitInfoType.Cell)
-            {
-                tree.SetFocusedNode(hitInfo.Node);         //这句话就是关键，用于选中节点　　
-
-                //显示模块
-                showModule(hitInfo.Node.GetDisplayText(0), true);
-            }
-        }
-
-        private void tlTestB_MouseClick(object sender, MouseEventArgs e)
-        {
-            DevExpress.XtraTreeList.TreeList tree = ((DevExpress.XtraTreeList.TreeList)sender);
-            Point p = new Point(Cursor.Position.X, Cursor.Position.Y);　　//获取到鼠标点击的坐标位置
-            TreeListHitInfo hitInfo = tree.CalcHitInfo(e.Location);
-            if (hitInfo.HitInfoType == HitInfoType.Cell)
-            {
-                tree.SetFocusedNode(hitInfo.Node);         //这句话就是关键，用于选中节点　　
-
-                //显示模块
-                showModule(hitInfo.Node.GetDisplayText(0), true);
-            }
-        }
-
-        private void tlTestC_MouseClick(object sender, MouseEventArgs e)
-        {
-            DevExpress.XtraTreeList.TreeList tree = ((DevExpress.XtraTreeList.TreeList)sender);
-            Point p = new Point(Cursor.Position.X, Cursor.Position.Y);　　//获取到鼠标点击的坐标位置
-            TreeListHitInfo hitInfo = tree.CalcHitInfo(e.Location);
-            if (hitInfo.HitInfoType == HitInfoType.Cell)
-            {
-                tree.SetFocusedNode(hitInfo.Node);         //这句话就是关键，用于选中节点　　
-
-                //显示模块
-                showModule(hitInfo.Node.GetDisplayText(0), true);
-            }
-        }
-
+            
         private void skinRibbonGalleryBarItem1_GalleryItemClick(object sender, GalleryItemClickEventArgs e)
         {
             MainConfig.Config.StringDict["当前皮肤"] = string.Concat(e.Item.Tag);
