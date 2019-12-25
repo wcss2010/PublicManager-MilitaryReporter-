@@ -132,7 +132,7 @@ namespace PublicManager.Modules.Module_B.DataManager
                     if (ff.ShowDialog() == DialogResult.OK)
                     {
                         //删除旧的工程
-                        new PublicManager.Modules.PkgImporter.DBImporter().deleteProject(proj.CatalogID);
+                        new PublicManager.Modules.Module_B.PkgImporter.DBImporter().deleteProject(proj.CatalogID);
 
                         Catalog catalog = new Catalog();
                         catalog.CatalogID = Guid.NewGuid().ToString();

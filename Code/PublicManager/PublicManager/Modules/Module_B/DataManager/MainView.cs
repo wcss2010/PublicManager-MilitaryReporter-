@@ -78,7 +78,7 @@ namespace PublicManager.Modules.Module_B.DataManager
                     if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                     {
                         //删除项目数据
-                        new DBImporter().deleteProject(catalogId);
+                        new PublicManager.Modules.Module_B.PkgImporter.DBImporter().deleteProject(catalogId);
 
                         //刷新GridView
                         updateCatalogs();
