@@ -59,7 +59,7 @@ namespace PublicManager.Modules.Module_B.DataManager
             {
                 Catalog catalog = new Catalog();
                 catalog.CatalogID = Guid.NewGuid().ToString();
-                catalog.CatalogNumber = "XXXXXXXXX专项项目XXXXXXXXX";
+                catalog.CatalogNumber = ff.ProjectName;
                 catalog.CatalogName = ff.ProjectName;
                 catalog.CatalogType = "论证报告书";
                 catalog.CatalogVersion = "v1.0";
@@ -136,7 +136,7 @@ namespace PublicManager.Modules.Module_B.DataManager
 
                         Catalog catalog = new Catalog();
                         catalog.CatalogID = Guid.NewGuid().ToString();
-                        catalog.CatalogNumber = "XXXXXXXXX专项项目XXXXXXXXX";
+                        catalog.CatalogNumber = ff.ProjectName;
                         catalog.CatalogName = ff.ProjectName;
                         catalog.CatalogType = "论证报告书";
                         catalog.CatalogVersion = "v1.0";

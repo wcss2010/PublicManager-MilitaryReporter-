@@ -566,7 +566,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                         if (idi.ProjectObj.IsPrivateProject == "true")
                         {
                             TreeNode tnn = new TreeNode();
-                            tnn.Text = idi.CatalogObj.CatalogName + "(专项项目)";
+                            tnn.Text = idi.CatalogObj.CatalogName;
                             tnn.Name = idi.CatalogObj.CatalogName;
                             tnn.Tag = idi;
                             tnn.Checked = true;
