@@ -63,6 +63,7 @@
             this.btnExportToExcel.Id = 6;
             this.btnExportToExcel.LargeGlyph = global::PublicManager.Properties.Resources.export;
             this.btnExportToExcel.Name = "btnExportToExcel";
+            this.btnExportToExcel.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnAddProject
             // 

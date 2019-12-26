@@ -62,6 +62,7 @@
             this.btnExportToExcel.Id = 6;
             this.btnExportToExcel.LargeGlyph = global::PublicManager.Properties.Resources.export;
             this.btnExportToExcel.Name = "btnExportToExcel";
+            this.btnExportToExcel.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // btnAddProject
             // 
@@ -91,6 +92,7 @@
             this.btnExportToPkg.Id = 10;
             this.btnExportToPkg.LargeGlyph = global::PublicManager.Properties.Resources.export3;
             this.btnExportToPkg.Name = "btnExportToPkg";
+            this.btnExportToPkg.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // rpMaster
             // 
