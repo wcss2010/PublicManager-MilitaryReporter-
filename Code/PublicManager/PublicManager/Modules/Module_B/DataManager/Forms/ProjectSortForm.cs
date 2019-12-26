@@ -21,7 +21,7 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
         {
             InitializeComponent();
 
-            PublicManager.Modules.DictManager.MainView.initDicts();
+            PublicManager.Modules.Module_B.DictManager.MainView.initDicts();
             loadComboboxItems();
             updateCatalogs();
         }

@@ -131,7 +131,7 @@ namespace PublicManager.Modules.Module_A.DictManager
                         //编辑
                         if (prf.ProfessionCategory == "xx作战" || prf.ProfessionCategory == "xx应用" || prf.ProfessionCategory == "xx建设")
                         {
-                            DictEditForm def = new DictEditForm();
+                            Forms.DictEditForm def = new Forms.DictEditForm();
                             def.Content = prf.ProfessionName.Replace("xx", string.Empty);
                             if (def.ShowDialog() == DialogResult.OK)
                             {

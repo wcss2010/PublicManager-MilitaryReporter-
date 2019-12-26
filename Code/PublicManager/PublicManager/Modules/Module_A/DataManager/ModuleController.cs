@@ -266,7 +266,7 @@ namespace PublicManager.Modules.Module_A.DataManager
 
         private void btnSorts_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            ProjectSortForm form = new ProjectSortForm();
+            Forms.ProjectSortForm form = new Forms.ProjectSortForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 tc.updateCatalogs();
