@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -17,10 +18,32 @@ namespace PublicManager
 
         private void btnToA_Click(object sender, EventArgs e)
         {
+            string dir = Path.Combine(Application.StartupPath, Path.Combine("Data", "M_A"));
+            try
+            {
+                Directory.CreateDirectory(dir);
+            }
+            catch (Exception ex) { }
+            string dbFile = Path.Combine(dir, "static.db");
+            if (!File.Exists(dbFile))
+            {
+                File.Copy(Path.Combine(Application.StartupPath, "static.db"), dbFile, true);
+            }
+
+            //初始化数据库
+            PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + dbFile);
+
+            checkUnit();
+
             Top = Screen.PrimaryScreen.Bounds.Height * 5;
             Modules.Module_A.ModuleMainForm form = new Modules.Module_A.ModuleMainForm();
             form.FormClosing += form_FormClosing;
             form.Show();
+        }
+
+        private void checkUnit()
+        {
+            
         }
 
         void form_FormClosing(object sender, FormClosingEventArgs e)
@@ -30,6 +53,23 @@ namespace PublicManager
 
         private void btnToB_Click(object sender, EventArgs e)
         {
+            string dir = Path.Combine(Application.StartupPath, Path.Combine("Data", "M_B"));
+            try
+            {
+                Directory.CreateDirectory(dir);
+            }
+            catch (Exception ex) { }
+            string dbFile = Path.Combine(dir, "static.db");
+            if (!File.Exists(dbFile))
+            {
+                File.Copy(Path.Combine(Application.StartupPath, "static.db"), dbFile, true);
+            }
+
+            //初始化数据库
+            PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + dbFile);
+
+            checkUnit();
+
             Top = Screen.PrimaryScreen.Bounds.Height * 5;
             Modules.Module_B.ModuleMainForm form = new Modules.Module_B.ModuleMainForm();
             form.FormClosing += form_FormClosing;
