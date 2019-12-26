@@ -92,7 +92,7 @@
             this.Name = "DutyUnitForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "选择责任单位";
+            this.Text = "请选择！";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
