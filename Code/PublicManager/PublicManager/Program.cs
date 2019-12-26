@@ -41,7 +41,7 @@ namespace PublicManager
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BaseModuleMainForm());
+            Application.Run(new WelcomeForm());
         }
     }
 }
