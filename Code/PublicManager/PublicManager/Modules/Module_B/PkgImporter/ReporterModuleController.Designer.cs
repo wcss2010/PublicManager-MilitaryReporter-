@@ -87,6 +87,7 @@
             this.btnImportWithSelected.Id = 4;
             this.btnImportWithSelected.LargeGlyph = global::PublicManager.Properties.Resources.importB;
             this.btnImportWithSelected.Name = "btnImportWithSelected";
+            this.btnImportWithSelected.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnImportWithSelected.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImportWithSelected_ItemClick);
             // 
             // rpMaster

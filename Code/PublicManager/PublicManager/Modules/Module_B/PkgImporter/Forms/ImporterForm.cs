@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraTreeList.Nodes;
 using PublicManager.DB;
+using PublicManager.DB.Entitys;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
         private string decompressDir;
         private string totalDir;
         private MainView mainView;
+        private List<string> pkgList = new List<string>();
 
         public ImporterForm(MainView mv,bool isImportAll, string sourceDir, string destDir)
         {
@@ -62,10 +64,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                     {
                         if (ZipTool.isFileInZip(f, new string[] { "static.db" }))
                         {
-                            TreeNode tn = new TreeNode();
-                            tn.Text = Path.GetFileNameWithoutExtension(f);
-                            tn.Name = f;
-                            tlTestA.Nodes.Add(tn);
+                            pkgList.Add(f);
                         }
                     }
                 }
@@ -416,6 +415,59 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
 
             //刷新替换列表
             reloadReplaceList();
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            if (ofdDB.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                txtDBFile.Text = ofdDB.FileName;
+
+                List<Catalog> catalogList = null;
+                #region 读取数据
+                //SQLite数据库工厂
+                System.Data.SQLite.SQLiteFactory factory = new System.Data.SQLite.SQLiteFactory();
+                //NDEY数据库连接
+                Noear.Weed.DbContext context = new Noear.Weed.DbContext("main", "Data Source = " + txtDBFile.Text, factory);
+                //是否在执入后执行查询（主要针对Sqlite）
+                context.IsSupportSelectIdentityAfterInsert = false;
+                //是否在Dispose后执行GC用于解决Dispose后无法删除的问题（主要针对Sqlite）
+                context.IsSupportGCAfterDispose = true;
+
+                try
+                {
+                    catalogList = context.table("Catalog").select("*").getList<Catalog>(new Catalog());
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.ToString());
+                }
+                finally
+                {
+                    factory.Dispose();
+                    context.Dispose();
+                }
+                #endregion
+
+                Dictionary<string, TreeNode> tempMap = new Dictionary<string, TreeNode>();
+                foreach (string f in pkgList)
+                {
+                    TreeNode tn = new TreeNode();
+                    tn.Text = Path.GetFileNameWithoutExtension(f);
+                    tn.Name = f;
+
+                    tempMap[Path.GetFileNameWithoutExtension(f)] = tn;
+                }
+
+                tlTestA.Nodes.Clear();
+                foreach (Catalog catalog in catalogList)
+                {
+                    if (tempMap.ContainsKey(catalog.CatalogNumber))
+                    {
+                        tlTestA.Nodes.Add(tempMap[catalog.CatalogNumber]);
+                    }
+                }
+            }
         }
     }
 }

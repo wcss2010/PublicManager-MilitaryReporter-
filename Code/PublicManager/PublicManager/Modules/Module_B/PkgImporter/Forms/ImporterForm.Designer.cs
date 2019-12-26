@@ -35,24 +35,30 @@
             this.chID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDBFile = new System.Windows.Forms.TextBox();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.ofdDB = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcIgnoreList)).BeginInit();
             this.gcIgnoreList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 43);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.tlTestA);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.gcIgnoreList);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(854, 463);
+            this.splitContainerControl1.Size = new System.Drawing.Size(984, 420);
             this.splitContainerControl1.SplitterPosition = 295;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -63,7 +69,7 @@
             this.tlTestA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlTestA.Location = new System.Drawing.Point(0, 0);
             this.tlTestA.Name = "tlTestA";
-            this.tlTestA.Size = new System.Drawing.Size(295, 463);
+            this.tlTestA.Size = new System.Drawing.Size(295, 420);
             this.tlTestA.TabIndex = 0;
             this.tlTestA.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tlTestA_AfterCheck);
             this.tlTestA.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tlTestA_AfterSelect);
@@ -74,7 +80,7 @@
             this.gcIgnoreList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcIgnoreList.Location = new System.Drawing.Point(0, 0);
             this.gcIgnoreList.Name = "gcIgnoreList";
-            this.gcIgnoreList.Size = new System.Drawing.Size(554, 463);
+            this.gcIgnoreList.Size = new System.Drawing.Size(684, 420);
             this.gcIgnoreList.TabIndex = 0;
             this.gcIgnoreList.Text = "是否需要覆盖已存在数据？";
             // 
@@ -86,7 +92,7 @@
             this.lvErrorList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvErrorList.Location = new System.Drawing.Point(2, 21);
             this.lvErrorList.Name = "lvErrorList";
-            this.lvErrorList.Size = new System.Drawing.Size(550, 440);
+            this.lvErrorList.Size = new System.Drawing.Size(680, 397);
             this.lvErrorList.TabIndex = 1;
             this.lvErrorList.UseCompatibleStateImageBehavior = false;
             this.lvErrorList.View = System.Windows.Forms.View.Details;
@@ -103,26 +109,72 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl2.Location = new System.Drawing.Point(0, 463);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(854, 38);
+            this.panelControl2.Size = new System.Drawing.Size(984, 38);
             this.panelControl2.TabIndex = 5;
             // 
             // btnOK
             // 
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnOK.Location = new System.Drawing.Point(780, 2);
+            this.btnOK.Location = new System.Drawing.Point(910, 2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(72, 34);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "导入";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnSelect);
+            this.groupBox1.Controls.Add(this.txtDBFile);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(984, 43);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Location = new System.Drawing.Point(3, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 23);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "库文件：";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtDBFile
+            // 
+            this.txtDBFile.Dock = System.Windows.Forms.DockStyle.Left;
+            this.txtDBFile.Location = new System.Drawing.Point(67, 17);
+            this.txtDBFile.Name = "txtDBFile";
+            this.txtDBFile.Size = new System.Drawing.Size(620, 21);
+            this.txtDBFile.TabIndex = 1;
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSelect.Location = new System.Drawing.Point(687, 17);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(75, 23);
+            this.btnSelect.TabIndex = 2;
+            this.btnSelect.Text = "选择";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // ofdDB
+            // 
+            this.ofdDB.Filter = "*.db|*.db";
+            // 
             // ImporterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 501);
+            this.ClientSize = new System.Drawing.Size(984, 501);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.panelControl2);
+            this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.Name = "ImporterForm";
             this.ShowIcon = false;
@@ -135,6 +187,8 @@
             this.gcIgnoreList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -148,5 +202,10 @@
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private System.Windows.Forms.ListView lvErrorList;
         private System.Windows.Forms.ColumnHeader chID;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtDBFile;
+        private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.OpenFileDialog ofdDB;
     }
 }
