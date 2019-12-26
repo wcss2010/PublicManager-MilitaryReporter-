@@ -44,6 +44,8 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
         {
             dgvCatalogs.Rows.Clear();
 
+            List<Project> allProjects = ConnectionManager.Context.table("Project").orderBy("ProfessionID,ProfessionSort").select("*").getList<Project>(new Project());
+
             List<Project> tempProjectList = new List<Project>();
             List<Professions> pfList = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
             foreach (Professions prf in pfList)
@@ -56,9 +58,9 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                 }
             }
 
-            if (tempProjectList.Count == 0)
+            if (tempProjectList.Count == 0 || tempProjectList.Count != allProjects.Count)
             {
-                tempProjectList = ConnectionManager.Context.table("Project").orderBy("ProfessionID,ProfessionSort").select("*").getList<Project>(new Project());
+                tempProjectList = allProjects;
             }
 
             int indexx = 0;
