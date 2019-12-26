@@ -31,7 +31,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
         private List<string> pkgList = new List<string>();
         private LocalUnit localUnitObj;
 
-        public ImporterForm(MainView mv,bool isImportAll, string sourceDir, string destDir)
+        public ImporterForm(MainView mv, bool isImportAll, string sourceDir, string destDir)
         {
             InitializeComponent();
 
@@ -88,8 +88,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
             if (clearProjectWithDutyUnit())
             {
                 //需要替换的申报包列表
-                List<string> importList = new List<string>();
-                List<string> importFileNameList = new List<string>();
+                List<TreeNode> needAddList = new List<TreeNode>();
 
                 #region 查的需要导入的路径
                 foreach (TreeNode tn in tlTestA.Nodes)
@@ -109,8 +108,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                             if (replaceDict[projectNumber])
                             {
                                 //需要替换，添加到ImportList列表中
-                                importList.Add(Path.Combine(tn.Name, ""));
-                                importFileNameList.Add(tn.Text);
+                                needAddList.Add(tn);
                             }
                             else
                             {
@@ -120,9 +118,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                         }
                         else
                         {
-                            //不需要替换
-                            importList.Add(Path.Combine(tn.Name, ""));
-                            importFileNameList.Add(tn.Text);
+                            //需要替换，添加到ImportList列表中
+                            needAddList.Add(tn);
                         }
                     }
                 }
@@ -131,37 +128,56 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                 //开始导入
                 ProgressForm pf = new ProgressForm();
                 pf.Show();
-                pf.run(importList.Count, 0, new EventHandler(delegate(object senders, EventArgs ee)
+                pf.run(needAddList.Count, 0, new EventHandler(delegate(object senders, EventArgs ee)
                 {
                     //进度数值
                     int progressVal = 0;
                     int index = -1;
                     //导入
-                    foreach (string zipFile in importList)
+                    foreach (TreeNode tnnn in needAddList)
                     {
+                        string zipName = tnnn.Text;
+                        string zipFile = tnnn.Name;
+
                         try
                         {
                             progressVal++;
                             index++;
-                            //申报文件名
-                            string zipName = importFileNameList[index].ToString();
-                            List<string> messageList = null;
-                            pf.reportProgress(progressVal, zipName + "_开始解压");
-                            bool returnContent = unZipFile(zipFile, zipName, out messageList);
-                            if (returnContent)
+
+                            if (tnnn.Tag == null)
+                            {
+                                List<string> messageList = null;
+                                pf.reportProgress(progressVal, zipName + "_开始解压");
+                                bool returnContent = unZipFile(zipFile, zipName, out messageList);
+                                if (returnContent)
+                                {
+                                    //报告进度
+                                    pf.reportProgress(progressVal, zipName + "_开始导入");
+                                    BaseModuleMainForm.writeLog("开始导入__" + zipName);
+
+                                    //导入数据库
+                                    new DBImporter().addOrReplaceProject(zipName, Path.Combine(Path.Combine(decompressDir, zipName), "static.db"));
+
+                                    //报告进度
+                                    pf.reportProgress(progressVal, zipName + "_结束导入");
+                                    BaseModuleMainForm.writeLog("结束导入__" + zipName);
+                                }
+                                pf.reportProgress(progressVal, zipName + "_结束解压");
+                            }
+                            else
                             {
                                 //报告进度
                                 pf.reportProgress(progressVal, zipName + "_开始导入");
                                 BaseModuleMainForm.writeLog("开始导入__" + zipName);
 
-                                //导入数据库
-                                new DBImporter().addOrReplaceProject(zipName, Path.Combine(Path.Combine(decompressDir, zipName), "static.db"));
+                                ImportDataItem idi = (ImportDataItem)tnnn.Tag;
+                                idi.CatalogObj.copyTo(ConnectionManager.Context.table("Catalog")).insert();
+                                idi.ProjectObj.copyTo(ConnectionManager.Context.table("Project")).insert();
 
                                 //报告进度
                                 pf.reportProgress(progressVal, zipName + "_结束导入");
                                 BaseModuleMainForm.writeLog("结束导入__" + zipName);
                             }
-                            pf.reportProgress(progressVal, zipName + "_结束解压");
                         }
                         catch (Exception ex)
                         {
@@ -281,7 +297,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
             Directory.CreateDirectory(unZipDir);
 
             BaseModuleMainForm.writeLog("开始解析__" + zipName);
-            
+
             //判断是否存在申报包
             if (pkgZipFile != null && pkgZipFile.EndsWith(".zip"))
             {
@@ -486,7 +502,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
             {
                 txtDBFile.Text = ofdDB.FileName;
 
-                List<Catalog> catalogList = new List<Catalog>();
+                List<ImportDataItem> cpList = new List<ImportDataItem>();
                 #region 读取数据
                 //SQLite数据库工厂
                 System.Data.SQLite.SQLiteFactory factory = new System.Data.SQLite.SQLiteFactory();
@@ -499,7 +515,17 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
 
                 try
                 {
-                    catalogList = context.table("Catalog").select("*").getList<Catalog>(new Catalog());
+                    List<Catalog> catList = context.table("Catalog").select("*").getList<Catalog>(new Catalog());
+                    foreach (Catalog catObj in catList)
+                    {
+                        Project projObj = context.table("Project").where("CatalogID='" + catObj.CatalogID + "'").select("*").getItem<Project>(new Project());
+
+                        ImportDataItem idi = new ImportDataItem();
+                        idi.CatalogObj = catObj;
+                        idi.ProjectObj = projObj;
+                        cpList.Add(idi);
+                    }
+
                     localUnitObj = context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
                 }
                 catch (Exception ex)
@@ -513,6 +539,9 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                 }
                 #endregion
 
+                //刷新文件树
+                getFileTree(totalDir);
+
                 Dictionary<string, TreeNode> tempMap = new Dictionary<string, TreeNode>();
                 foreach (string f in pkgList)
                 {
@@ -524,15 +553,44 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                     tempMap[Path.GetFileNameWithoutExtension(f)] = tn;
                 }
 
+                btnOK.Enabled = true;
                 tlTestA.Nodes.Clear();
-                foreach (Catalog catalog in catalogList)
+                foreach (ImportDataItem idi in cpList)
                 {
-                    if (tempMap.ContainsKey(catalog.CatalogNumber))
+                    if (tempMap.ContainsKey(idi.CatalogObj.CatalogNumber))
                     {
-                        tlTestA.Nodes.Add(tempMap[catalog.CatalogNumber]);
+                        tlTestA.Nodes.Add(tempMap[idi.CatalogObj.CatalogNumber]);
+                    }
+                    else
+                    {
+                        if (idi.ProjectObj.IsPrivateProject == "true")
+                        {
+                            TreeNode tnn = new TreeNode();
+                            tnn.Text = idi.CatalogObj.CatalogName + "(专项项目)";
+                            tnn.Name = idi.CatalogObj.CatalogName;
+                            tnn.Tag = idi;
+                            tnn.Checked = true;
+                            tlTestA.Nodes.Add(tnn);
+                        }
+                        else
+                        {
+                            TreeNode tnn = new TreeNode();
+                            tnn.Text = idi.CatalogObj.CatalogName + "(没有申报包)";
+                            tnn.Name = idi.CatalogObj.CatalogName;
+                            tnn.Tag = idi;
+                            tnn.Checked = true;
+                            tlTestA.Nodes.Add(tnn);
+                            btnOK.Enabled = false;
+                        }
                     }
                 }
             }
         }
+    }
+
+    public class ImportDataItem
+    {
+        public Catalog CatalogObj { get; set; }
+        public Project ProjectObj { get; set; }
     }
 }
