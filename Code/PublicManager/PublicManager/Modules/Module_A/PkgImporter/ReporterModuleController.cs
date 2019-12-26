@@ -126,10 +126,5 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             Forms.ImporterForm ifm = new Forms.ImporterForm(tc, false, totalDir, decompressDir);
             ifm.ShowDialog();
         }
-
-        private void btnSetUnitA_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            WelcomeForm.showUnitADialog();
-        }
     }
 }

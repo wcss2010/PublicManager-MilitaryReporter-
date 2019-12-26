@@ -38,7 +38,6 @@
             this.rpbLoad = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fbdFolderSelect = new System.Windows.Forms.FolderBrowserDialog();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
-            this.btnSetUnitA = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,8 +49,7 @@
             this.btnSetSourceDir,
             this.btnSetDestDir,
             this.btnImportAll,
-            this.btnImportWithSelected,
-            this.btnSetUnitA});
+            this.btnImportWithSelected});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
             this.rcTopBar.MaxItemId = 7;
             this.rcTopBar.Name = "rcTopBar";
@@ -110,21 +108,12 @@
             // 
             this.rpbLoad.ItemLinks.Add(this.btnImportAll);
             this.rpbLoad.ItemLinks.Add(this.btnImportWithSelected);
-            this.rpbLoad.ItemLinks.Add(this.btnSetUnitA);
             this.rpbLoad.Name = "rpbLoad";
             this.rpbLoad.Text = "导入";
             // 
             // sfdExport
             // 
             this.sfdExport.Filter = "Excel文件(.xlsx)|*.xlsx";
-            // 
-            // btnSetUnitA
-            // 
-            this.btnSetUnitA.Caption = "设置所属单位";
-            this.btnSetUnitA.Id = 6;
-            this.btnSetUnitA.LargeGlyph = global::PublicManager.Properties.Resources.Contact_32x32;
-            this.btnSetUnitA.Name = "btnSetUnitA";
-            this.btnSetUnitA.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSetUnitA_ItemClick);
             // 
             // ReporterModuleController
             // 
@@ -151,6 +140,5 @@
         private DevExpress.XtraBars.BarButtonItem btnImportWithSelected;
         private System.Windows.Forms.FolderBrowserDialog fbdFolderSelect;
         private System.Windows.Forms.SaveFileDialog sfdExport;
-        private DevExpress.XtraBars.BarButtonItem btnSetUnitA;
     }
 }

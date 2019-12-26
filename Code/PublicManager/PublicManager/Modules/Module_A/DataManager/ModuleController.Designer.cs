@@ -37,6 +37,7 @@
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgPrivateProject = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnSetUnitA = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,9 +50,10 @@
             this.btnAddProject,
             this.btnDeleteProject,
             this.btnEditProject,
-            this.btnSorts});
+            this.btnSorts,
+            this.btnSetUnitA});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
-            this.rcTopBar.MaxItemId = 12;
+            this.rcTopBar.MaxItemId = 13;
             this.rcTopBar.Name = "rcTopBar";
             this.rcTopBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpMaster});
@@ -118,8 +120,17 @@
             // 
             this.rpgElse.ItemLinks.Add(this.btnExportToExcel);
             this.rpgElse.ItemLinks.Add(this.btnSorts);
+            this.rpgElse.ItemLinks.Add(this.btnSetUnitA);
             this.rpgElse.Name = "rpgElse";
             this.rpgElse.Text = "其它";
+            // 
+            // btnSetUnitA
+            // 
+            this.btnSetUnitA.Caption = "设置所属单位";
+            this.btnSetUnitA.Id = 12;
+            this.btnSetUnitA.LargeGlyph = global::PublicManager.Properties.Resources.Contact_32x32;
+            this.btnSetUnitA.Name = "btnSetUnitA";
+            this.btnSetUnitA.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSetUnitA_ItemClick);
             // 
             // ModuleController
             // 
@@ -145,5 +156,6 @@
         private DevExpress.XtraBars.BarButtonItem btnDeleteProject;
         private DevExpress.XtraBars.BarButtonItem btnEditProject;
         private DevExpress.XtraBars.BarButtonItem btnSorts;
+        private DevExpress.XtraBars.BarButtonItem btnSetUnitA;
     }
 }

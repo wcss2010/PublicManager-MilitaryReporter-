@@ -272,5 +272,10 @@ namespace PublicManager.Modules.Module_A.DataManager
                 tc.updateCatalogs();
             }
         }
+
+        private void btnSetUnitA_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            WelcomeForm.showUnitADialog();
+        }
     }
 }
