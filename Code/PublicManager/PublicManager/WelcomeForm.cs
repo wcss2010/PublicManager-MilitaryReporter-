@@ -59,6 +59,8 @@ namespace PublicManager
             form.Text = "设置所属单位";
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                ConnectionManager.Context.table("LocalUnit").delete();
+
                 lu.LocalUnitID = Guid.NewGuid().ToString();
                 lu.LocalUnitName = form.SelectedItem;
                 lu.copyTo(ConnectionManager.Context.table("LocalUnit")).insert();

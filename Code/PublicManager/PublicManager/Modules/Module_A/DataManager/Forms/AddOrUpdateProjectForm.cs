@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PublicManager.DB;
+using PublicManager.DB.Entitys;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -101,6 +103,13 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
             InitializeComponent();
 
             loadComboboxItems();
+
+            LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
+            if (!string.IsNullOrEmpty(lu.LocalUnitID))
+            {
+                txtDutyUnit.SelectedItem = lu.LocalUnitName;
+                txtDutyUnit.Enabled = false;
+            }
         }
 
         /// <summary>
