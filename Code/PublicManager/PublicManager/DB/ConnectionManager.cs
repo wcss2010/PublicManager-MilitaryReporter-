@@ -21,6 +21,8 @@ namespace PublicManager.DB
         /// <param name="connStr">连接字符串</param> 
         public static void Open(string schemaName,string connStr) 
         {
+            ConnectionString = connStr;
+
             factory = new System.Data.SQLite.SQLiteFactory(); 
             Context = new DbContext(schemaName, connStr, factory); 
             //是否在执入后执行查询（主要针对Sqlite）
@@ -44,6 +46,8 @@ namespace PublicManager.DB
             } 
             catch (Exception ex) { } 
             Context = null; 
-        } 
+        }
+
+        public static string ConnectionString { get; set; }
     } 
 }

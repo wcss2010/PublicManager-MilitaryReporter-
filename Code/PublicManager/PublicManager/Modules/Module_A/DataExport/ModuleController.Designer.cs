@@ -36,6 +36,7 @@
             this.btnExportToPkg = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.sfdDB = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,6 +92,7 @@
             this.btnExportToPkg.Id = 10;
             this.btnExportToPkg.LargeGlyph = global::PublicManager.Properties.Resources.export3;
             this.btnExportToPkg.Name = "btnExportToPkg";
+            this.btnExportToPkg.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportToPkg_ItemClick);
             // 
             // rpMaster
             // 
@@ -105,6 +107,10 @@
             this.rpgElse.ItemLinks.Add(this.btnExportToPkg);
             this.rpgElse.Name = "rpgElse";
             this.rpgElse.Text = "其它";
+            // 
+            // sfdDB
+            // 
+            this.sfdDB.Filter = "*.db|*.db";
             // 
             // ModuleController
             // 
@@ -129,5 +135,6 @@
         private DevExpress.XtraBars.BarButtonItem btnExportToPkg;
         private DevExpress.XtraBars.Ribbon.RibbonPage rpMaster;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgElse;
+        private System.Windows.Forms.SaveFileDialog sfdDB;
     }
 }

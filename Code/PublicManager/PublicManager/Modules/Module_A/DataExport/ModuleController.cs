@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using PublicManager.DB;
+using System.IO;
 
 namespace PublicManager.Modules.Module_A.DataExport
 {
@@ -44,6 +46,24 @@ namespace PublicManager.Modules.Module_A.DataExport
         public override void stop()
         {
             base.stop();
+        }
+
+        private void btnExportToPkg_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string dbFile = ConnectionManager.ConnectionString.Replace("Data Source=", string.Empty);
+            if (sfdDB.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.Copy(dbFile, sfdDB.FileName, true);
+
+                    MessageBox.Show("导出完成！");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("导出失败！Ex:" + ex.ToString());
+                }
+            }
         }
     }
 }
