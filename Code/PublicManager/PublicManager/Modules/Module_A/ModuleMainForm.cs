@@ -8,6 +8,12 @@ namespace PublicManager.Modules.Module_A
 {
     public class ModuleMainForm : BaseModuleMainForm
     {
+        public ModuleMainForm()
+            : base()
+        {
+            Text = "其它地区汇总系统";
+        }
+
         private DevExpress.XtraTreeList.TreeList treeListObj;
         private DevExpress.XtraNavBar.NavBarGroup firstPage;
         protected override void initMenus()

@@ -8,6 +8,12 @@ namespace PublicManager.Modules.Module_B
 {
     public class ModuleMainForm : BaseModuleMainForm
     {
+        public ModuleMainForm()
+            : base()
+        {
+            Text = "军委机构汇总系统";
+        }
+
         private DevExpress.XtraTreeList.TreeList treeListObj;
         private DevExpress.XtraNavBar.NavBarGroup firstPage;
         protected override void initMenus()
