@@ -75,7 +75,7 @@
             // 
             // btnImportAll
             // 
-            this.btnImportAll.Caption = "导入所有";
+            this.btnImportAll.Caption = "导入";
             this.btnImportAll.Id = 3;
             this.btnImportAll.LargeGlyph = global::PublicManager.Properties.Resources.importA;
             this.btnImportAll.Name = "btnImportAll";

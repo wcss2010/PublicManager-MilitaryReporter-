@@ -29,6 +29,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
         private string totalDir;
         private MainView mainView;
         private List<string> pkgList = new List<string>();
+        private LocalUnit localUnitObj;
 
         public ImporterForm(MainView mv,bool isImportAll, string sourceDir, string destDir)
         {
@@ -84,116 +85,178 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            //需要替换的申报包列表
-            List<string> importList = new List<string>();
-            List<string> importFileNameList = new List<string>();
-
-            #region 查的需要导入的路径
-            foreach (TreeNode tn in tlTestA.Nodes)
+            if (clearProjectWithDutyUnit())
             {
-                //判断是否被选中
-                if (tn.Checked)
+                //需要替换的申报包列表
+                List<string> importList = new List<string>();
+                List<string> importFileNameList = new List<string>();
+
+                #region 查的需要导入的路径
+                foreach (TreeNode tn in tlTestA.Nodes)
                 {
-                    //读取目录名称中的项目编号
-                    string projectNumber = tn.Text;
-
-                    //判断是否需要替换
-                    if (replaceDict.ContainsKey(projectNumber))
+                    //判断是否被选中
+                    if (tn.Checked)
                     {
-                        //需要替换
+                        //读取目录名称中的项目编号
+                        string projectNumber = tn.Text;
 
-                        //判断是否替换这个项目
-                        if (replaceDict[projectNumber])
+                        //判断是否需要替换
+                        if (replaceDict.ContainsKey(projectNumber))
                         {
-                            //需要替换，添加到ImportList列表中
-                            importList.Add(Path.Combine(tn.Name, ""));
-                            importFileNameList.Add(tn.Text);
+                            //需要替换
+
+                            //判断是否替换这个项目
+                            if (replaceDict[projectNumber])
+                            {
+                                //需要替换，添加到ImportList列表中
+                                importList.Add(Path.Combine(tn.Name, ""));
+                                importFileNameList.Add(tn.Text);
+                            }
+                            else
+                            {
+                                //不需要替换
+                                continue;
+                            }
                         }
                         else
                         {
                             //不需要替换
-                            continue;
+                            importList.Add(Path.Combine(tn.Name, ""));
+                            importFileNameList.Add(tn.Text);
                         }
                     }
-                    else
-                    {
-                        //不需要替换
-                        importList.Add(Path.Combine(tn.Name, ""));
-                        importFileNameList.Add(tn.Text);
-                    }
                 }
-            }
-            #endregion
+                #endregion
 
-            //开始导入
-            ProgressForm pf = new ProgressForm();
-            pf.Show();
-            pf.run(importList.Count, 0, new EventHandler(delegate(object senders, EventArgs ee)
-            {
-                //进度数值
-                int progressVal = 0;
-                int index = -1;
-                //导入
-                foreach (string zipFile in importList)
+                //开始导入
+                ProgressForm pf = new ProgressForm();
+                pf.Show();
+                pf.run(importList.Count, 0, new EventHandler(delegate(object senders, EventArgs ee)
                 {
-                    try
-                    {
-                        progressVal++;
-                        index++;
-                        //申报文件名
-                        string zipName = importFileNameList[index].ToString();
-                        List<string> messageList = null;
-                        pf.reportProgress(progressVal, zipName + "_开始解压");
-                        bool returnContent = unZipFile(zipFile, zipName, out messageList);
-                        if (returnContent)
-                        {
-                            //报告进度
-                            pf.reportProgress(progressVal, zipName + "_开始导入");
-                            BaseModuleMainForm.writeLog("开始导入__" + zipName);
-
-                            //导入数据库
-                            new DBImporter().addOrReplaceProject(zipName, Path.Combine(Path.Combine(decompressDir, zipName), "static.db"));
-
-                            //报告进度
-                            pf.reportProgress(progressVal, zipName + "_结束导入");
-                            BaseModuleMainForm.writeLog("结束导入__" + zipName);
-                        }
-                        pf.reportProgress(progressVal, zipName + "_结束解压");
-                    }
-                    catch (Exception ex)
-                    {
-                        BaseModuleMainForm.writeLog(ex.ToString());
-                    }
-                }
-
-                //检查是否已创建句柄，并调用委托执行UI方法
-                if (pf.IsHandleCreated)
-                {
-                    pf.Invoke(new MethodInvoker(delegate()
+                    //进度数值
+                    int progressVal = 0;
+                    int index = -1;
+                    //导入
+                    foreach (string zipFile in importList)
                     {
                         try
                         {
-                            //刷新Catalog列表
-                            mainView.updateCatalogs();
+                            progressVal++;
+                            index++;
+                            //申报文件名
+                            string zipName = importFileNameList[index].ToString();
+                            List<string> messageList = null;
+                            pf.reportProgress(progressVal, zipName + "_开始解压");
+                            bool returnContent = unZipFile(zipFile, zipName, out messageList);
+                            if (returnContent)
+                            {
+                                //报告进度
+                                pf.reportProgress(progressVal, zipName + "_开始导入");
+                                BaseModuleMainForm.writeLog("开始导入__" + zipName);
 
-                            //关闭进度窗口
-                            pf.Close();
+                                //导入数据库
+                                new DBImporter().addOrReplaceProject(zipName, Path.Combine(Path.Combine(decompressDir, zipName), "static.db"));
 
-                            //关闭窗口
-                            Close();
+                                //报告进度
+                                pf.reportProgress(progressVal, zipName + "_结束导入");
+                                BaseModuleMainForm.writeLog("结束导入__" + zipName);
+                            }
+                            pf.reportProgress(progressVal, zipName + "_结束解压");
                         }
                         catch (Exception ex)
                         {
                             BaseModuleMainForm.writeLog(ex.ToString());
                         }
-                    }));
+                    }
+
+                    //检查是否已创建句柄，并调用委托执行UI方法
+                    if (pf.IsHandleCreated)
+                    {
+                        pf.Invoke(new MethodInvoker(delegate()
+                        {
+                            try
+                            {
+                                //刷新Catalog列表
+                                mainView.updateCatalogs();
+
+                                //关闭进度窗口
+                                pf.Close();
+
+                                //关闭窗口
+                                Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                BaseModuleMainForm.writeLog(ex.ToString());
+                            }
+                        }));
+                    }
+                    else
+                    {
+                        //关闭窗口
+                        Close();
+                    }
+                }));
+            }
+        }
+
+        private bool clearProjectWithDutyUnit()
+        {
+            if (string.IsNullOrEmpty(localUnitObj.LocalUnitID))
+            {
+                MessageBox.Show("对不起，当前数据库没有设置责任单位！");
+                return false;
+            }
+            else
+            {
+                if (localUnitObj.LocalUnitName == "军委机构")
+                {
+                    MessageBox.Show("对不起，当前数据库不支持导入！");
+                    return false;
                 }
                 else
                 {
-                    //关闭窗口
-                    Close();
+                    List<Project> privateProjectList = new List<Project>();
+
+                    #region 删除所有这个单位的数据
+                    List<Project> projList = ConnectionManager.Context.table("Project").where("DutyUnit='" + localUnitObj.LocalUnitName + "'").select("*").getList<Project>(new Project());
+                    foreach (Project proj in projList)
+                    {
+                        ConnectionManager.Context.table("Person").where("CatalogID='" + proj.CatalogID + "'").delete();
+                        ConnectionManager.Context.table("Moneys").where("CatalogID='" + proj.CatalogID + "'").delete();
+                        ConnectionManager.Context.table("Catalog").where("CatalogID='" + proj.CatalogID + "'").delete();
+                        ConnectionManager.Context.table("Project").where("CatalogID='" + proj.CatalogID + "'").delete();
+                    }
+                    #endregion
+
+                    #region 获得专项项目列表
+                    //SQLite数据库工厂
+                    System.Data.SQLite.SQLiteFactory factory = new System.Data.SQLite.SQLiteFactory();
+                    //NDEY数据库连接
+                    Noear.Weed.DbContext context = new Noear.Weed.DbContext("main", "Data Source = " + txtDBFile.Text, factory);
+                    //是否在执入后执行查询（主要针对Sqlite）
+                    context.IsSupportSelectIdentityAfterInsert = false;
+                    //是否在Dispose后执行GC用于解决Dispose后无法删除的问题（主要针对Sqlite）
+                    context.IsSupportGCAfterDispose = true;
+
+                    try
+                    {
+                        privateProjectList = context.table("Project").where("IsPrivateProject='true'").select("*").getList<Project>(new Project());
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Console.WriteLine(ex.ToString());
+                    }
+                    finally
+                    {
+                        factory.Dispose();
+                        context.Dispose();
+                    }
+                    #endregion
+
+                    return true;
                 }
-            }));            
+            }
         }
 
         /// <summary>
@@ -423,7 +486,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
             {
                 txtDBFile.Text = ofdDB.FileName;
 
-                List<Catalog> catalogList = null;
+                List<Catalog> catalogList = new List<Catalog>();
                 #region 读取数据
                 //SQLite数据库工厂
                 System.Data.SQLite.SQLiteFactory factory = new System.Data.SQLite.SQLiteFactory();
@@ -437,6 +500,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                 try
                 {
                     catalogList = context.table("Catalog").select("*").getList<Catalog>(new Catalog());
+                    localUnitObj = context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
                 }
                 catch (Exception ex)
                 {
@@ -453,6 +517,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                 foreach (string f in pkgList)
                 {
                     TreeNode tn = new TreeNode();
+                    tn.Checked = true;
                     tn.Text = Path.GetFileNameWithoutExtension(f);
                     tn.Name = f;
 
