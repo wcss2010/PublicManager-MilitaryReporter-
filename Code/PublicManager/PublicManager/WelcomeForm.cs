@@ -43,18 +43,24 @@ namespace PublicManager
             form.Show();
         }
 
-        private void checkUnitA()
+        public static void checkUnitA()
         {
             LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
             if (string.IsNullOrEmpty(lu.LocalUnitID))
             {
-                Modules.Module_A.DataManager.Forms.DutyUnitForm form = new Modules.Module_A.DataManager.Forms.DutyUnitForm();
-                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    lu.LocalUnitID = Guid.NewGuid().ToString();
-                    lu.LocalUnitName = form.SelectedItem;
-                    lu.copyTo(ConnectionManager.Context.table("LocalUnit")).insert();
-                }
+                showUnitADialog();
+            }
+        }
+
+        public static void showUnitADialog()
+        {
+            LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
+            Modules.Module_A.DataManager.Forms.DutyUnitForm form = new Modules.Module_A.DataManager.Forms.DutyUnitForm();
+            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                lu.LocalUnitID = Guid.NewGuid().ToString();
+                lu.LocalUnitName = form.SelectedItem;
+                lu.copyTo(ConnectionManager.Context.table("LocalUnit")).insert();
             }
         }
 
@@ -88,7 +94,7 @@ namespace PublicManager
             form.Show();
         }
 
-        private void checkUnitB()
+        public static void checkUnitB()
         {
             LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
             if (string.IsNullOrEmpty(lu.LocalUnitID))

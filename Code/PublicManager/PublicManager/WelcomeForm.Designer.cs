@@ -49,7 +49,7 @@
             // btnToA
             // 
             this.btnToA.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnToA.Location = new System.Drawing.Point(107, 371);
+            this.btnToA.Location = new System.Drawing.Point(107, 354);
             this.btnToA.Name = "btnToA";
             this.btnToA.Size = new System.Drawing.Size(195, 77);
             this.btnToA.TabIndex = 1;
@@ -60,7 +60,7 @@
             // btnToB
             // 
             this.btnToB.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnToB.Location = new System.Drawing.Point(529, 371);
+            this.btnToB.Location = new System.Drawing.Point(529, 354);
             this.btnToB.Name = "btnToB";
             this.btnToB.Size = new System.Drawing.Size(195, 77);
             this.btnToB.TabIndex = 1;
