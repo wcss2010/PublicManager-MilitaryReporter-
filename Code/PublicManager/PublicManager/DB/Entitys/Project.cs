@@ -41,6 +41,8 @@ namespace PublicManager.DB.Entitys
             query.set("TaskCompleteTime", TaskCompleteTime);
             query.set("IsPrivateProject", IsPrivateProject);
             query.set("ProfessionSort", ProfessionSort);
+            query.set("ProjectCheckState", ProjectCheckState);
+            query.set("ProjectStateReason", ProjectStateReason);
 
             return query;
         }
@@ -71,6 +73,8 @@ namespace PublicManager.DB.Entitys
         public DateTime TaskCompleteTime { get; set; }
         public string IsPrivateProject { get; set; }
         public decimal ProfessionSort { get; set; }
+        public string ProjectCheckState { get; set; }
+        public string ProjectStateReason { get; set; }
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
@@ -100,6 +104,8 @@ namespace PublicManager.DB.Entitys
             TaskCompleteTime = source("TaskCompleteTime").value<DateTime>(DateTime.Now);
             IsPrivateProject = source("IsPrivateProject").value<string>("");
             ProfessionSort = source("ProfessionSort").value<decimal>(0);
+            ProjectCheckState = source("ProjectCheckState").value<string>("");
+            ProjectStateReason = source("ProjectStateReason").value<string>("");
         }
 
         public override Noear.Weed.IBinder clone()

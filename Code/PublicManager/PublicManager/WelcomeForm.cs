@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PublicManager.DB;
+using PublicManager.DB.Entitys;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,7 +35,7 @@ namespace PublicManager
             //初始化数据库
             PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + dbFile);
 
-            checkUnit();
+            checkUnitA();
 
             Top = Screen.PrimaryScreen.Bounds.Height * 5;
             Modules.Module_A.ModuleMainForm form = new Modules.Module_A.ModuleMainForm();
@@ -41,9 +43,19 @@ namespace PublicManager
             form.Show();
         }
 
-        private void checkUnit()
+        private void checkUnitA()
         {
-            
+            LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
+            if (string.IsNullOrEmpty(lu.LocalUnitID))
+            {
+                Modules.Module_A.DataManager.Forms.DutyUnitForm form = new Modules.Module_A.DataManager.Forms.DutyUnitForm();
+                if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    lu.LocalUnitID = Guid.NewGuid().ToString();
+                    lu.LocalUnitName = form.SelectedItem;
+                    lu.copyTo(ConnectionManager.Context.table("LocalUnit")).insert();
+                }
+            }
         }
 
         void form_FormClosing(object sender, FormClosingEventArgs e)
@@ -68,12 +80,25 @@ namespace PublicManager
             //初始化数据库
             PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + dbFile);
 
-            checkUnit();
+            checkUnitB();
 
             Top = Screen.PrimaryScreen.Bounds.Height * 5;
             Modules.Module_B.ModuleMainForm form = new Modules.Module_B.ModuleMainForm();
             form.FormClosing += form_FormClosing;
             form.Show();
+        }
+
+        private void checkUnitB()
+        {
+            LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
+            if (string.IsNullOrEmpty(lu.LocalUnitID))
+            {
+                lu.LocalUnitID = Guid.NewGuid().ToString();
+                lu.LocalUnitName = "军委机构";
+                lu.copyTo(ConnectionManager.Context.table("LocalUnit")).insert();
+            }
+
+            //Modules.Module_B.DataManager.Forms.DutyUnitForm form = new Modules.Module_B.DataManager.Forms.DutyUnitForm();
         }
     }
 }

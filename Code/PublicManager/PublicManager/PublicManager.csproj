@@ -157,6 +157,7 @@
     <Compile Include="DB\ConnectionManager.cs" />
     <Compile Include="DB\Entitys\Catalog.cs" />
     <Compile Include="DB\Entitys\IEntity.cs" />
+    <Compile Include="DB\Entitys\LocalUnit.cs" />
     <Compile Include="DB\Entitys\Moneys.cs" />
     <Compile Include="DB\Entitys\Person.cs" />
     <Compile Include="DB\Entitys\Professions.cs" />
