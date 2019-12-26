@@ -44,26 +44,38 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
         {
             dgvCatalogs.Rows.Clear();
 
+            List<Project> tempProjectList = new List<Project>();
             List<Professions> pfList = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
             foreach (Professions prf in pfList)
             {
                 List<Project> projList = ConnectionManager.Context.table("Project").where("ProfessionID='" + prf.ProfessionID + "'").orderBy("ProfessionSort").select("*").getList<Project>(new Project());
-                int indexx = 0;
-                foreach (Project proj in projList)
+
+                if (projList != null)
                 {
-                    indexx++;
-
-                    List<object> cells = new List<object>();
-                    cells.Add(indexx);
-                    cells.Add(getProjectType(proj));
-                    cells.Add(proj.ProjectName);
-                    cells.Add(getProfessionObj(proj).Text);
-                    cells.Add((proj.ProfessionSort + 1));
-
-                    int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
-                    dgvCatalogs.Rows[rowIndex].Tag = proj;
-                }  
+                    tempProjectList.AddRange(projList);
+                }
             }
+
+            if (tempProjectList.Count == 0)
+            {
+                tempProjectList = ConnectionManager.Context.table("Project").orderBy("ProfessionID,ProfessionSort").select("*").getList<Project>(new Project());
+            }
+
+            int indexx = 0;
+            foreach (Project proj in tempProjectList)
+            {
+                indexx++;
+
+                List<object> cells = new List<object>();
+                cells.Add(indexx);
+                cells.Add(getProjectType(proj));
+                cells.Add(proj.ProjectName);
+                cells.Add(getProfessionObj(proj).Text);
+                cells.Add((proj.ProfessionSort + 1));
+
+                int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
+                dgvCatalogs.Rows[rowIndex].Tag = proj;
+            }            
 
             dgvCatalogs.checkCellSize();
         }
