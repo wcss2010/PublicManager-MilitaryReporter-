@@ -245,6 +245,9 @@
     <Compile Include="Modules\Module_A\DataManager\ModuleController.Designer.cs">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Module_A\ModuleMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modules\Module_A\PkgImporter\DBImporter.cs" />
     <Compile Include="Modules\Module_A\PkgImporter\Forms\ImporterForm.cs">
       <SubType>Form</SubType>
@@ -324,6 +327,9 @@
     </Compile>
     <Compile Include="Modules\Module_B\DictManager\ModuleController.Designer.cs">
       <DependentUpon>ModuleController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\ModuleMainForm.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\Module_B\PkgImporter\DBImporter.cs" />
     <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterForm.cs">

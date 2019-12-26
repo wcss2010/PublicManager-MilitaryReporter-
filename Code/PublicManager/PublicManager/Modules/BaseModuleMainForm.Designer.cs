@@ -237,24 +237,24 @@
 
         #endregion
 
-        private DevExpress.XtraBars.Ribbon.RibbonControl rcTopBar;
-        private DevExpress.XtraBars.Ribbon.RibbonPage rpPageB;
-        private DevExpress.XtraBars.Ribbon.RibbonStatusBar rsbStatusBar;
-        private DevExpress.XtraNavBar.NavBarControl nbcLeftTree;
-        private DevExpress.XtraEditors.PanelControl plRightContent;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgGroupA;
-        private DevExpress.XtraBars.BarCheckItem barCheckItem1;
-        private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
-        private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraBars.RibbonGalleryBarItem ribbonGalleryBarItem1;
-        private DevExpress.XtraBars.BarButtonItem btnSkinColorModify;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem6;
-        private DevExpress.XtraBars.BarStaticItem bsiBottomText;
+        protected DevExpress.XtraBars.Ribbon.RibbonControl rcTopBar;
+        protected DevExpress.XtraBars.Ribbon.RibbonPage rpPageB;
+        protected DevExpress.XtraBars.Ribbon.RibbonStatusBar rsbStatusBar;
+        protected DevExpress.XtraNavBar.NavBarControl nbcLeftTree;
+        protected DevExpress.XtraEditors.PanelControl plRightContent;
+        protected DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgGroupA;
+        protected DevExpress.XtraBars.BarCheckItem barCheckItem1;
+        protected DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
+        protected DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        protected DevExpress.XtraBars.RibbonGalleryBarItem ribbonGalleryBarItem1;
+        protected DevExpress.XtraBars.BarButtonItem btnSkinColorModify;
+        protected DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        protected DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        protected DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        protected DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        protected DevExpress.XtraBars.BarButtonItem barButtonItem5;
+        protected DevExpress.XtraBars.BarButtonItem barButtonItem6;
+        protected DevExpress.XtraBars.BarStaticItem bsiBottomText;
 
     }
 }
