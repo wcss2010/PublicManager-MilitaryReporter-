@@ -56,6 +56,7 @@ namespace PublicManager
         {
             LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
             Modules.Module_A.DataManager.Forms.DutyUnitForm form = new Modules.Module_A.DataManager.Forms.DutyUnitForm();
+            form.Text = "设置所属单位";
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 lu.LocalUnitID = Guid.NewGuid().ToString();
