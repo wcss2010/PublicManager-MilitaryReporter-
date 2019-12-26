@@ -15,9 +15,6 @@ namespace PublicManager
         [STAThread]
         static void Main()
         {
-            //初始化数据库
-            PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + System.IO.Path.Combine(Application.StartupPath, "static.db"));
-
             //载入配置
             MainConfig.constConfigFile = Path.Combine(Application.StartupPath, "config.json");
             MainConfig.loadConfig();
