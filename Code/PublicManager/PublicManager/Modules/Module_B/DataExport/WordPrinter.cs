@@ -90,20 +90,31 @@ namespace PublicManager.Modules.Module_B.DataExport
                 {
                     foreach (Row r in curTable.Rows)
                     {
-                        if (r.Cells[1].GetText() != null && r.Cells[1].GetText().Contains(ucd.UnitName))
+                        try
                         {
-                            wd.fillCell(true, r.Cells[2], wd.newParagraph(curTable.Document, ucd.ProjectCount + ""));
-                            wd.fillCell(true, r.Cells[5], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
-                            wd.fillCell(true, r.Cells[10], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
+                            string sss = r.Cells[0].GetText() + r.Cells[1].GetText();
+                            if (sss.Contains(ucd.UnitName))
+                            {
+                                if (sss.Contains(countDataObj.UnitName))
+                                {
+                                    //输出合计
+                                    wd.fillCell(true, r.Cells[1], wd.newParagraph(curTable.Document, ucd.ProjectCount + ""));
+                                    wd.fillCell(true, r.Cells[4], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
+                                    wd.fillCell(true, r.Cells[9], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
+                                }
+                                else
+                                {
+                                    //输出一般属性
+                                    wd.fillCell(true, r.Cells[2], wd.newParagraph(curTable.Document, ucd.ProjectCount + ""));
+                                    wd.fillCell(true, r.Cells[5], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
+                                    wd.fillCell(true, r.Cells[10], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
+                                }
+                            }
                         }
+                        catch (Exception ex) { }
                     }
                 }
-
-                //小计
-                //wd.fillCell(true, curTable.Rows[27].Cells[2], wd.newParagraph(curTable.Document, countDataObj.ProjectCount + ""));
-                //wd.fillCell(true, curTable.Rows[27].Cells[5], wd.newParagraph(curTable.Document, countDataObj.TotalMoney + ""));
-                //wd.fillCell(true, curTable.Rows[27].Cells[10], wd.newParagraph(curTable.Document, countDataObj.TotalMoney + ""));
-
+                
                 wd.WordDoc.FirstSection.Body.AppendChild(new NodeImporter(tableTemplete.WordDoc, wd.WordDoc, ImportFormatMode.UseDestinationStyles).ImportNode(curTable, true));
                 #endregion
                 
