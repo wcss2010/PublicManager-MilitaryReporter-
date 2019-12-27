@@ -35,28 +35,34 @@ namespace PublicManager
             //初始化数据库
             PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + dbFile);
 
-            checkUnitA();
-
-            Top = Screen.PrimaryScreen.Bounds.Height * 5;
-            Modules.Module_A.ModuleMainForm form = new Modules.Module_A.ModuleMainForm();
-            form.FormClosing += form_FormClosing;
-            form.Show();
+            if (checkUnitA())
+            {
+                Top = Screen.PrimaryScreen.Bounds.Height * 5;
+                Modules.Module_A.ModuleMainForm form = new Modules.Module_A.ModuleMainForm();
+                form.FormClosing += form_FormClosing;
+                form.Show();
+            }
         }
 
-        public static void checkUnitA()
+        public static bool checkUnitA()
         {
             LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
             if (string.IsNullOrEmpty(lu.LocalUnitID))
             {
-                showUnitADialog();
+                return showUnitADialog();
+            }
+            else
+            {
+                return true;
             }
         }
 
-        public static void showUnitADialog()
+        public static bool showUnitADialog()
         {
             LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
             Modules.Module_A.DataManager.Forms.DutyUnitForm form = new Modules.Module_A.DataManager.Forms.DutyUnitForm();
             form.Text = "设置所属单位";
+
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 ConnectionManager.Context.table("LocalUnit").delete();
@@ -64,6 +70,12 @@ namespace PublicManager
                 lu.LocalUnitID = Guid.NewGuid().ToString();
                 lu.LocalUnitName = form.SelectedItem;
                 lu.copyTo(ConnectionManager.Context.table("LocalUnit")).insert();
+
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -89,15 +101,16 @@ namespace PublicManager
             //初始化数据库
             PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + dbFile);
 
-            checkUnitB();
-
-            Top = Screen.PrimaryScreen.Bounds.Height * 5;
-            Modules.Module_B.ModuleMainForm form = new Modules.Module_B.ModuleMainForm();
-            form.FormClosing += form_FormClosing;
-            form.Show();
+            if (checkUnitB())
+            {
+                Top = Screen.PrimaryScreen.Bounds.Height * 5;
+                Modules.Module_B.ModuleMainForm form = new Modules.Module_B.ModuleMainForm();
+                form.FormClosing += form_FormClosing;
+                form.Show();
+            }
         }
 
-        public static void checkUnitB()
+        public static bool checkUnitB()
         {
             LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
             if (string.IsNullOrEmpty(lu.LocalUnitID))
@@ -108,6 +121,8 @@ namespace PublicManager
             }
 
             //Modules.Module_B.DataManager.Forms.DutyUnitForm form = new Modules.Module_B.DataManager.Forms.DutyUnitForm();
+
+            return true;
         }
     }
 }
