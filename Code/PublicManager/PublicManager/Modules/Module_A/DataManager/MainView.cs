@@ -82,7 +82,7 @@ namespace PublicManager.Modules.Module_A.DataManager
                 cells.Add(proj.StudyMoney);
                 cells.Add(proj.ProjectSort);
 
-                string professionNameStr = ConnectionManager.Context.table("Professions").where("ProfessionID='" + proj.ProfessionID + "'").select("ProfessionName").getValue<string>("其他");
+                string professionNameStr = ConnectionManager.Context.table("Professions").where("ProfessionID='" + proj.ProfessionID + "'").select("ProfessionName").getValue<string>(string.Empty);
                 cells.Add(professionNameStr + "(" + (proj.ProfessionSort) + ")");
 
                 cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");

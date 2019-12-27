@@ -15,8 +15,6 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
     {
         KeyedList<string, ComboBoxObject<Professions>> professionMap = new KeyedList<string, ComboBoxObject<Professions>>();
 
-        private string defaultProfessionSort = "其他";
-
         public ProjectSortForm()
         {
             InitializeComponent();
@@ -38,6 +36,8 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
                 ((DataGridViewComboBoxColumn)dgvCatalogs.Columns[3]).Items.Add(objj.Text);
                 professionMap.Add(objj.Text, objj);
             }
+
+            ((DataGridViewComboBoxColumn)dgvCatalogs.Columns[3]).Items.Add(string.Empty);
         }
 
         public void updateCatalogs()
@@ -107,8 +107,8 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
         /// <returns></returns>
         private ComboBoxObject<Professions> getProfessionObj(Project proj)
         {
-            string professionName = ConnectionManager.Context.table("Professions").where("ProfessionID='" + proj.ProfessionID + "'").select("ProfessionName").getValue<string>(defaultProfessionSort);
-            ComboBoxObject<Professions> result = professionMap[professionMap.Count - 1].Value;
+            string professionName = ConnectionManager.Context.table("Professions").where("ProfessionID='" + proj.ProfessionID + "'").select("ProfessionName").getValue<string>(string.Empty);
+            ComboBoxObject<Professions> result = new ComboBoxObject<Professions>(string.Empty, new Professions());
             foreach (ComboBoxObject<Professions> prf in professionMap.Values)
             {
                 if (prf.Tag.ProfessionName == professionName)
