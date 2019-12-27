@@ -310,7 +310,6 @@
     <Compile Include="Modules\Module_B\DataManager\ModuleController.Designer.cs">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Module_B\DataManager\WordPrinter.cs" />
     <Compile Include="Modules\Module_B\DictManager\Forms\DictEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
