@@ -474,7 +474,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
             {
                 txtDBFile.Text = ofdDB.FileName;
 
-                DBImporter.LastProfessionNameDict.Clear();
+                DBImporter.LastProfessionDict.Clear();
                 List<ImportDataItem> cpList = new List<ImportDataItem>();
                 #region 读取数据
                 //SQLite数据库工厂
@@ -494,8 +494,9 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                         Project projObj = context.table("Project").where("CatalogID='" + catObj.CatalogID + "'").select("*").getItem<Project>(new Project());
 
                         //查询专业类别
-                        string professionName = context.table("Professions").where("ProfessionID='" + projObj.ProfessionID + "'").select("ProfessionName").getValue<string>("");
-                        DBImporter.LastProfessionNameDict[projObj.ProjectName] = professionName;
+                        Professions professionObj = context.table("Professions").where("ProfessionID='" + projObj.ProfessionID + "'").select("*").getItem<Professions>(new Professions());
+                        professionObj.ProfessionNum = projObj.ProfessionSort + "";
+                        DBImporter.LastProfessionDict[projObj.ProjectName] = professionObj;
 
                         ImportDataItem idi = new ImportDataItem();
                         idi.CatalogObj = catObj;

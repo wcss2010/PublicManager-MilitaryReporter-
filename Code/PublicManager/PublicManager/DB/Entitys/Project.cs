@@ -26,6 +26,7 @@ namespace PublicManager.DB.Entitys
             query.set("ProjectSort", ProjectSort);
             query.set("ProfessionID", ProfessionID);
             query.set("LastProfessionName", LastProfessionName);
+            query.set("LastProfessionSort", LastProfessionSort);
             query.set("DutyUnit", DutyUnit);
             query.set("NextUnit", NextUnit);
             query.set("Memo", Memo);
@@ -59,6 +60,7 @@ namespace PublicManager.DB.Entitys
         public string ProjectSort { get; set; }
         public string ProfessionID { get; set; }
         public string LastProfessionName { get; set; }
+        public decimal LastProfessionSort { get; set; }
         public string DutyUnit { get; set; }
         public string NextUnit { get; set; }
         public string Memo { get; set; }
@@ -91,6 +93,7 @@ namespace PublicManager.DB.Entitys
             ProjectSort = source("ProjectSort").value<string>("");
             ProfessionID = source("ProfessionID").value<string>("");
             LastProfessionName = source("LastProfessionName").value<string>("");
+            LastProfessionSort = source("LastProfessionSort").value<decimal>(0);
             DutyUnit = source("DutyUnit").value<string>("");
             NextUnit = source("NextUnit").value<string>("");
             Memo = source("Memo").value<string>("");

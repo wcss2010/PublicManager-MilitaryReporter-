@@ -9,13 +9,13 @@ namespace PublicManager.Modules.Module_B.PkgImporter
 {
     public class DBImporter : BaseDBImporter
     {
-        private static Dictionary<string, string> lastProfessionNameDict = new Dictionary<string, string>();
+        private static Dictionary<string, Professions> lastProfessionDict = new Dictionary<string, Professions>();
         /// <summary>
         /// 其它地区里设置的专业类别字典(Key=项目名称,Value=专业类别)
         /// </summary>
-        public static Dictionary<string, string> LastProfessionNameDict
+        public static Dictionary<string, Professions> LastProfessionDict
         {
-            get { return DBImporter.lastProfessionNameDict; }
+            get { return DBImporter.lastProfessionDict; }
         }
 
         /// <summary>
@@ -23,15 +23,15 @@ namespace PublicManager.Modules.Module_B.PkgImporter
         /// </summary>
         /// <param name="projectName"></param>
         /// <returns></returns>
-        public string getLastProfessionName(string projectName)
+        public Professions getLastProfession(string projectName)
         {
-            if (lastProfessionNameDict.ContainsKey(projectName))
+            if (lastProfessionDict.ContainsKey(projectName))
             {
-                return lastProfessionNameDict[projectName];
+                return lastProfessionDict[projectName];
             }
             else
             {
-                return string.Empty;
+                return new Professions();
             }
         }
 
@@ -95,7 +95,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                 proj.IsPrivateProject = "false";
                 proj.ProfessionSort = 0;
 
-                proj.LastProfessionName = getLastProfessionName(proj.ProjectName);
+                proj.LastProfessionName = getLastProfession(proj.ProjectName).ProfessionName;
+                proj.LastProfessionSort = int.Parse(getLastProfession(proj.ProjectName).ProfessionNum);
 
                 //过滤文本--处理备注
                 proj.Memo = proj.Memo != null && proj.Memo.Contains(MainConfig.rowFlag) ? proj.Memo.Replace(MainConfig.rowFlag, ":") : proj.Memo;
