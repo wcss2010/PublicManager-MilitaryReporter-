@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.rcTopBar = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.btnExportToExcel = new DevExpress.XtraBars.BarButtonItem();
             this.btnAddProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnDeleteProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditProject = new DevExpress.XtraBars.BarButtonItem();
@@ -46,7 +45,6 @@
             this.rcTopBar.ExpandCollapseItem.Id = 0;
             this.rcTopBar.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.rcTopBar.ExpandCollapseItem,
-            this.btnExportToExcel,
             this.btnAddProject,
             this.btnDeleteProject,
             this.btnEditProject,
@@ -58,15 +56,6 @@
             this.rcTopBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpMaster});
             this.rcTopBar.Size = new System.Drawing.Size(1106, 145);
-            // 
-            // btnExportToExcel
-            // 
-            this.btnExportToExcel.Caption = "导出到Word";
-            this.btnExportToExcel.Id = 6;
-            this.btnExportToExcel.LargeGlyph = global::PublicManager.Properties.Resources.export;
-            this.btnExportToExcel.Name = "btnExportToExcel";
-            this.btnExportToExcel.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.btnExportToExcel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportToExcel_ItemClick);
             // 
             // btnAddProject
             // 
@@ -127,7 +116,6 @@
             // 
             // rpgElse
             // 
-            this.rpgElse.ItemLinks.Add(this.btnExportToExcel);
             this.rpgElse.ItemLinks.Add(this.btnSorts);
             this.rpgElse.ItemLinks.Add(this.btnSetUnitA);
             this.rpgElse.Name = "rpgElse";
@@ -152,7 +140,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage rpMaster;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgPrivateProject;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgElse;
-        private DevExpress.XtraBars.BarButtonItem btnExportToExcel;
         private DevExpress.XtraBars.BarButtonItem btnAddProject;
         private DevExpress.XtraBars.BarButtonItem btnDeleteProject;
         private DevExpress.XtraBars.BarButtonItem btnEditProject;

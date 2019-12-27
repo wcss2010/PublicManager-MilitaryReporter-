@@ -59,11 +59,11 @@
             // 
             // btnExportToExcel
             // 
-            this.btnExportToExcel.Caption = "导出到Word";
+            this.btnExportToExcel.Caption = "导出到Excel";
             this.btnExportToExcel.Id = 6;
             this.btnExportToExcel.LargeGlyph = global::PublicManager.Properties.Resources.export;
             this.btnExportToExcel.Name = "btnExportToExcel";
-            this.btnExportToExcel.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btnExportToExcel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportToExcel_ItemClick);
             // 
             // btnAddProject
             // 

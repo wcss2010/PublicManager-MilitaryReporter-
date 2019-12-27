@@ -16,15 +16,6 @@ namespace PublicManager.Modules.Module_A.DataManager
 {
     public partial class ModuleController : BaseModuleController
     {
-        private List<string> dutyUnitToProfessonLinks;
-        /// <summary>
-        /// 责任单位(有类别的)
-        /// </summary>
-        public List<string> DutyUnitToProfessonLinks
-        {
-            get { return dutyUnitToProfessonLinks; }
-        }
-
         private MainView tc;
 
         public ModuleController()
@@ -41,24 +32,6 @@ namespace PublicManager.Modules.Module_A.DataManager
         {
             //显示详细页
             showDetailPage();
-
-            //加载责任单位与专业类型映射选项
-            if (MainConfig.Config.ObjectDict.ContainsKey("责任单位与专业类别映射"))
-            {
-                try
-                {
-                    dutyUnitToProfessonLinks = new List<string>();
-                    Newtonsoft.Json.Linq.JArray teams = (Newtonsoft.Json.Linq.JArray)MainConfig.Config.ObjectDict["责任单位与专业类别映射"];
-                    foreach (string s in teams)
-                    {
-                        dutyUnitToProfessonLinks.Add(s);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    System.Console.WriteLine(ex.ToString());
-                }
-            }
         }
 
         /// <summary>
@@ -204,87 +177,6 @@ namespace PublicManager.Modules.Module_A.DataManager
                 else
                 {
                     MessageBox.Show("对不起，只能编辑专项项目！");
-                }
-            }
-        }
-
-        private void btnExportToExcel_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = string.Empty;
-            sfd.Filter = "*.doc|*.doc";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
-                if (string.IsNullOrEmpty(lu.LocalUnitID))
-                {
-                    MessageBox.Show("对不起，没有设置所属单位！");
-                }else
-                {
-                    int tableIndex = 0;
-                    if (DutyUnitToProfessonLinks.Contains(lu.LocalUnitName))
-                    {
-                        //有类别
-                        tableIndex = 1;
-                    }
-                    else
-                    {
-                        //无类别
-                        tableIndex = 0;
-                    }
-
-                    ProgressForm pf = new ProgressForm();
-                    pf.Show();
-                    pf.run(100, 0, new EventHandler(delegate(object senders, EventArgs ee)
-                    {
-                        ProgressForm senderForm = (ProgressForm)senders;
-
-                        try
-                        {
-                            //输出的Excel路径
-                            string excelFile = sfd.FileName;
-
-                            //筛选责任单位
-                            List<DataRow> delList = new List<DataRow>();
-                            DataTable dtSource = tc.exportToDataTable();
-                            foreach (DataRow dr in dtSource.Rows)
-                            {
-                                string dutyUnitStr = dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty;
-                                if (dutyUnitStr != lu.LocalUnitName)
-                                {
-                                    delList.Add(dr);
-                                }
-                            }
-                            foreach (DataRow drr in delList)
-                            {
-                                dtSource.Rows.Remove(drr);
-                            }
-                            WordPrinter.wordOutput(senderForm, dtSource, tableIndex, sfd.FileName);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("对不起，导出失败！Ex:" + ex.ToString());
-                        }
-                        finally
-                        {
-                            //检查是否已创建句柄，并调用委托执行UI方法
-                            if (pf.IsHandleCreated)
-                            {
-                                pf.Invoke(new MethodInvoker(delegate()
-                                {
-                                    try
-                                    {
-                                        //关闭进度窗口
-                                        pf.Close();
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        BaseModuleMainForm.writeLog(ex.ToString());
-                                    }
-                                }));
-                            }
-                        }
-                    }));
                 }
             }
         }

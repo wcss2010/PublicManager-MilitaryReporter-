@@ -372,7 +372,6 @@
       <DependentUpon>WelcomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WordDocument.cs" />
-    <Compile Include="Modules\Module_A\DataManager\WordPrinter.cs" />
     <Compile Include="ZipTool.cs" />
     <EmbeddedResource Include="Modules\BaseModuleController.resx">
       <DependentUpon>BaseModuleController.cs</DependentUpon>
