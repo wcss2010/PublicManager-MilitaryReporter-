@@ -31,8 +31,8 @@ namespace PublicManager.Modules.Module_B.DataManager
         {
             dgvCatalogs.Rows.Clear();
 
+            #region 排序
             List<Project> allProjects = ConnectionManager.Context.table("Project").orderBy("ProfessionID,ProfessionSort").select("*").getList<Project>(new Project());
-
             List<Project> tempProjectList = new List<Project>();
             List<Professions> pfList = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
             foreach (Professions prf in pfList)
@@ -44,11 +44,34 @@ namespace PublicManager.Modules.Module_B.DataManager
                     tempProjectList.AddRange(projList);
                 }
             }
-
-            if (tempProjectList.Count == 0 || tempProjectList.Count != allProjects.Count)
+            if (tempProjectList.Count == 0)
             {
                 tempProjectList = allProjects;
             }
+            if (allProjects.Count > tempProjectList.Count)
+            {
+                foreach (Project projjjj in allProjects)
+                {
+                    bool needAdd = false;
+                    foreach (Project curProj in tempProjectList)
+                    {
+                        if (projjjj.ProjectID == curProj.ProjectID)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            needAdd = true;
+                            break;
+                        }
+                    }
+                    if (needAdd)
+                    {
+                        tempProjectList.Add(projjjj);
+                    }
+                }
+            }
+            #endregion
 
             int indexx = 0;
             foreach (Project proj in tempProjectList)
