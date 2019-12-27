@@ -64,28 +64,22 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
             dgvCatalogs.Rows.Clear();
 
             #region 排序
-            List<Project> allProjects = ConnectionManager.Context.table("Project").orderBy("ProfessionID,ProfessionSort").select("*").getList<Project>(new Project());
             List<Project> tempProjectList = new List<Project>();
             foreach (string unit in allUnitList)
             {
+                List<Project> unitWithAllProjectList = ConnectionManager.Context.table("Project").where("DutyUnit = '" + unit + "'").orderBy("ProfessionSort").select("*").getList<Project>(new Project());
+
                 List<Professions> pfList = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
                 foreach (Professions prf in pfList)
                 {
                     List<Project> projList = ConnectionManager.Context.table("Project").where("ProfessionID='" + prf.ProfessionID + "' and DutyUnit = '" + unit + "'").orderBy("ProfessionSort").select("*").getList<Project>(new Project());
-
                     if (projList != null && projList.Count >= 1)
                     {
                         tempProjectList.AddRange(projList);
                     }
                 }
-            }
-            if (tempProjectList.Count == 0)
-            {
-                tempProjectList = allProjects;
-            }
-            if (allProjects.Count > tempProjectList.Count)
-            {
-                foreach (Project projjjj in allProjects)
+
+                foreach (Project projjjj in unitWithAllProjectList)
                 {
                     bool needAdd = true;
                     foreach (Project curProj in tempProjectList)
