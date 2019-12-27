@@ -16,6 +16,15 @@ namespace PublicManager.Modules.Module_A.DataManager
 {
     public partial class ModuleController : BaseModuleController
     {
+        private List<string> dutyUnitToProfessonLinks;
+        /// <summary>
+        /// 责任单位(有类别的)
+        /// </summary>
+        public List<string> DutyUnitToProfessonLinks
+        {
+            get { return dutyUnitToProfessonLinks; }
+        }
+
         private MainView tc;
 
         public ModuleController()
@@ -32,6 +41,24 @@ namespace PublicManager.Modules.Module_A.DataManager
         {
             //显示详细页
             showDetailPage();
+
+            //加载责任单位与专业类型映射选项
+            if (MainConfig.Config.ObjectDict.ContainsKey("责任单位与专业类别映射"))
+            {
+                try
+                {
+                    dutyUnitToProfessonLinks = new List<string>();
+                    Newtonsoft.Json.Linq.JArray teams = (Newtonsoft.Json.Linq.JArray)MainConfig.Config.ObjectDict["责任单位与专业类别映射"];
+                    foreach (string s in teams)
+                    {
+                        dutyUnitToProfessonLinks.Add(s);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.ToString());
+                }
+            }
         }
 
         /// <summary>
@@ -188,11 +215,14 @@ namespace PublicManager.Modules.Module_A.DataManager
             sfd.Filter = "*.doc|*.doc";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                Forms.DutyUnitForm duf = new Forms.DutyUnitForm();
-                if (duf.ShowDialog() == DialogResult.OK)
+                LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
+                if (string.IsNullOrEmpty(lu.LocalUnitID))
+                {
+                    MessageBox.Show("对不起，没有设置所属单位！");
+                }else
                 {
                     int tableIndex = 0;
-                    if (duf.DutyUnitToProfessonLinks.Contains(duf.SelectedItem))
+                    if (DutyUnitToProfessonLinks.Contains(lu.LocalUnitName))
                     {
                         //有类别
                         tableIndex = 1;
@@ -220,7 +250,7 @@ namespace PublicManager.Modules.Module_A.DataManager
                             foreach (DataRow dr in dtSource.Rows)
                             {
                                 string dutyUnitStr = dr["责任单位"] != null ? dr["责任单位"].ToString() : string.Empty;
-                                if (dutyUnitStr != duf.SelectedItem)
+                                if (dutyUnitStr != lu.LocalUnitName)
                                 {
                                     delList.Add(dr);
                                 }
