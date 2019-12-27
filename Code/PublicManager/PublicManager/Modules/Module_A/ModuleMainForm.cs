@@ -1,4 +1,6 @@
 ﻿using DevExpress.XtraTreeList;
+using PublicManager.DB;
+using PublicManager.DB.Entitys;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +13,8 @@ namespace PublicManager.Modules.Module_A
         public ModuleMainForm()
             : base()
         {
-            Text = "其它地区汇总系统";
+            LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
+            Text = "其它地区(" + lu.LocalUnitName + ")汇总系统";
         }
 
         private DevExpress.XtraTreeList.TreeList treeListObj;
