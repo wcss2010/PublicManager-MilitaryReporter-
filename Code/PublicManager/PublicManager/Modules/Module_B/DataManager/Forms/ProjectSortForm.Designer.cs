@@ -63,7 +63,7 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(62, 37);
             this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "确定";
+            this.btnOK.Text = "关闭";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -77,6 +77,7 @@
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Visible = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // dgvCatalogs

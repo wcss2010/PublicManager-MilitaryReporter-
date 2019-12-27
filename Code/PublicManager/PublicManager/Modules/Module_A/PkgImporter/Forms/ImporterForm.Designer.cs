@@ -94,7 +94,7 @@
             // 
             // chID
             // 
-            this.chID.Text = "项目编号";
+            this.chID.Text = "";
             this.chID.Width = 300;
             // 
             // panelControl2
