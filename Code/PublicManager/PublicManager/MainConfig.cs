@@ -83,18 +83,8 @@ namespace PublicManager
         {
             Config = new MainConfig();
 
-            Config.StringDict["论证报告总目录"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "总目录");
-            Config.StringDict["论证报告解压目录"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "解压目录");
-            try
-            {
-                Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "总目录"));
-            }
-            catch (Exception ex) { }
-            try
-            {
-                Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "解压目录"));
-            }
-            catch (Exception ex) { }
+            Config.StringDict["论证报告总目录"] = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            Config.StringDict["论证报告解压目录"] = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
             Config.StringDict["报告验证_目录"] = "files";
             Config.StringDict["报告验证_文件"] = "static.db";
