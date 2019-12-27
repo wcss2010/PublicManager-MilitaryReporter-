@@ -57,12 +57,11 @@ namespace PublicManager.Modules.Module_B.DataManager
                     {
                         if (projjjj.ProjectID == curProj.ProjectID)
                         {
-                            continue;
+                            needAdd = false;
                         }
                         else
                         {
                             needAdd = true;
-                            break;
                         }
                     }
                     if (needAdd)
