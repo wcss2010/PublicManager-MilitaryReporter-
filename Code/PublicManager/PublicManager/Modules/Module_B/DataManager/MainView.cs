@@ -15,9 +15,28 @@ namespace PublicManager.Modules.Module_B.DataManager
 {
     public partial class MainView : XtraUserControl
     {
+        List<string> allUnitList = new List<string>();
+
         public MainView()
         {
             InitializeComponent();
+
+            //加载责任单位选项
+            if (MainConfig.Config.ObjectDict.ContainsKey("责任单位"))
+            {
+                try
+                {
+                    Newtonsoft.Json.Linq.JArray teams = (Newtonsoft.Json.Linq.JArray)MainConfig.Config.ObjectDict["责任单位"];
+                    foreach (string s in teams)
+                    {
+                        allUnitList.Add(s);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.ToString());
+                }
+            }
         }
 
         protected override void OnLoad(EventArgs e)
@@ -34,14 +53,17 @@ namespace PublicManager.Modules.Module_B.DataManager
             #region 排序
             List<Project> allProjects = ConnectionManager.Context.table("Project").orderBy("ProfessionID,ProfessionSort").select("*").getList<Project>(new Project());
             List<Project> tempProjectList = new List<Project>();
-            List<Professions> pfList = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
-            foreach (Professions prf in pfList)
+            foreach (string unit in allUnitList)
             {
-                List<Project> projList = ConnectionManager.Context.table("Project").where("ProfessionID='" + prf.ProfessionID + "'").orderBy("ProfessionSort").select("*").getList<Project>(new Project());
-
-                if (projList != null)
+                List<Professions> pfList = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
+                foreach (Professions prf in pfList)
                 {
-                    tempProjectList.AddRange(projList);
+                    List<Project> projList = ConnectionManager.Context.table("Project").where("ProfessionID='" + prf.ProfessionID + "' and DutyUnit = '" + unit + "'").orderBy("ProfessionSort").select("*").getList<Project>(new Project());
+
+                    if (projList != null)
+                    {
+                        tempProjectList.AddRange(projList);
+                    }
                 }
             }
             if (tempProjectList.Count == 0)
