@@ -60,7 +60,7 @@ namespace PublicManager.Modules.Module_B.DataManager
                 {
                     List<Project> projList = ConnectionManager.Context.table("Project").where("ProfessionID='" + prf.ProfessionID + "' and DutyUnit = '" + unit + "'").orderBy("ProfessionSort").select("*").getList<Project>(new Project());
 
-                    if (projList != null)
+                    if (projList != null && projList.Count >= 1)
                     {
                         tempProjectList.AddRange(projList);
                     }

@@ -39,6 +39,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
@@ -52,14 +53,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 429);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(869, 37);
+            this.panel1.Size = new System.Drawing.Size(1010, 37);
             this.panel1.TabIndex = 17;
             // 
             // btnOK
             // 
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnOK.Font = new System.Drawing.Font("宋体", 10F);
-            this.btnOK.Location = new System.Drawing.Point(745, 0);
+            this.btnOK.Location = new System.Drawing.Point(886, 0);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(62, 37);
             this.btnOK.TabIndex = 1;
@@ -71,7 +72,7 @@
             // 
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnCancel.Font = new System.Drawing.Font("宋体", 10F);
-            this.btnCancel.Location = new System.Drawing.Point(807, 0);
+            this.btnCancel.Location = new System.Drawing.Point(948, 0);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(62, 37);
             this.btnCancel.TabIndex = 0;
@@ -98,6 +99,7 @@
             this.Column2,
             this.Column13,
             this.Column5,
+            this.Column6,
             this.Column3,
             this.Column4});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -116,7 +118,7 @@
             this.dgvCatalogs.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 10.5F);
             this.dgvCatalogs.RowTemplate.Height = 23;
             this.dgvCatalogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCatalogs.Size = new System.Drawing.Size(869, 429);
+            this.dgvCatalogs.Size = new System.Drawing.Size(1010, 429);
             this.dgvCatalogs.TabIndex = 18;
             this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
             this.dgvCatalogs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellValueChanged);
@@ -162,6 +164,14 @@
             this.Column5.ReadOnly = true;
             this.Column5.Width = 120;
             // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "负责单位";
+            this.Column6.MinimumWidth = 170;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 170;
+            // 
             // Column3
             // 
             this.Column3.HeaderText = "";
@@ -184,7 +194,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 466);
+            this.ClientSize = new System.Drawing.Size(1010, 466);
             this.Controls.Add(this.dgvCatalogs);
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
@@ -212,6 +222,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewButtonColumn Column3;
         private System.Windows.Forms.DataGridViewButtonColumn Column4;
     }

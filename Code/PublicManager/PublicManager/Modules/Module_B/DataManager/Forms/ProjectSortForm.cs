@@ -73,7 +73,7 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                 {
                     List<Project> projList = ConnectionManager.Context.table("Project").where("ProfessionID='" + prf.ProfessionID + "' and DutyUnit = '" + unit + "'").orderBy("ProfessionSort").select("*").getList<Project>(new Project());
 
-                    if (projList != null)
+                    if (projList != null && projList.Count >= 1)
                     {
                         tempProjectList.AddRange(projList);
                     }
@@ -114,6 +114,7 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                 cells.Add(proj.ProjectName);
                 cells.Add(getProfessionObj(proj).Text);
                 cells.Add((proj.ProfessionSort));
+                cells.Add(proj.DutyUnit);
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
                 dgvCatalogs.Rows[rowIndex].Tag = proj;
