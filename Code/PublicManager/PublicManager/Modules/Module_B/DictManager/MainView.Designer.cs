@@ -97,6 +97,7 @@
             this.Column2.HeaderText = "类型名称";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            this.Column2.Visible = false;
             // 
             // Column11
             // 
@@ -106,6 +107,7 @@
             this.Column11.ReadOnly = true;
             this.Column11.Text = "编辑";
             this.Column11.UseColumnTextForButtonValue = true;
+            this.Column11.Visible = false;
             this.Column11.Width = 60;
             // 
             // MainView

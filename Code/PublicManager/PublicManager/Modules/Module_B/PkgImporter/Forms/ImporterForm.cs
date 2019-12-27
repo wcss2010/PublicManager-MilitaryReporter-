@@ -232,8 +232,6 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                 }
                 else
                 {
-                    List<Project> privateProjectList = new List<Project>();
-
                     #region 删除所有这个单位的数据
                     List<Project> projList = ConnectionManager.Context.table("Project").where("DutyUnit='" + localUnitObj.LocalUnitName + "'").select("*").getList<Project>(new Project());
                     foreach (Project proj in projList)
@@ -244,32 +242,6 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                         ConnectionManager.Context.table("Project").where("CatalogID='" + proj.CatalogID + "'").delete();
                     }
                     #endregion
-
-                    #region 获得专项项目列表
-                    //SQLite数据库工厂
-                    System.Data.SQLite.SQLiteFactory factory = new System.Data.SQLite.SQLiteFactory();
-                    //NDEY数据库连接
-                    Noear.Weed.DbContext context = new Noear.Weed.DbContext("main", "Data Source = " + txtDBFile.Text, factory);
-                    //是否在执入后执行查询（主要针对Sqlite）
-                    context.IsSupportSelectIdentityAfterInsert = false;
-                    //是否在Dispose后执行GC用于解决Dispose后无法删除的问题（主要针对Sqlite）
-                    context.IsSupportGCAfterDispose = true;
-
-                    try
-                    {
-                        privateProjectList = context.table("Project").where("IsPrivateProject='true'").select("*").getList<Project>(new Project());
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Console.WriteLine(ex.ToString());
-                    }
-                    finally
-                    {
-                        factory.Dispose();
-                        context.Dispose();
-                    }
-                    #endregion
-
                     return true;
                 }
             }
@@ -502,6 +474,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
             {
                 txtDBFile.Text = ofdDB.FileName;
 
+                DBImporter.LastProfessionNameDict.Clear();
                 List<ImportDataItem> cpList = new List<ImportDataItem>();
                 #region 读取数据
                 //SQLite数据库工厂
@@ -519,6 +492,10 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                     foreach (Catalog catObj in catList)
                     {
                         Project projObj = context.table("Project").where("CatalogID='" + catObj.CatalogID + "'").select("*").getItem<Project>(new Project());
+
+                        //查询专业类别
+                        string professionName = context.table("Professions").where("ProfessionID='" + projObj.ProfessionID + "'").select("ProfessionName").getValue<string>("");
+                        DBImporter.LastProfessionNameDict[projObj.ProjectName] = professionName;
 
                         ImportDataItem idi = new ImportDataItem();
                         idi.CatalogObj = catObj;
