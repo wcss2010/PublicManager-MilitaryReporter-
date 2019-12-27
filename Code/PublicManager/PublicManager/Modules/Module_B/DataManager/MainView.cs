@@ -52,16 +52,12 @@ namespace PublicManager.Modules.Module_B.DataManager
             {
                 foreach (Project projjjj in allProjects)
                 {
-                    bool needAdd = false;
+                    bool needAdd = true;
                     foreach (Project curProj in tempProjectList)
                     {
                         if (projjjj.ProjectID == curProj.ProjectID)
                         {
                             needAdd = false;
-                        }
-                        else
-                        {
-                            needAdd = true;
                         }
                     }
                     if (needAdd)
