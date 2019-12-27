@@ -92,7 +92,11 @@ namespace PublicManager
             Config.ObjectDict.Add("研究周期", new string[] { "6个月" + rowFlag + "6", "12个月" + rowFlag + "12", "18个月" + rowFlag + "18", "24个月" + rowFlag + "24", "36个月" + rowFlag + "36" });
             Config.ObjectDict.Add("责任单位与专业类别映射", new string[] { "陆军", "海军", "空军", "火箭军", "战略支援部队", "联勤保障部队", "军事科学院", "国防大学", "国防科技大学", "武装警察部队" });
 
+            //保存初始化内容
             saveConfig();
+
+            //重新加载一次
+            loadConfig();
         }
 
         /// <summary>
