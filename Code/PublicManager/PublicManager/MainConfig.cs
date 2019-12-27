@@ -82,6 +82,20 @@ namespace PublicManager
         public static void initConfig()
         {
             Config = new MainConfig();
+
+            Config.StringDict["论证报告总目录"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "总目录");
+            Config.StringDict["论证报告解压目录"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "解压目录");
+            try
+            {
+                Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "总目录"));
+            }
+            catch (Exception ex) { }
+            try
+            {
+                Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "解压目录"));
+            }
+            catch (Exception ex) { }
+
             Config.StringDict["报告验证_目录"] = "files";
             Config.StringDict["报告验证_文件"] = "static.db";
             Config.ObjectDict.Add("责任单位", new string[] { "东部战区", "南部战区", "西部战区", "北部战区", "中部战区", "陆军", "海军", "空军", "火箭军", "战略支援部队", "联勤保障部队", "军委办公厅", "军委联合参谋部", "军委政治工作部", "军委后勤保障部", "军委装备发展部", "军委训练管理部", "军委国防动员部", "军委纪律检察委员会", "军委政法委员会", "军委科学技术委员会", "军委战略规划办公室", "军委改革和编制办公室", "军委国际军事合作办公室", "军委审计署", "军委机关事务管理总局", "军事科学院", "国防大学", "国防科技大学", "武装警察部队" });
