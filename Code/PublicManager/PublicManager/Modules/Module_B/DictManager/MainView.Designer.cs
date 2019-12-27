@@ -78,23 +78,23 @@
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "类型排序";
-            this.Column3.MinimumWidth = 90;
+            this.Column3.HeaderText = "专业类别排序";
+            this.Column3.MinimumWidth = 120;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
-            this.Column3.Width = 90;
+            this.Column3.Width = 120;
             // 
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "类型类别";
+            this.Column1.HeaderText = "专业类别";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "类型名称";
+            this.Column2.HeaderText = "专业类别名称";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Visible = false;
