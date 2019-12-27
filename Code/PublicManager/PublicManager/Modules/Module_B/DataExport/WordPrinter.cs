@@ -61,12 +61,10 @@ namespace PublicManager.Modules.Module_B.DataExport
 
                             List<Project> projList = ConnectionManager.Context.table("Project").where("DutyUnit='" + s + "'").select("*").getList<Project>(new Project());
                             ucd.ProjectCount = projList.Count;
-                            countDataObj.ProjectCount += projList.Count;
-
+                            
                             foreach (Project proj in projList)
                             {
                                 ucd.TotalMoney += proj.StudyMoney;
-                                countDataObj.TotalMoney += proj.StudyMoney;
                             }
 
                             countList.Add(ucd);
@@ -104,6 +102,9 @@ namespace PublicManager.Modules.Module_B.DataExport
                                 }
                                 else
                                 {
+                                    countDataObj.ProjectCount += ucd.ProjectCount;
+                                    countDataObj.TotalMoney += ucd.TotalMoney;
+
                                     //输出一般属性
                                     wd.fillCell(true, r.Cells[2], wd.newParagraph(curTable.Document, ucd.ProjectCount + ""));
                                     wd.fillCell(true, r.Cells[5], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
