@@ -34,10 +34,10 @@
             this.btnDeleteProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnSorts = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSetUnitA = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgPrivateProject = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnSetUnitA = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +65,7 @@
             this.btnExportToExcel.Id = 6;
             this.btnExportToExcel.LargeGlyph = global::PublicManager.Properties.Resources.export;
             this.btnExportToExcel.Name = "btnExportToExcel";
+            this.btnExportToExcel.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnExportToExcel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportToExcel_ItemClick);
             // 
             // btnAddProject
@@ -100,6 +101,14 @@
             this.btnSorts.Name = "btnSorts";
             this.btnSorts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSorts_ItemClick);
             // 
+            // btnSetUnitA
+            // 
+            this.btnSetUnitA.Caption = "设置所属单位";
+            this.btnSetUnitA.Id = 12;
+            this.btnSetUnitA.LargeGlyph = global::PublicManager.Properties.Resources.Contact_32x32;
+            this.btnSetUnitA.Name = "btnSetUnitA";
+            this.btnSetUnitA.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSetUnitA_ItemClick);
+            // 
             // rpMaster
             // 
             this.rpMaster.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -123,14 +132,6 @@
             this.rpgElse.ItemLinks.Add(this.btnSetUnitA);
             this.rpgElse.Name = "rpgElse";
             this.rpgElse.Text = "其它";
-            // 
-            // btnSetUnitA
-            // 
-            this.btnSetUnitA.Caption = "设置所属单位";
-            this.btnSetUnitA.Id = 12;
-            this.btnSetUnitA.LargeGlyph = global::PublicManager.Properties.Resources.Contact_32x32;
-            this.btnSetUnitA.Name = "btnSetUnitA";
-            this.btnSetUnitA.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSetUnitA_ItemClick);
             // 
             // ModuleController
             // 
