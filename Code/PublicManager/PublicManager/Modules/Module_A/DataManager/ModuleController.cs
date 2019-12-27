@@ -197,7 +197,16 @@ namespace PublicManager.Modules.Module_A.DataManager
 
         private void btnSetUnitA_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            WelcomeForm.showUnitADialog();
+            if (WelcomeForm.showUnitADialog())
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(Application.ExecutablePath);
+                }
+                catch (Exception ex) { }
+
+                Application.Exit();
+            }
         }
     }
 }
