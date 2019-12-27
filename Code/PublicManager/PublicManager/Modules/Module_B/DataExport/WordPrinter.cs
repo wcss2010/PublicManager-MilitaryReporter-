@@ -38,6 +38,12 @@ namespace PublicManager.Modules.Module_B.DataExport
 
                 List<UnitCountData> countList = new List<UnitCountData>();
 
+                //合计
+                UnitCountData countDataObj = new UnitCountData();
+                countDataObj.UnitName = "小   计";
+                countDataObj.ProjectCount = 0;
+                countDataObj.TotalMoney = 0;
+
                 #region 准备数据
                 Table curTable = (Table)ncTables[ncTables.Count - 1];
 
@@ -55,10 +61,12 @@ namespace PublicManager.Modules.Module_B.DataExport
 
                             List<Project> projList = ConnectionManager.Context.table("Project").where("DutyUnit='" + s + "'").select("*").getList<Project>(new Project());
                             ucd.ProjectCount = projList.Count;
+                            countDataObj.ProjectCount += projList.Count;
 
                             foreach (Project proj in projList)
                             {
                                 ucd.TotalMoney += proj.StudyMoney;
+                                countDataObj.TotalMoney += proj.StudyMoney;
                             }
 
                             countList.Add(ucd);
@@ -72,6 +80,9 @@ namespace PublicManager.Modules.Module_B.DataExport
 
                 #endregion
 
+                //合计
+                countList.Add(countDataObj);
+
                 Report(progressDialog, 60, "填充数据到表格...", 1000);
 
                 #region 写表格
@@ -82,13 +93,16 @@ namespace PublicManager.Modules.Module_B.DataExport
                         if (r.Cells[1].GetText() != null && r.Cells[1].GetText().Contains(ucd.UnitName))
                         {
                             wd.fillCell(true, r.Cells[2], wd.newParagraph(curTable.Document, ucd.ProjectCount + ""));
-
                             wd.fillCell(true, r.Cells[5], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
-
                             wd.fillCell(true, r.Cells[10], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
                         }
                     }
                 }
+
+                //小计
+                //wd.fillCell(true, curTable.Rows[27].Cells[2], wd.newParagraph(curTable.Document, countDataObj.ProjectCount + ""));
+                //wd.fillCell(true, curTable.Rows[27].Cells[5], wd.newParagraph(curTable.Document, countDataObj.TotalMoney + ""));
+                //wd.fillCell(true, curTable.Rows[27].Cells[10], wd.newParagraph(curTable.Document, countDataObj.TotalMoney + ""));
 
                 wd.WordDoc.FirstSection.Body.AppendChild(new NodeImporter(tableTemplete.WordDoc, wd.WordDoc, ImportFormatMode.UseDestinationStyles).ImportNode(curTable, true));
                 #endregion
