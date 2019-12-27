@@ -39,6 +39,7 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +70,7 @@
             this.Column5,
             this.Column6,
             this.Column13,
+            this.Column15,
             this.Column7,
             this.Column8,
             this.Column14,
@@ -161,6 +163,14 @@
             this.Column13.ReadOnly = true;
             this.Column13.Width = 180;
             // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "申报专业类别(类别内序号)";
+            this.Column15.MinimumWidth = 200;
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            this.Column15.Width = 200;
+            // 
             // Column7
             // 
             this.Column7.HeaderText = "责任单位(下级单位)";
@@ -242,6 +252,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;

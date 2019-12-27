@@ -171,6 +171,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                                 BaseModuleMainForm.writeLog("开始导入__" + zipName);
 
                                 ImportDataItem idi = (ImportDataItem)tnnn.Tag;
+                                idi.ProjectObj.LastProfessionName = DBImporter.LastProfessionDict[idi.CatalogObj.CatalogName].ProfessionName;
+                                idi.ProjectObj.LastProfessionSort = Int32.Parse(DBImporter.LastProfessionDict[idi.CatalogObj.CatalogName].ProfessionNum);
                                 idi.CatalogObj.copyTo(ConnectionManager.Context.table("Catalog")).insert();
                                 idi.ProjectObj.copyTo(ConnectionManager.Context.table("Project")).insert();
 

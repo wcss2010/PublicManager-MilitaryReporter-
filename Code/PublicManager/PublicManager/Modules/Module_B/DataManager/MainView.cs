@@ -85,6 +85,8 @@ namespace PublicManager.Modules.Module_B.DataManager
                 string professionNameStr = ConnectionManager.Context.table("Professions").where("ProfessionID='" + proj.ProfessionID + "'").select("ProfessionName").getValue<string>("其他");
                 cells.Add(professionNameStr + "(" + (proj.ProfessionSort) + ")");
 
+                cells.Add(proj.LastProfessionName + "(" + (proj.LastProfessionSort) + ")");
+
                 cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");
                 cells.Add(proj.Memo);
 
