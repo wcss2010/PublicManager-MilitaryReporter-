@@ -33,7 +33,7 @@
             this.btnAddProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnDeleteProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditProject = new DevExpress.XtraBars.BarButtonItem();
-            this.btnExportToPkg = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportToWord = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
@@ -48,7 +48,7 @@
             this.btnAddProject,
             this.btnDeleteProject,
             this.btnEditProject,
-            this.btnExportToPkg});
+            this.btnExportToWord});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
             this.rcTopBar.MaxItemId = 11;
             this.rcTopBar.Name = "rcTopBar";
@@ -58,11 +58,11 @@
             // 
             // btnExportToExcel
             // 
-            this.btnExportToExcel.Caption = "导出到Word";
+            this.btnExportToExcel.Caption = "导出到Excel";
             this.btnExportToExcel.Id = 6;
             this.btnExportToExcel.LargeGlyph = global::PublicManager.Properties.Resources.export;
             this.btnExportToExcel.Name = "btnExportToExcel";
-            this.btnExportToExcel.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btnExportToExcel.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportToExcel_ItemClick);
             // 
             // btnAddProject
             // 
@@ -86,13 +86,13 @@
             this.btnEditProject.LargeGlyph = global::PublicManager.Properties.Resources.edit;
             this.btnEditProject.Name = "btnEditProject";
             // 
-            // btnExportToPkg
+            // btnExportToWord
             // 
-            this.btnExportToPkg.Caption = "导出数据包";
-            this.btnExportToPkg.Id = 10;
-            this.btnExportToPkg.LargeGlyph = global::PublicManager.Properties.Resources.export3;
-            this.btnExportToPkg.Name = "btnExportToPkg";
-            this.btnExportToPkg.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.btnExportToWord.Caption = "导出到Word";
+            this.btnExportToWord.Id = 10;
+            this.btnExportToWord.LargeGlyph = global::PublicManager.Properties.Resources.export;
+            this.btnExportToWord.Name = "btnExportToWord";
+            this.btnExportToWord.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportToWord_ItemClick);
             // 
             // rpMaster
             // 
@@ -104,7 +104,7 @@
             // rpgElse
             // 
             this.rpgElse.ItemLinks.Add(this.btnExportToExcel);
-            this.rpgElse.ItemLinks.Add(this.btnExportToPkg);
+            this.rpgElse.ItemLinks.Add(this.btnExportToWord);
             this.rpgElse.Name = "rpgElse";
             this.rpgElse.Text = "其它";
             // 
@@ -128,7 +128,7 @@
         private DevExpress.XtraBars.BarButtonItem btnAddProject;
         private DevExpress.XtraBars.BarButtonItem btnDeleteProject;
         private DevExpress.XtraBars.BarButtonItem btnEditProject;
-        private DevExpress.XtraBars.BarButtonItem btnExportToPkg;
+        private DevExpress.XtraBars.BarButtonItem btnExportToWord;
         private DevExpress.XtraBars.Ribbon.RibbonPage rpMaster;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgElse;
     }

@@ -390,6 +390,9 @@ namespace PublicManager.Modules.Module_A.DataExport
                                 }
                             }
                         }
+
+                        CellRangeAddress regionbb = new CellRangeAddress(lastSameRow, sheet.PhysicalNumberOfRows - 1, 0, 0);
+                        sheet.AddMergedRegion(regionbb);
                         #endregion
 
                         #region 输出文件
