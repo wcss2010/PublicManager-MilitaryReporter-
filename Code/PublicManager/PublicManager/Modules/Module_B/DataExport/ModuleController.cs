@@ -163,7 +163,7 @@ namespace PublicManager.Modules.Module_B.DataExport
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("研究目标：").Append(proj.StudyDest).AppendLine();
-                    sb.Append("研究内容：").Append(proj.StudyContent).AppendLine();
+                    sb.Append("研究内容：").AppendLine().Append(proj.StudyContent).AppendLine();
                     cells.Add(sb.ToString());
                 }
 
@@ -192,7 +192,7 @@ namespace PublicManager.Modules.Module_B.DataExport
 
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.FileName = string.Empty;
-            sfd.Filter = "*.xls|*.xls";
+            sfd.Filter = "*.xlsx|*.xlsx";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 try
