@@ -9,6 +9,7 @@ using System.IO;
 using PublicManager.DB.Entitys;
 using PublicManager.DB;
 using NPOI.SS.Util;
+using Aspose.Words;
 
 namespace PublicManager.Modules.Module_B.DataExport
 {
@@ -346,7 +347,45 @@ namespace PublicManager.Modules.Module_B.DataExport
 
         private void btnExportToWord_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "*.doc|*.doc";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                ProgressForm pf = new ProgressForm();
+                pf.Show();
+                pf.run(100, 0, new EventHandler(delegate(object senders, EventArgs ee)
+                {
+                    ProgressForm senderForm = (ProgressForm)senders;
 
+                    try
+                    {
+                        WordPrinter.wordOutput(senderForm, sfd.FileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("对不起，导出失败！Ex:" + ex.ToString());
+                    }
+                    finally
+                    {
+                        //检查是否已创建句柄，并调用委托执行UI方法
+                        if (pf.IsHandleCreated)
+                        {
+                            pf.Invoke(new MethodInvoker(delegate()
+                            {
+                                try
+                                {
+                                    //关闭进度窗口
+                                    pf.Close();
+                                }
+                                catch (Exception ex)
+                                {
+                                    BaseModuleMainForm.writeLog(ex.ToString());
+                                }
+                            }));
+                        }
+                    }
+                }));                
+            }
         }
     }
 }

@@ -280,6 +280,7 @@
     <Compile Include="Modules\Module_B\DataExport\ModuleController.Designer.cs">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Module_B\DataExport\WordPrinter.cs" />
     <Compile Include="Modules\Module_B\DataManager\Forms\AddOrUpdateProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
