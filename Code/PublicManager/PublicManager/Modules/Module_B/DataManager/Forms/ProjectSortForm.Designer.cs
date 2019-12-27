@@ -39,6 +39,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -99,6 +100,7 @@
             this.Column2,
             this.Column13,
             this.Column5,
+            this.Column7,
             this.Column6,
             this.Column3,
             this.Column4});
@@ -164,6 +166,14 @@
             this.Column5.ReadOnly = true;
             this.Column5.Width = 120;
             // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "申报专业类别";
+            this.Column7.MinimumWidth = 130;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 130;
+            // 
             // Column6
             // 
             this.Column6.HeaderText = "负责单位";
@@ -222,6 +232,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewButtonColumn Column3;
         private System.Windows.Forms.DataGridViewButtonColumn Column4;

@@ -108,6 +108,7 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                 cells.Add(proj.ProjectName);
                 cells.Add(getProfessionObj(proj).Text);
                 cells.Add((proj.ProfessionSort));
+                cells.Add(proj.LastProfessionName);
                 cells.Add(proj.DutyUnit);
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
@@ -170,7 +171,7 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                 foreach (DataGridViewRow dgvRow in dgvCatalogs.Rows)
                 {
                     Project subP = ((Project)dgvRow.Tag);
-                    if (subP.ProfessionID == proj.ProfessionID)
+                    if (subP.ProfessionID == proj.ProfessionID && subP.DutyUnit == proj.DutyUnit)
                     {
                         projList.Add(subP);
                     }
