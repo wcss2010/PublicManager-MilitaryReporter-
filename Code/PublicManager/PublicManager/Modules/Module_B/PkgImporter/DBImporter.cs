@@ -9,6 +9,32 @@ namespace PublicManager.Modules.Module_B.PkgImporter
 {
     public class DBImporter : BaseDBImporter
     {
+        private static Dictionary<string, string> lastProfessionNameDict = new Dictionary<string, string>();
+        /// <summary>
+        /// 其它地区里设置的专业类别字典(Key=项目名称,Value=专业类别)
+        /// </summary>
+        public static Dictionary<string, string> LastProfessionNameDict
+        {
+            get { return DBImporter.lastProfessionNameDict; }
+        }
+
+        /// <summary>
+        /// 获得旧的专业类别
+        /// </summary>
+        /// <param name="projectName"></param>
+        /// <returns></returns>
+        public string getLastProfessionName(string projectName)
+        {
+            if (lastProfessionNameDict.ContainsKey(projectName))
+            {
+                return lastProfessionNameDict[projectName];
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
         /// <summary>
         /// 导入数据库
         /// </summary>
@@ -68,6 +94,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                 proj.TaskCompleteTime = diProject.get("JiHuaWanChengShiJian") != null ? DateTime.Parse(diProject.get("JiHuaWanChengShiJian").ToString()) : DateTime.Now;
                 proj.IsPrivateProject = "false";
                 proj.ProfessionSort = 0;
+
+                proj.LastProfessionName = getLastProfessionName(proj.ProjectName);
 
                 //过滤文本--处理备注
                 proj.Memo = proj.Memo != null && proj.Memo.Contains(MainConfig.rowFlag) ? proj.Memo.Replace(MainConfig.rowFlag, ":") : proj.Memo;
