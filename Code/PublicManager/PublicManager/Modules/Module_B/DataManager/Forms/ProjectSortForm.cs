@@ -13,6 +13,15 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
 {
     public partial class ProjectSortForm : Form
     {
+        private List<string> dutyUnitToProfessonLinks;
+        /// <summary>
+        /// 责任单位(有类别的)
+        /// </summary>
+        public List<string> DutyUnitToProfessonLinks
+        {
+            get { return dutyUnitToProfessonLinks; }
+        }
+
         List<string> allUnitList = new List<string>();
 
         KeyedList<string, ComboBoxObject<Professions>> professionMap = new KeyedList<string, ComboBoxObject<Professions>>();
@@ -45,9 +54,31 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
         }
 
         public ProjectSortForm(string projID)
-            : this()
         {
+            InitializeComponent();
+
+            //加载责任单位选项
+            if (MainConfig.Config.ObjectDict.ContainsKey("责任单位"))
+            {
+                try
+                {
+                    Newtonsoft.Json.Linq.JArray teams = (Newtonsoft.Json.Linq.JArray)MainConfig.Config.ObjectDict["责任单位"];
+                    foreach (string s in teams)
+                    {
+                        allUnitList.Add(s);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.ToString());
+                }
+            }
+
+            PublicManager.Modules.Module_B.DictManager.MainView.initDicts();
+            loadComboboxItems();
+            
             selectedProjectID = projID;
+            updateCatalogs();
         }
 
         public void loadComboboxItems()
