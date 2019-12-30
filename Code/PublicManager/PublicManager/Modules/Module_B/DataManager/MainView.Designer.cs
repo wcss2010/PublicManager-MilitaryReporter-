@@ -97,6 +97,7 @@
             this.dgvCatalogs.Size = new System.Drawing.Size(1293, 708);
             this.dgvCatalogs.TabIndex = 2;
             this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
+            this.dgvCatalogs.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentDoubleClick);
             // 
             // Column1
             // 

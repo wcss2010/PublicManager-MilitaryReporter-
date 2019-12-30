@@ -271,5 +271,20 @@ namespace PublicManager.Modules.Module_A.DataManager
         {
             return proj.IsPrivateProject == "true" ? "专项项目" : "从填报工具导入";
         }
+
+        private void dgvCatalogs_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //检查是否点击的是删除的那一列
+            if (e.RowIndex >= 0 && dgvCatalogs.Rows.Count > e.RowIndex)
+            {
+                //获得要删除的项目ID
+                Project proj = ((Project)dgvCatalogs.Rows[e.RowIndex].Tag);
+
+                Forms.ProjectSortForm psf = new Forms.ProjectSortForm(proj.ProjectID);
+                psf.ShowDialog();
+
+                updateCatalogs();
+            }
+        }
     }
 }
