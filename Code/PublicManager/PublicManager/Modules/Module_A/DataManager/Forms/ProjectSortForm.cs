@@ -13,11 +13,55 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
 {
     public partial class ProjectSortForm : Form
     {
+        private List<string> dutyUnitToProfessonLinks;
+        /// <summary>
+        /// 责任单位(有类别的)
+        /// </summary>
+        public List<string> DutyUnitToProfessonLinks
+        {
+            get { return dutyUnitToProfessonLinks; }
+        }
+
         KeyedList<string, ComboBoxObject<Professions>> professionMap = new KeyedList<string, ComboBoxObject<Professions>>();
 
         public ProjectSortForm()
         {
             InitializeComponent();
+
+            //加载责任单位与专业类型映射选项
+            if (MainConfig.Config.ObjectDict.ContainsKey("责任单位与专业类别映射"))
+            {
+                try
+                {
+                    dutyUnitToProfessonLinks = new List<string>();
+                    Newtonsoft.Json.Linq.JArray teams = (Newtonsoft.Json.Linq.JArray)MainConfig.Config.ObjectDict["责任单位与专业类别映射"];
+                    foreach (string s in teams)
+                    {
+                        dutyUnitToProfessonLinks.Add(s);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Console.WriteLine(ex.ToString());
+                }
+            }
+
+            LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
+            if (string.IsNullOrEmpty(lu.LocalUnitID))
+            {
+                dgvCatalogs.Columns[3].ReadOnly = false;
+            }
+            else
+            {
+                if (DutyUnitToProfessonLinks.Contains(lu.LocalUnitName))
+                {
+                    dgvCatalogs.Columns[3].ReadOnly = false;
+                }
+                else
+                {
+                    dgvCatalogs.Columns[3].ReadOnly = true;
+                }
+            }
 
             PublicManager.Modules.Module_A.DictManager.MainView.initDicts();
             loadComboboxItems();
