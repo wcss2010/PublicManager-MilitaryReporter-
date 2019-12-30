@@ -18,8 +18,32 @@ namespace PublicManager
             InitializeComponent();
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            if (MainConfig.Config.StringDict.ContainsKey("当前所属单位名称"))
+            {
+                lblUnitA.Text = MainConfig.Config.StringDict["当前所属单位名称"];
+            }
+        }
+
         private void btnToA_Click(object sender, EventArgs e)
         {
+            switchToDB_A();
+
+            if (checkUnitA())
+            {
+                Top = Screen.PrimaryScreen.Bounds.Height * 5;
+                Modules.Module_A.ModuleMainForm form = new Modules.Module_A.ModuleMainForm();
+                form.FormClosing += form_FormClosing;
+                form.Show();
+            }
+        }
+
+        private void switchToDB_A()
+        {
+            #region 准备DB文件
             string dir = Path.Combine(Application.StartupPath, Path.Combine("Data", "M_A"));
             try
             {
@@ -31,17 +55,10 @@ namespace PublicManager
             {
                 File.Copy(Path.Combine(Application.StartupPath, "static.db"), dbFile, true);
             }
+            #endregion
 
             //初始化数据库
             PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + dbFile);
-
-            if (checkUnitA())
-            {
-                Top = Screen.PrimaryScreen.Bounds.Height * 5;
-                Modules.Module_A.ModuleMainForm form = new Modules.Module_A.ModuleMainForm();
-                form.FormClosing += form_FormClosing;
-                form.Show();
-            }
         }
 
         public static bool checkUnitA()
@@ -71,6 +88,9 @@ namespace PublicManager
                 lu.LocalUnitName = form.SelectedItem;
                 lu.copyTo(ConnectionManager.Context.table("LocalUnit")).insert();
 
+                MainConfig.Config.StringDict["当前所属单位名称"] = form.SelectedItem;
+                MainConfig.saveConfig();
+
                 return true;
             }
             else
@@ -86,6 +106,20 @@ namespace PublicManager
 
         private void btnToB_Click(object sender, EventArgs e)
         {
+            switchToDB_B();
+
+            if (checkUnitB())
+            {
+                Top = Screen.PrimaryScreen.Bounds.Height * 5;
+                Modules.Module_B.ModuleMainForm form = new Modules.Module_B.ModuleMainForm();
+                form.FormClosing += form_FormClosing;
+                form.Show();
+            }
+        }
+
+        private void switchToDB_B()
+        {
+            #region 准备DB文件
             string dir = Path.Combine(Application.StartupPath, Path.Combine("Data", "M_B"));
             try
             {
@@ -97,17 +131,10 @@ namespace PublicManager
             {
                 File.Copy(Path.Combine(Application.StartupPath, "static.db"), dbFile, true);
             }
+            #endregion
 
             //初始化数据库
             PublicManager.DB.ConnectionManager.Open("main", "Data Source=" + dbFile);
-
-            if (checkUnitB())
-            {
-                Top = Screen.PrimaryScreen.Bounds.Height * 5;
-                Modules.Module_B.ModuleMainForm form = new Modules.Module_B.ModuleMainForm();
-                form.FormClosing += form_FormClosing;
-                form.Show();
-            }
         }
 
         public static bool checkUnitB()
@@ -123,6 +150,20 @@ namespace PublicManager
             //Modules.Module_B.DataManager.Forms.DutyUnitForm form = new Modules.Module_B.DataManager.Forms.DutyUnitForm();
 
             return true;
+        }
+
+        private void btnSetUnitA_Click(object sender, EventArgs e)
+        {
+            //切换数据库
+            switchToDB_A();
+
+            //显示对话框
+            showUnitADialog();
+
+            if (MainConfig.Config.StringDict.ContainsKey("当前所属单位名称"))
+            {
+                lblUnitA.Text = MainConfig.Config.StringDict["当前所属单位名称"];
+            }
         }
     }
 }
