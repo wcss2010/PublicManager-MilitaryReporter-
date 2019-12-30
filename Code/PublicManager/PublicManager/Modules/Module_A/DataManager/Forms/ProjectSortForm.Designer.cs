@@ -52,14 +52,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 429);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(869, 37);
+            this.panel1.Size = new System.Drawing.Size(971, 37);
             this.panel1.TabIndex = 17;
             // 
             // btnOK
             // 
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnOK.Font = new System.Drawing.Font("宋体", 10F);
-            this.btnOK.Location = new System.Drawing.Point(745, 0);
+            this.btnOK.Location = new System.Drawing.Point(847, 0);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(62, 37);
             this.btnOK.TabIndex = 1;
@@ -71,7 +71,7 @@
             // 
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnCancel.Font = new System.Drawing.Font("宋体", 10F);
-            this.btnCancel.Location = new System.Drawing.Point(807, 0);
+            this.btnCancel.Location = new System.Drawing.Point(909, 0);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(62, 37);
             this.btnCancel.TabIndex = 0;
@@ -116,7 +116,7 @@
             this.dgvCatalogs.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 10.5F);
             this.dgvCatalogs.RowTemplate.Height = 23;
             this.dgvCatalogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCatalogs.Size = new System.Drawing.Size(869, 429);
+            this.dgvCatalogs.Size = new System.Drawing.Size(971, 429);
             this.dgvCatalogs.TabIndex = 18;
             this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
             this.dgvCatalogs.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellValueChanged);
@@ -184,7 +184,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(869, 466);
+            this.ClientSize = new System.Drawing.Size(971, 466);
             this.Controls.Add(this.dgvCatalogs);
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.Default;

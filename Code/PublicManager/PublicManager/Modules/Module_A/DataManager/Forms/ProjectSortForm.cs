@@ -23,6 +23,7 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
         }
 
         KeyedList<string, ComboBoxObject<Professions>> professionMap = new KeyedList<string, ComboBoxObject<Professions>>();
+        private string selectedProjectID;
 
         public ProjectSortForm()
         {
@@ -68,6 +69,12 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
             updateCatalogs();
         }
 
+        public ProjectSortForm(string projID)
+            : this()
+        {
+            selectedProjectID = projID;
+        }
+
         public void loadComboboxItems()
         {
             professionMap = new KeyedList<string, ComboBoxObject<Professions>>();
@@ -86,6 +93,7 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
 
         public void updateCatalogs()
         {
+            int selectedIndex = -1;
             dgvCatalogs.Rows.Clear();
 
             #region 排序
@@ -139,9 +147,19 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
                 dgvCatalogs.Rows[rowIndex].Tag = proj;
+
+                if (proj.ProjectID == selectedProjectID)
+                {
+                    selectedIndex = rowIndex;
+                }
             }
 
             dgvCatalogs.checkCellSize();
+
+            if (selectedIndex >= 0 && dgvCatalogs.Rows.Count > selectedIndex)
+            {
+                dgvCatalogs.Rows[selectedIndex].Selected = true;
+            }
         }
 
         /// <summary>
@@ -191,6 +209,9 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
             {
                 //获得要删除的项目ID
                 Project proj = ((Project)dgvCatalogs.Rows[e.RowIndex].Tag);
+
+                //保存当前选项
+                selectedProjectID = proj.ProjectID; 
 
                 //筛选出适合排序的列表
                 List<Project> projList = new List<Project>();
