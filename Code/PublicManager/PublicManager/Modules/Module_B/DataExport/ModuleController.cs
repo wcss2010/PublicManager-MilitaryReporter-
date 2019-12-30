@@ -297,18 +297,21 @@ namespace PublicManager.Modules.Module_B.DataExport
                     //Excel数据
                     lastSameRow = -1;
                     lastSameName = "";
+                    string lastSameStep = "";
                     for (int kk = 0; kk < sheet.PhysicalNumberOfRows; kk++)
                     {
                         NPOI.SS.UserModel.IRow rowObj = sheet.GetRow(kk);
 
+                        string curStep = rowObj.GetCell(0).StringCellValue;
                         string curValue = rowObj.GetCell(1).StringCellValue;
 
-                        if (curValue != lastSameName)
+                        if (curValue != lastSameName || curStep != lastSameStep)
                         {
                             //合并
                             if (kk == 0)
                             {
                                 lastSameName = curValue;
+                                lastSameStep = curStep;
                                 lastSameRow = 0;
                             }
                             else
@@ -317,6 +320,7 @@ namespace PublicManager.Modules.Module_B.DataExport
                                 sheet.AddMergedRegion(regioncc);
 
                                 lastSameName = curValue;
+                                lastSameStep = curStep;
                                 lastSameRow = kk;
                             }
                         }
