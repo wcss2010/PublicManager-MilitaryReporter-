@@ -117,7 +117,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter
 
         private void btnImportAll_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Forms.ImporterForm ifm = new Forms.ImporterForm(tc, true, totalDir, decompressDir);
+            Forms.ImporterWithAllForm ifm = new Forms.ImporterWithAllForm(tc, true, totalDir, decompressDir);
             ifm.ShowDialog();
         }
 
@@ -137,6 +137,12 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                 System.Diagnostics.Process.Start(MainConfig.Config.StringDict["论证报告解压目录"]);
             }
             catch (Exception ex) { }
+        }
+
+        private void btnImportSelected_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Forms.ImporterWithSelectedForm ifm = new Forms.ImporterWithSelectedForm(tc, false, totalDir, decompressDir);
+            ifm.ShowDialog();
         }
     }
 }

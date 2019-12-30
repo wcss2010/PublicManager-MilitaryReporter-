@@ -32,14 +32,15 @@
             this.btnSetSourceDir = new DevExpress.XtraBars.BarButtonItem();
             this.btnSetDestDir = new DevExpress.XtraBars.BarButtonItem();
             this.btnImportAll = new DevExpress.XtraBars.BarButtonItem();
+            this.btnOpenMasterDir = new DevExpress.XtraBars.BarButtonItem();
+            this.btnOpenDecompressDir = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDir = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpbLoad = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fbdFolderSelect = new System.Windows.Forms.FolderBrowserDialog();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
-            this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnOpenMasterDir = new DevExpress.XtraBars.BarButtonItem();
-            this.btnOpenDecompressDir = new DevExpress.XtraBars.BarButtonItem();
+            this.btnImportSelected = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,9 +53,10 @@
             this.btnSetDestDir,
             this.btnImportAll,
             this.btnOpenMasterDir,
-            this.btnOpenDecompressDir});
+            this.btnOpenDecompressDir,
+            this.btnImportSelected});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
-            this.rcTopBar.MaxItemId = 8;
+            this.rcTopBar.MaxItemId = 9;
             this.rcTopBar.Name = "rcTopBar";
             this.rcTopBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpMaster});
@@ -78,11 +80,27 @@
             // 
             // btnImportAll
             // 
-            this.btnImportAll.Caption = "导入";
+            this.btnImportAll.Caption = "整体性导入";
             this.btnImportAll.Id = 3;
             this.btnImportAll.LargeGlyph = global::PublicManager.Properties.Resources.importA;
             this.btnImportAll.Name = "btnImportAll";
             this.btnImportAll.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImportAll_ItemClick);
+            // 
+            // btnOpenMasterDir
+            // 
+            this.btnOpenMasterDir.Caption = "打开主目录";
+            this.btnOpenMasterDir.Id = 6;
+            this.btnOpenMasterDir.LargeGlyph = global::PublicManager.Properties.Resources.folderB;
+            this.btnOpenMasterDir.Name = "btnOpenMasterDir";
+            this.btnOpenMasterDir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOpenMasterDir_ItemClick);
+            // 
+            // btnOpenDecompressDir
+            // 
+            this.btnOpenDecompressDir.Caption = "打开解压目录";
+            this.btnOpenDecompressDir.Id = 7;
+            this.btnOpenDecompressDir.LargeGlyph = global::PublicManager.Properties.Resources.folderB;
+            this.btnOpenDecompressDir.Name = "btnOpenDecompressDir";
+            this.btnOpenDecompressDir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOpenDecompressDir_ItemClick);
             // 
             // rpMaster
             // 
@@ -103,12 +121,9 @@
             // rpbLoad
             // 
             this.rpbLoad.ItemLinks.Add(this.btnImportAll);
+            this.rpbLoad.ItemLinks.Add(this.btnImportSelected);
             this.rpbLoad.Name = "rpbLoad";
             this.rpbLoad.Text = "导入";
-            // 
-            // sfdExport
-            // 
-            this.sfdExport.Filter = "Excel文件(.xlsx)|*.xlsx";
             // 
             // rpgElse
             // 
@@ -117,21 +132,17 @@
             this.rpgElse.Name = "rpgElse";
             this.rpgElse.Text = "其它";
             // 
-            // btnOpenMasterDir
+            // sfdExport
             // 
-            this.btnOpenMasterDir.Caption = "打开主目录";
-            this.btnOpenMasterDir.Id = 6;
-            this.btnOpenMasterDir.LargeGlyph = global::PublicManager.Properties.Resources.folderB;
-            this.btnOpenMasterDir.Name = "btnOpenMasterDir";
-            this.btnOpenMasterDir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOpenMasterDir_ItemClick);
+            this.sfdExport.Filter = "Excel文件(.xlsx)|*.xlsx";
             // 
-            // btnOpenDecompressDir
+            // btnImportSelected
             // 
-            this.btnOpenDecompressDir.Caption = "打开解压目录";
-            this.btnOpenDecompressDir.Id = 7;
-            this.btnOpenDecompressDir.LargeGlyph = global::PublicManager.Properties.Resources.folderB;
-            this.btnOpenDecompressDir.Name = "btnOpenDecompressDir";
-            this.btnOpenDecompressDir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOpenDecompressDir_ItemClick);
+            this.btnImportSelected.Caption = "选择性导入";
+            this.btnImportSelected.Id = 8;
+            this.btnImportSelected.LargeGlyph = global::PublicManager.Properties.Resources.importB;
+            this.btnImportSelected.Name = "btnImportSelected";
+            this.btnImportSelected.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImportSelected_ItemClick);
             // 
             // ReporterModuleController
             // 
@@ -160,5 +171,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgElse;
         private DevExpress.XtraBars.BarButtonItem btnOpenMasterDir;
         private DevExpress.XtraBars.BarButtonItem btnOpenDecompressDir;
+        private DevExpress.XtraBars.BarButtonItem btnImportSelected;
     }
 }

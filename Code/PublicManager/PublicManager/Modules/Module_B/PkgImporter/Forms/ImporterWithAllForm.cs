@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace PublicManager.Modules.Module_B.PkgImporter.Forms
 {
-    public partial class ImporterForm : Form
+    public partial class ImporterWithAllForm : Form
     {
         private string decompressDir;
         private string totalDir;
@@ -22,7 +22,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
         private List<string> pkgList = new List<string>();
         private LocalUnit localUnitObj;
 
-        public ImporterForm(MainView mv, bool isImportAll, string sourceDir, string destDir)
+        public ImporterWithAllForm(MainView mv, bool isImportAll, string sourceDir, string destDir)
         {
             InitializeComponent();
 

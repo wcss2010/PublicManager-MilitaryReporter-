@@ -333,11 +333,17 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\Module_B\PkgImporter\DBImporter.cs" />
-    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterForm.cs">
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithSelectedForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterForm.Designer.cs">
-      <DependentUpon>ImporterForm.cs</DependentUpon>
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithSelectedForm.Designer.cs">
+      <DependentUpon>ImporterWithSelectedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithAllForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\PkgImporter\Forms\ImporterWithAllForm.Designer.cs">
+      <DependentUpon>ImporterWithAllForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\Module_B\PkgImporter\MainView.cs">
       <SubType>UserControl</SubType>
@@ -451,8 +457,11 @@
     <EmbeddedResource Include="Modules\Module_B\DictManager\ModuleController.resx">
       <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules\Module_B\PkgImporter\Forms\ImporterForm.resx">
-      <DependentUpon>ImporterForm.cs</DependentUpon>
+    <EmbeddedResource Include="Modules\Module_B\PkgImporter\Forms\ImporterWithSelectedForm.resx">
+      <DependentUpon>ImporterWithSelectedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\PkgImporter\Forms\ImporterWithAllForm.resx">
+      <DependentUpon>ImporterWithAllForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Module_B\PkgImporter\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
