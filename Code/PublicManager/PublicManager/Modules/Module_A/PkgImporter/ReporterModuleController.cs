@@ -126,5 +126,23 @@ namespace PublicManager.Modules.Module_A.PkgImporter
             Forms.ImporterForm ifm = new Forms.ImporterForm(tc, false, totalDir, decompressDir);
             ifm.ShowDialog();
         }
+
+        private void btnOpenMasterDir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(MainConfig.Config.StringDict["论证报告总目录"]);
+            }
+            catch (Exception ex) { }
+        }
+
+        private void btnOpenDecompressDir_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(MainConfig.Config.StringDict["论证报告解压目录"]);
+            }
+            catch (Exception ex) { }
+        }
     }
 }
