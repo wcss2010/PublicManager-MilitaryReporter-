@@ -39,7 +39,7 @@ namespace PublicManager.Modules.Module_A
 
             ModuleDict["数据包汇总"] = new PkgImporter.ReporterModuleController();
             ModuleDict["数据管理"] = new DataManager.ModuleController();
-            ModuleDict["字典维护"] = new DictManager.ModuleController();
+            ModuleDict["专业类别维护"] = new DictManager.ModuleController();
             ModuleDict["数据导出"] = new DataExport.ModuleController();
         }
 
@@ -70,13 +70,13 @@ namespace PublicManager.Modules.Module_A
             
             if (string.IsNullOrEmpty(lu.LocalUnitID))
             {
-                treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "字典维护", "数据管理", "数据导出" });
+                treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "专业类别维护", "数据管理", "数据导出" });
             }
             else
             {
                 if (DutyUnitToProfessonLinks.Contains(lu.LocalUnitName))
                 {
-                    treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "字典维护", "数据管理", "数据导出" });
+                    treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "专业类别维护", "数据管理", "数据导出" });
                 }
                 else
                 {
