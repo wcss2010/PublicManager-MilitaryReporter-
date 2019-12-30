@@ -108,7 +108,7 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                 cells.Add(proj.ProjectName);
                 cells.Add(getProfessionObj(proj).Text);
                 cells.Add((proj.ProfessionSort));
-                cells.Add(proj.LastProfessionName);
+                cells.Add(proj.LastProfessionName + "(" + proj.LastProfessionSort + ")");
                 cells.Add(proj.DutyUnit);
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
