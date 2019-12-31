@@ -9,13 +9,22 @@ namespace PublicManager.Modules.Module_B.PkgImporter
 {
     public class DBImporter : BaseDBImporter
     {
-        private static Dictionary<string, LastRecordObject> lastRecordDict = new Dictionary<string, LastRecordObject>();
+        private static Dictionary<string, ProfessionRecordObject> lastProfessionRecordDict = new Dictionary<string, ProfessionRecordObject>();
         /// <summary>
         /// 其它地区里设置的专业类别字典(Key=项目名称,Value=专业类别对象)
         /// </summary>
-        public static Dictionary<string, LastRecordObject> LastRecordDict
+        public static Dictionary<string, ProfessionRecordObject> LastProfessionRecordDict
         {
-            get { return DBImporter.lastRecordDict; }
+            get { return DBImporter.lastProfessionRecordDict; }
+        }
+
+        private static Dictionary<string, ProfessionRecordObject> currentProfessionRecordDict = new Dictionary<string, ProfessionRecordObject>();
+        /// <summary>
+        /// 当前需要保持的专业类别配置(Key=项目名称,Value=专业类别对象)
+        /// </summary>
+        public static Dictionary<string, ProfessionRecordObject> CurrentProfessionRecordDict
+        {
+            get { return DBImporter.currentProfessionRecordDict; }
         }
 
         /// <summary>
@@ -23,15 +32,32 @@ namespace PublicManager.Modules.Module_B.PkgImporter
         /// </summary>
         /// <param name="projectName"></param>
         /// <returns></returns>
-        public LastRecordObject getLastRecord(string projectName)
+        public ProfessionRecordObject getLastProfessionRecord(string projectName)
         {
-            if (lastRecordDict.ContainsKey(projectName))
+            if (lastProfessionRecordDict.ContainsKey(projectName))
             {
-                return lastRecordDict[projectName];
+                return lastProfessionRecordDict[projectName];
             }
             else
             {
-                return new LastRecordObject();
+                return new ProfessionRecordObject();
+            }
+        }
+
+        /// <summary>
+        /// 获得当前的专业类别
+        /// </summary>
+        /// <param name="projectName"></param>
+        /// <returns></returns>
+        public ProfessionRecordObject getCurrentProfessionRecord(string projectName)
+        {
+            if (currentProfessionRecordDict.ContainsKey(projectName))
+            {
+                return currentProfessionRecordDict[projectName];
+            }
+            else
+            {
+                return new ProfessionRecordObject();
             }
         }
 
@@ -95,8 +121,13 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                 proj.IsPrivateProject = "false";
                 proj.ProfessionSort = 0;
 
-                proj.LastProfessionName = getLastRecord(proj.ProjectName).ProfessionNameOrID;
-                proj.LastProfessionSort = getLastRecord(proj.ProjectName).ProfessionSort;
+                //专业类别配置
+                proj.ProfessionID = getCurrentProfessionRecord(proj.ProjectName).ProfessionNameOrID;
+                proj.ProfessionSort = getCurrentProfessionRecord(proj.ProjectName).ProfessionSort;
+
+                //其它地区设置的专业类别
+                proj.LastProfessionName = getLastProfessionRecord(proj.ProjectName).ProfessionNameOrID;
+                proj.LastProfessionSort = getLastProfessionRecord(proj.ProjectName).ProfessionSort;
 
                 //过滤文本--处理备注
                 proj.Memo = proj.Memo != null && proj.Memo.Contains(MainConfig.rowFlag) ? proj.Memo.Replace(MainConfig.rowFlag, ":") : proj.Memo;
@@ -230,11 +261,11 @@ namespace PublicManager.Modules.Module_B.PkgImporter
     }
 
     [Serializable]
-    public class LastRecordObject
+    public class ProfessionRecordObject
     {
-        public LastRecordObject() { }
+        public ProfessionRecordObject() { }
 
-        public LastRecordObject(string pfNameOrID, decimal pfSort)
+        public ProfessionRecordObject(string pfNameOrID, decimal pfSort)
         {
             ProfessionNameOrID = pfNameOrID;
             ProfessionSort = pfSort;
