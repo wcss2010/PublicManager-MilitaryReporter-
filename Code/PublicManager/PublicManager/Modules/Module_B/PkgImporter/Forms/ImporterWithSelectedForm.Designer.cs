@@ -35,6 +35,7 @@
             this.chID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
+            this.cbIsKeepProfessionConfig = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcIgnoreList)).BeginInit();
@@ -99,6 +100,7 @@
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.cbIsKeepProfessionConfig);
             this.panelControl2.Controls.Add(this.btnOK);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl2.Location = new System.Drawing.Point(0, 463);
@@ -116,7 +118,19 @@
             this.btnOK.Text = "导入";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // ImporterForm
+            // cbIsKeepProfessionConfig
+            // 
+            this.cbIsKeepProfessionConfig.AutoSize = true;
+            this.cbIsKeepProfessionConfig.Checked = true;
+            this.cbIsKeepProfessionConfig.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbIsKeepProfessionConfig.Location = new System.Drawing.Point(471, 11);
+            this.cbIsKeepProfessionConfig.Name = "cbIsKeepProfessionConfig";
+            this.cbIsKeepProfessionConfig.Size = new System.Drawing.Size(288, 18);
+            this.cbIsKeepProfessionConfig.TabIndex = 1;
+            this.cbIsKeepProfessionConfig.Text = "是否保留之前设置的专业类别信息(如果存在的话)";
+            this.cbIsKeepProfessionConfig.UseVisualStyleBackColor = true;
+            // 
+            // ImporterWithSelectedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -124,7 +138,7 @@
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.panelControl2);
             this.MaximizeBox = false;
-            this.Name = "ImporterForm";
+            this.Name = "ImporterWithSelectedForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -135,6 +149,7 @@
             this.gcIgnoreList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            this.panelControl2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -148,5 +163,6 @@
         private DevExpress.XtraEditors.SimpleButton btnOK;
         private System.Windows.Forms.ListView lvErrorList;
         private System.Windows.Forms.ColumnHeader chID;
+        private System.Windows.Forms.CheckBox cbIsKeepProfessionConfig;
     }
 }

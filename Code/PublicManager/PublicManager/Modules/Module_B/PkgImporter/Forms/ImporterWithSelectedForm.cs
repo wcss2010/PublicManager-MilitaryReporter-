@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraTreeList.Nodes;
 using PublicManager.DB;
+using PublicManager.DB.Entitys;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -151,6 +152,18 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                             //报告进度
                             pf.reportProgress(progressVal, zipName + "_开始导入");
                             BaseModuleMainForm.writeLog("开始导入__" + zipName);
+
+                            //检查当前项目有没有设置专业类别
+                            if (cbIsKeepProfessionConfig.Checked)
+                            {
+                                Project lastProject = ConnectionManager.Context.table("Project").where("CatalogID in (select CatalogID from Catalog where CatalogNumber = '" + zipName + "')").select("*").getItem<Project>(new Project());
+                                if (!string.IsNullOrEmpty(lastProject.ProjectName))
+                                {
+                                    DBImporter.CurrentProfessionRecordDict[lastProject.ProjectName] = new ProfessionRecordObject();
+                                    DBImporter.CurrentProfessionRecordDict[lastProject.ProjectName].ProfessionNameOrID = lastProject.ProfessionID;
+                                    DBImporter.CurrentProfessionRecordDict[lastProject.ProjectName].ProfessionSort = lastProject.ProfessionSort;
+                                }
+                            }
 
                             //导入数据库
                             new DBImporter().addOrReplaceProject(zipName, Path.Combine(Path.Combine(decompressDir, zipName), "static.db"));
