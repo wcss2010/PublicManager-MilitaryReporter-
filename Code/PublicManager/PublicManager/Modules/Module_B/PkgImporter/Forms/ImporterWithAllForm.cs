@@ -142,7 +142,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                                 BaseModuleMainForm.writeLog("开始导入__" + zipName);
 
                                 ImportDataItem idi = (ImportDataItem)tnnn.Tag;
-                                idi.ProjectObj.LastProfessionName = DBImporter.LastRecordDict[idi.CatalogObj.CatalogName].ProfessionName;
+                                idi.ProjectObj.LastProfessionName = DBImporter.LastRecordDict[idi.CatalogObj.CatalogName].ProfessionNameOrID;
                                 idi.ProjectObj.LastProfessionSort = DBImporter.LastRecordDict[idi.CatalogObj.CatalogName].ProfessionSort;
                                 idi.CatalogObj.copyTo(ConnectionManager.Context.table("Catalog")).insert();
                                 idi.ProjectObj.copyTo(ConnectionManager.Context.table("Project")).insert();
@@ -335,7 +335,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                         //查询专业类别
                         Professions professionObj = context.table("Professions").where("ProfessionID='" + projObj.ProfessionID + "'").select("*").getItem<Professions>(new Professions());
                         DBImporter.LastRecordDict[projObj.ProjectName] = new LastRecordObject();
-                        DBImporter.LastRecordDict[projObj.ProjectName].ProfessionName = professionObj.ProfessionName;
+                        DBImporter.LastRecordDict[projObj.ProjectName].ProfessionNameOrID = professionObj.ProfessionName;
                         DBImporter.LastRecordDict[projObj.ProjectName].ProfessionSort = projObj.ProfessionSort;
                         
                         ImportDataItem idi = new ImportDataItem();

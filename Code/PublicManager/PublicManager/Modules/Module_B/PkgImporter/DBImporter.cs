@@ -95,7 +95,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                 proj.IsPrivateProject = "false";
                 proj.ProfessionSort = 0;
 
-                proj.LastProfessionName = getLastRecord(proj.ProjectName).ProfessionName;
+                proj.LastProfessionName = getLastRecord(proj.ProjectName).ProfessionNameOrID;
                 proj.LastProfessionSort = getLastRecord(proj.ProjectName).ProfessionSort;
 
                 //过滤文本--处理备注
@@ -234,16 +234,16 @@ namespace PublicManager.Modules.Module_B.PkgImporter
     {
         public LastRecordObject() { }
 
-        public LastRecordObject(string pfName, decimal pfSort)
+        public LastRecordObject(string pfNameOrID, decimal pfSort)
         {
-            ProfessionName = pfName;
+            ProfessionNameOrID = pfNameOrID;
             ProfessionSort = pfSort;
         }
 
         /// <summary>
         /// 专业类别名称
         /// </summary>
-        public string ProfessionName { get; set; }
+        public string ProfessionNameOrID { get; set; }
 
         /// <summary>
         /// 专业类别序号
