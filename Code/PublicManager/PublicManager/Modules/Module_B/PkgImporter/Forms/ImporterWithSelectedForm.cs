@@ -162,6 +162,10 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                                     DBImporter.CurrentProfessionRecordDict[lastProject.ProjectName] = new ProfessionRecordObject();
                                     DBImporter.CurrentProfessionRecordDict[lastProject.ProjectName].ProfessionNameOrID = lastProject.ProfessionID;
                                     DBImporter.CurrentProfessionRecordDict[lastProject.ProjectName].ProfessionSort = lastProject.ProfessionSort;
+
+                                    DBImporter.LastProfessionRecordDict[lastProject.ProjectName] = new ProfessionRecordObject();
+                                    DBImporter.LastProfessionRecordDict[lastProject.ProjectName].ProfessionNameOrID = lastProject.LastProfessionName;
+                                    DBImporter.LastProfessionRecordDict[lastProject.ProjectName].ProfessionSort = lastProject.LastProfessionSort;
                                 }
                             }
 
