@@ -9,13 +9,13 @@ namespace PublicManager.Modules.Module_B.PkgImporter
 {
     public class DBImporter : BaseDBImporter
     {
-        private static Dictionary<string, Professions> lastProfessionDict = new Dictionary<string, Professions>();
+        private static Dictionary<string, LastRecordObject> lastRecordDict = new Dictionary<string, LastRecordObject>();
         /// <summary>
-        /// 其它地区里设置的专业类别字典(Key=项目名称,Value=专业类别)
+        /// 其它地区里设置的专业类别字典(Key=项目名称,Value=专业类别对象)
         /// </summary>
-        public static Dictionary<string, Professions> LastProfessionDict
+        public static Dictionary<string, LastRecordObject> LastRecordDict
         {
-            get { return DBImporter.lastProfessionDict; }
+            get { return DBImporter.lastRecordDict; }
         }
 
         /// <summary>
@@ -23,15 +23,15 @@ namespace PublicManager.Modules.Module_B.PkgImporter
         /// </summary>
         /// <param name="projectName"></param>
         /// <returns></returns>
-        public Professions getLastProfession(string projectName)
+        public LastRecordObject getLastRecord(string projectName)
         {
-            if (lastProfessionDict.ContainsKey(projectName))
+            if (lastRecordDict.ContainsKey(projectName))
             {
-                return lastProfessionDict[projectName];
+                return lastRecordDict[projectName];
             }
             else
             {
-                return new Professions();
+                return new LastRecordObject();
             }
         }
 
@@ -95,8 +95,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                 proj.IsPrivateProject = "false";
                 proj.ProfessionSort = 0;
 
-                proj.LastProfessionName = getLastProfession(proj.ProjectName).ProfessionName;
-                proj.LastProfessionSort = int.Parse(getLastProfession(proj.ProjectName).ProfessionNum);
+                proj.LastProfessionName = getLastRecord(proj.ProjectName).ProfessionName;
+                proj.LastProfessionSort = getLastRecord(proj.ProjectName).ProfessionSort;
 
                 //过滤文本--处理备注
                 proj.Memo = proj.Memo != null && proj.Memo.Contains(MainConfig.rowFlag) ? proj.Memo.Replace(MainConfig.rowFlag, ":") : proj.Memo;
@@ -227,5 +227,27 @@ namespace PublicManager.Modules.Module_B.PkgImporter
             dict.MoneyValue = dValue;
             dict.copyTo(ConnectionManager.Context.table("Moneys")).insert();
         }
+    }
+
+    [Serializable]
+    public class LastRecordObject
+    {
+        public LastRecordObject() { }
+
+        public LastRecordObject(string pfName, decimal pfSort)
+        {
+            ProfessionName = pfName;
+            ProfessionSort = pfSort;
+        }
+
+        /// <summary>
+        /// 专业类别名称
+        /// </summary>
+        public string ProfessionName { get; set; }
+
+        /// <summary>
+        /// 专业类别序号
+        /// </summary>
+        public decimal ProfessionSort { get; set; }
     }
 }

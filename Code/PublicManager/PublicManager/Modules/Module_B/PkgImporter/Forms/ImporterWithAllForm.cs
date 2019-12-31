@@ -142,8 +142,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                                 BaseModuleMainForm.writeLog("开始导入__" + zipName);
 
                                 ImportDataItem idi = (ImportDataItem)tnnn.Tag;
-                                idi.ProjectObj.LastProfessionName = DBImporter.LastProfessionDict[idi.CatalogObj.CatalogName].ProfessionName;
-                                idi.ProjectObj.LastProfessionSort = Int32.Parse(DBImporter.LastProfessionDict[idi.CatalogObj.CatalogName].ProfessionNum);
+                                idi.ProjectObj.LastProfessionName = DBImporter.LastRecordDict[idi.CatalogObj.CatalogName].ProfessionName;
+                                idi.ProjectObj.LastProfessionSort = DBImporter.LastRecordDict[idi.CatalogObj.CatalogName].ProfessionSort;
                                 idi.CatalogObj.copyTo(ConnectionManager.Context.table("Catalog")).insert();
                                 idi.ProjectObj.copyTo(ConnectionManager.Context.table("Project")).insert();
 
@@ -313,7 +313,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
             {
                 txtDBFile.Text = ofdDB.FileName;
 
-                DBImporter.LastProfessionDict.Clear();
+                DBImporter.LastRecordDict.Clear();
                 List<ImportDataItem> cpList = new List<ImportDataItem>();
                 #region 读取数据
                 //SQLite数据库工厂
@@ -334,9 +334,10 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
 
                         //查询专业类别
                         Professions professionObj = context.table("Professions").where("ProfessionID='" + projObj.ProfessionID + "'").select("*").getItem<Professions>(new Professions());
-                        professionObj.ProfessionNum = projObj.ProfessionSort + "";
-                        DBImporter.LastProfessionDict[projObj.ProjectName] = professionObj;
-
+                        DBImporter.LastRecordDict[projObj.ProjectName] = new LastRecordObject();
+                        DBImporter.LastRecordDict[projObj.ProjectName].ProfessionName = professionObj.ProfessionName;
+                        DBImporter.LastRecordDict[projObj.ProjectName].ProfessionSort = projObj.ProfessionSort;
+                        
                         ImportDataItem idi = new ImportDataItem();
                         idi.CatalogObj = catObj;
                         idi.ProjectObj = projObj;
