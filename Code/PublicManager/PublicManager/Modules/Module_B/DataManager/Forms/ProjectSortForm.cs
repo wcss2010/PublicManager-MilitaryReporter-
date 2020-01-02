@@ -285,17 +285,17 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                     {
                         proj.ProfessionID = currentProfession.Tag.ProfessionID;
                         proj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + proj.ProjectID + "'").update();
-                        updateCatalogs();
                     }
                 }
 
                 //专业类别名称
-                if (dgvCatalogs.Rows[e.RowIndex].Cells[5].Value != null)
+                if (dgvCatalogs.Rows[e.RowIndex].Cells[5].Value != null && (dgvCatalogs.Rows[e.RowIndex].Cells[5].Value.ToString().EndsWith("作战") || dgvCatalogs.Rows[e.RowIndex].Cells[5].Value.ToString().EndsWith("应用") || dgvCatalogs.Rows[e.RowIndex].Cells[5].Value.ToString().EndsWith("建设")))
                 {
                     proj.LastProfessionName = dgvCatalogs.Rows[e.RowIndex].Cells[5].Value.ToString().Trim();
                     proj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + proj.ProjectID + "'").update();
-                    updateCatalogs();
                 }
+
+                updateCatalogs();
             }
         }
     }
