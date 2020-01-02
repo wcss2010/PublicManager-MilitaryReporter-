@@ -395,6 +395,20 @@ namespace PublicManager.Modules.Module_A.DataExport
                         sheet.AddMergedRegion(regionbb);
                         #endregion
 
+                        //设置列宽
+                        sheet = workbook.GetSheetAt(0);
+                        for (int kkk = 0; kkk < dtSource.Rows.Count; kkk++)
+                        {
+                            //自动大小
+                            sheet.AutoSizeColumn(kkk);
+
+                            //对于"目标与内容"列特别处理
+                            if (sheet.GetRow(0).Cells[kkk].StringCellValue != null && sheet.GetRow(0).Cells[kkk].StringCellValue.Contains("目标与内容"))
+                            {
+                                sheet.SetColumnWidth(kkk, 70 * 256);
+                            }
+                        }
+
                         #region 输出文件
                         //输出到流
                         workbook.Write(memoryStream);
