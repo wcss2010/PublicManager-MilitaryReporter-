@@ -433,5 +433,17 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
             //刷新替换列表
             reloadReplaceList();
         }
+
+        private void txtFilteKeys_TextChanged(object sender, EventArgs e)
+        {
+            foreach (TreeNode tn in tlTestA.Nodes)
+            {
+                if (tn.Text != null && tn.Text.Contains(txtFilteKeys.Text))
+                {
+                    tlTestA.SelectedNode = tn;
+                    break;
+                }
+            }
+        }
     }
 }

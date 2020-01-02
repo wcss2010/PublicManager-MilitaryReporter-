@@ -61,6 +61,8 @@
             // 
             this.tlTestA.CheckBoxes = true;
             this.tlTestA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlTestA.FullRowSelect = true;
+            this.tlTestA.HideSelection = false;
             this.tlTestA.Location = new System.Drawing.Point(0, 0);
             this.tlTestA.Name = "tlTestA";
             this.tlTestA.Size = new System.Drawing.Size(295, 463);

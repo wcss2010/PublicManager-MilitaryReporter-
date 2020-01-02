@@ -30,6 +30,9 @@
         {
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.tlTestA = new System.Windows.Forms.TreeView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtFilteKeys = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.gcIgnoreList = new DevExpress.XtraEditors.GroupControl();
             this.lvErrorList = new System.Windows.Forms.ListView();
             this.chID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,6 +41,7 @@
             this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcIgnoreList)).BeginInit();
             this.gcIgnoreList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -50,6 +54,7 @@
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.tlTestA);
+            this.splitContainerControl1.Panel1.Controls.Add(this.panel1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.gcIgnoreList);
             this.splitContainerControl1.Panel2.Text = "Panel2";
@@ -62,12 +67,44 @@
             // 
             this.tlTestA.CheckBoxes = true;
             this.tlTestA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlTestA.FullRowSelect = true;
+            this.tlTestA.HideSelection = false;
             this.tlTestA.Location = new System.Drawing.Point(0, 0);
             this.tlTestA.Name = "tlTestA";
-            this.tlTestA.Size = new System.Drawing.Size(295, 463);
+            this.tlTestA.Size = new System.Drawing.Size(295, 441);
             this.tlTestA.TabIndex = 0;
             this.tlTestA.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.tlTestA_AfterCheck);
             this.tlTestA.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tlTestA_AfterSelect);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtFilteKeys);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 441);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(295, 22);
+            this.panel1.TabIndex = 1;
+            // 
+            // txtFilteKeys
+            // 
+            this.txtFilteKeys.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFilteKeys.Location = new System.Drawing.Point(48, 0);
+            this.txtFilteKeys.Name = "txtFilteKeys";
+            this.txtFilteKeys.Size = new System.Drawing.Size(247, 22);
+            this.txtFilteKeys.TabIndex = 1;
+            this.txtFilteKeys.TextChanged += new System.EventHandler(this.txtFilteKeys_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 22);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "关键字:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // gcIgnoreList
             // 
@@ -145,6 +182,8 @@
             this.Text = "数据包更新";
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcIgnoreList)).EndInit();
             this.gcIgnoreList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
@@ -164,5 +203,8 @@
         private System.Windows.Forms.ListView lvErrorList;
         private System.Windows.Forms.ColumnHeader chID;
         private System.Windows.Forms.CheckBox cbIsKeepProfessionConfig;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtFilteKeys;
     }
 }
