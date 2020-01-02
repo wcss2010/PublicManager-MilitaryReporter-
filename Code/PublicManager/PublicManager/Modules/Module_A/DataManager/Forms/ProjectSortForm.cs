@@ -183,7 +183,7 @@ namespace PublicManager.Modules.Module_A.DataManager.Forms
                 cells.Add(getProjectType(proj));
                 cells.Add(proj.ProjectName);
                 cells.Add(getProfessionObj(proj).Text);
-                cells.Add((proj.ProfessionSort));
+                cells.Add((proj.ProfessionSort + 1));
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
                 dgvCatalogs.Rows[rowIndex].Tag = proj;

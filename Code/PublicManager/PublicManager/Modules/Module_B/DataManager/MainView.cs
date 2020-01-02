@@ -98,7 +98,7 @@ namespace PublicManager.Modules.Module_B.DataManager
                 cells.Add(proj.StudyMoney);
                 cells.Add(proj.ProjectSort);
 
-                cells.Add(proj.LastProfessionName + "(" + (proj.ProfessionSort) + ")");
+                cells.Add(proj.LastProfessionName + "(" + (proj.ProfessionSort + 1) + ")");
 
                 cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");
                 cells.Add(proj.Memo);
