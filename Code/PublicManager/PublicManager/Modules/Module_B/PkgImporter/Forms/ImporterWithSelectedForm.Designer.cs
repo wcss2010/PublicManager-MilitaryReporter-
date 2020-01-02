@@ -34,8 +34,8 @@
             this.lvErrorList = new System.Windows.Forms.ListView();
             this.chID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             this.cbIsKeepProfessionConfig = new System.Windows.Forms.CheckBox();
+            this.btnOK = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcIgnoreList)).BeginInit();
@@ -108,16 +108,6 @@
             this.panelControl2.Size = new System.Drawing.Size(854, 38);
             this.panelControl2.TabIndex = 5;
             // 
-            // btnOK
-            // 
-            this.btnOK.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnOK.Location = new System.Drawing.Point(780, 2);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(72, 34);
-            this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "导入";
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
             // cbIsKeepProfessionConfig
             // 
             this.cbIsKeepProfessionConfig.AutoSize = true;
@@ -129,6 +119,16 @@
             this.cbIsKeepProfessionConfig.TabIndex = 1;
             this.cbIsKeepProfessionConfig.Text = "是否保留之前设置的专业类别信息(如果存在的话)";
             this.cbIsKeepProfessionConfig.UseVisualStyleBackColor = true;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnOK.Location = new System.Drawing.Point(780, 2);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(72, 34);
+            this.btnOK.TabIndex = 0;
+            this.btnOK.Text = "导入";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // ImporterWithSelectedForm
             // 
@@ -142,7 +142,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "导入";
+            this.Text = "数据包更新";
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcIgnoreList)).EndInit();

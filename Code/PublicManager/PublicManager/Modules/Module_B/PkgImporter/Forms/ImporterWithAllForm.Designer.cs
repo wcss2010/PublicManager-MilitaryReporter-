@@ -143,7 +143,7 @@
             // 
             this.ofdDB.Filter = "*.db|*.db";
             // 
-            // ImporterForm
+            // ImporterWithAllForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -152,11 +152,11 @@
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
-            this.Name = "ImporterForm";
+            this.Name = "ImporterWithAllForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "整体性导入";
+            this.Text = "责任单位数据导入";
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();

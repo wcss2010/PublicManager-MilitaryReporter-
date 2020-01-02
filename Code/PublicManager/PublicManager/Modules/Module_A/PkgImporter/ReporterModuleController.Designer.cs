@@ -33,14 +33,14 @@
             this.btnSetDestDir = new DevExpress.XtraBars.BarButtonItem();
             this.btnImportAll = new DevExpress.XtraBars.BarButtonItem();
             this.btnImportWithSelected = new DevExpress.XtraBars.BarButtonItem();
+            this.btnOpenMasterDir = new DevExpress.XtraBars.BarButtonItem();
+            this.btnOpenDecompressDir = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgDir = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpbLoad = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.fbdFolderSelect = new System.Windows.Forms.FolderBrowserDialog();
             this.sfdExport = new System.Windows.Forms.SaveFileDialog();
-            this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnOpenMasterDir = new DevExpress.XtraBars.BarButtonItem();
-            this.btnOpenDecompressDir = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,12 +94,28 @@
             this.btnImportWithSelected.Name = "btnImportWithSelected";
             this.btnImportWithSelected.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnImportWithSelected_ItemClick);
             // 
+            // btnOpenMasterDir
+            // 
+            this.btnOpenMasterDir.Caption = "打开主目录";
+            this.btnOpenMasterDir.Id = 7;
+            this.btnOpenMasterDir.LargeGlyph = global::PublicManager.Properties.Resources.folderB;
+            this.btnOpenMasterDir.Name = "btnOpenMasterDir";
+            this.btnOpenMasterDir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOpenMasterDir_ItemClick);
+            // 
+            // btnOpenDecompressDir
+            // 
+            this.btnOpenDecompressDir.Caption = "打开解压目录";
+            this.btnOpenDecompressDir.Id = 8;
+            this.btnOpenDecompressDir.LargeGlyph = global::PublicManager.Properties.Resources.folderB;
+            this.btnOpenDecompressDir.Name = "btnOpenDecompressDir";
+            this.btnOpenDecompressDir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOpenDecompressDir_ItemClick);
+            // 
             // rpMaster
             // 
             this.rpMaster.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.rpgDir,
-            this.rpbLoad,
-            this.rpgElse});
+            this.rpgElse,
+            this.rpbLoad});
             this.rpMaster.Name = "rpMaster";
             this.rpMaster.Text = "论证报告书";
             // 
@@ -117,32 +133,16 @@
             this.rpbLoad.Name = "rpbLoad";
             this.rpbLoad.Text = "导入";
             // 
-            // sfdExport
-            // 
-            this.sfdExport.Filter = "Excel文件(.xlsx)|*.xlsx";
-            // 
             // rpgElse
             // 
             this.rpgElse.ItemLinks.Add(this.btnOpenMasterDir);
             this.rpgElse.ItemLinks.Add(this.btnOpenDecompressDir);
             this.rpgElse.Name = "rpgElse";
-            this.rpgElse.Text = "其它";
+            this.rpgElse.Text = "打开";
             // 
-            // btnOpenMasterDir
+            // sfdExport
             // 
-            this.btnOpenMasterDir.Caption = "打开主目录";
-            this.btnOpenMasterDir.Id = 7;
-            this.btnOpenMasterDir.LargeGlyph = global::PublicManager.Properties.Resources.folderB;
-            this.btnOpenMasterDir.Name = "btnOpenMasterDir";
-            this.btnOpenMasterDir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOpenMasterDir_ItemClick);
-            // 
-            // btnOpenDecompressDir
-            // 
-            this.btnOpenDecompressDir.Caption = "打开解压目录";
-            this.btnOpenDecompressDir.Id = 8;
-            this.btnOpenDecompressDir.LargeGlyph = global::PublicManager.Properties.Resources.folderB;
-            this.btnOpenDecompressDir.Name = "btnOpenDecompressDir";
-            this.btnOpenDecompressDir.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnOpenDecompressDir_ItemClick);
+            this.sfdExport.Filter = "Excel文件(.xlsx)|*.xlsx";
             // 
             // ReporterModuleController
             // 
