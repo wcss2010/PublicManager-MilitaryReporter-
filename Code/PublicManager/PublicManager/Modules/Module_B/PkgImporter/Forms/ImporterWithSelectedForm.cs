@@ -86,6 +86,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            DBImporter.ProfessionRecordDict.Clear();
+
             //需要替换的申报包列表
             List<string> importList = new List<string>();
             List<string> importFileNameList = new List<string>();
@@ -159,13 +161,10 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                                 Project lastProject = ConnectionManager.Context.table("Project").where("CatalogID in (select CatalogID from Catalog where CatalogNumber = '" + zipName + "')").select("*").getItem<Project>(new Project());
                                 if (!string.IsNullOrEmpty(lastProject.ProjectName))
                                 {
-                                    DBImporter.CurrentProfessionRecordDict[lastProject.ProjectName] = new ProfessionRecordObject();
-                                    DBImporter.CurrentProfessionRecordDict[lastProject.ProjectName].ProfessionNameOrID = lastProject.ProfessionID;
-                                    DBImporter.CurrentProfessionRecordDict[lastProject.ProjectName].ProfessionSort = lastProject.ProfessionSort;
-
-                                    DBImporter.LastProfessionRecordDict[lastProject.ProjectName] = new ProfessionRecordObject();
-                                    DBImporter.LastProfessionRecordDict[lastProject.ProjectName].ProfessionNameOrID = lastProject.LastProfessionName;
-                                    DBImporter.LastProfessionRecordDict[lastProject.ProjectName].ProfessionSort = lastProject.LastProfessionSort;
+                                    DBImporter.ProfessionRecordDict[lastProject.ProjectName] = new ProfessionRecordObject();
+                                    DBImporter.ProfessionRecordDict[lastProject.ProjectName].ProfessionType = ConnectionManager.Context.table("Professions").where("ProfessionID='" + lastProject.ProfessionID + "'").select("ProfessionCategory").getValue<string>(string.Empty);
+                                    DBImporter.ProfessionRecordDict[lastProject.ProjectName].ProfessionName = lastProject.LastProfessionName;
+                                    DBImporter.ProfessionRecordDict[lastProject.ProjectName].ProfessionSort = lastProject.ProfessionSort;
                                 }
                             }
 

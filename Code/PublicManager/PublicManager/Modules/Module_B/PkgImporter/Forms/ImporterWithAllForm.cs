@@ -142,8 +142,9 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
                                 BaseModuleMainForm.writeLog("开始导入__" + zipName);
 
                                 ImportDataItem idi = (ImportDataItem)tnnn.Tag;
-                                idi.ProjectObj.LastProfessionName = DBImporter.LastProfessionRecordDict[idi.CatalogObj.CatalogName].ProfessionNameOrID;
-                                idi.ProjectObj.LastProfessionSort = DBImporter.LastProfessionRecordDict[idi.CatalogObj.CatalogName].ProfessionSort;
+                                idi.ProjectObj.ProfessionID = ConnectionManager.Context.table("Professions").where("ProfessionCategory='" + DBImporter.ProfessionRecordDict[idi.CatalogObj.CatalogName].ProfessionType + "'").select("ProfessionID").getValue<string>(string.Empty);
+                                idi.ProjectObj.LastProfessionName = DBImporter.ProfessionRecordDict[idi.CatalogObj.CatalogName].ProfessionName;
+                                idi.ProjectObj.ProfessionSort = DBImporter.ProfessionRecordDict[idi.CatalogObj.CatalogName].ProfessionSort;
                                 idi.CatalogObj.copyTo(ConnectionManager.Context.table("Catalog")).insert();
                                 idi.ProjectObj.copyTo(ConnectionManager.Context.table("Project")).insert();
 
@@ -313,7 +314,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
             {
                 txtDBFile.Text = ofdDB.FileName;
 
-                DBImporter.LastProfessionRecordDict.Clear();
+                DBImporter.ProfessionRecordDict.Clear();
                 List<ImportDataItem> cpList = new List<ImportDataItem>();
                 #region 读取数据
                 //SQLite数据库工厂
@@ -334,9 +335,10 @@ namespace PublicManager.Modules.Module_B.PkgImporter.Forms
 
                         //查询专业类别
                         Professions professionObj = context.table("Professions").where("ProfessionID='" + projObj.ProfessionID + "'").select("*").getItem<Professions>(new Professions());
-                        DBImporter.LastProfessionRecordDict[projObj.ProjectName] = new ProfessionRecordObject();
-                        DBImporter.LastProfessionRecordDict[projObj.ProjectName].ProfessionNameOrID = professionObj.ProfessionName;
-                        DBImporter.LastProfessionRecordDict[projObj.ProjectName].ProfessionSort = projObj.ProfessionSort;
+                        DBImporter.ProfessionRecordDict[projObj.ProjectName] = new ProfessionRecordObject();
+                        DBImporter.ProfessionRecordDict[projObj.ProjectName].ProfessionType = professionObj.ProfessionCategory;
+                        DBImporter.ProfessionRecordDict[projObj.ProjectName].ProfessionName = professionObj.ProfessionName;
+                        DBImporter.ProfessionRecordDict[projObj.ProjectName].ProfessionSort = projObj.ProfessionSort;
                         
                         ImportDataItem idi = new ImportDataItem();
                         idi.CatalogObj = catObj;
