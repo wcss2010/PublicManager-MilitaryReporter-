@@ -11,7 +11,7 @@ namespace PublicManager.Modules.Module_B
         public ModuleMainForm()
             : base()
         {
-            Text = "军委机构汇总系统";
+            Text = "军委科技委汇总系统";
         }
 
         private DevExpress.XtraTreeList.TreeList treeListObj;
