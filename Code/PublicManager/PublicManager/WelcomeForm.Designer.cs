@@ -52,7 +52,8 @@
             // 
             // btnToA
             // 
-            this.btnToA.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnToA.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnToA.ForeColor = System.Drawing.Color.White;
             this.btnToA.Location = new System.Drawing.Point(75, 337);
             this.btnToA.Name = "btnToA";
             this.btnToA.Size = new System.Drawing.Size(331, 84);
@@ -63,7 +64,8 @@
             // 
             // btnToB
             // 
-            this.btnToB.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnToB.Font = new System.Drawing.Font("宋体", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnToB.ForeColor = System.Drawing.Color.White;
             this.btnToB.Location = new System.Drawing.Point(412, 337);
             this.btnToB.Name = "btnToB";
             this.btnToB.Size = new System.Drawing.Size(331, 84);
@@ -76,6 +78,7 @@
             // 
             this.groupBox1.Controls.Add(this.lblUnitA);
             this.groupBox1.Controls.Add(this.btnSetUnitA);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(75, 429);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(331, 30);
@@ -107,6 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(816, 467);
             this.Controls.Add(this.btnToB);
             this.Controls.Add(this.groupBox1);
