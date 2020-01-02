@@ -21,6 +21,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter
         public ReporterModuleController()
         {
             InitializeComponent();
+
+            PublicManager.Modules.Module_B.DictManager.MainView.initDicts();
         }
 
         public override DevExpress.XtraBars.Ribbon.RibbonPage[] getTopBarPages()
