@@ -9,22 +9,13 @@ namespace PublicManager.Modules.Module_B.PkgImporter
 {
     public class DBImporter : BaseDBImporter
     {
-        private static Dictionary<string, ProfessionRecordObject> lastProfessionRecordDict = new Dictionary<string, ProfessionRecordObject>();
+        private static Dictionary<string, ProfessionRecordObject> professionRecordDicts = new Dictionary<string, ProfessionRecordObject>();
         /// <summary>
         /// 其它地区里设置的专业类别字典(Key=项目名称,Value=专业类别对象)
         /// </summary>
-        public static Dictionary<string, ProfessionRecordObject> LastProfessionRecordDict
+        public static Dictionary<string, ProfessionRecordObject> ProfessionRecordDict
         {
-            get { return DBImporter.lastProfessionRecordDict; }
-        }
-
-        private static Dictionary<string, ProfessionRecordObject> currentProfessionRecordDict = new Dictionary<string, ProfessionRecordObject>();
-        /// <summary>
-        /// 当前需要保持的专业类别配置(Key=项目名称,Value=专业类别对象)
-        /// </summary>
-        public static Dictionary<string, ProfessionRecordObject> CurrentProfessionRecordDict
-        {
-            get { return DBImporter.currentProfessionRecordDict; }
+            get { return DBImporter.professionRecordDicts; }
         }
 
         /// <summary>
@@ -32,28 +23,11 @@ namespace PublicManager.Modules.Module_B.PkgImporter
         /// </summary>
         /// <param name="projectName"></param>
         /// <returns></returns>
-        public ProfessionRecordObject getLastProfessionRecord(string projectName)
+        public ProfessionRecordObject getProfessionRecord(string projectName)
         {
-            if (lastProfessionRecordDict.ContainsKey(projectName))
+            if (professionRecordDicts.ContainsKey(projectName))
             {
-                return lastProfessionRecordDict[projectName];
-            }
-            else
-            {
-                return new ProfessionRecordObject();
-            }
-        }
-
-        /// <summary>
-        /// 获得当前的专业类别
-        /// </summary>
-        /// <param name="projectName"></param>
-        /// <returns></returns>
-        public ProfessionRecordObject getCurrentProfessionRecord(string projectName)
-        {
-            if (currentProfessionRecordDict.ContainsKey(projectName))
-            {
-                return currentProfessionRecordDict[projectName];
+                return professionRecordDicts[projectName];
             }
             else
             {
@@ -103,7 +77,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                 proj.WillResult = diProject.get("YuQiChengGuo") != null ? diProject.get("YuQiChengGuo").ToString() : string.Empty;
                 proj.StudyTime = diProject.get("YanJiuZhouQi") != null ? decimal.Parse(diProject.get("YanJiuZhouQi").ToString()) : 0;
                 proj.StudyMoney = diProject.get("JingFeiYuSuan") != null ? decimal.Parse(diProject.get("JingFeiYuSuan").ToString()) : 0;
-                proj.ProjectSort = diProject.get("XiangMuLeiBie") != null ? diProject.get("XiangMuLeiBie").ToString() : string.Empty;                
+                proj.ProjectSort = diProject.get("XiangMuLeiBie") != null ? diProject.get("XiangMuLeiBie").ToString() : string.Empty;
                 proj.DutyUnit = diProject.get("ZeRenDanWei") != null ? diProject.get("ZeRenDanWei").ToString() : string.Empty;
                 proj.NextUnit = diProject.get("XiaJiDanWei") != null ? diProject.get("XiaJiDanWei").ToString() : string.Empty;
                 proj.Memo = diProject.get("BeiZhu") != null ? diProject.get("BeiZhu").ToString() : string.Empty;
@@ -122,12 +96,9 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                 proj.ProfessionSort = 0;
 
                 //专业类别配置
-                proj.ProfessionID = getCurrentProfessionRecord(proj.ProjectName).ProfessionNameOrID;
-                proj.ProfessionSort = getCurrentProfessionRecord(proj.ProjectName).ProfessionSort;
-
-                //其它地区设置的专业类别
-                proj.LastProfessionName = getLastProfessionRecord(proj.ProjectName).ProfessionNameOrID;
-                proj.LastProfessionSort = getLastProfessionRecord(proj.ProjectName).ProfessionSort;
+                proj.ProfessionID = ConnectionManager.Context.table("Professions").where("ProfessionCategory='" + getProfessionRecord(proj.ProjectName).ProfessionType + "'").select("ProfessionID").getValue<string>(string.Empty);
+                proj.LastProfessionName = getProfessionRecord(proj.ProjectName).ProfessionName;
+                proj.ProfessionSort = getProfessionRecord(proj.ProjectName).ProfessionSort;
 
                 //过滤文本--处理备注
                 proj.Memo = proj.Memo != null && proj.Memo.Contains(MainConfig.rowFlag) ? proj.Memo.Replace(MainConfig.rowFlag, ":") : proj.Memo;
@@ -178,7 +149,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter
 
                 //过滤文本--处理研究目标
                 proj.StudyDest = proj.StudyDest;
-                
+
                 proj.copyTo(ConnectionManager.Context.table("Project")).insert();
                 #endregion
 
@@ -203,7 +174,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                     obj.WorkUnit = diPrn.get("GongZuoDanWei") != null ? diPrn.get("GongZuoDanWei").ToString() : string.Empty;
                     obj.Telephone = diPrn.get("DianHua") != null ? diPrn.get("DianHua").ToString() : string.Empty;
                     obj.Mobilephone = diPrn.get("ShouJI") != null ? diPrn.get("ShouJI").ToString() : string.Empty;
-                    
+
                     //插入数据
                     obj.copyTo(ConnectionManager.Context.table("Person")).insert();
                 }
@@ -265,16 +236,22 @@ namespace PublicManager.Modules.Module_B.PkgImporter
     {
         public ProfessionRecordObject() { }
 
-        public ProfessionRecordObject(string pfNameOrID, decimal pfSort)
+        public ProfessionRecordObject(string pfType, string pfName, decimal pfSort)
         {
-            ProfessionNameOrID = pfNameOrID;
+            ProfessionType = pfType;
+            ProfessionName = pfName;
             ProfessionSort = pfSort;
         }
 
         /// <summary>
+        /// 专业类型
+        /// </summary>
+        public string ProfessionType { get; set; }
+
+        /// <summary>
         /// 专业类别名称
         /// </summary>
-        public string ProfessionNameOrID { get; set; }
+        public string ProfessionName { get; set; }
 
         /// <summary>
         /// 专业类别序号
