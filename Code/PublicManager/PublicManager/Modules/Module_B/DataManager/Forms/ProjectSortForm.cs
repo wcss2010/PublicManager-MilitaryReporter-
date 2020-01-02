@@ -147,7 +147,7 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                 cells.Add(proj.ProjectName);
                 cells.Add(getProfessionObj(proj).Text);
                 cells.Add((proj.ProfessionSort));
-                cells.Add(proj.LastProfessionName + "(" + proj.LastProfessionSort + ")");
+                cells.Add(proj.LastProfessionName);
                 cells.Add(proj.DutyUnit);
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
@@ -276,6 +276,7 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                 //获得要删除的项目ID
                 Project proj = ((Project)dgvCatalogs.Rows[e.RowIndex].Tag);
 
+                //专业类别
                 ComboBoxObject<Professions> currentProfession = null;
                 if (dgvCatalogs.Rows[e.RowIndex].Cells[3].Value != null)
                 {
@@ -286,6 +287,14 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                         proj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + proj.ProjectID + "'").update();
                         updateCatalogs();
                     }
+                }
+
+                //专业类别名称
+                if (dgvCatalogs.Rows[e.RowIndex].Cells[5].Value != null)
+                {
+                    proj.LastProfessionName = dgvCatalogs.Rows[e.RowIndex].Cells[5].Value.ToString().Trim();
+                    proj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + proj.ProjectID + "'").update();
+                    updateCatalogs();
                 }
             }
         }

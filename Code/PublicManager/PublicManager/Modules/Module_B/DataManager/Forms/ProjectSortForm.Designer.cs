@@ -168,10 +168,9 @@
             // 
             // Column7
             // 
-            this.Column7.HeaderText = "申报专业类别(类别内序号)";
+            this.Column7.HeaderText = "专业类别名称";
             this.Column7.MinimumWidth = 200;
             this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
             this.Column7.Width = 200;
             // 
             // Column6

@@ -98,10 +98,7 @@ namespace PublicManager.Modules.Module_B.DataManager
                 cells.Add(proj.StudyMoney);
                 cells.Add(proj.ProjectSort);
 
-                string professionNameStr = ConnectionManager.Context.table("Professions").where("ProfessionID='" + proj.ProfessionID + "'").select("ProfessionName").getValue<string>(string.Empty);
-                cells.Add(professionNameStr + "(" + (proj.ProfessionSort) + ")");
-
-                cells.Add(proj.LastProfessionName + "(" + (proj.LastProfessionSort) + ")");
+                cells.Add(proj.LastProfessionName + "(" + (proj.ProfessionSort) + ")");
 
                 cells.Add(proj.DutyUnit + "(" + proj.NextUnit + ")");
                 cells.Add(proj.Memo);
