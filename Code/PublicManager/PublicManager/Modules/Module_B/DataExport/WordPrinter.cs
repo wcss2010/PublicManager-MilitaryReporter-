@@ -43,6 +43,8 @@ namespace PublicManager.Modules.Module_B.DataExport
                 countDataObj.UnitName = "小   计";
                 countDataObj.ProjectCount = 0;
                 countDataObj.TotalMoney = 0;
+                countDataObj.PSortA = 0;
+                countDataObj.PSortB = 0;
 
                 #region 准备数据
                 Table curTable = (Table)ncTables[ncTables.Count - 1];
@@ -65,6 +67,18 @@ namespace PublicManager.Modules.Module_B.DataExport
                             foreach (Project proj in projList)
                             {
                                 ucd.TotalMoney += proj.StudyMoney;
+
+                                if (proj.ProjectSort != null)
+                                {
+                                    if (proj.ProjectSort.Contains("重大"))
+                                    {
+                                        ucd.PSortA += 1;
+                                    }
+                                    else
+                                    {
+                                        ucd.PSortB += 1;
+                                    }
+                                }
                             }
 
                             countList.Add(ucd);
@@ -97,16 +111,22 @@ namespace PublicManager.Modules.Module_B.DataExport
                                 {
                                     //输出合计
                                     wd.fillCell(true, r.Cells[1], wd.newParagraph(curTable.Document, ucd.ProjectCount + ""));
+                                    wd.fillCell(true, r.Cells[2], wd.newParagraph(curTable.Document, ucd.PSortA + ""));
+                                    wd.fillCell(true, r.Cells[3], wd.newParagraph(curTable.Document, ucd.PSortB + ""));
                                     wd.fillCell(true, r.Cells[4], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
                                     wd.fillCell(true, r.Cells[9], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
                                 }
                                 else
                                 {
                                     countDataObj.ProjectCount += ucd.ProjectCount;
+                                    countDataObj.PSortA += ucd.PSortA;
+                                    countDataObj.PSortB += ucd.PSortB;
                                     countDataObj.TotalMoney += ucd.TotalMoney;
 
                                     //输出一般属性
                                     wd.fillCell(true, r.Cells[2], wd.newParagraph(curTable.Document, ucd.ProjectCount + ""));
+                                    wd.fillCell(true, r.Cells[3], wd.newParagraph(curTable.Document, ucd.PSortA + ""));
+                                    wd.fillCell(true, r.Cells[4], wd.newParagraph(curTable.Document, ucd.PSortB + ""));
                                     wd.fillCell(true, r.Cells[5], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
                                     wd.fillCell(true, r.Cells[10], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
                                 }
@@ -158,8 +178,29 @@ namespace PublicManager.Modules.Module_B.DataExport
 
     public class UnitCountData
     {
+        /// <summary>
+        /// 单位名称
+        /// </summary>
         public string UnitName { get; set; }
+
+        /// <summary>
+        /// 项目数量
+        /// </summary>
         public int ProjectCount { get; set; }
+
+        /// <summary>
+        /// "重大"项目数量
+        /// </summary>
+        public int PSortA { get; set; }
+
+        /// <summary>
+        /// "重点"项目数量
+        /// </summary>
+        public int PSortB { get; set; }
+
+        /// <summary>
+        /// 总金额
+        /// </summary>
         public decimal TotalMoney { get; set; }
     }
 }
