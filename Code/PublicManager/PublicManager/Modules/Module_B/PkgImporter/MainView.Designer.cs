@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCatalogs = new PublicManager.Modules.DataGridViewEx();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,20 +45,29 @@
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.groupBox1 = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.cbxKeys = new System.Windows.Forms.ComboBox();
+            this.groupBox2 = new System.Windows.Forms.Panel();
+            this.rbProjectType = new System.Windows.Forms.RadioButton();
+            this.rbDutyUnit = new System.Windows.Forms.RadioButton();
+            this.rbProjectName = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvCatalogs
             // 
             this.dgvCatalogs.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCatalogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCatalogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvCatalogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCatalogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -75,16 +84,16 @@
             this.Column9,
             this.Column10,
             this.Column11});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCatalogs.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCatalogs.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvCatalogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCatalogs.Location = new System.Drawing.Point(0, 0);
+            this.dgvCatalogs.Location = new System.Drawing.Point(0, 23);
             this.dgvCatalogs.MultiSelect = false;
             this.dgvCatalogs.Name = "dgvCatalogs";
             this.dgvCatalogs.ReadOnly = true;
@@ -92,7 +101,7 @@
             this.dgvCatalogs.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 10.5F);
             this.dgvCatalogs.RowTemplate.Height = 23;
             this.dgvCatalogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCatalogs.Size = new System.Drawing.Size(1276, 684);
+            this.dgvCatalogs.Size = new System.Drawing.Size(1276, 661);
             this.dgvCatalogs.TabIndex = 1;
             this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
             // 
@@ -220,14 +229,96 @@
             this.Column11.UseColumnTextForButtonValue = true;
             this.Column11.Width = 60;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnSearch);
+            this.groupBox1.Controls.Add(this.cbxKeys);
+            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1276, 23);
+            this.groupBox1.TabIndex = 2;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSearch.Location = new System.Drawing.Point(695, 0);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 9;
+            this.btnSearch.Text = "查询";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // cbxKeys
+            // 
+            this.cbxKeys.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cbxKeys.FormattingEnabled = true;
+            this.cbxKeys.Location = new System.Drawing.Point(351, 0);
+            this.cbxKeys.Name = "cbxKeys";
+            this.cbxKeys.Size = new System.Drawing.Size(344, 22);
+            this.cbxKeys.TabIndex = 8;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rbProjectType);
+            this.groupBox2.Controls.Add(this.rbDutyUnit);
+            this.groupBox2.Controls.Add(this.rbProjectName);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(351, 23);
+            this.groupBox2.TabIndex = 7;
+            // 
+            // rbProjectType
+            // 
+            this.rbProjectType.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rbProjectType.Location = new System.Drawing.Point(231, 0);
+            this.rbProjectType.Name = "rbProjectType";
+            this.rbProjectType.Size = new System.Drawing.Size(113, 23);
+            this.rbProjectType.TabIndex = 1;
+            this.rbProjectType.TabStop = true;
+            this.rbProjectType.Text = "按项目类型查询";
+            this.rbProjectType.UseVisualStyleBackColor = true;
+            this.rbProjectType.CheckedChanged += new System.EventHandler(this.rbProjectType_CheckedChanged);
+            // 
+            // rbDutyUnit
+            // 
+            this.rbDutyUnit.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rbDutyUnit.Location = new System.Drawing.Point(116, 0);
+            this.rbDutyUnit.Name = "rbDutyUnit";
+            this.rbDutyUnit.Size = new System.Drawing.Size(115, 23);
+            this.rbDutyUnit.TabIndex = 3;
+            this.rbDutyUnit.TabStop = true;
+            this.rbDutyUnit.Text = "按责任单位查询";
+            this.rbDutyUnit.UseVisualStyleBackColor = true;
+            this.rbDutyUnit.CheckedChanged += new System.EventHandler(this.rbProjectType_CheckedChanged);
+            // 
+            // rbProjectName
+            // 
+            this.rbProjectName.Checked = true;
+            this.rbProjectName.Dock = System.Windows.Forms.DockStyle.Left;
+            this.rbProjectName.Location = new System.Drawing.Point(0, 0);
+            this.rbProjectName.Name = "rbProjectName";
+            this.rbProjectName.Size = new System.Drawing.Size(116, 23);
+            this.rbProjectName.TabIndex = 2;
+            this.rbProjectName.TabStop = true;
+            this.rbProjectName.Text = "按项目名称查询";
+            this.rbProjectName.UseVisualStyleBackColor = true;
+            this.rbProjectName.CheckedChanged += new System.EventHandler(this.rbProjectType_CheckedChanged);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgvCatalogs);
+            this.Controls.Add(this.groupBox1);
             this.Name = "MainView";
             this.Size = new System.Drawing.Size(1276, 684);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -249,6 +340,13 @@
         private System.Windows.Forms.DataGridViewLinkColumn Column9;
         private System.Windows.Forms.DataGridViewLinkColumn Column10;
         private System.Windows.Forms.DataGridViewButtonColumn Column11;
+        private System.Windows.Forms.Panel groupBox1;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ComboBox cbxKeys;
+        private System.Windows.Forms.Panel groupBox2;
+        private System.Windows.Forms.RadioButton rbProjectType;
+        private System.Windows.Forms.RadioButton rbDutyUnit;
+        private System.Windows.Forms.RadioButton rbProjectName;
 
 
     }

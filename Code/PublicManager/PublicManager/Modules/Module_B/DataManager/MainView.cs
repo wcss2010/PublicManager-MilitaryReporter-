@@ -301,5 +301,130 @@ namespace PublicManager.Modules.Module_B.DataManager
                 updateCatalogs();
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbProjectType_CheckedChanged(object sender, EventArgs e)
+        {
+            cbxKeys.Items.Clear();
+            cbxKeys.Text = string.Empty;
+
+            RadioButton radioButton = (RadioButton)sender;
+            switch (radioButton.Text.Replace("按", string.Empty).Replace("查询", string.Empty))
+            {
+                case "项目名称":
+                    cbxKeys.Text = "";
+                    break;
+                case "责任单位":
+                    #region 加载责任单位选项
+                    if (MainConfig.Config.ObjectDict.ContainsKey("责任单位"))
+                    {
+                        try
+                        {
+                            cbxKeys.Items.Clear();
+                            Newtonsoft.Json.Linq.JArray teams = (Newtonsoft.Json.Linq.JArray)MainConfig.Config.ObjectDict["责任单位"];
+                            foreach (string s in teams)
+                            {
+                                cbxKeys.Items.Add(s);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Console.WriteLine(ex.ToString());
+                        }
+                    }
+                    #endregion
+
+                    if (cbxKeys.Items.Count >= 1)
+                    {
+                        cbxKeys.SelectedIndex = 0;
+                    }
+                    break;
+                case "项目类型":
+                    #region 加载项目类别选项
+                    if (MainConfig.Config.ObjectDict.ContainsKey("项目类别"))
+                    {
+                        try
+                        {
+                            cbxKeys.Items.Clear();
+                            Newtonsoft.Json.Linq.JArray teams = (Newtonsoft.Json.Linq.JArray)MainConfig.Config.ObjectDict["项目类别"];
+                            foreach (string sss in teams)
+                            {
+                                string[] ttt = sss.Split(new string[] { MainConfig.rowFlag }, StringSplitOptions.None);
+                                if (ttt != null && ttt.Length >= 4)
+                                {
+                                    ProjectSortObject pso = new ProjectSortObject();
+                                    pso.Text = ttt[0];
+
+                                    string[] vvv = ttt[1].Replace("[", string.Empty).Replace("]", string.Empty).Split(new string[] { "," }, StringSplitOptions.None);
+                                    if (vvv != null && vvv.Length >= 2)
+                                    {
+                                        pso.InfoMin = int.Parse(vvv[0]);
+                                        pso.InfoMax = int.Parse(vvv[1]);
+                                    }
+
+                                    vvv = ttt[2].Replace("[", string.Empty).Replace("]", string.Empty).Split(new string[] { "," }, StringSplitOptions.None);
+                                    if (vvv != null && vvv.Length >= 2)
+                                    {
+                                        pso.TableMin = int.Parse(vvv[0]);
+                                        pso.TableMax = int.Parse(vvv[1]);
+                                    }
+
+                                    pso.Money = decimal.Parse(ttt[3]);
+
+                                    cbxKeys.Items.Add(pso);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Console.WriteLine(ex.ToString());
+                        }
+                    }
+                    #endregion
+
+                    if (cbxKeys.Items.Count >= 1)
+                    {
+                        cbxKeys.SelectedIndex = 0;
+                    }
+                    break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 项目类别
+    /// </summary>
+    public class ProjectSortObject
+    {
+        public ProjectSortObject()
+        {
+            Text = string.Empty;
+            InfoMin = 80;
+            InfoMax = 150;
+            TableMin = 5;
+            TableMax = 10;
+            Money = 100;
+        }
+
+        public string Text { get; set; }
+
+        public int InfoMin { get; set; }
+
+        public int InfoMax { get; set; }
+
+        public int TableMin { get; set; }
+
+        public int TableMax { get; set; }
+
+        public decimal Money { get; set; }
+
+        public override string ToString()
+        {
+            return Text;
+        }
     }
 }
