@@ -41,8 +41,9 @@ namespace PublicManager.Modules.Module_B.DataExport
                 //合计
                 UnitCountData countDataObj = new UnitCountData();
                 countDataObj.UnitName = "小   计";
-                countDataObj.ProjectCount = 0;
-                countDataObj.TotalMoney = 0;
+                countDataObj.ABCount = 0;
+                countDataObj.ABMoney = 0;
+                countDataObj.AllMoney = 0;
                 countDataObj.PSortA = 0;
                 countDataObj.PSortB = 0;
 
@@ -59,14 +60,14 @@ namespace PublicManager.Modules.Module_B.DataExport
                         {
                             UnitCountData ucd = new UnitCountData();
                             ucd.UnitName = s;
-                            ucd.TotalMoney = 0;
+                            ucd.AllMoney = 0;
+                            ucd.ABCount = 0;
 
                             StringBuilder psBuilder = new StringBuilder();
                             int psIndex = 0;
 
                             List<Project> projList = ConnectionManager.Context.table("Project").where("DutyUnit='" + s + "'").select("*").getList<Project>(new Project());
-                            ucd.ProjectCount = projList.Count;
-                            
+                                                        
                             foreach (Project proj in projList)
                             {
                                 if (proj.IsPrivateProject == "true")
@@ -75,17 +76,23 @@ namespace PublicManager.Modules.Module_B.DataExport
                                     psBuilder.Append(psIndex).Append(". ").Append(proj.ProjectName).Append(",").Append(proj.StudyMoney).AppendLine();
                                 }
 
-                                ucd.TotalMoney += proj.StudyMoney;
+                                ucd.AllMoney += proj.StudyMoney;
 
                                 if (proj.ProjectSort != null)
                                 {
                                     if (proj.ProjectSort.Contains("重大"))
                                     {
-                                        ucd.PSortA += 1;
+                                        ucd.PSortA++;
+                                        ucd.ABCount++;
+
+                                        ucd.ABMoney += proj.StudyMoney;
                                     }
                                     else if (proj.ProjectSort.Contains("重点"))
                                     {
-                                        ucd.PSortB += 1;
+                                        ucd.PSortB++;
+                                        ucd.ABCount++;
+
+                                        ucd.ABMoney += proj.StudyMoney;
                                     }
                                 }
                             }
@@ -121,7 +128,7 @@ namespace PublicManager.Modules.Module_B.DataExport
                                 if (sss.Contains(countDataObj.UnitName))
                                 {
                                     //输出合计
-                                    wd.fillCell(true, r.Cells[1], wd.newParagraph(curTable.Document, ucd.ProjectCount + ""));
+                                    wd.fillCell(true, r.Cells[1], wd.newParagraph(curTable.Document, ucd.ABCount + ""));
                                     wd.setFontInCell(r.Cells[1], "宋体", 9);
 
                                     wd.fillCell(true, r.Cells[2], wd.newParagraph(curTable.Document, ucd.PSortA + ""));
@@ -130,21 +137,22 @@ namespace PublicManager.Modules.Module_B.DataExport
                                     wd.fillCell(true, r.Cells[3], wd.newParagraph(curTable.Document, ucd.PSortB + ""));
                                     wd.setFontInCell(r.Cells[3], "宋体", 9);
 
-                                    wd.fillCell(true, r.Cells[4], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
+                                    wd.fillCell(true, r.Cells[4], wd.newParagraph(curTable.Document, ucd.ABMoney + ""));
                                     wd.setFontInCell(r.Cells[4], "宋体", 9);
 
-                                    wd.fillCell(true, r.Cells[9], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
+                                    wd.fillCell(true, r.Cells[9], wd.newParagraph(curTable.Document, ucd.AllMoney + ""));
                                     wd.setFontInCell(r.Cells[9], "宋体", 9);
                                 }
                                 else
                                 {
-                                    countDataObj.ProjectCount += ucd.ProjectCount;
+                                    countDataObj.ABCount += ucd.ABCount;
                                     countDataObj.PSortA += ucd.PSortA;
                                     countDataObj.PSortB += ucd.PSortB;
-                                    countDataObj.TotalMoney += ucd.TotalMoney;
+                                    countDataObj.ABMoney += ucd.ABMoney;
+                                    countDataObj.AllMoney += ucd.AllMoney;
 
                                     //输出一般属性
-                                    wd.fillCell(true, r.Cells[2], wd.newParagraph(curTable.Document, ucd.ProjectCount + ""));
+                                    wd.fillCell(true, r.Cells[2], wd.newParagraph(curTable.Document, ucd.ABCount + ""));
                                     wd.setFontInCell(r.Cells[2], "宋体", 9);
 
                                     wd.fillCell(true, r.Cells[3], wd.newParagraph(curTable.Document, ucd.PSortA + ""));
@@ -153,7 +161,7 @@ namespace PublicManager.Modules.Module_B.DataExport
                                     wd.fillCell(true, r.Cells[4], wd.newParagraph(curTable.Document, ucd.PSortB + ""));
                                     wd.setFontInCell(r.Cells[4], "宋体", 9);
 
-                                    wd.fillCell(true, r.Cells[5], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
+                                    wd.fillCell(true, r.Cells[5], wd.newParagraph(curTable.Document, ucd.ABMoney + ""));
                                     wd.setFontInCell(r.Cells[5], "宋体", 9);
 
                                     r.Cells[7].CellFormat.FitText = true;
@@ -173,7 +181,7 @@ namespace PublicManager.Modules.Module_B.DataExport
                                     r.Cells[7].CellFormat.WrapText = true;
                                     r.RowFormat.Height = r.RowFormat.Height * r.Cells[7].ChildNodes.Count;
 
-                                    wd.fillCell(true, r.Cells[10], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
+                                    wd.fillCell(true, r.Cells[10], wd.newParagraph(curTable.Document, ucd.AllMoney + ""));
                                     wd.setFontInCell(r.Cells[10], "宋体", 9);
                                 }
                             }
@@ -231,9 +239,9 @@ namespace PublicManager.Modules.Module_B.DataExport
         public string UnitName { get; set; }
 
         /// <summary>
-        /// 项目数量
+        /// 小计
         /// </summary>
-        public int ProjectCount { get; set; }
+        public int ABCount { get; set; }
 
         /// <summary>
         /// "重大"项目数量
@@ -246,9 +254,14 @@ namespace PublicManager.Modules.Module_B.DataExport
         public int PSortB { get; set; }
 
         /// <summary>
-        /// 总金额
+        /// 重大和重点项目经费
         /// </summary>
-        public decimal TotalMoney { get; set; }
+        public decimal ABMoney { get; set; }
+
+        /// <summary>
+        /// 安排总经费
+        /// </summary>
+        public decimal AllMoney { get; set; }
 
         /// <summary>
         /// 专项项目详细
