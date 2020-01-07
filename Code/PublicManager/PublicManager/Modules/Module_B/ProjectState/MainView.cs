@@ -13,7 +13,7 @@ using PublicManager.DB.Entitys;
 using System.Diagnostics;
 using System.IO;
 
-namespace PublicManager.Modules.Module_B.ProjectManager
+namespace PublicManager.Modules.Module_B.ProjectState
 {
     public partial class MainView : XtraUserControl
     {
@@ -65,11 +65,18 @@ namespace PublicManager.Modules.Module_B.ProjectManager
                 importTimes = ConnectionManager.Context.table("Catalog").where("CatalogID='" + proj.CatalogID + "'").select("ImportTime").getValue<DateTime>(DateTime.Now).ToString("yyyy年MM月dd日 HH:mm:ss");
                 cells.Add(importTimes);
 
+                cells.Add(getPwdString(proj));
+
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
                 dgvCatalogs.Rows[rowIndex].Tag = proj;
             }
 
             dgvCatalogs.checkCellSize();
+        }
+
+        private string getPwdString(Project proj)
+        {
+            return proj.ProjectCheckState + "(" + proj.ProjectStateReason + ")";
         }
 
         private void dgvCatalogs_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -134,6 +141,16 @@ namespace PublicManager.Modules.Module_B.ProjectManager
 
                     rtb.Text = sb.ToString().Trim();
                     f.ShowDialog();
+                }
+                else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 4)
+                {
+                    //显示状态编辑
+                    Forms.StateEditForm sef = new Forms.StateEditForm(proj);
+                    sef.ShowDialog();
+
+                    //刷新列表
+                    updateCatalogs();
+                    btnSearch.PerformClick();
                 }
             }
         }

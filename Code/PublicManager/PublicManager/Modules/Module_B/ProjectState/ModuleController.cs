@@ -6,7 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
-namespace PublicManager.Modules.Module_B.ProjectManager
+namespace PublicManager.Modules.Module_B.ProjectState
 {
     public partial class ModuleController : BaseModuleController
     {

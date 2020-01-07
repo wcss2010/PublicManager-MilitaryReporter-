@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.Module_B.ProjectManager
+﻿namespace PublicManager.Modules.Module_B.ProjectState
 {
     partial class MainView
     {
@@ -37,21 +37,23 @@
             this.plRules = new System.Windows.Forms.Panel();
             this.rbDutyUnit = new System.Windows.Forms.RadioButton();
             this.plTopBar = new System.Windows.Forms.Panel();
-            this.Column11 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCatalogs = new PublicManager.Modules.DataGridViewEx();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.plRules.SuspendLayout();
             this.plTopBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).BeginInit();
@@ -135,130 +137,6 @@
             this.plTopBar.Size = new System.Drawing.Size(1671, 27);
             this.plTopBar.TabIndex = 4;
             // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "";
-            this.Column11.MinimumWidth = 60;
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Text = "删除";
-            this.Column11.UseColumnTextForButtonValue = true;
-            this.Column11.Width = 60;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "";
-            this.Column10.MinimumWidth = 60;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column10.Text = "链接";
-            this.Column10.UseColumnTextForLinkValue = true;
-            this.Column10.Width = 60;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "";
-            this.Column9.MinimumWidth = 60;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column9.Text = "详情";
-            this.Column9.UseColumnTextForLinkValue = true;
-            this.Column9.Width = 60;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "导入时间";
-            this.Column14.MinimumWidth = 120;
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            this.Column14.Width = 120;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "备注";
-            this.Column8.MinimumWidth = 120;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 120;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "责任单位(下级单位)";
-            this.Column7.MinimumWidth = 160;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 160;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "专业类别(类别内序号)";
-            this.Column13.MinimumWidth = 180;
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            this.Column13.Visible = false;
-            this.Column13.Width = 180;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "项目类别";
-            this.Column6.MinimumWidth = 120;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 120;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "经费概算(万元)";
-            this.Column5.MinimumWidth = 130;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 130;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "周期(月)";
-            this.Column4.MinimumWidth = 90;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 90;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "预期成果";
-            this.Column3.MinimumWidth = 120;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 120;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "项目名称";
-            this.Column2.MinimumWidth = 120;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "项目类型";
-            this.Column12.MinimumWidth = 120;
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Visible = false;
-            this.Column12.Width = 120;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "序号";
-            this.Column1.MinimumWidth = 60;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 60;
-            // 
             // dgvCatalogs
             // 
             this.dgvCatalogs.AllowUserToAddRows = false;
@@ -283,6 +161,8 @@
             this.Column7,
             this.Column8,
             this.Column14,
+            this.Column15,
+            this.Column16,
             this.Column9,
             this.Column10,
             this.Column11});
@@ -306,6 +186,148 @@
             this.dgvCatalogs.Size = new System.Drawing.Size(1671, 798);
             this.dgvCatalogs.TabIndex = 3;
             this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "序号";
+            this.Column1.MinimumWidth = 60;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 60;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "项目类型";
+            this.Column12.MinimumWidth = 120;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Visible = false;
+            this.Column12.Width = 120;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "项目名称";
+            this.Column2.MinimumWidth = 120;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "预期成果";
+            this.Column3.MinimumWidth = 120;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 120;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "周期(月)";
+            this.Column4.MinimumWidth = 90;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 90;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "经费概算(万元)";
+            this.Column5.MinimumWidth = 130;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 130;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "项目类别";
+            this.Column6.MinimumWidth = 120;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 120;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "专业类别(类别内序号)";
+            this.Column13.MinimumWidth = 180;
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            this.Column13.Visible = false;
+            this.Column13.Width = 180;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "责任单位(下级单位)";
+            this.Column7.MinimumWidth = 160;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 160;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "备注";
+            this.Column8.MinimumWidth = 120;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 120;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "导入时间";
+            this.Column14.MinimumWidth = 120;
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            this.Column14.Width = 120;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "审核状态(原因)";
+            this.Column15.MinimumWidth = 130;
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            this.Column15.Width = 130;
+            // 
+            // Column16
+            // 
+            this.Column16.HeaderText = "";
+            this.Column16.MinimumWidth = 80;
+            this.Column16.Name = "Column16";
+            this.Column16.ReadOnly = true;
+            this.Column16.Text = "编辑状态";
+            this.Column16.UseColumnTextForLinkValue = true;
+            this.Column16.Width = 80;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "";
+            this.Column9.MinimumWidth = 60;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column9.Text = "详情";
+            this.Column9.UseColumnTextForLinkValue = true;
+            this.Column9.Width = 60;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "";
+            this.Column10.MinimumWidth = 60;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column10.Text = "链接";
+            this.Column10.UseColumnTextForLinkValue = true;
+            this.Column10.Width = 60;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "";
+            this.Column11.MinimumWidth = 60;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Text = "删除";
+            this.Column11.UseColumnTextForButtonValue = true;
+            this.Column11.Width = 60;
             // 
             // MainView
             // 
@@ -331,20 +353,22 @@
         private System.Windows.Forms.Panel plRules;
         private System.Windows.Forms.RadioButton rbDutyUnit;
         private System.Windows.Forms.Panel plTopBar;
-        private System.Windows.Forms.DataGridViewButtonColumn Column11;
-        private System.Windows.Forms.DataGridViewLinkColumn Column10;
-        private System.Windows.Forms.DataGridViewLinkColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private DataGridViewEx dgvCatalogs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewLinkColumn Column16;
+        private System.Windows.Forms.DataGridViewLinkColumn Column9;
+        private System.Windows.Forms.DataGridViewLinkColumn Column10;
+        private System.Windows.Forms.DataGridViewButtonColumn Column11;
     }
 }

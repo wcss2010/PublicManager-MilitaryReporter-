@@ -1,4 +1,4 @@
-﻿namespace PublicManager.Modules.Module_B.ProjectManager
+﻿namespace PublicManager.Modules.Module_B.ProjectState
 {
     partial class ModuleController
     {
