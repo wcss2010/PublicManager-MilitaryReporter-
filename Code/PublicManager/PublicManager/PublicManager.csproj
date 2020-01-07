@@ -357,6 +357,18 @@
     <Compile Include="Modules\Module_B\PkgImporter\ReporterModuleController.Designer.cs">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Module_B\ProjectManager\MainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\ProjectManager\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module_B\ProjectManager\ModuleController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Module_B\ProjectManager\ModuleController.Designer.cs">
+      <DependentUpon>ModuleController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Modules\ProgressForm.cs">
       <SubType>Form</SubType>
@@ -468,6 +480,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Module_B\PkgImporter\ReporterModuleController.resx">
       <DependentUpon>ReporterModuleController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\ProjectManager\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Module_B\ProjectManager\ModuleController.resx">
+      <DependentUpon>ModuleController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>

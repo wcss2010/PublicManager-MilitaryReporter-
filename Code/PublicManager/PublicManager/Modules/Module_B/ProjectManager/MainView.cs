@@ -6,7 +6,12 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Localization;
+using PublicManager.DB;
 using PublicManager.DB.Entitys;
+using System.Diagnostics;
+using System.IO;
 
 namespace PublicManager.Modules.Module_B.ProjectManager
 {
@@ -82,7 +87,7 @@ namespace PublicManager.Modules.Module_B.ProjectManager
                     if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                     {
                         //删除项目数据
-                        new DBImporter().deleteProject(catalogId);
+                        new PublicManager.Modules.Module_B.PkgImporter.DBImporter().deleteProject(catalogId);
 
                         //刷新GridView
                         updateCatalogs();
