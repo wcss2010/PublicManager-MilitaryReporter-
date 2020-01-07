@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rbProjectType = new System.Windows.Forms.RadioButton();
             this.rbProjectName = new System.Windows.Forms.RadioButton();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -62,9 +62,9 @@
             // rbProjectType
             // 
             this.rbProjectType.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rbProjectType.Location = new System.Drawing.Point(269, 0);
+            this.rbProjectType.Location = new System.Drawing.Point(234, 4);
             this.rbProjectType.Name = "rbProjectType";
-            this.rbProjectType.Size = new System.Drawing.Size(132, 27);
+            this.rbProjectType.Size = new System.Drawing.Size(110, 18);
             this.rbProjectType.TabIndex = 1;
             this.rbProjectType.TabStop = true;
             this.rbProjectType.Text = "按项目类型查询";
@@ -75,9 +75,9 @@
             // 
             this.rbProjectName.Checked = true;
             this.rbProjectName.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rbProjectName.Location = new System.Drawing.Point(0, 0);
+            this.rbProjectName.Location = new System.Drawing.Point(4, 4);
             this.rbProjectName.Name = "rbProjectName";
-            this.rbProjectName.Size = new System.Drawing.Size(135, 27);
+            this.rbProjectName.Size = new System.Drawing.Size(115, 18);
             this.rbProjectName.TabIndex = 2;
             this.rbProjectName.TabStop = true;
             this.rbProjectName.Text = "按项目名称查询";
@@ -87,9 +87,9 @@
             // btnSearch
             // 
             this.btnSearch.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnSearch.Location = new System.Drawing.Point(810, 0);
+            this.btnSearch.Location = new System.Drawing.Point(684, 6);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(87, 27);
+            this.btnSearch.Size = new System.Drawing.Size(87, 26);
             this.btnSearch.TabIndex = 9;
             this.btnSearch.Text = "查询";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -98,10 +98,11 @@
             // cbxKeys
             // 
             this.cbxKeys.Dock = System.Windows.Forms.DockStyle.Left;
-            this.cbxKeys.FormattingEnabled = true;
-            this.cbxKeys.Location = new System.Drawing.Point(409, 0);
+            this.cbxKeys.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbxKeys.ItemHeight = 20;
+            this.cbxKeys.Location = new System.Drawing.Point(355, 6);
             this.cbxKeys.Name = "cbxKeys";
-            this.cbxKeys.Size = new System.Drawing.Size(401, 22);
+            this.cbxKeys.Size = new System.Drawing.Size(329, 26);
             this.cbxKeys.TabIndex = 8;
             // 
             // plRules
@@ -110,17 +111,18 @@
             this.plRules.Controls.Add(this.rbDutyUnit);
             this.plRules.Controls.Add(this.rbProjectName);
             this.plRules.Dock = System.Windows.Forms.DockStyle.Left;
-            this.plRules.Location = new System.Drawing.Point(0, 0);
+            this.plRules.Location = new System.Drawing.Point(6, 6);
             this.plRules.Name = "plRules";
-            this.plRules.Size = new System.Drawing.Size(409, 27);
+            this.plRules.Padding = new System.Windows.Forms.Padding(4);
+            this.plRules.Size = new System.Drawing.Size(349, 26);
             this.plRules.TabIndex = 7;
             // 
             // rbDutyUnit
             // 
             this.rbDutyUnit.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rbDutyUnit.Location = new System.Drawing.Point(135, 0);
+            this.rbDutyUnit.Location = new System.Drawing.Point(119, 4);
             this.rbDutyUnit.Name = "rbDutyUnit";
-            this.rbDutyUnit.Size = new System.Drawing.Size(134, 27);
+            this.rbDutyUnit.Size = new System.Drawing.Size(115, 18);
             this.rbDutyUnit.TabIndex = 3;
             this.rbDutyUnit.TabStop = true;
             this.rbDutyUnit.Text = "按责任单位查询";
@@ -135,20 +137,21 @@
             this.plTopBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.plTopBar.Location = new System.Drawing.Point(0, 0);
             this.plTopBar.Name = "plTopBar";
-            this.plTopBar.Size = new System.Drawing.Size(1671, 27);
+            this.plTopBar.Padding = new System.Windows.Forms.Padding(6);
+            this.plTopBar.Size = new System.Drawing.Size(1671, 38);
             this.plTopBar.TabIndex = 4;
             // 
             // dgvCatalogs
             // 
             this.dgvCatalogs.AllowUserToAddRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCatalogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCatalogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.dgvCatalogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCatalogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -167,16 +170,16 @@
             this.Column9,
             this.Column10,
             this.Column11});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCatalogs.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCatalogs.DefaultCellStyle = dataGridViewCellStyle22;
             this.dgvCatalogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCatalogs.Location = new System.Drawing.Point(0, 27);
+            this.dgvCatalogs.Location = new System.Drawing.Point(0, 38);
             this.dgvCatalogs.MultiSelect = false;
             this.dgvCatalogs.Name = "dgvCatalogs";
             this.dgvCatalogs.ReadOnly = true;
@@ -184,7 +187,7 @@
             this.dgvCatalogs.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("宋体", 10.5F);
             this.dgvCatalogs.RowTemplate.Height = 23;
             this.dgvCatalogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCatalogs.Size = new System.Drawing.Size(1671, 798);
+            this.dgvCatalogs.Size = new System.Drawing.Size(1671, 787);
             this.dgvCatalogs.TabIndex = 3;
             this.dgvCatalogs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCatalogs_CellContentClick);
             // 
