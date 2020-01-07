@@ -362,7 +362,7 @@ namespace PublicManager.Modules.Module_B.DataExport
                             }
                             else if (sheet.GetRow(0).Cells[kkk].StringCellValue != null && sheet.GetRow(0).Cells[kkk].StringCellValue.Contains("预期成果"))
                             {
-                                sheet.SetColumnWidth(kkk, 20 * 256);
+                                sheet.SetColumnWidth(kkk, 12 * 256);
                             }
                             else if (sheet.GetRow(0).Cells[kkk].StringCellValue != null && sheet.GetRow(0).Cells[kkk].StringCellValue.Contains("项目类别"))
                             {
