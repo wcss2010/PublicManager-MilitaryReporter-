@@ -226,17 +226,26 @@ namespace PublicManager.Modules.Module_B.DataExport
 
                     //创建设置字体对象(内容字体)
                     NPOI.SS.UserModel.IFont fontA = workbook.CreateFont();
-                    fontA.FontHeightInPoints = 16;//设置字体大小
+                    fontA.FontHeightInPoints = 10;//设置字体大小
                     fontA.FontName = "宋体";
                     cellStyleA.SetFont(fontA);
 
                     //创建设置字体对象(标题字体)
                     NPOI.SS.UserModel.IFont fontB = workbook.CreateFont();
-                    fontB.FontHeightInPoints = 16;//设置字体大小
+                    fontB.FontHeightInPoints = 10;//设置字体大小
                     fontB.FontName = "宋体";
                     fontB.Boldweight = (short)NPOI.SS.UserModel.FontBoldWeight.Bold;
                     cellStyleB.SetFont(fontB);
                     #endregion
+
+                    //替换预期成果列数据
+                    foreach (DataRow dr in dtSource.Rows)
+                    {
+                        if (dr["预期成果"] != null)
+                        {
+                            dr["预期成果"] = dr["预期成果"].ToString().Trim().Replace(",", "\n").Trim();
+                        }
+                    }
 
                     //写入基本数据
                     writeSheet(workbook, cellStyleA, cellStyleB, dtSource);
@@ -330,7 +339,7 @@ namespace PublicManager.Modules.Module_B.DataExport
                     sheet.AddMergedRegion(regionsss);
                     #endregion
 
-                    //设置列宽
+                    #region 设置列宽
                     sheet = workbook.GetSheetAt(0);
                     for (int kkk = 0; kkk < dtSource.Rows.Count; kkk++)
                     {
@@ -342,7 +351,36 @@ namespace PublicManager.Modules.Module_B.DataExport
                         {
                             sheet.SetColumnWidth(kkk, 70 * 256);
                         }
+                        else if (sheet.GetRow(0).Cells[kkk].StringCellValue != null && sheet.GetRow(0).Cells[kkk].StringCellValue.Contains("所属单位"))
+                        {
+                            sheet.SetColumnWidth(kkk, 10 * 256);
+                        }
+                        else if (sheet.GetRow(0).Cells[kkk].StringCellValue != null && sheet.GetRow(0).Cells[kkk].StringCellValue.Contains("类别"))
+                        {
+                            sheet.SetColumnWidth(kkk, 10 * 256);
+                        }
+                        else if (sheet.GetRow(0).Cells[kkk].StringCellValue != null && sheet.GetRow(0).Cells[kkk].StringCellValue.Contains("项目名称"))
+                        {
+                            sheet.SetColumnWidth(kkk, 10 * 256);
+                        }
+                        else if (sheet.GetRow(0).Cells[kkk].StringCellValue != null && sheet.GetRow(0).Cells[kkk].StringCellValue.Contains("预期成果"))
+                        {
+                            sheet.SetColumnWidth(kkk, 20 * 256);
+                        }
+                        else if (sheet.GetRow(0).Cells[kkk].StringCellValue != null && sheet.GetRow(0).Cells[kkk].StringCellValue.Contains("项目类别"))
+                        {
+                            sheet.SetColumnWidth(kkk, 10 * 256);
+                        }
+                        else if (sheet.GetRow(0).Cells[kkk].StringCellValue != null && sheet.GetRow(0).Cells[kkk].StringCellValue.Contains("责任单位"))
+                        {
+                            sheet.SetColumnWidth(kkk, 10 * 256);
+                        }
+                        else if (sheet.GetRow(0).Cells[kkk].StringCellValue != null && sheet.GetRow(0).Cells[kkk].StringCellValue.Contains("备  注"))
+                        {
+                            sheet.SetColumnWidth(kkk, 10 * 256);
+                        }
                     }
+                    #endregion
 
                     #region 输出文件
                     //输出到流
