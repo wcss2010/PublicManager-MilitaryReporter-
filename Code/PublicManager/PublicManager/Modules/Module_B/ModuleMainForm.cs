@@ -37,7 +37,7 @@ namespace PublicManager.Modules.Module_B
             ModuleDict["数据编辑"] = new DataManager.ModuleController();
             ModuleDict["专业类别查看"] = new DictManager.ModuleController();
             ModuleDict["数据导出"] = new DataExport.ModuleController();
-            ModuleDict["项目审核"] = new ProjectManager.ModuleController();
+            ModuleDict["项目审核"] = new ProjectState.ModuleController();
         }
 
         protected override void initUI()

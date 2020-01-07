@@ -46,7 +46,7 @@ namespace PublicManager.Modules.Module_B.DataManager
             updateCatalogs();
         }
 
-        public void updateCatalogs()
+        public void updateData()
         {
             dgvCatalogs.Rows.Clear();
 
@@ -112,6 +112,12 @@ namespace PublicManager.Modules.Module_B.DataManager
             }            
 
             dgvCatalogs.checkCellSize();
+        }
+
+        public void updateCatalogs()
+        {
+            updateData();
+            btnSearch.PerformClick();
         }
 
         private void dgvCatalogs_CellContentClick(object sender, DataGridViewCellEventArgs e)
