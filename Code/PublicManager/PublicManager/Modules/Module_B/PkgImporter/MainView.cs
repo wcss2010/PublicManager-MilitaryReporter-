@@ -150,11 +150,74 @@ namespace PublicManager.Modules.Module_B.PkgImporter
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            RadioButton radioButton = null;
+            #region 查找已选择项
+            foreach (Control c in plRules.Controls)
+            {
+                if (c is RadioButton)
+                {
+                    if (((RadioButton)c).Checked)
+                    {
+                        radioButton = ((RadioButton)c);
+                        break;
+                    }
+                }
+            }
+            #endregion
 
+            if (radioButton != null)
+            {
+                switch (radioButton.Text.Replace("按", string.Empty).Replace("查询", string.Empty))
+                {
+                    case "项目名称":
+                        foreach (DataGridViewRow dgvRow in dgvCatalogs.Rows)
+                        {
+                            Project proj = (Project)dgvRow.Tag;
+                            if (proj.ProjectName.Contains(cbxKeys.Text.Trim()))
+                            {
+                                dgvRow.Visible = true;
+                            }
+                            else
+                            {
+                                dgvRow.Visible = false;
+                            }
+                        }
+                        break;
+                    case "责任单位":
+                        foreach (DataGridViewRow dgvRow in dgvCatalogs.Rows)
+                        {
+                            Project proj = (Project)dgvRow.Tag;
+                            if (proj.DutyUnit == cbxKeys.Text.Trim())
+                            {
+                                dgvRow.Visible = true;
+                            }
+                            else
+                            {
+                                dgvRow.Visible = false;
+                            }
+                        }
+                        break;
+                    case "项目类型":
+                        foreach (DataGridViewRow dgvRow in dgvCatalogs.Rows)
+                        {
+                            Project proj = (Project)dgvRow.Tag;
+                            if (proj.ProjectSort == cbxKeys.Text.Trim())
+                            {
+                                dgvRow.Visible = true;
+                            }
+                            else
+                            {
+                                dgvRow.Visible = false;
+                            }
+                        }
+                        break;
+                }
+            }
         }
 
         private void rbProjectType_CheckedChanged(object sender, EventArgs e)
         {
+            cbxKeys.DropDownStyle = ComboBoxStyle.DropDown;
             cbxKeys.Items.Clear();
             cbxKeys.Text = string.Empty;
 
@@ -165,6 +228,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                     cbxKeys.Text = "";
                     break;
                 case "责任单位":
+                    cbxKeys.DropDownStyle = ComboBoxStyle.DropDownList;
+
                     #region 加载责任单位选项
                     if (MainConfig.Config.ObjectDict.ContainsKey("责任单位"))
                     {
@@ -190,6 +255,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                     }
                     break;
                 case "项目类型":
+                    cbxKeys.DropDownStyle = ComboBoxStyle.DropDownList;
+
                     #region 加载项目类别选项
                     if (MainConfig.Config.ObjectDict.ContainsKey("项目类别"))
                     {

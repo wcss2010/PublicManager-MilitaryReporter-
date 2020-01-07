@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCatalogs = new PublicManager.Modules.DataGridViewEx();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,29 +45,29 @@
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.groupBox1 = new System.Windows.Forms.Panel();
+            this.plTopBar = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.cbxKeys = new System.Windows.Forms.ComboBox();
-            this.groupBox2 = new System.Windows.Forms.Panel();
+            this.plRules = new System.Windows.Forms.Panel();
             this.rbProjectType = new System.Windows.Forms.RadioButton();
             this.rbDutyUnit = new System.Windows.Forms.RadioButton();
             this.rbProjectName = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.plTopBar.SuspendLayout();
+            this.plRules.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvCatalogs
             // 
             this.dgvCatalogs.AllowUserToAddRows = false;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCatalogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCatalogs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCatalogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCatalogs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -84,14 +84,14 @@
             this.Column9,
             this.Column10,
             this.Column11});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("宋体", 10.5F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCatalogs.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 10.5F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCatalogs.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvCatalogs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCatalogs.Location = new System.Drawing.Point(0, 23);
             this.dgvCatalogs.MultiSelect = false;
@@ -229,16 +229,16 @@
             this.Column11.UseColumnTextForButtonValue = true;
             this.Column11.Width = 60;
             // 
-            // groupBox1
+            // plTopBar
             // 
-            this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Controls.Add(this.cbxKeys);
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1276, 23);
-            this.groupBox1.TabIndex = 2;
+            this.plTopBar.Controls.Add(this.btnSearch);
+            this.plTopBar.Controls.Add(this.cbxKeys);
+            this.plTopBar.Controls.Add(this.plRules);
+            this.plTopBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.plTopBar.Location = new System.Drawing.Point(0, 0);
+            this.plTopBar.Name = "plTopBar";
+            this.plTopBar.Size = new System.Drawing.Size(1276, 23);
+            this.plTopBar.TabIndex = 2;
             // 
             // btnSearch
             // 
@@ -260,16 +260,16 @@
             this.cbxKeys.Size = new System.Drawing.Size(344, 22);
             this.cbxKeys.TabIndex = 8;
             // 
-            // groupBox2
+            // plRules
             // 
-            this.groupBox2.Controls.Add(this.rbProjectType);
-            this.groupBox2.Controls.Add(this.rbDutyUnit);
-            this.groupBox2.Controls.Add(this.rbProjectName);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(351, 23);
-            this.groupBox2.TabIndex = 7;
+            this.plRules.Controls.Add(this.rbProjectType);
+            this.plRules.Controls.Add(this.rbDutyUnit);
+            this.plRules.Controls.Add(this.rbProjectName);
+            this.plRules.Dock = System.Windows.Forms.DockStyle.Left;
+            this.plRules.Location = new System.Drawing.Point(0, 0);
+            this.plRules.Name = "plRules";
+            this.plRules.Size = new System.Drawing.Size(351, 23);
+            this.plRules.TabIndex = 7;
             // 
             // rbProjectType
             // 
@@ -313,12 +313,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgvCatalogs);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.plTopBar);
             this.Name = "MainView";
             this.Size = new System.Drawing.Size(1276, 684);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
+            this.plTopBar.ResumeLayout(false);
+            this.plRules.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -340,10 +340,10 @@
         private System.Windows.Forms.DataGridViewLinkColumn Column9;
         private System.Windows.Forms.DataGridViewLinkColumn Column10;
         private System.Windows.Forms.DataGridViewButtonColumn Column11;
-        private System.Windows.Forms.Panel groupBox1;
+        private System.Windows.Forms.Panel plTopBar;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cbxKeys;
-        private System.Windows.Forms.Panel groupBox2;
+        private System.Windows.Forms.Panel plRules;
         private System.Windows.Forms.RadioButton rbProjectType;
         private System.Windows.Forms.RadioButton rbDutyUnit;
         private System.Windows.Forms.RadioButton rbProjectName;
