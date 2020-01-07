@@ -83,7 +83,7 @@ namespace PublicManager.Modules.Module_B.DataExport
                                     {
                                         ucd.PSortA += 1;
                                     }
-                                    else
+                                    else if (proj.ProjectSort.Contains("重点"))
                                     {
                                         ucd.PSortB += 1;
                                     }
