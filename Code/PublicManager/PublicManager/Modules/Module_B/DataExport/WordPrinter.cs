@@ -156,8 +156,22 @@ namespace PublicManager.Modules.Module_B.DataExport
                                     wd.fillCell(true, r.Cells[5], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
                                     wd.setFontInCell(r.Cells[5], "宋体", 9);
 
-                                    wd.fillCell(true, r.Cells[7], wd.newParagraph(curTable.Document, ucd.PrivateProjectInfo + ""));
+                                    r.Cells[7].CellFormat.FitText = true;
+                                    r.Cells[7].CellFormat.WrapText = true;
+                                    r.Cells[7].RemoveAllChildren();
+                                    string[] psTeams = ucd.PrivateProjectInfo.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                                    foreach (string s in psTeams)
+                                    {
+                                        if (string.IsNullOrEmpty(s))
+                                        {
+                                            continue;
+                                        }
+                                        r.Cells[7].AppendChild(wd.newParagraph(curTable.Document, s));
+                                    }                                    
                                     wd.setFontInCell(r.Cells[7], "宋体", 9);
+                                    r.Cells[7].CellFormat.FitText = true;
+                                    r.Cells[7].CellFormat.WrapText = true;
+                                    r.RowFormat.Height = r.RowFormat.Height * r.Cells[7].ChildNodes.Count;
 
                                     wd.fillCell(true, r.Cells[10], wd.newParagraph(curTable.Document, ucd.TotalMoney + ""));
                                     wd.setFontInCell(r.Cells[10], "宋体", 9);
