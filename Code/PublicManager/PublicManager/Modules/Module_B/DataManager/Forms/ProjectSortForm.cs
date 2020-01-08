@@ -76,7 +76,7 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
 
             PublicManager.Modules.Module_B.DictManager.MainView.initDicts();
             loadComboboxItems();
-            
+
             selectedProjectID = projID;
             updateCatalogs();
         }
@@ -216,7 +216,7 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                 Project proj = ((Project)dgvCatalogs.Rows[e.RowIndex].Tag);
 
                 //保存当前选项
-                selectedProjectID = proj.ProjectID; 
+                selectedProjectID = proj.ProjectID;
 
                 //筛选出适合排序的列表
                 List<Project> projList = new List<Project>();
@@ -276,6 +276,13 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                 //获得要删除的项目ID
                 Project proj = ((Project)dgvCatalogs.Rows[e.RowIndex].Tag);
 
+                //专业类别名称
+                if (dgvCatalogs.Rows[e.RowIndex].Cells[5].Value != null)
+                {
+                    proj.LastProfessionName = dgvCatalogs.Rows[e.RowIndex].Cells[5].Value.ToString().Trim();
+                    proj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + proj.ProjectID + "'").update();
+                }
+
                 //专业类别
                 ComboBoxObject<Professions> currentProfession = null;
                 if (dgvCatalogs.Rows[e.RowIndex].Cells[3].Value != null)
@@ -284,15 +291,15 @@ namespace PublicManager.Modules.Module_B.DataManager.Forms
                     if (currentProfession != null)
                     {
                         proj.ProfessionID = currentProfession.Tag.ProfessionID;
+
+                        //如果改变了专业类别直接更新
+                        if (!proj.LastProfessionName.Contains(currentProfession.Tag.ProfessionCategory.Replace("xx", string.Empty)))
+                        {
+                            proj.LastProfessionName = currentProfession.Tag.ProfessionCategory;
+                        }
+
                         proj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + proj.ProjectID + "'").update();
                     }
-                }
-
-                //专业类别名称
-                if (dgvCatalogs.Rows[e.RowIndex].Cells[5].Value != null && (dgvCatalogs.Rows[e.RowIndex].Cells[5].Value.ToString().EndsWith("作战") || dgvCatalogs.Rows[e.RowIndex].Cells[5].Value.ToString().EndsWith("应用") || dgvCatalogs.Rows[e.RowIndex].Cells[5].Value.ToString().EndsWith("建设")))
-                {
-                    proj.LastProfessionName = dgvCatalogs.Rows[e.RowIndex].Cells[5].Value.ToString().Trim();
-                    proj.copyTo(ConnectionManager.Context.table("Project")).where("ProjectID='" + proj.ProjectID + "'").update();
                 }
 
                 updateCatalogs();
