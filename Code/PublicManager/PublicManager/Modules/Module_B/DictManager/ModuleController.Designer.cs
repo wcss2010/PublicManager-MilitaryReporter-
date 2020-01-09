@@ -34,7 +34,10 @@
             this.btnDeleteProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnEditProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportToPkg = new DevExpress.XtraBars.BarButtonItem();
+            this.btnAddProfession = new DevExpress.XtraBars.BarButtonItem();
+            this.btnExportToXml = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,9 +50,11 @@
             this.btnAddProject,
             this.btnDeleteProject,
             this.btnEditProject,
-            this.btnExportToPkg});
+            this.btnExportToPkg,
+            this.btnAddProfession,
+            this.btnExportToXml});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
-            this.rcTopBar.MaxItemId = 11;
+            this.rcTopBar.MaxItemId = 13;
             this.rcTopBar.Name = "rcTopBar";
             this.rcTopBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpMaster});
@@ -91,10 +96,35 @@
             this.btnExportToPkg.LargeGlyph = global::PublicManager.Properties.Resources.export3;
             this.btnExportToPkg.Name = "btnExportToPkg";
             // 
+            // btnAddProfession
+            // 
+            this.btnAddProfession.Caption = "新增专业类别";
+            this.btnAddProfession.Id = 11;
+            this.btnAddProfession.LargeGlyph = global::PublicManager.Properties.Resources.add;
+            this.btnAddProfession.Name = "btnAddProfession";
+            this.btnAddProfession.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnAddProfession_ItemClick);
+            // 
+            // btnExportToXml
+            // 
+            this.btnExportToXml.Caption = "导出到Excel";
+            this.btnExportToXml.Id = 12;
+            this.btnExportToXml.LargeGlyph = global::PublicManager.Properties.Resources.export;
+            this.btnExportToXml.Name = "btnExportToXml";
+            this.btnExportToXml.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnExportToXml_ItemClick);
+            // 
             // rpMaster
             // 
+            this.rpMaster.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
             this.rpMaster.Name = "rpMaster";
             this.rpMaster.Text = "论证报告书";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnAddProfession);
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnExportToXml);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "其它";
             // 
             // ModuleController
             // 
@@ -118,5 +148,8 @@
         private DevExpress.XtraBars.BarButtonItem btnEditProject;
         private DevExpress.XtraBars.BarButtonItem btnExportToPkg;
         private DevExpress.XtraBars.Ribbon.RibbonPage rpMaster;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.BarButtonItem btnAddProfession;
+        private DevExpress.XtraBars.BarButtonItem btnExportToXml;
     }
 }

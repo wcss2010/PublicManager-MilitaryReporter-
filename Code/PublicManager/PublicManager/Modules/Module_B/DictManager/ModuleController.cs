@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using PublicManager.DB;
+using PublicManager.DB.Entitys;
 
 namespace PublicManager.Modules.Module_B.DictManager
 {
@@ -44,6 +46,36 @@ namespace PublicManager.Modules.Module_B.DictManager
         public override void stop()
         {
             base.stop();
+        }
+
+        private void btnAddProfession_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            PublicManager.Modules.Module_B.DictManager.Forms.DictEditForm def = new PublicManager.Modules.Module_B.DictManager.Forms.DictEditForm();
+            if (def.ShowDialog() == DialogResult.OK)
+            {
+                Professions pfoObj = new Professions();
+                pfoObj.ProfessionID = Guid.NewGuid().ToString();
+                pfoObj.ProfessionName = def.ProfessionName;
+                pfoObj.IsAcceptModify = def.IsAcceptModify ? "true" : "false";
+                pfoObj.ProfessionCategory = def.ProfessionName;
+                pfoObj.copyTo(ConnectionManager.Context.table("Professions")).insert();
+
+                List<Professions> list = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
+                int proIndex = 0;
+                foreach (Professions prf in list)
+                {
+                    proIndex++;
+                    prf.ProfessionNum = proIndex.ToString();
+                    prf.copyTo(ConnectionManager.Context.table("Professions")).where("ProfessionID='" + prf.ProfessionID + "'").update();
+                }
+
+                tc.updateCatalogs();
+            }
+        }
+
+        private void btnExportToXml_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }
