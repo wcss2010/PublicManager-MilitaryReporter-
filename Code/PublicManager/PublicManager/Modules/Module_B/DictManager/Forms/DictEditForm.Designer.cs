@@ -32,10 +32,16 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtContent = new System.Windows.Forms.TextBox();
+            this.txtProfessionName = new System.Windows.Forms.TextBox();
             this.lblTextBoxTitle = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbIsAcceptModify = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -43,7 +49,7 @@
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 60);
+            this.panel1.Location = new System.Drawing.Point(0, 68);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(341, 37);
             this.panel1.TabIndex = 18;
@@ -74,41 +80,81 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.txtContent);
-            this.panel2.Controls.Add(this.lblTextBoxTitle);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(18);
-            this.panel2.Size = new System.Drawing.Size(341, 60);
+            this.panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.panel2.Size = new System.Drawing.Size(341, 68);
             this.panel2.TabIndex = 19;
             // 
-            // txtContent
+            // txtProfessionName
             // 
-            this.txtContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtContent.Font = new System.Drawing.Font("宋体", 10F);
-            this.txtContent.Location = new System.Drawing.Point(118, 18);
-            this.txtContent.Multiline = true;
-            this.txtContent.Name = "txtContent";
-            this.txtContent.Size = new System.Drawing.Size(205, 24);
-            this.txtContent.TabIndex = 1;
+            this.txtProfessionName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProfessionName.Font = new System.Drawing.Font("宋体", 10F);
+            this.txtProfessionName.Location = new System.Drawing.Point(106, 0);
+            this.txtProfessionName.Multiline = true;
+            this.txtProfessionName.Name = "txtProfessionName";
+            this.txtProfessionName.Size = new System.Drawing.Size(215, 27);
+            this.txtProfessionName.TabIndex = 1;
             // 
             // lblTextBoxTitle
             // 
             this.lblTextBoxTitle.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTextBoxTitle.Font = new System.Drawing.Font("宋体", 10F);
-            this.lblTextBoxTitle.Location = new System.Drawing.Point(18, 18);
+            this.lblTextBoxTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTextBoxTitle.Name = "lblTextBoxTitle";
-            this.lblTextBoxTitle.Size = new System.Drawing.Size(100, 24);
+            this.lblTextBoxTitle.Size = new System.Drawing.Size(106, 27);
             this.lblTextBoxTitle.TabIndex = 0;
-            this.lblTextBoxTitle.Text = "类型名称：";
+            this.lblTextBoxTitle.Text = "专业类别名称：";
             this.lblTextBoxTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.txtProfessionName);
+            this.panel3.Controls.Add(this.lblTextBoxTitle);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(10, 10);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(321, 27);
+            this.panel3.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.cbIsAcceptModify);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(10, 37);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(321, 27);
+            this.panel4.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Font = new System.Drawing.Font("宋体", 10F);
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(106, 27);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "是否允许修改：";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cbIsAcceptModify
+            // 
+            this.cbIsAcceptModify.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbIsAcceptModify.Location = new System.Drawing.Point(106, 0);
+            this.cbIsAcceptModify.Name = "cbIsAcceptModify";
+            this.cbIsAcceptModify.Size = new System.Drawing.Size(215, 27);
+            this.cbIsAcceptModify.TabIndex = 1;
+            this.cbIsAcceptModify.UseVisualStyleBackColor = true;
             // 
             // DictEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(341, 97);
+            this.ClientSize = new System.Drawing.Size(341, 105);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
@@ -117,10 +163,12 @@
             this.Name = "DictEditForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "字典编辑";
+            this.Text = "添加/编辑专业类别";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -131,7 +179,11 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtContent;
+        private System.Windows.Forms.TextBox txtProfessionName;
         private System.Windows.Forms.Label lblTextBoxTitle;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox cbIsAcceptModify;
     }
 }

@@ -34,7 +34,9 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCatalogs)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +56,9 @@
             this.Column3,
             this.Column1,
             this.Column2,
-            this.Column11});
+            this.Column4,
+            this.Column11,
+            this.Column5});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
@@ -97,7 +101,16 @@
             this.Column2.HeaderText = "专业类别名称";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Visible = false;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "是否允许修改";
+            this.Column4.MinimumWidth = 120;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column4.Width = 120;
             // 
             // Column11
             // 
@@ -107,8 +120,17 @@
             this.Column11.ReadOnly = true;
             this.Column11.Text = "编辑";
             this.Column11.UseColumnTextForButtonValue = true;
-            this.Column11.Visible = false;
             this.Column11.Width = 60;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "";
+            this.Column5.MinimumWidth = 60;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Text = "删除";
+            this.Column5.UseColumnTextForButtonValue = true;
+            this.Column5.Width = 60;
             // 
             // MainView
             // 
@@ -128,6 +150,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Column4;
         private System.Windows.Forms.DataGridViewButtonColumn Column11;
+        private System.Windows.Forms.DataGridViewButtonColumn Column5;
     }
 }

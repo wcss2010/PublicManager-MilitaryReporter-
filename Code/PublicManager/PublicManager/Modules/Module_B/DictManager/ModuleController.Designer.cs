@@ -102,7 +102,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.rcTopBar);
             this.Name = "ModuleController";
-            this.Size = new System.Drawing.Size(1135, 153);
+            this.Size = new System.Drawing.Size(1135, 145);
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

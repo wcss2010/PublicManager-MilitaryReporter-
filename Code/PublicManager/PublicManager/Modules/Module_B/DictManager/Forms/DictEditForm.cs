@@ -16,15 +16,27 @@ namespace PublicManager.Modules.Module_B.DictManager.Forms
             InitializeComponent();
         }
 
-        public string Content
+        public string ProfessionName
         {
             get
             {
-                return txtContent.Text;
+                return txtProfessionName.Text;
             }
             set
             {
-                txtContent.Text = value;
+                txtProfessionName.Text = value;
+            }
+        }
+
+        public bool IsAcceptModify
+        {
+            get
+            {
+                return cbIsAcceptModify.Checked;
+            }
+            set
+            {
+                cbIsAcceptModify.Checked = value;
             }
         }
 

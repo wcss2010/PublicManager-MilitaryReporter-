@@ -44,6 +44,7 @@ namespace PublicManager.Modules.Module_B.DictManager
                 prf.ProfessionNum = "1";
                 prf.ProfessionCategory = "军事思想";
                 prf.ProfessionName = "军事思想";
+                prf.IsAcceptModify = "false";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -51,6 +52,7 @@ namespace PublicManager.Modules.Module_B.DictManager
                 prf.ProfessionNum = "2";
                 prf.ProfessionCategory = "强敌研究";
                 prf.ProfessionName = "强敌研究";
+                prf.IsAcceptModify = "false";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -58,6 +60,7 @@ namespace PublicManager.Modules.Module_B.DictManager
                 prf.ProfessionNum = "3";
                 prf.ProfessionCategory = "军事战略";
                 prf.ProfessionName = "军事战略";
+                prf.IsAcceptModify = "false";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -65,6 +68,7 @@ namespace PublicManager.Modules.Module_B.DictManager
                 prf.ProfessionNum = "4";
                 prf.ProfessionCategory = "战略管理";
                 prf.ProfessionName = "战略管理";
+                prf.IsAcceptModify = "false";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -72,6 +76,7 @@ namespace PublicManager.Modules.Module_B.DictManager
                 prf.ProfessionNum = "5";
                 prf.ProfessionCategory = "xx作战";
                 prf.ProfessionName = "xx作战";
+                prf.IsAcceptModify = "true";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -79,6 +84,7 @@ namespace PublicManager.Modules.Module_B.DictManager
                 prf.ProfessionNum = "6";
                 prf.ProfessionCategory = "xx应用";
                 prf.ProfessionName = "xx应用";
+                prf.IsAcceptModify = "true";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -86,6 +92,7 @@ namespace PublicManager.Modules.Module_B.DictManager
                 prf.ProfessionNum = "7";
                 prf.ProfessionCategory = "xx建设";
                 prf.ProfessionName = "xx建设";
+                prf.IsAcceptModify = "true";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -93,6 +100,7 @@ namespace PublicManager.Modules.Module_B.DictManager
                 prf.ProfessionNum = "8";
                 prf.ProfessionCategory = "其他";
                 prf.ProfessionName = "其他";
+                prf.IsAcceptModify = "false";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
             }
         }
@@ -128,22 +136,26 @@ namespace PublicManager.Modules.Module_B.DictManager
                 {
                     if (e.ColumnIndex == dgvCatalogs.Columns.Count - 1)
                     {
-                        //编辑
-                        if (prf.ProfessionCategory == "xx作战" || prf.ProfessionCategory == "xx应用" || prf.ProfessionCategory == "xx建设")
+                        //删除
+                        if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                         {
-                            Forms.DictEditForm def = new Forms.DictEditForm();
-                            def.Content = prf.ProfessionName.Replace("xx", string.Empty);
-                            if (def.ShowDialog() == DialogResult.OK)
-                            {
-                                prf.ProfessionName = def.Content;
-                                prf.copyTo(ConnectionManager.Context.table("Professions")).where("ProfessionID='" + prf.ProfessionID + "'").update();
-
-                                updateCatalogs();
-                            }
+                            ConnectionManager.Context.table("Professions").where("ProfessionID='" + prf.ProfessionID + "'").delete();
+                            updateCatalogs();
                         }
-                        else
+                    }
+                    else if (e.ColumnIndex == dgvCatalogs.Columns.Count - 2)
+                    {
+                        //编辑
+                        Forms.DictEditForm def = new Forms.DictEditForm();
+                        def.ProfessionName = prf.ProfessionName;
+                        def.IsAcceptModify = prf.IsAcceptModify == "true";
+                        if (def.ShowDialog() == DialogResult.OK)
                         {
-                            MessageBox.Show("对不起，只能编辑'xx作战','xx应用','xx建设'！");
+                            prf.ProfessionName = def.ProfessionName;
+                            prf.IsAcceptModify = def.IsAcceptModify ? "true" : "false";
+                            prf.copyTo(ConnectionManager.Context.table("Professions")).where("ProfessionID='" + prf.ProfessionID + "'").update();
+
+                            updateCatalogs();
                         }
                     }
                 }
