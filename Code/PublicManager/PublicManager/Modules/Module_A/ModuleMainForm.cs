@@ -66,7 +66,7 @@ namespace PublicManager.Modules.Module_A
             }
 
             LocalUnit lu = ConnectionManager.Context.table("LocalUnit").select("*").getItem<LocalUnit>(new LocalUnit());
-            Text = "其它机关(" + lu.LocalUnitName + ")汇总系统";
+            Text = "归口管理部门(" + lu.LocalUnitName + ")汇总系统";
             
             if (string.IsNullOrEmpty(lu.LocalUnitID))
             {

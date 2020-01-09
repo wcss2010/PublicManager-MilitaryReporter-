@@ -54,11 +54,11 @@
             this.btnToA.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnToA.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnToA.ForeColor = System.Drawing.Color.Black;
-            this.btnToA.Location = new System.Drawing.Point(443, 363);
+            this.btnToA.Location = new System.Drawing.Point(399, 363);
             this.btnToA.Name = "btnToA";
-            this.btnToA.Size = new System.Drawing.Size(150, 47);
+            this.btnToA.Size = new System.Drawing.Size(194, 47);
             this.btnToA.TabIndex = 1;
-            this.btnToA.Text = "其它机关入口";
+            this.btnToA.Text = "归口管理部门入口";
             this.btnToA.UseVisualStyleBackColor = false;
             this.btnToA.Click += new System.EventHandler(this.btnToA_Click);
             // 
@@ -68,11 +68,11 @@
             this.btnToB.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnToB.Font = new System.Drawing.Font("宋体", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnToB.ForeColor = System.Drawing.Color.Black;
-            this.btnToB.Location = new System.Drawing.Point(200, 363);
+            this.btnToB.Location = new System.Drawing.Point(196, 363);
             this.btnToB.Name = "btnToB";
-            this.btnToB.Size = new System.Drawing.Size(173, 47);
+            this.btnToB.Size = new System.Drawing.Size(197, 47);
             this.btnToB.TabIndex = 1;
-            this.btnToB.Text = "军委科技委入口";
+            this.btnToB.Text = "军队主管部门入口";
             this.btnToB.UseVisualStyleBackColor = false;
             this.btnToB.Click += new System.EventHandler(this.btnToB_Click);
             // 
