@@ -116,6 +116,7 @@ namespace PublicManager.Modules.Module_B.DictManager
                 cells.Add(pfo.ProfessionNum);
                 cells.Add(pfo.ProfessionCategory);
                 cells.Add(pfo.ProfessionName);
+                cells.Add(pfo.IsAcceptModify == "true");
 
                 int rowIndex = dgvCatalogs.Rows.Add(cells.ToArray());
                 dgvCatalogs.Rows[rowIndex].Tag = pfo;
