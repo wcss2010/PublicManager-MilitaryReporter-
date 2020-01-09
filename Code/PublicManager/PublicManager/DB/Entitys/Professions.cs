@@ -21,6 +21,7 @@ namespace PublicManager.DB.Entitys
             query.set("ProfessionNum", ProfessionNum);
             query.set("ProfessionCategory", ProfessionCategory);
             query.set("ProfessionName", ProfessionName);
+            query.set("IsAcceptModify", IsAcceptModify);
 
             return query;
         }
@@ -31,6 +32,7 @@ namespace PublicManager.DB.Entitys
         public string ProfessionNum { get; set; }
         public string ProfessionCategory { get; set; }
         public string ProfessionName { get; set; }
+        public string IsAcceptModify { get; set; }
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
@@ -40,6 +42,7 @@ namespace PublicManager.DB.Entitys
             ProfessionNum = source("ProfessionNum").value<string>("");
             ProfessionCategory = source("ProfessionCategory").value<string>("");
             ProfessionName = source("ProfessionName").value<string>("");
+            IsAcceptModify = source("IsAcceptModify").value<string>("");
         }
 
         public override Noear.Weed.IBinder clone()
