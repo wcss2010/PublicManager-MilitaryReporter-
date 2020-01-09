@@ -91,7 +91,7 @@ namespace PublicManager
             Config.ObjectDict.Add("责任单位", new string[] { "东部战区", "南部战区", "西部战区", "北部战区", "中部战区", "陆军", "海军", "空军", "火箭军", "战略支援部队", "联勤保障部队", "军委办公厅", "军委联合参谋部", "军委政治工作部", "军委后勤保障部", "军委装备发展部", "军委训练管理部", "军委国防动员部", "军委纪律检察委员会", "军委政法委员会", "军委科学技术委员会", "军委战略规划办公室", "军委改革和编制办公室", "军委国际军事合作办公室", "军委审计署", "军委机关事务管理总局", "军事科学院", "国防大学", "国防科技大学", "武装警察部队" });
             Config.ObjectDict.Add("研究周期", new string[] { "6个月" + rowFlag + "6", "12个月" + rowFlag + "12", "18个月" + rowFlag + "18", "24个月" + rowFlag + "24", "36个月" + rowFlag + "36" });
             Config.ObjectDict.Add("责任单位与专业类别映射", new string[] { "陆军", "海军", "空军", "火箭军", "战略支援部队", "联勤保障部队", "军事科学院", "国防大学", "国防科技大学", "武装警察部队" });
-            Config.ObjectDict.Add("项目类别", new string[] { "重大学术研究" + rowFlag + "[100,180]" + rowFlag + "[5,10]" + rowFlag + "300", "重点学术研究" + rowFlag + "[90,150]" + rowFlag + "[3,7]" + rowFlag + "100" });
+            Config.ObjectDict.Add("项目类别", new string[] { "重大" + rowFlag + "[100,180]" + rowFlag + "[5,10]" + rowFlag + "300", "重点" + rowFlag + "[90,150]" + rowFlag + "[3,7]" + rowFlag + "100" });
 
             //保存初始化内容
             saveConfig();
