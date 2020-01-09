@@ -75,7 +75,23 @@ namespace PublicManager.Modules.Module_B.DictManager
 
         private void btnExportToXml_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = string.Empty;
+            sfd.Filter = "*.json|*.json";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    List<Professions> list = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
+                    Newtonsoft.Json.JsonConvert.SerializeObject(list);
 
+                    MessageBox.Show("生成完成！");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("生成失败！Ex:" + ex.ToString());
+                }
+            }
         }
     }
 }
