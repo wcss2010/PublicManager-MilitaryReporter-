@@ -87,10 +87,10 @@
             // 
             this.txtContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtContent.Font = new System.Drawing.Font("宋体", 10F);
-            this.txtContent.Location = new System.Drawing.Point(118, 18);
+            this.txtContent.Location = new System.Drawing.Point(131, 18);
             this.txtContent.Multiline = true;
             this.txtContent.Name = "txtContent";
-            this.txtContent.Size = new System.Drawing.Size(205, 24);
+            this.txtContent.Size = new System.Drawing.Size(192, 24);
             this.txtContent.TabIndex = 1;
             // 
             // lblTextBoxTitle
@@ -99,9 +99,9 @@
             this.lblTextBoxTitle.Font = new System.Drawing.Font("宋体", 10F);
             this.lblTextBoxTitle.Location = new System.Drawing.Point(18, 18);
             this.lblTextBoxTitle.Name = "lblTextBoxTitle";
-            this.lblTextBoxTitle.Size = new System.Drawing.Size(100, 24);
+            this.lblTextBoxTitle.Size = new System.Drawing.Size(113, 24);
             this.lblTextBoxTitle.TabIndex = 0;
-            this.lblTextBoxTitle.Text = "类型名称：";
+            this.lblTextBoxTitle.Text = "专业类别名称：";
             this.lblTextBoxTitle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // DictEditForm
