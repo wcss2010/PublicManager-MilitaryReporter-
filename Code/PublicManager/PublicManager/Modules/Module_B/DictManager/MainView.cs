@@ -131,16 +131,26 @@ namespace PublicManager.Modules.Module_B.DictManager
             if (e.RowIndex >= 0 && dgvCatalogs.Rows.Count > e.RowIndex)
             {
                 //获得要删除的项目ID
-                Professions prf = ((Professions)dgvCatalogs.Rows[e.RowIndex].Tag);
+                Professions prfs = ((Professions)dgvCatalogs.Rows[e.RowIndex].Tag);
 
-                if (prf != null)
+                if (prfs != null)
                 {
                     if (e.ColumnIndex == dgvCatalogs.Columns.Count - 1)
                     {
                         //删除
                         if (MessageBox.Show("真的要删除吗？", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
                         {
-                            ConnectionManager.Context.table("Professions").where("ProfessionID='" + prf.ProfessionID + "'").delete();
+                            ConnectionManager.Context.table("Professions").where("ProfessionID='" + prfs.ProfessionID + "'").delete();
+
+                            List<Professions> list = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
+                            int proIndex = 0;
+                            foreach (Professions pObj in list)
+                            {
+                                proIndex++;
+                                pObj.ProfessionNum = proIndex.ToString();
+                                pObj.copyTo(ConnectionManager.Context.table("Professions")).where("ProfessionID='" + pObj.ProfessionID + "'").update();
+                            }
+
                             updateCatalogs();
                         }
                     }
@@ -148,13 +158,13 @@ namespace PublicManager.Modules.Module_B.DictManager
                     {
                         //编辑
                         Forms.DictEditForm def = new Forms.DictEditForm();
-                        def.ProfessionName = prf.ProfessionName;
-                        def.IsAcceptModify = prf.IsAcceptModify == "true";
+                        def.ProfessionName = prfs.ProfessionName;
+                        def.IsAcceptModify = prfs.IsAcceptModify == "true";
                         if (def.ShowDialog() == DialogResult.OK)
                         {
-                            prf.ProfessionName = def.ProfessionName;
-                            prf.IsAcceptModify = def.IsAcceptModify ? "true" : "false";
-                            prf.copyTo(ConnectionManager.Context.table("Professions")).where("ProfessionID='" + prf.ProfessionID + "'").update();
+                            prfs.ProfessionName = def.ProfessionName;
+                            prfs.IsAcceptModify = def.IsAcceptModify ? "true" : "false";
+                            prfs.copyTo(ConnectionManager.Context.table("Professions")).where("ProfessionID='" + prfs.ProfessionID + "'").update();
 
                             updateCatalogs();
                         }

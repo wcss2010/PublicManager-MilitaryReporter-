@@ -44,6 +44,7 @@ namespace PublicManager.Modules.Module_A.DictManager
                 prf.ProfessionNum = "1";
                 prf.ProfessionCategory = "军事思想";
                 prf.ProfessionName = "军事思想";
+                prf.IsAcceptModify = "false";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -51,6 +52,7 @@ namespace PublicManager.Modules.Module_A.DictManager
                 prf.ProfessionNum = "2";
                 prf.ProfessionCategory = "强敌研究";
                 prf.ProfessionName = "强敌研究";
+                prf.IsAcceptModify = "false";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -58,6 +60,7 @@ namespace PublicManager.Modules.Module_A.DictManager
                 prf.ProfessionNum = "3";
                 prf.ProfessionCategory = "军事战略";
                 prf.ProfessionName = "军事战略";
+                prf.IsAcceptModify = "false";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -65,6 +68,7 @@ namespace PublicManager.Modules.Module_A.DictManager
                 prf.ProfessionNum = "4";
                 prf.ProfessionCategory = "战略管理";
                 prf.ProfessionName = "战略管理";
+                prf.IsAcceptModify = "false";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -72,6 +76,7 @@ namespace PublicManager.Modules.Module_A.DictManager
                 prf.ProfessionNum = "5";
                 prf.ProfessionCategory = "xx作战";
                 prf.ProfessionName = "xx作战";
+                prf.IsAcceptModify = "true";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -79,6 +84,7 @@ namespace PublicManager.Modules.Module_A.DictManager
                 prf.ProfessionNum = "6";
                 prf.ProfessionCategory = "xx应用";
                 prf.ProfessionName = "xx应用";
+                prf.IsAcceptModify = "true";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -86,6 +92,7 @@ namespace PublicManager.Modules.Module_A.DictManager
                 prf.ProfessionNum = "7";
                 prf.ProfessionCategory = "xx建设";
                 prf.ProfessionName = "xx建设";
+                prf.IsAcceptModify = "true";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
 
                 prf = new Professions();
@@ -93,6 +100,7 @@ namespace PublicManager.Modules.Module_A.DictManager
                 prf.ProfessionNum = "8";
                 prf.ProfessionCategory = "其他";
                 prf.ProfessionName = "其他";
+                prf.IsAcceptModify = "false";
                 prf.copyTo(ConnectionManager.Context.table("Professions")).insert();
             }
         }
