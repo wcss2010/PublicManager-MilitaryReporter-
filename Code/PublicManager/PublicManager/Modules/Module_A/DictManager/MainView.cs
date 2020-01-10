@@ -109,7 +109,7 @@ namespace PublicManager.Modules.Module_A.DictManager
         {
             dgvCatalogs.Rows.Clear();
 
-            List<Professions> list = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
+            List<Professions> list = ConnectionManager.Context.table("Professions").orderBy("ProfessionNum").select("*").getList<Professions>(new Professions());
             foreach (Professions pfo in list)
             {
                 List<object> cells = new List<object>();

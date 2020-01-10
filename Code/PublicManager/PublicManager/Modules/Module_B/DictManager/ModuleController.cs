@@ -83,7 +83,14 @@ namespace PublicManager.Modules.Module_B.DictManager
             {
                 try
                 {
-                    List<Professions> list = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
+                    //载取数据
+                    List<Professions> list = tc.getSelectedList();
+                    if (list.Count == 0)
+                    {
+                        list = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
+                    }
+
+                    //写数据
                     File.WriteAllText(sfd.FileName, Newtonsoft.Json.JsonConvert.SerializeObject(list, Newtonsoft.Json.Formatting.Indented));
 
                     MessageBox.Show("生成完成！");

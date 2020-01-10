@@ -69,7 +69,6 @@
             this.dgvCatalogs.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCatalogs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCatalogs.Location = new System.Drawing.Point(0, 0);
-            this.dgvCatalogs.MultiSelect = false;
             this.dgvCatalogs.Name = "dgvCatalogs";
             this.dgvCatalogs.ReadOnly = true;
             this.dgvCatalogs.RowHeadersVisible = false;

@@ -109,7 +109,7 @@ namespace PublicManager.Modules.Module_B.DictManager
         {
             dgvCatalogs.Rows.Clear();
 
-            List<Professions> list = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
+            List<Professions> list = ConnectionManager.Context.table("Professions").orderBy("ProfessionNum").select("*").getList<Professions>(new Professions());
             foreach (Professions pfo in list)
             {
                 List<object> cells = new List<object>();
@@ -171,6 +171,16 @@ namespace PublicManager.Modules.Module_B.DictManager
                     }
                 }
             }
+        }
+
+        public List<Professions> getSelectedList()
+        {
+            List<Professions> results = new List<Professions>();
+            foreach (DataGridViewRow dgvRow in dgvCatalogs.SelectedRows)
+            {
+                results.Add((Professions)dgvRow.Tag);
+            }
+            return results;
         }
     }
 }
