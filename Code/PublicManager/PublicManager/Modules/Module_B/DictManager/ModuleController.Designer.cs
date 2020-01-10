@@ -106,7 +106,7 @@
             // 
             // btnExportToXml
             // 
-            this.btnExportToXml.Caption = "导出到Excel";
+            this.btnExportToXml.Caption = "导出专业类别数据";
             this.btnExportToXml.Id = 12;
             this.btnExportToXml.LargeGlyph = global::PublicManager.Properties.Resources.export;
             this.btnExportToXml.Name = "btnExportToXml";

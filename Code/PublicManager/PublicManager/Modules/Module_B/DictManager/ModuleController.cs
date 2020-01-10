@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using PublicManager.DB;
 using PublicManager.DB.Entitys;
+using System.IO;
 
 namespace PublicManager.Modules.Module_B.DictManager
 {
@@ -83,7 +84,7 @@ namespace PublicManager.Modules.Module_B.DictManager
                 try
                 {
                     List<Professions> list = ConnectionManager.Context.table("Professions").select("*").getList<Professions>(new Professions());
-                    Newtonsoft.Json.JsonConvert.SerializeObject(list);
+                    File.WriteAllText(sfd.FileName, Newtonsoft.Json.JsonConvert.SerializeObject(list, Newtonsoft.Json.Formatting.Indented));
 
                     MessageBox.Show("生成完成！");
                 }
