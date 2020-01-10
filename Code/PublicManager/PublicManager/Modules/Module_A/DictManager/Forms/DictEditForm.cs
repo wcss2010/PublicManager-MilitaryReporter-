@@ -16,7 +16,7 @@ namespace PublicManager.Modules.Module_A.DictManager.Forms
             InitializeComponent();
         }
 
-        public string Content
+        public string ProfessionName
         {
             get
             {

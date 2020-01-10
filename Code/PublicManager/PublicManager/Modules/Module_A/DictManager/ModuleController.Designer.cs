@@ -35,6 +35,8 @@
             this.btnEditProject = new DevExpress.XtraBars.BarButtonItem();
             this.btnExportToPkg = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnLoadData = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,9 +49,10 @@
             this.btnAddProject,
             this.btnDeleteProject,
             this.btnEditProject,
-            this.btnExportToPkg});
+            this.btnExportToPkg,
+            this.btnLoadData});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
-            this.rcTopBar.MaxItemId = 11;
+            this.rcTopBar.MaxItemId = 12;
             this.rcTopBar.Name = "rcTopBar";
             this.rcTopBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpMaster});
@@ -93,8 +96,24 @@
             // 
             // rpMaster
             // 
+            this.rpMaster.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup1});
             this.rpMaster.Name = "rpMaster";
             this.rpMaster.Text = "论证报告书";
+            // 
+            // ribbonPageGroup1
+            // 
+            this.ribbonPageGroup1.ItemLinks.Add(this.btnLoadData);
+            this.ribbonPageGroup1.Name = "ribbonPageGroup1";
+            this.ribbonPageGroup1.Text = "其它";
+            // 
+            // btnLoadData
+            // 
+            this.btnLoadData.Caption = "导入专业类别数据";
+            this.btnLoadData.Id = 11;
+            this.btnLoadData.LargeGlyph = global::PublicManager.Properties.Resources.importB;
+            this.btnLoadData.Name = "btnLoadData";
+            this.btnLoadData.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLoadData_ItemClick);
             // 
             // ModuleController
             // 
@@ -118,5 +137,7 @@
         private DevExpress.XtraBars.BarButtonItem btnEditProject;
         private DevExpress.XtraBars.BarButtonItem btnExportToPkg;
         private DevExpress.XtraBars.Ribbon.RibbonPage rpMaster;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.BarButtonItem btnLoadData;
     }
 }

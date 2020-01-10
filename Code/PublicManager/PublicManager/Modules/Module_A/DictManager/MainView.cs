@@ -129,13 +129,13 @@ namespace PublicManager.Modules.Module_A.DictManager
                     if (e.ColumnIndex == dgvCatalogs.Columns.Count - 1)
                     {
                         //编辑
-                        if (prf.ProfessionCategory == "xx作战" || prf.ProfessionCategory == "xx应用" || prf.ProfessionCategory == "xx建设")
+                        if (prf.IsAcceptModify == "true")
                         {
                             Forms.DictEditForm def = new Forms.DictEditForm();
-                            def.Content = prf.ProfessionName.Replace("xx", string.Empty);
+                            def.ProfessionName = prf.ProfessionName;
                             if (def.ShowDialog() == DialogResult.OK)
                             {
-                                prf.ProfessionName = def.Content;
+                                prf.ProfessionName = def.ProfessionName;
                                 prf.copyTo(ConnectionManager.Context.table("Professions")).where("ProfessionID='" + prf.ProfessionID + "'").update();
 
                                 updateCatalogs();
@@ -143,7 +143,7 @@ namespace PublicManager.Modules.Module_A.DictManager
                         }
                         else
                         {
-                            MessageBox.Show("对不起，只能编辑'xx作战','xx应用','xx建设'！");
+                            MessageBox.Show("对不起，这个专业类别不能编辑！");
                         }
                     }
                 }
