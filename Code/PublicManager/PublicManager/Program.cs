@@ -15,6 +15,15 @@ namespace PublicManager
         [STAThread]
         static void Main()
         {
+            //添加忽略
+            PublicReporterLib.PluginLoader.IgnoreLoadDllFiles.Add("PublicReporterLib.dll");
+            PublicReporterLib.PluginLoader.IgnoreLoadDllFiles.Add("Noear.Weed3.dll");
+            PublicReporterLib.PluginLoader.IgnoreLoadDllFiles.Add("Aspose.Words.dll");
+            PublicReporterLib.PluginLoader.IgnoreLoadDllFiles.Add("Newtonsoft.Json.dll");
+            PublicReporterLib.PluginLoader.IgnoreLoadDllFiles.Add("ICSharpCode.SharpZipLib.dll");
+            PublicReporterLib.PluginLoader.IgnoreLoadDllFiles.Add("SuperCodeFactoryLib.dll");
+            PublicReporterLib.PluginLoader.IgnoreLoadDllFiles.Add("SuperCodeFactoryUILib.dll");
+
             //载入配置
             MainConfig.constConfigFile = Path.Combine(Application.StartupPath, "config.json");
             MainConfig.loadConfig();

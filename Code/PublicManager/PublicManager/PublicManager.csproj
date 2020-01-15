@@ -127,6 +127,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="PublicReporterLib">
+      <HintPath>..\..\..\Lib\PublicReporterLib.dll</HintPath>
+    </Reference>
     <Reference Include="SuperCodeFactoryLib">
       <HintPath>..\..\..\Lib\SuperCodeFactoryLib.dll</HintPath>
       <Private>True</Private>
