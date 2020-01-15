@@ -73,6 +73,20 @@ namespace PublicManager.Modules.Module_B.PackageEditor
             dgvCatalogs.checkCellSize();
         }
 
+        /// <summary>
+        /// 获得当前的对象
+        /// </summary>
+        /// <returns></returns>
+        public Catalog getCurrentCatalog()
+        {
+            Catalog proj = null;
+            if (dgvCatalogs.SelectedRows.Count >= 1 && dgvCatalogs.SelectedRows[0].Tag != null)
+            {
+                proj = (Catalog)dgvCatalogs.SelectedRows[0].Tag;
+            }
+            return proj;
+        }
+
         private void dgvCatalogs_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //检查是否点击的是删除的那一列
