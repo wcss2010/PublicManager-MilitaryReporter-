@@ -34,6 +34,7 @@
             this.btnEditProject = new DevExpress.XtraBars.BarButtonItem();
             this.rpMaster = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgElse = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnReportEdit = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.rcTopBar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,9 +45,10 @@
             this.rcTopBar.ExpandCollapseItem,
             this.btnAddProject,
             this.btnDeleteProject,
-            this.btnEditProject});
+            this.btnEditProject,
+            this.btnReportEdit});
             this.rcTopBar.Location = new System.Drawing.Point(0, 0);
-            this.rcTopBar.MaxItemId = 11;
+            this.rcTopBar.MaxItemId = 12;
             this.rcTopBar.Name = "rcTopBar";
             this.rcTopBar.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpMaster});
@@ -83,8 +85,17 @@
             // 
             // rpgElse
             // 
+            this.rpgElse.ItemLinks.Add(this.btnReportEdit);
             this.rpgElse.Name = "rpgElse";
             this.rpgElse.Text = "其它";
+            // 
+            // btnReportEdit
+            // 
+            this.btnReportEdit.Caption = "编辑当前项目";
+            this.btnReportEdit.Id = 11;
+            this.btnReportEdit.LargeGlyph = global::PublicManager.Properties.Resources.edit;
+            this.btnReportEdit.Name = "btnReportEdit";
+            this.btnReportEdit.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReportEdit_ItemClick);
             // 
             // ModuleController
             // 
@@ -107,5 +118,6 @@
         private DevExpress.XtraBars.BarButtonItem btnEditProject;
         private DevExpress.XtraBars.Ribbon.RibbonPage rpMaster;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgElse;
+        private DevExpress.XtraBars.BarButtonItem btnReportEdit;
     }
 }

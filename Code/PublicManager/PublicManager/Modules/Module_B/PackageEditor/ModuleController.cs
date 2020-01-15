@@ -9,6 +9,7 @@ using PublicManager.DB;
 using System.IO;
 using PublicManager.DB.Entitys;
 using NPOI.SS.Util;
+using SuperCodeFactoryUILib.Forms;
 
 namespace PublicManager.Modules.Module_B.PackageEditor
 {
@@ -75,6 +76,20 @@ namespace PublicManager.Modules.Module_B.PackageEditor
         public override void stop()
         {
             base.stop();
+        }
+
+        private void btnReportEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            CircleProgressBarDialog dialogb = new CircleProgressBarDialog();
+            dialogb.TransparencyKey = dialogb.BackColor;
+            dialogb.ProgressBar.ForeColor = Color.Red;
+            dialogb.MessageLabel.ForeColor = Color.Blue;
+            dialogb.FormBorderStyle = FormBorderStyle.None;
+            dialogb.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
+            {
+                CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
+
+            }));
         }
     }
 }

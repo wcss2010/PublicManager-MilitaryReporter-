@@ -21,6 +21,7 @@ namespace PublicManager.DB.Entitys
             query.set("CatalogType", CatalogType);
             query.set("CatalogVersion", CatalogVersion);
             query.set("ImportTime", ImportTime);
+            query.set("ZipPath", ZipPath);
 
             return query;
         }
@@ -31,6 +32,7 @@ namespace PublicManager.DB.Entitys
         public string CatalogType { get; set; }
         public string CatalogVersion { get; set; }
         public DateTime ImportTime { get; set; }
+        public string ZipPath { get; set; }
 
         public override void bind(Noear.Weed.GetHandlerEx source)
         {
@@ -40,6 +42,7 @@ namespace PublicManager.DB.Entitys
             CatalogType = source("CatalogType").value<string>("");
             CatalogVersion = source("CatalogVersion").value<string>("");
             ImportTime = source("ImportTime").value<DateTime>(DateTime.Now);
+            ZipPath = source("ZipPath").value<string>("");
         }
 
         public override Noear.Weed.IBinder clone()
