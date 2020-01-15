@@ -80,6 +80,10 @@ namespace PublicManager.Modules.Module_A.PackageEditor
 
         private void btnReportEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            string zipFile = string.Empty;
+
+            btnReportEdit.Enabled = false;
+
             CircleProgressBarDialog dialogb = new CircleProgressBarDialog();
             dialogb.TransparencyKey = dialogb.BackColor;
             dialogb.ProgressBar.ForeColor = Color.Red;
@@ -89,7 +93,73 @@ namespace PublicManager.Modules.Module_A.PackageEditor
             {
                 CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
 
+                //插件目录
+                string pluginDir = Path.Combine(Application.StartupPath, Path.Combine("ReportPlugins", "ProjectMilitaryTechnologPlanPlugin"));
+
+                //判断插件是否存在
+                if (Directory.Exists(pluginDir) && File.Exists(Path.Combine(pluginDir, "ProjectMilitaryTechnologPlanPlugin.dll")))
+                {
+                    #region 导入数据
+                    string currentPath = Path.Combine(Path.Combine(pluginDir, "Data"), "Current");
+                    try
+                    {
+                        if (Directory.Exists(currentPath))
+                        {
+                            Directory.Delete(currentPath, true);
+                        }
+                    }
+                    catch (Exception ex) { }
+                    try
+                    {
+                        Directory.CreateDirectory(currentPath);
+                    }
+                    catch (Exception ex) { }
+                    PublicReporterLib.Utility.ZipUtil zu = new PublicReporterLib.Utility.ZipUtil();
+                    zu.UnZipFile(zipFile, currentPath, string.Empty, true);
+
+                    #endregion
+
+                    #region 显示填报插件窗体
+                    if (IsHandleCreated)
+                    {
+                        Invoke(new MethodInvoker(delegate()
+                        {
+                            try
+                            {
+                                //创建并显示窗体
+                                PublicReporter.DisplayForm df = new PublicReporter.DisplayForm();
+                                df.FormClosed += df_FormClosed;
+                                df.loadPlugin(pluginDir);
+                                df.WindowState = FormWindowState.Maximized;
+                                df.Show();
+                                df.WindowState = FormWindowState.Maximized;
+
+                                tc.updateCatalogs();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("对不起，填报系统启动失败！Ex:" + ex.ToString());
+                            }
+
+                            btnReportEdit.Enabled = true;
+                        }));
+                    }
+                    else
+                    {
+                        btnReportEdit.Enabled = true;
+                    }
+                    #endregion
+                }
+                else
+                {
+                    MessageBox.Show("对不起，没有找到填报插件！");
+                }
             }));
+        }
+
+        void df_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
         }
     }
 }
