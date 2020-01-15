@@ -15,7 +15,7 @@ namespace PublicReporter
         /// <summary>
         /// 插件目录
         /// </summary>
-        public static string PluginDirs = Path.Combine(Application.StartupPath, "Plugins");
+        public static string PluginDirs = Path.Combine(Application.StartupPath, "ReportPlugins");
 
         public DisplayForm()
         {
