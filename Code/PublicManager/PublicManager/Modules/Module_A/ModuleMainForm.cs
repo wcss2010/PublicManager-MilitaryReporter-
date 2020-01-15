@@ -41,6 +41,7 @@ namespace PublicManager.Modules.Module_A
             ModuleDict["数据编辑"] = new DataManager.ModuleController();
             ModuleDict["专业类别维护"] = new DictManager.ModuleController();
             ModuleDict["数据导出"] = new DataExport.ModuleController();
+            ModuleDict["数据包编辑"] = new PackageEditor.ModuleController();
         }
 
         protected override void initUI()
@@ -70,17 +71,17 @@ namespace PublicManager.Modules.Module_A
             
             if (string.IsNullOrEmpty(lu.LocalUnitID))
             {
-                treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "专业类别维护", "数据编辑", "数据导出" });
+                treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "专业类别维护", "数据编辑", "数据导出", "数据包编辑" });
             }
             else
             {
                 if (DutyUnitToProfessonLinks.Contains(lu.LocalUnitName))
                 {
-                    treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "专业类别维护", "数据编辑", "数据导出" });
+                    treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "专业类别维护", "数据编辑", "数据导出", "数据包编辑" });
                 }
                 else
                 {
-                    treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "数据编辑", "数据导出" });
+                    treeListObj = buildTreeControl(new string[] { string.Empty }, new string[] { "数据包汇总", "数据编辑", "数据导出", "数据包编辑" });
                 }
             }
 
