@@ -386,6 +386,12 @@
       <DependentUpon>ProgressForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportEditors\DisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportEditors\DisplayForm.designer.cs">
+      <DependentUpon>DisplayForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -513,6 +519,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReportEditors\DisplayForm.resx">
+      <DependentUpon>DisplayForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestControl.resx">
       <DependentUpon>TestControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -528,6 +537,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\DataTemplete\Current\Files\~WRL0001.tmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\DataTemplete\Current\static.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\Helper\emptyPaste.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\Helper\help.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\Helper\template.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="static.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -568,6 +592,54 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="managers.ico" />
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\Aspose.Words.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\Balloon.NET.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\ICSharpCode.SharpZipLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\Noear.Weed3.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\NPOI.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\NPOI.OOXML.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\NPOI.OpenXml4Net.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\NPOI.OpenXmlFormats.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\ProjectMilitaryTechnologPlanPlugin.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\ProjectMilitaryTechnologPlanPlugin.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\PublicReporterLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\PublicReporterLib.pdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\SuperCodeFactoryLib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\SuperCodeFactoryUILib.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ReportPlugins\ProjectMilitaryTechnologPlanPlugin\System.Data.SQLite.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\export3.png" />
     <None Include="Resources\export2.png" />
     <None Include="Resources\export.png" />
