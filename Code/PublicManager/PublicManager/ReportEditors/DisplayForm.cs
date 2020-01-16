@@ -13,6 +13,8 @@ namespace PublicReporter
 {
     public partial class DisplayForm : Form
     {
+        private bool needExport = false;
+
         /// <summary>
         /// 插件目录
         /// </summary>
@@ -84,6 +86,9 @@ namespace PublicReporter
             {
                 MessageBox.Show("对不起，当前的论证报告书不是最新的，请点击\"生成报告\"或\"预览\"按钮重新生成论证报告书！");
 
+                //需要导出
+                needExport = true;
+
                 //取消关闭
                 e.Cancel = true;
             }
@@ -112,38 +117,40 @@ namespace PublicReporter
 
         private void exportPkg(FormClosingEventArgs e)
         {
-            //检查目标文件是否存在，如果存在则删除
-            string destFile = DestZipPath;
-            if (File.Exists(destFile))
+            if (needExport)
             {
-                try
+                //检查目标文件是否存在，如果存在则删除
+                string destFile = DestZipPath;
+                if (File.Exists(destFile))
                 {
-                    File.Delete(destFile);
-                }
-                catch (Exception ex) { }
-            }
-
-            try
-            {
-                CircleProgressBarDialog dialoga = new CircleProgressBarDialog();
-                dialoga.TransparencyKey = dialoga.BackColor;
-                dialoga.ProgressBar.ForeColor = Color.Red;
-                dialoga.MessageLabel.ForeColor = Color.Blue;
-                dialoga.FormBorderStyle = FormBorderStyle.None;
-                dialoga.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
-                {
-                    CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
-
-                    senderForm.ReportProgress(10, 100);
-                    senderForm.ReportInfo("准备导出...");
-                    try { System.Threading.Thread.Sleep(1000); }
-                    catch (Exception ex) { }
-
-                    #region 尝试关闭Sqlite数据库连接
                     try
                     {
-                        dynamic script = CSScriptLibrary.CSScript.LoadCode(
-                               @"using System.Windows.Forms;
+                        File.Delete(destFile);
+                    }
+                    catch (Exception ex) { }
+                }
+
+                try
+                {
+                    CircleProgressBarDialog dialoga = new CircleProgressBarDialog();
+                    dialoga.TransparencyKey = dialoga.BackColor;
+                    dialoga.ProgressBar.ForeColor = Color.Red;
+                    dialoga.MessageLabel.ForeColor = Color.Blue;
+                    dialoga.FormBorderStyle = FormBorderStyle.None;
+                    dialoga.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
+                    {
+                        CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
+
+                        senderForm.ReportProgress(10, 100);
+                        senderForm.ReportInfo("准备导出...");
+                        try { System.Threading.Thread.Sleep(1000); }
+                        catch (Exception ex) { }
+
+                        #region 尝试关闭Sqlite数据库连接
+                        try
+                        {
+                            dynamic script = CSScriptLibrary.CSScript.LoadCode(
+                                   @"using System.Windows.Forms;
                              public class Script
                              {
                                  public void CloseDB()
@@ -151,15 +158,15 @@ namespace PublicReporter
                                      ProjectMilitaryTechnologPlanPlugin.DB.ConnectionManager.Close();
                                  }
                              }")
-                                 .CreateObject("*");
-                        script.CloseDB();
-                    }
-                    catch (Exception ex) { }
-                    #endregion
+                                     .CreateObject("*");
+                            script.CloseDB();
+                        }
+                        catch (Exception ex) { }
+                        #endregion
 
-                    #region 获得Data目录
-                    dynamic scriptss = CSScriptLibrary.CSScript.LoadCode(
-                           @"using System.Windows.Forms;
+                        #region 获得Data目录
+                        dynamic scriptss = CSScriptLibrary.CSScript.LoadCode(
+                               @"using System.Windows.Forms;
                              using System;
                              using System.Data;
                              using System.IO;
@@ -174,27 +181,28 @@ namespace PublicReporter
                                      return rootObj.dataDir;
                                  }
                              }")
-                             .CreateObject("*");
-                    string dataDir = scriptss.getDataDir();
-                    #endregion
+                                 .CreateObject("*");
+                        string dataDir = scriptss.getDataDir();
+                        #endregion
 
-                    senderForm.ReportProgress(20, 100);
-                    senderForm.ReportInfo("正在导出...");
-                    try { System.Threading.Thread.Sleep(1000); }
-                    catch (Exception ex) { }
+                        senderForm.ReportProgress(20, 100);
+                        senderForm.ReportInfo("正在导出...");
+                        try { System.Threading.Thread.Sleep(1000); }
+                        catch (Exception ex) { }
 
-                    //压缩
-                    new PublicReporterLib.Utility.ZipUtil().ZipFileDirectory(dataDir, destFile);
+                        //压缩
+                        new PublicReporterLib.Utility.ZipUtil().ZipFileDirectory(dataDir, destFile);
 
-                    senderForm.ReportProgress(90, 100);
-                    senderForm.ReportInfo("导出完成，准备重启...");
-                    try { System.Threading.Thread.Sleep(1000); }
-                    catch (Exception ex) { }
-                }));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("导出失败！Ex:" + ex.ToString());
+                        senderForm.ReportProgress(90, 100);
+                        senderForm.ReportInfo("导出完成，准备重启...");
+                        try { System.Threading.Thread.Sleep(1000); }
+                        catch (Exception ex) { }
+                    }));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("导出失败！Ex:" + ex.ToString());
+                }
             }
         }
 
