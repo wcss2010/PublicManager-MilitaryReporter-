@@ -57,6 +57,9 @@
       <HintPath>..\..\..\Lib\Aspose.Words.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CSScriptLibrary">
+      <HintPath>..\..\..\Lib\CSScriptLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
@@ -103,6 +106,7 @@
       <HintPath>..\..\..\Lib\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\Lib\Newtonsoft.Json.dll</HintPath>
     </Reference>

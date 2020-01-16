@@ -38,11 +38,8 @@ namespace PublicManager.Modules.Module_B.PkgImporter
         /// <summary>
         /// 导入数据库
         /// </summary>
-        /// <param name="catalogNumber"></param>
-        /// <param name="sourceFile"></param>
-        /// <param name="localContext"></param>
         /// <returns></returns>
-        protected override string importDB(string catalogNumber, string sourceFile, Noear.Weed.DbContext localContext)
+        protected override string importDB(string zipFile, string catalogNumber, string sourceFile, Noear.Weed.DbContext localContext)
         {
             //数据库版本号
             string catalogVersionStr = "v1.0";
@@ -63,7 +60,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                 catch (Exception ex) { }
 
                 //更新Catalog
-                Catalog catalog = updateAndClearCatalog(catalogNumber, diProject.getString("XiangMuMingCheng"), "论证报告书", catalogVersionStr);
+                Catalog catalog = updateAndClearCatalog(zipFile, catalogNumber, diProject.getString("XiangMuMingCheng"), "论证报告书", catalogVersionStr);
                 #endregion
 
                 #region 导入项目

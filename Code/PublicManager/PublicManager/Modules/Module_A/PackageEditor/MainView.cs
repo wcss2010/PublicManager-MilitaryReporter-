@@ -77,12 +77,12 @@ namespace PublicManager.Modules.Module_A.PackageEditor
         /// 获得当前的对象
         /// </summary>
         /// <returns></returns>
-        public Catalog getCurrentCatalog()
+        public Project getCurrentProject()
         {
-            Catalog proj = null;
+            Project proj = null;
             if (dgvCatalogs.SelectedRows.Count >= 1 && dgvCatalogs.SelectedRows[0].Tag != null)
             {
-                proj = (Catalog)dgvCatalogs.SelectedRows[0].Tag;
+                proj = (Project)dgvCatalogs.SelectedRows[0].Tag;
             }
             return proj;
         }

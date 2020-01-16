@@ -153,7 +153,7 @@ namespace PublicManager.Modules.Module_A.PkgImporter.Forms
                             BaseModuleMainForm.writeLog("开始导入__" + zipName);
 
                             //导入数据库
-                            new DBImporter().addOrReplaceProject(zipName, Path.Combine(Path.Combine(decompressDir, zipName), "static.db"));
+                            new DBImporter().addOrReplaceProject(zipFile, zipName, Path.Combine(Path.Combine(decompressDir, zipName), "static.db"));
 
                             //报告进度
                             pf.reportProgress(progressVal, zipName + "_结束导入");

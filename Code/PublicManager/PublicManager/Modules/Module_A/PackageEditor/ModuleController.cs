@@ -80,81 +80,105 @@ namespace PublicManager.Modules.Module_A.PackageEditor
 
         private void btnReportEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string zipFile = string.Empty;
-
-            btnReportEdit.Enabled = false;
-
-            CircleProgressBarDialog dialogb = new CircleProgressBarDialog();
-            dialogb.TransparencyKey = dialogb.BackColor;
-            dialogb.ProgressBar.ForeColor = Color.Red;
-            dialogb.MessageLabel.ForeColor = Color.Blue;
-            dialogb.FormBorderStyle = FormBorderStyle.None;
-            dialogb.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
+            Project projectObj = tc.getCurrentProject();
+            if (projectObj != null)
             {
-                CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
-
-                //插件目录
-                string pluginDir = Path.Combine(Application.StartupPath, Path.Combine("ReportPlugins", "ProjectMilitaryTechnologPlanPlugin"));
-
-                //判断插件是否存在
-                if (Directory.Exists(pluginDir) && File.Exists(Path.Combine(pluginDir, "ProjectMilitaryTechnologPlanPlugin.dll")))
+                Catalog catalogObj = ConnectionManager.Context.table("Catalog").where("CatalogID='" + projectObj.CatalogID + "'").select("*").getItem<Catalog>(new Catalog());
+                if (catalogObj != null && File.Exists(catalogObj.ZipPath))
                 {
-                    #region 导入数据
-                    string currentPath = Path.Combine(Path.Combine(pluginDir, "Data"), "Current");
-                    try
-                    {
-                        if (Directory.Exists(currentPath))
-                        {
-                            Directory.Delete(currentPath, true);
-                        }
-                    }
-                    catch (Exception ex) { }
-                    try
-                    {
-                        Directory.CreateDirectory(currentPath);
-                    }
-                    catch (Exception ex) { }
-                    PublicReporterLib.Utility.ZipUtil zu = new PublicReporterLib.Utility.ZipUtil();
-                    zu.UnZipFile(zipFile, currentPath, string.Empty, true);
+                    string zipFile = catalogObj.ZipPath;
 
-                    #endregion
+                    btnReportEdit.Enabled = false;
 
-                    #region 显示填报插件窗体
-                    if (IsHandleCreated)
+                    CircleProgressBarDialog dialogb = new CircleProgressBarDialog();
+                    dialogb.TransparencyKey = dialogb.BackColor;
+                    dialogb.ProgressBar.ForeColor = Color.Red;
+                    dialogb.MessageLabel.ForeColor = Color.Blue;
+                    dialogb.FormBorderStyle = FormBorderStyle.None;
+                    dialogb.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
                     {
-                        Invoke(new MethodInvoker(delegate()
+                        CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
+
+                        //插件目录
+                        string pluginDir = Path.Combine(Application.StartupPath, Path.Combine("ReportPlugins", "ProjectMilitaryTechnologPlanPlugin"));
+
+                        //判断插件是否存在
+                        if (Directory.Exists(pluginDir) && File.Exists(Path.Combine(pluginDir, "ProjectMilitaryTechnologPlanPlugin.dll")))
                         {
+                            #region 尝试关闭Sqlite数据库连接
                             try
                             {
-                                //创建并显示窗体
-                                PublicReporter.DisplayForm df = new PublicReporter.DisplayForm();
-                                df.FormClosed += df_FormClosed;
-                                df.loadPlugin(pluginDir);
-                                df.WindowState = FormWindowState.Maximized;
-                                df.Show();
-                                df.WindowState = FormWindowState.Maximized;
-
-                                tc.updateCatalogs();
+                                dynamic script = CSScriptLibrary.CSScript.LoadCode(
+                                       @"using System.Windows.Forms;
+                             public class Script
+                             {
+                                 public void CloseDB()
+                                 {
+                                     ProjectMilitaryTechnologPlanPlugin.DB.ConnectionManager.Close();
+                                 }
+                             }")
+                                         .CreateObject("*");
+                                script.CloseDB();
                             }
-                            catch (Exception ex)
+                            catch (Exception ex) { }
+                            #endregion
+
+                            #region 导入数据
+                            string currentPath = Path.Combine(Path.Combine(pluginDir, "Data"), "Current");
+                            try
                             {
-                                MessageBox.Show("对不起，填报系统启动失败！Ex:" + ex.ToString());
+                                if (Directory.Exists(currentPath))
+                                {
+                                    Directory.Delete(currentPath, true);
+                                }
                             }
+                            catch (Exception ex) { }
+                            try
+                            {
+                                Directory.CreateDirectory(currentPath);
+                            }
+                            catch (Exception ex) { }
+                            new PublicReporterLib.Utility.ZipUtil().UnZipFile(zipFile, currentPath, string.Empty, true);
+                            #endregion
 
-                            btnReportEdit.Enabled = true;
-                        }));
-                    }
-                    else
-                    {
-                        btnReportEdit.Enabled = true;
-                    }
-                    #endregion
+                            #region 显示填报插件窗体
+                            if (IsHandleCreated)
+                            {
+                                Invoke(new MethodInvoker(delegate()
+                                {
+                                    try
+                                    {
+                                        //创建并显示窗体
+                                        PublicReporter.DisplayForm df = new PublicReporter.DisplayForm();
+                                        df.FormClosed += df_FormClosed;
+                                        df.loadPlugin(pluginDir);
+                                        df.WindowState = FormWindowState.Maximized;
+                                        df.Show();
+                                        df.WindowState = FormWindowState.Maximized;
+
+                                        tc.updateCatalogs();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("对不起，填报系统启动失败！Ex:" + ex.ToString());
+                                    }
+
+                                    btnReportEdit.Enabled = true;
+                                }));
+                            }
+                            else
+                            {
+                                btnReportEdit.Enabled = true;
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            MessageBox.Show("对不起，没有找到填报插件！");
+                        }
+                    }));
                 }
-                else
-                {
-                    MessageBox.Show("对不起，没有找到填报插件！");
-                }
-            }));
+            }
         }
 
         void df_FormClosed(object sender, FormClosedEventArgs e)

@@ -11,13 +11,13 @@ namespace PublicManager.Modules
         /// <summary>
         /// 根据CatalogID清空本地数据库(除了Catalog表)
         /// </summary>
-        /// <param name="catalogID"></param>
+        /// <param name="catalogID">索引ID</param>
         public abstract void clearProjectDataWithCatalogID(string catalogID);
 
         /// <summary>
         /// 删除项目(索引+所有数据)
         /// </summary>
-        /// <param name="catalogID"></param>
+        /// <param name="catalogID">索引ID</param>
         public void deleteProject(string catalogID)
         {
             //删除其它表的数据
@@ -30,10 +30,11 @@ namespace PublicManager.Modules
         /// <summary>
         /// 添加或替换项目
         /// </summary>
-        /// <param name="catalogNumber">catalogNumber</param>
+        /// <param name="zipFile">压缩包</param>
+        /// <param name="catalogNumber">编号</param>
         /// <param name="sourceFile">源文件</param>
         /// <returns>CatalogID</returns>
-        public string addOrReplaceProject(string catalogNumber, string sourceFile)
+        public string addOrReplaceProject(string zipFile, string catalogNumber, string sourceFile)
         {
             //SQLite数据库工厂
             System.Data.SQLite.SQLiteFactory factory = new System.Data.SQLite.SQLiteFactory();
@@ -47,7 +48,7 @@ namespace PublicManager.Modules
 
             try
             {
-                return importDB(catalogNumber, sourceFile, context);
+                return importDB(zipFile, catalogNumber, sourceFile, context);
             }
             catch (Exception ex)
             {
@@ -64,21 +65,23 @@ namespace PublicManager.Modules
         /// <summary>
         /// 导入数据库
         /// </summary>
-        /// <param name="catalogNumber"></param>
-        /// <param name="sourceFile"></param>
-        /// <param name="localContext"></param>
+        /// <param name="zipFile">压缩包</param>
+        /// <param name="catalogNumber">编号</param>
+        /// <param name="sourceFile">源文件</param>
+        /// <param name="localContext">数据库访问对象</param>
         /// <returns>CatalogID</returns>
-        protected abstract string importDB(string catalogNumber, string sourceFile, Noear.Weed.DbContext localContext);
+        protected abstract string importDB(string zipFile, string catalogNumber, string sourceFile, Noear.Weed.DbContext localContext);
 
         /// <summary>
         /// 更新并且清理Catalog
         /// </summary>
-        /// <param name="catalogNumber"></param>
-        /// <param name="catalogName"></param>
-        /// <param name="catalogType"></param>
-        /// <param name="catalogVersion"></param>
+        /// <param name="catalogNumber">编号</param>
+        /// <param name="catalogName">项目名称</param>
+        /// <param name="catalogType">项目类型</param>
+        /// <param name="catalogVersion">项目版本</param>
+        /// <param name="zipFile">压缩包</param>
         /// <returns></returns>
-        protected Catalog updateAndClearCatalog(string catalogNumber,string catalogName,string catalogType,string catalogVersion)
+        protected Catalog updateAndClearCatalog(string catalogNumber, string catalogName, string catalogType, string catalogVersion, string zipFile)
         {
             //删除旧的Catalog
             string catalogID = ConnectionManager.Context.table("Catalog").where("CatalogNumber='" + catalogNumber + "'").select("CatalogID").getValue<string>(string.Empty);
@@ -95,6 +98,7 @@ namespace PublicManager.Modules
             catalog.CatalogType = catalogType;
             catalog.CatalogVersion = catalogVersion;
             catalog.ImportTime = DateTime.Now;
+            catalog.ZipPath = zipFile;
             catalog.copyTo(ConnectionManager.Context.table("Catalog")).insert();
 
             return catalog;
