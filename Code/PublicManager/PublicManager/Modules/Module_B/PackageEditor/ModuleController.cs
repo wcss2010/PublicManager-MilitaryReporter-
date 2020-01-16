@@ -205,6 +205,7 @@ namespace PublicManager.Modules.Module_B.PackageEditor
         {
             if (PublicReporterLib.PluginLoader.CurrentPlugin != null)
             {
+                //将用不到的按钮变成灰色
                 foreach (ToolStripItem tsi in PublicReporterLib.PluginLoader.CurrentPlugin.Parent_TopToolStrip.Items)
                 {
                     switch (tsi.Text)
@@ -223,6 +224,26 @@ namespace PublicManager.Modules.Module_B.PackageEditor
                             break;
                     }
                 }
+
+                //退出时不提示
+                dynamic script = CSScriptLibrary.CSScript.LoadCode(
+                           @"using System.Windows.Forms;
+                             using System;
+                             using System.Data;
+                             using System.IO;
+                             using System.Text;
+                             using PublicReporterLib;
+                             
+                             public class Script
+                             {
+                                 public void check()
+                                 {
+                                     ProjectMilitaryTechnologPlanPlugin.PluginRoot rootObj = (ProjectMilitaryTechnologPlanPlugin.PluginRoot)PublicReporterLib.PluginLoader.CurrentPlugin;
+                                     rootObj.enabledShowExitHint = false;
+                                 }
+                             }")
+                             .CreateObject("*");
+                script.check();
             }
         }
 
