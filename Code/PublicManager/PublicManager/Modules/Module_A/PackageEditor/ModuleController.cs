@@ -105,6 +105,8 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                         //判断插件是否存在
                         if (Directory.Exists(pluginDir) && File.Exists(Path.Combine(pluginDir, "ProjectMilitaryTechnologPlanPlugin.dll")))
                         {
+                            senderForm.ReportProgress(30, 100);
+
                             #region 尝试关闭Sqlite数据库连接
                             try
                             {
@@ -122,6 +124,8 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                             }
                             catch (Exception ex) { }
                             #endregion
+
+                            senderForm.ReportProgress(60, 100);
 
                             #region 导入数据
                             string currentPath = Path.Combine(Path.Combine(pluginDir, "Data"), "Current");
@@ -141,10 +145,12 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                             new PublicReporterLib.Utility.ZipUtil().UnZipFile(zipFile, currentPath, string.Empty, true);
                             #endregion
 
+                            senderForm.ReportProgress(90, 100);
+
                             #region 显示填报插件窗体
-                            if (IsHandleCreated)
+                            if (senderForm.IsHandleCreated)
                             {
-                                Invoke(new MethodInvoker(delegate()
+                                senderForm.Invoke(new MethodInvoker(delegate()
                                 {
                                     try
                                     {
@@ -171,6 +177,8 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                                 btnReportEdit.Enabled = true;
                             }
                             #endregion
+
+                            senderForm.ReportProgress(99, 100);
                         }
                         else
                         {
