@@ -1,25 +1,18 @@
-﻿using DevExpress.XtraBars.Ribbon;
+﻿using SuperCodeFactoryUILib.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace PublicManager.Modules
 {
-    public partial class ProgressForm : RibbonForm
+    public partial class ProgressForm : CircleProgressBarDialog
     {
-        /// <summary>
-        /// 工作线程
-        /// </summary>
-        private BackgroundWorker worker = new BackgroundWorker();
-
-        /// <summary>
-        /// 工作事件
-        /// </summary>
-        private EventHandler ehDynamicMethod = null;
+        private decimal progressPercent = 0;
 
         /// <summary>
         /// 错误计数
@@ -32,57 +25,12 @@ namespace PublicManager.Modules
         public static bool isNeedShowLog = false;
 
         public ProgressForm()
+            : base()
         {
-            InitializeComponent();
-
-            worker.WorkerSupportsCancellation = true;
-            worker.DoWork += worker_DoWork;
-        }
-
-        void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            //运行工作事件
-            if (ehDynamicMethod != null)
-            {
-                try
-                {
-                    ehDynamicMethod(this, new EventArgs());
-                }
-                catch (Exception ex)
-                {
-                    BaseModuleMainForm.writeLog(ex.ToString());
-                }
-            }
-
-            //异常本窗体
-            if (IsHandleCreated)
-            {
-                this.Invoke(new MethodInvoker(delegate()
-                {
-                    Visible = false;
-                }));
-            }
-
-            //检查是否需要显示错误日志
-            if (errorCount >= 1 && isNeedShowLog)
-            {
-                //错误数量清空
-                errorCount = 0;
-
-                //日志路径
-                string logFile = System.IO.Path.Combine(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs"), string.Format("{0}.txt", DateTime.Now.ToString("yyyyMMdd")));
-
-                //询问是否需要显示日志
-                if (MessageBox.Show("是否需要打开错误日志文件?", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    //打开日志文件
-                    try
-                    {
-                        System.Diagnostics.Process.Start(logFile);
-                    }
-                    catch (Exception ex) { }
-                }
-            }
+            TransparencyKey = BackColor;
+            ProgressBar.ForeColor = Color.Red;
+            MessageLabel.ForeColor = Color.Blue;
+            FormBorderStyle = FormBorderStyle.None;
         }
 
         /// <summary>
@@ -93,23 +41,59 @@ namespace PublicManager.Modules
         /// <param name="ehDynamic">工作事件</param>
         public void run(int total, int cur, EventHandler ehDynamic)
         {
-            //设置进度
-            pbProgress.Maximum = total;
-            pbProgress.Value = cur;
-
-            //设置工作事件
-            ehDynamicMethod = ehDynamic;
-
-            //检查工作线程是否正在运行
-            if (worker.IsBusy)
+            Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
             {
-                return;
-            }
-            else
-            {
-                //运行工作线程
-                worker.RunWorkerAsync();
-            }
+                CircleProgressBarDialog senderDialog = ((CircleProgressBarDialog)thisObject);
+
+                //计算每个进度占比
+                progressPercent = (decimal)total / (decimal)100;
+
+                //显示初始进度
+                senderDialog.ReportProgress((int)((decimal)cur * progressPercent), 100);
+
+                //运行工作事件
+                if (ehDynamic != null)
+                {
+                    try
+                    {
+                        ehDynamic(this, new EventArgs());
+                    }
+                    catch (Exception ex)
+                    {
+                        BaseModuleMainForm.writeLog(ex.ToString());
+                    }
+                }
+
+                //异常本窗体
+                if (senderDialog.IsHandleCreated)
+                {
+                    senderDialog.Invoke(new MethodInvoker(delegate()
+                    {
+                        Visible = false;
+                    }));
+                }
+
+                //检查是否需要显示错误日志
+                if (errorCount >= 1 && isNeedShowLog)
+                {
+                    //错误数量清空
+                    errorCount = 0;
+
+                    //日志路径
+                    string logFile = System.IO.Path.Combine(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs"), string.Format("{0}.txt", DateTime.Now.ToString("yyyyMMdd")));
+
+                    //询问是否需要显示日志
+                    if (MessageBox.Show("是否需要打开错误日志文件?", "提示", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        //打开日志文件
+                        try
+                        {
+                            System.Diagnostics.Process.Start(logFile);
+                        }
+                        catch (Exception ex) { }
+                    }
+                }
+            }));
         }
 
         /// <summary>
@@ -118,17 +102,14 @@ namespace PublicManager.Modules
         /// <param name="current">进度值</param>
         public void reportProgress(int current, string text)
         {
-            if (IsHandleCreated)
-            {
-                Invoke(new MethodInvoker(delegate()
-                {
-                    //设置进度
-                    pbProgress.Value = current;
+            ReportProgress((int)((decimal)current * progressPercent), 100);
+            ReportInfo(text);
 
-                    //设置文本
-                    lblProgressText.Text = text;
-                }));
+            try
+            {
+                Thread.Sleep(500);
             }
+            catch (Exception ex) { }
         }
     }
 }
