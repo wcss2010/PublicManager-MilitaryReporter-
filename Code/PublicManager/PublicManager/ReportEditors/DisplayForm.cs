@@ -16,7 +16,7 @@ namespace PublicReporter
         /// <summary>
         /// 插件目录
         /// </summary>
-        public static string PluginDirs = Path.Combine(Application.StartupPath, "ReportPlugins");
+        public static string PluginWorkDir = Path.Combine(Application.StartupPath, "ReportPlugins");
 
         public string DestZipPath { get; set; }
 
@@ -26,7 +26,7 @@ namespace PublicReporter
 
             try
             {
-                Directory.CreateDirectory(DisplayForm.PluginDirs);
+                Directory.CreateDirectory(DisplayForm.PluginWorkDir);
             }
             catch (Exception ex) { }
         }

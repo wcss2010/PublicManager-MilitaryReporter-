@@ -100,7 +100,7 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                         CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
 
                         //插件目录
-                        string pluginDir = Path.Combine(Application.StartupPath, Path.Combine("ReportPlugins", "ProjectMilitaryTechnologPlanPlugin"));
+                        string pluginDir = Path.Combine(PublicReporter.DisplayForm.PluginWorkDir, "ProjectMilitaryTechnologPlanPlugin");
 
                         //判断插件是否存在
                         if (Directory.Exists(pluginDir) && File.Exists(Path.Combine(pluginDir, "ProjectMilitaryTechnologPlanPlugin.dll")))
