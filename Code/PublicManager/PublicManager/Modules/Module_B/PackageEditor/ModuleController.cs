@@ -199,7 +199,7 @@ namespace PublicManager.Modules.Module_B.PackageEditor
             }
         }
 
-        void df_OnExportComplete(object sender, EventArgs args)
+        void df_OnExportComplete(object sender, PublicReporter.ExportCompleteEventArgs args)
         {
 
         }
