@@ -142,7 +142,11 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                                 Directory.CreateDirectory(currentPath);
                             }
                             catch (Exception ex) { }
-                            new PublicReporterLib.Utility.ZipUtil().UnZipFile(zipFile, currentPath, string.Empty, true);
+                            try
+                            {
+                                new PublicReporterLib.Utility.ZipUtil().UnZipFile(zipFile, currentPath, string.Empty, true);
+                            }
+                            catch (Exception ex) { }
                             #endregion
 
                             senderForm.ReportProgress(90, 100);
@@ -154,15 +158,18 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                                 {
                                     try
                                     {
-                                        //创建并显示窗体
+                                        //创建插件界面
                                         PublicReporter.DisplayForm df = new PublicReporter.DisplayForm();
                                         df.FormClosed += df_FormClosed;
                                         df.loadPlugin(pluginDir);
-                                        df.WindowState = FormWindowState.Maximized;
-                                        df.Show();
-                                        df.WindowState = FormWindowState.Maximized;
+                                        
+                                        //修改显示界面
+                                        modifyPluginDisplayForm(df);
 
-                                        tc.updateCatalogs();
+                                        //显示
+                                        df.Show();
+                                        df.BringToFront();
+                                        df.WindowState = FormWindowState.Maximized;
                                     }
                                     catch (Exception ex)
                                     {
@@ -182,9 +189,39 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                         }
                         else
                         {
+                            btnReportEdit.Enabled = true;
                             MessageBox.Show("对不起，没有找到填报插件！");
                         }
                     }));
+                }
+            }
+        }
+
+        /// <summary>
+        /// 修改插件显示界面
+        /// </summary>
+        /// <param name="df"></param>
+        private void modifyPluginDisplayForm(PublicReporter.DisplayForm df)
+        {
+            if (PublicReporterLib.PluginLoader.CurrentPlugin != null)
+            {
+                foreach (ToolStripItem tsi in PublicReporterLib.PluginLoader.CurrentPlugin.Parent_TopToolStrip.Items)
+                {
+                    switch (tsi.Text)
+                    {
+                        case "项目管理":
+                            tsi.Enabled = false;
+                            break;
+                        case "新建项目":
+                            tsi.Enabled = false;
+                            break;
+                        case "导入数据包":
+                            tsi.Enabled = false;
+                            break;
+                        case "导出数据包":
+                            tsi.Enabled = false;
+                            break;
+                    }
                 }
             }
         }
