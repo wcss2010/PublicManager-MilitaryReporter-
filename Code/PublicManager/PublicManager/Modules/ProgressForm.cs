@@ -46,7 +46,7 @@ namespace PublicManager.Modules
                 CircleProgressBarDialog senderDialog = ((CircleProgressBarDialog)thisObject);
 
                 //计算每个进度占比
-                progressPercent = (decimal)total / (decimal)100;
+                progressPercent = (decimal)100 / (decimal)total;
 
                 //显示初始进度
                 senderDialog.ReportProgress((int)((decimal)cur * progressPercent), 100);
