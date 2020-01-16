@@ -29,20 +29,65 @@ namespace PublicReporter
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //检查是否加载了插件
-            if (PluginLoader.CurrentPlugin != null)
+        {   
+            #region 获得上一次保存日期
+            dynamic script = CSScriptLibrary.CSScript.LoadCode(
+                           @"using System.Windows.Forms;
+                             public class Script
+                             {
+                                 public DateTime getLastUpdateDate()
+                                 {
+                                     return ((ProjectMilitaryTechnologPlanPlugin.PluginRoot)PublicReporterLib.PluginLoader.CurrentPlugin).getLastUpdateDate();
+                                 }
+                             }")
+                             .CreateObject("*");
+            DateTime dtLastUpdateDate = script.getLastUpdateDate();
+            #endregion
+
+            #region 获得上一次Doc修改时间
+            script = CSScriptLibrary.CSScript.LoadCode(
+                           @"using System.Windows.Forms;
+                             public class Script
+                             {
+                                 public string getDataDir()
+                                 {
+                                     ProjectMilitaryTechnologPlanPlugin.PluginRoot rootObj = (ProjectMilitaryTechnologPlanPlugin.PluginRoot)PublicReporterLib.PluginLoader.CurrentPlugin;
+                                     return rootObj.dataDir;
+                                 }
+                             }")
+                             .CreateObject("*");
+            string dataDir = script.getDataDir();
+            string docFile = Path.Combine(dataDir, "论证报告.doc");
+            DateTime dtDoc = DateTime.MinValue;
+            if (File.Exists(docFile))
             {
-                //检查当前是否允行退出
-                if (PluginLoader.CurrentPlugin.isAcceptClose())
+                dtDoc = File.GetLastWriteTime(docFile);
+            }
+            #endregion
+
+            if (dtLastUpdateDate > dtDoc)
+            {
+                MessageBox.Show("对不起，当前的论证报告书不是最新的，请点击\"生成报告\"或\"预览\"按钮重新生成论证报告书！");
+
+                //取消关闭
+                e.Cancel = true;
+            }
+            else
+            {
+                //检查是否加载了插件
+                if (PluginLoader.CurrentPlugin != null)
                 {
-                    //插件停止
-                    PluginLoader.CurrentPlugin.stop(e);
-                }
-                else 
-                {
-                    //取消关闭
-                    e.Cancel = true;
+                    //检查当前是否允行退出
+                    if (PluginLoader.CurrentPlugin.isAcceptClose())
+                    {
+                        //插件停止
+                        PluginLoader.CurrentPlugin.stop(e);
+                    }
+                    else
+                    {
+                        //取消关闭
+                        e.Cancel = true;
+                    }
                 }
             }
         }

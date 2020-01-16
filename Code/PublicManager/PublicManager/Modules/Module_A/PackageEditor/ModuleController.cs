@@ -162,7 +162,7 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                                         PublicReporter.DisplayForm df = new PublicReporter.DisplayForm();
                                         df.FormClosed += df_FormClosed;
                                         df.loadPlugin(pluginDir);
-                                        
+
                                         //修改显示界面
                                         modifyPluginDisplayForm(df);
 
@@ -228,7 +228,7 @@ namespace PublicManager.Modules.Module_A.PackageEditor
 
         void df_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+            tc.updateCatalogs();
         }
     }
 }
