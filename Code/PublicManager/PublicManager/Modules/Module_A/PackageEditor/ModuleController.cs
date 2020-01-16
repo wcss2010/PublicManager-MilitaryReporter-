@@ -160,7 +160,9 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                                     {
                                         //创建插件界面
                                         PublicReporter.DisplayForm df = new PublicReporter.DisplayForm();
+                                        df.DestZipPath = zipFile;
                                         df.FormClosed += df_FormClosed;
+                                        df.OnExportComplete += df_OnExportComplete;
                                         df.loadPlugin(pluginDir);
 
                                         //修改显示界面
@@ -195,6 +197,11 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                     }));
                 }
             }
+        }
+
+        void df_OnExportComplete(object sender, EventArgs args)
+        {
+            
         }
 
         /// <summary>

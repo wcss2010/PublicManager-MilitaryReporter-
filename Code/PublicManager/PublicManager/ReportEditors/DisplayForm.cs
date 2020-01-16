@@ -11,6 +11,8 @@ using System.Windows.Forms;
 
 namespace PublicReporter
 {
+    public delegate void ExportCompleteDelegate(object sender,EventArgs args);
+
     public partial class DisplayForm : Form
     {
         private bool needExport = false;
@@ -21,6 +23,8 @@ namespace PublicReporter
         public static string PluginWorkDir = Path.Combine(Application.StartupPath, "ReportPlugins");
 
         public string DestZipPath { get; set; }
+
+        public event ExportCompleteDelegate OnExportComplete;
 
         public DisplayForm()
         {
@@ -194,9 +198,21 @@ namespace PublicReporter
                         new PublicReporterLib.Utility.ZipUtil().ZipFileDirectory(dataDir, destFile);
 
                         senderForm.ReportProgress(90, 100);
-                        senderForm.ReportInfo("导出完成，准备重启...");
+                        senderForm.ReportInfo("导出完成...");
                         try { System.Threading.Thread.Sleep(1000); }
                         catch (Exception ex) { }
+
+                        //导出完成事件
+                        if (senderForm.IsHandleCreated)
+                        {
+                            Invoke(new MethodInvoker(delegate()
+                                {
+                                    if (OnExportComplete != null)
+                                    {
+                                        OnExportComplete(this, new EventArgs());
+                                    }
+                                }));
+                        }
                     }));
                 }
                 catch (Exception ex)
