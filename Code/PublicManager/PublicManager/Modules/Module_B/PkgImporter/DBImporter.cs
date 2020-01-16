@@ -60,7 +60,7 @@ namespace PublicManager.Modules.Module_B.PkgImporter
                 catch (Exception ex) { }
 
                 //更新Catalog
-                Catalog catalog = updateAndClearCatalog(zipFile, catalogNumber, diProject.getString("XiangMuMingCheng"), "论证报告书", catalogVersionStr);
+                Catalog catalog = updateAndClearCatalog(catalogNumber, diProject.getString("XiangMuMingCheng"), "论证报告书", catalogVersionStr, zipFile);
                 #endregion
 
                 #region 导入项目
