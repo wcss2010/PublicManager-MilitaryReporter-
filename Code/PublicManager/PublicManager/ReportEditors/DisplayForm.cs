@@ -203,7 +203,7 @@ namespace PublicReporter
                         //导出完成事件
                         if (senderForm.IsHandleCreated)
                         {
-                            Invoke(new MethodInvoker(delegate()
+                            senderForm.Invoke(new MethodInvoker(delegate()
                                 {
                                     if (OnExportComplete != null)
                                     {
