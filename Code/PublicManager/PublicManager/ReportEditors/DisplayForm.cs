@@ -11,17 +11,6 @@ using System.Windows.Forms;
 
 namespace PublicReporter
 {
-    public delegate void ExportCompleteDelegate(object sender, ExportCompleteEventArgs args);
-    public class ExportCompleteEventArgs : EventArgs
-    {
-        public ExportCompleteEventArgs(string zipFile)
-        {
-            DestZipFile = zipFile;
-        }
-
-        public string DestZipFile { get; set; }
-    }
-
     public partial class DisplayForm : Form
     {
         private bool needExport = false;
@@ -281,5 +270,16 @@ namespace PublicReporter
         {
             Close();
         }
+    }
+
+    public delegate void ExportCompleteDelegate(object sender, ExportCompleteEventArgs args);
+    public class ExportCompleteEventArgs : EventArgs
+    {
+        public ExportCompleteEventArgs(string zipFile)
+        {
+            DestZipFile = zipFile;
+        }
+
+        public string DestZipFile { get; set; }
     }
 }
