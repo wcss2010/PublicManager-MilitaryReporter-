@@ -33,6 +33,12 @@ namespace PublicReporter
             #region 获得上一次保存日期
             dynamic script = CSScriptLibrary.CSScript.LoadCode(
                            @"using System.Windows.Forms;
+                             using System;
+                             using System.Data;
+                             using System.IO;
+                             using System.Text;
+                             using PublicReporterLib;
+                             
                              public class Script
                              {
                                  public DateTime getLastUpdateDate()
@@ -47,6 +53,12 @@ namespace PublicReporter
             #region 获得上一次Doc修改时间
             script = CSScriptLibrary.CSScript.LoadCode(
                            @"using System.Windows.Forms;
+                             using System;
+                             using System.Data;
+                             using System.IO;
+                             using System.Text;
+                             using PublicReporterLib;
+                             
                              public class Script
                              {
                                  public string getDataDir()
