@@ -103,7 +103,7 @@ namespace PublicReporter
                     if (PluginLoader.CurrentPlugin.isAcceptClose())
                     {
                         //导出数据包
-                        exportPkg(e);
+                        exportPkg(dataDir, e);
 
                         //检查是否导出成功了,如果当前Cancel为true则说明失败了
                         if (e.Cancel == true)
@@ -151,42 +151,67 @@ namespace PublicReporter
             return inUse;//true表示正在使用,false没有使用  
         }
 
-        private void exportPkg(FormClosingEventArgs e)
+        private void exportPkg(string currentDir, FormClosingEventArgs e)
         {
             if (needExport)
             {
-                //检查目标文件是否存在，如果存在则删除
-                string destFile = DestZipPath;
-                if (File.Exists(destFile))
+                //检查是否文件被占有了
+                bool acceptExport = true;
+                List<string> filesList = new List<string>();
+                filesList.AddRange(Directory.GetFiles(currentDir));
+                filesList.AddRange(Directory.GetFiles(Path.Combine(currentDir, "Files")));
+                foreach (string s in filesList)
                 {
-                    try
+                    if (s != null && s.Contains("static.db"))
                     {
-                        File.Delete(destFile);
+                        continue;
                     }
-                    catch (Exception ex) { }
+                    else
+                    {
+                        if (IsFileInUse(s))
+                        {
+                            acceptExport = false;
+                            MessageBox.Show("对不起，文件(" + s + ")被占用，无法导出！");
+                            break;
+                        }
+                    }
                 }
 
-                try
+                //导出
+                if (acceptExport)
                 {
-                    CircleProgressBarDialog dialoga = new CircleProgressBarDialog();
-                    dialoga.TransparencyKey = dialoga.BackColor;
-                    dialoga.ProgressBar.ForeColor = Color.Red;
-                    dialoga.MessageLabel.ForeColor = Color.Blue;
-                    dialoga.FormBorderStyle = FormBorderStyle.None;
-                    dialoga.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
+                    //检查目标文件是否存在，如果存在则删除
+                    string destFile = DestZipPath;
+                    if (File.Exists(destFile))
                     {
-                        CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
-
-                        senderForm.ReportProgress(10, 100);
-                        senderForm.ReportInfo("准备导出...");
-                        try { System.Threading.Thread.Sleep(1000); }
-                        catch (Exception ex) { }
-
-                        #region 尝试关闭Sqlite数据库连接
                         try
                         {
-                            dynamic script = CSScriptLibrary.CSScript.LoadCode(
-                                   @"using System.Windows.Forms;
+                            File.Delete(destFile);
+                        }
+                        catch (Exception ex) { }
+                    }
+
+                    try
+                    {
+                        CircleProgressBarDialog dialoga = new CircleProgressBarDialog();
+                        dialoga.TransparencyKey = dialoga.BackColor;
+                        dialoga.ProgressBar.ForeColor = Color.Red;
+                        dialoga.MessageLabel.ForeColor = Color.Blue;
+                        dialoga.FormBorderStyle = FormBorderStyle.None;
+                        dialoga.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
+                        {
+                            CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
+
+                            senderForm.ReportProgress(10, 100);
+                            senderForm.ReportInfo("准备导出...");
+                            try { System.Threading.Thread.Sleep(1000); }
+                            catch (Exception ex) { }
+
+                            #region 尝试关闭Sqlite数据库连接
+                            try
+                            {
+                                dynamic script = CSScriptLibrary.CSScript.LoadCode(
+                                       @"using System.Windows.Forms;
                              public class Script
                              {
                                  public void CloseDB()
@@ -194,62 +219,42 @@ namespace PublicReporter
                                      ProjectMilitaryTechnologPlanPlugin.DB.ConnectionManager.Close();
                                  }
                              }")
-                                     .CreateObject("*");
-                            script.CloseDB();
-                        }
-                        catch (Exception ex) { }
-                        #endregion
+                                         .CreateObject("*");
+                                script.CloseDB();
+                            }
+                            catch (Exception ex) { }
+                            #endregion
+                            
+                            senderForm.ReportProgress(20, 100);
+                            senderForm.ReportInfo("正在导出...");
+                            try { System.Threading.Thread.Sleep(1000); }
+                            catch (Exception ex) { }
 
-                        #region 获得Data目录
-                        dynamic scriptss = CSScriptLibrary.CSScript.LoadCode(
-                               @"using System.Windows.Forms;
-                             using System;
-                             using System.Data;
-                             using System.IO;
-                             using System.Text;
-                             using PublicReporterLib;
-                             
-                             public class Script
-                             {
-                                 public string getDataDir()
-                                 {
-                                     ProjectMilitaryTechnologPlanPlugin.PluginRoot rootObj = (ProjectMilitaryTechnologPlanPlugin.PluginRoot)PublicReporterLib.PluginLoader.CurrentPlugin;
-                                     return rootObj.dataDir;
-                                 }
-                             }")
-                                 .CreateObject("*");
-                        string dataDir = scriptss.getDataDir();
-                        #endregion
+                            //压缩
+                            new PublicReporterLib.Utility.ZipUtil().ZipFileDirectory(currentDir, destFile);
 
-                        senderForm.ReportProgress(20, 100);
-                        senderForm.ReportInfo("正在导出...");
-                        try { System.Threading.Thread.Sleep(1000); }
-                        catch (Exception ex) { }
+                            senderForm.ReportProgress(90, 100);
+                            senderForm.ReportInfo("导出完成...");
+                            try { System.Threading.Thread.Sleep(1000); }
+                            catch (Exception ex) { }
 
-                        //压缩
-                        new PublicReporterLib.Utility.ZipUtil().ZipFileDirectory(dataDir, destFile);
-
-                        senderForm.ReportProgress(90, 100);
-                        senderForm.ReportInfo("导出完成...");
-                        try { System.Threading.Thread.Sleep(1000); }
-                        catch (Exception ex) { }
-
-                        //导出完成事件
-                        if (senderForm.IsHandleCreated)
-                        {
-                            senderForm.Invoke(new MethodInvoker(delegate()
-                                {
-                                    if (OnExportComplete != null)
+                            //导出完成事件
+                            if (senderForm.IsHandleCreated)
+                            {
+                                senderForm.Invoke(new MethodInvoker(delegate()
                                     {
-                                        OnExportComplete(this, new ExportCompleteEventArgs(DestZipPath));
-                                    }
-                                }));
-                        }
-                    }));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("导出失败！Ex:" + ex.ToString());
+                                        if (OnExportComplete != null)
+                                        {
+                                            OnExportComplete(this, new ExportCompleteEventArgs(DestZipPath));
+                                        }
+                                    }));
+                            }
+                        }));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("导出失败！Ex:" + ex.ToString());
+                    }
                 }
             }
         }
