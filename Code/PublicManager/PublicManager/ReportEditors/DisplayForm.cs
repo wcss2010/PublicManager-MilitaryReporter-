@@ -96,31 +96,58 @@ namespace PublicReporter
             }
             else
             {
-                //检查是否加载了插件
-                if (PluginLoader.CurrentPlugin != null)
-                {
-                    //检查当前是否允行退出
-                    if (PluginLoader.CurrentPlugin.isAcceptClose())
-                    {
-                        //导出数据包
-                        exportPkg(dataDir, e);
+                #region 检查是不是可以导出
+                script = CSScriptLibrary.CSScript.LoadCode(
+                               @"using System.Windows.Forms;
+                             using System;
+                             using System.Data;
+                             using System.IO;
+                             using System.Text;
+                             using PublicReporterLib;
+                             
+                             public class Script
+                             {
+                                 public bool isAcceptExport()
+                                 {
+                                     return ((ProjectMilitaryTechnologPlanPlugin.PluginRoot)PublicReporterLib.PluginLoader.CurrentPlugin).isAcceptExport();
+                                 }
+                             }")
+                                 .CreateObject("*");
+                bool isAcceptExport = script.isAcceptExport();
+                #endregion
 
-                        //检查是否导出成功了,如果当前Cancel为true则说明失败了
-                        if (e.Cancel == true)
+                if (isAcceptExport)
+                {
+                    //检查是否加载了插件
+                    if (PluginLoader.CurrentPlugin != null)
+                    {
+                        //检查当前是否允行退出
+                        if (PluginLoader.CurrentPlugin.isAcceptClose())
                         {
-                            //导出失败
+                            //导出数据包
+                            exportPkg(dataDir, e);
+
+                            //检查是否导出成功了,如果当前Cancel为true则说明失败了
+                            if (e.Cancel == true)
+                            {
+                                //导出失败
+                            }
+                            else
+                            {
+                                //导出成功，插件停止
+                                PluginLoader.CurrentPlugin.stop(e);
+                            }
                         }
                         else
                         {
-                            //导出成功，插件停止
-                            PluginLoader.CurrentPlugin.stop(e);
+                            //取消关闭
+                            e.Cancel = true;
                         }
                     }
-                    else
-                    {
-                        //取消关闭
-                        e.Cancel = true;
-                    }
+                }
+                else
+                {
+                    e.Cancel = true;
                 }
             }
         }
