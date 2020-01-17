@@ -385,7 +385,7 @@ namespace PublicManager.Modules.Module_B.PackageEditor
 
         void df_FormClosed(object sender, FormClosedEventArgs e)
         {
-            tc.updateCatalogs();
+            //tc.updateCatalogs();
         }
     }
 }
