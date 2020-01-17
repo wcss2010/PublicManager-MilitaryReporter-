@@ -170,6 +170,7 @@ namespace PublicReporter
                     {
                         if (IsFileInUse(s))
                         {
+                            e.Cancel = true;
                             acceptExport = false;
                             MessageBox.Show("对不起，文件(" + s + ")被占用，无法导出！");
                             break;
