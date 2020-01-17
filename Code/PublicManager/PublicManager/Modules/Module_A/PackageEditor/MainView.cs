@@ -331,9 +331,17 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                 if (dgvCatalogs.Rows[e.RowIndex].Tag != null && dgvCatalogs.Rows[e.RowIndex].Tag is Project)
                 {
                     Project proj = (Project)dgvCatalogs.Rows[e.RowIndex].Tag;
-                    if (OnViewProject != null)
+
+                    if (proj.IsPrivateProject == "true")
                     {
-                        OnViewProject(this, new ViewProjectEventArgs(proj));
+                        MessageBox.Show("对不起，不能编辑专项项目！");
+                    }
+                    else
+                    {
+                        if (OnViewProject != null)
+                        {
+                            OnViewProject(this, new ViewProjectEventArgs(proj));
+                        }
                     }
                 }
             }

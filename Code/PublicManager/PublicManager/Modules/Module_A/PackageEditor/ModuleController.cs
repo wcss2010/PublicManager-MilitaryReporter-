@@ -91,35 +91,41 @@ namespace PublicManager.Modules.Module_A.PackageEditor
             Project projectObj = tc.getCurrentProject();
             if (projectObj != null)
             {
-                Catalog catalogObj = ConnectionManager.Context.table("Catalog").where("CatalogID='" + projectObj.CatalogID + "'").select("*").getItem<Catalog>(new Catalog());
-                if (catalogObj != null && File.Exists(catalogObj.ZipPath))
+                if (projectObj.IsPrivateProject == "true")
                 {
-                    string zipFile = catalogObj.ZipPath;
-
-                    btnReportEdit.Enabled = false;
-
-                    CircleProgressBarDialog dialogb = new CircleProgressBarDialog();
-                    dialogb.TransparencyKey = dialogb.BackColor;
-                    dialogb.ProgressBar.ForeColor = Color.Red;
-                    dialogb.MessageLabel.ForeColor = Color.Blue;
-                    dialogb.FormBorderStyle = FormBorderStyle.None;
-                    dialogb.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
+                    MessageBox.Show("对不起，不能编辑专项项目！");
+                }
+                else
+                {
+                    Catalog catalogObj = ConnectionManager.Context.table("Catalog").where("CatalogID='" + projectObj.CatalogID + "'").select("*").getItem<Catalog>(new Catalog());
+                    if (catalogObj != null && File.Exists(catalogObj.ZipPath))
                     {
-                        CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
+                        string zipFile = catalogObj.ZipPath;
 
-                        //插件目录
-                        string pluginDir = Path.Combine(PublicReporter.DisplayForm.PluginWorkDir, "ProjectMilitaryTechnologPlanPlugin");
+                        btnReportEdit.Enabled = false;
 
-                        //判断插件是否存在
-                        if (Directory.Exists(pluginDir) && File.Exists(Path.Combine(pluginDir, "ProjectMilitaryTechnologPlanPlugin.dll")))
+                        CircleProgressBarDialog dialogb = new CircleProgressBarDialog();
+                        dialogb.TransparencyKey = dialogb.BackColor;
+                        dialogb.ProgressBar.ForeColor = Color.Red;
+                        dialogb.MessageLabel.ForeColor = Color.Blue;
+                        dialogb.FormBorderStyle = FormBorderStyle.None;
+                        dialogb.Start(new EventHandler<CircleProgressBarEventArgs>(delegate(object thisObject, CircleProgressBarEventArgs argss)
                         {
-                            senderForm.ReportProgress(30, 100);
+                            CircleProgressBarDialog senderForm = ((CircleProgressBarDialog)thisObject);
 
-                            #region 尝试关闭Sqlite数据库连接
-                            try
+                            //插件目录
+                            string pluginDir = Path.Combine(PublicReporter.DisplayForm.PluginWorkDir, "ProjectMilitaryTechnologPlanPlugin");
+
+                            //判断插件是否存在
+                            if (Directory.Exists(pluginDir) && File.Exists(Path.Combine(pluginDir, "ProjectMilitaryTechnologPlanPlugin.dll")))
                             {
-                                dynamic script = CSScriptLibrary.CSScript.LoadCode(
-                                       @"using System.Windows.Forms;
+                                senderForm.ReportProgress(30, 100);
+
+                                #region 尝试关闭Sqlite数据库连接
+                                try
+                                {
+                                    dynamic script = CSScriptLibrary.CSScript.LoadCode(
+                                           @"using System.Windows.Forms;
                              public class Script
                              {
                                  public void CloseDB()
@@ -127,82 +133,83 @@ namespace PublicManager.Modules.Module_A.PackageEditor
                                      ProjectMilitaryTechnologPlanPlugin.DB.ConnectionManager.Close();
                                  }
                              }")
-                                         .CreateObject("*");
-                                script.CloseDB();
-                            }
-                            catch (Exception ex) { }
-                            #endregion
-
-                            senderForm.ReportProgress(60, 100);
-
-                            #region 导入数据
-                            string currentPath = Path.Combine(Path.Combine(pluginDir, "Data"), "Current");
-                            try
-                            {
-                                if (Directory.Exists(currentPath))
-                                {
-                                    Directory.Delete(currentPath, true);
+                                             .CreateObject("*");
+                                    script.CloseDB();
                                 }
-                            }
-                            catch (Exception ex) { }
-                            try
-                            {
-                                Directory.CreateDirectory(currentPath);
-                            }
-                            catch (Exception ex) { }
-                            try
-                            {
-                                new PublicReporterLib.Utility.ZipUtil().UnZipFile(zipFile, currentPath, string.Empty, true);
-                            }
-                            catch (Exception ex) { }
-                            #endregion
+                                catch (Exception ex) { }
+                                #endregion
 
-                            senderForm.ReportProgress(90, 100);
+                                senderForm.ReportProgress(60, 100);
 
-                            #region 显示填报插件窗体
-                            if (senderForm.IsHandleCreated)
-                            {
-                                senderForm.Invoke(new MethodInvoker(delegate()
+                                #region 导入数据
+                                string currentPath = Path.Combine(Path.Combine(pluginDir, "Data"), "Current");
+                                try
                                 {
-                                    try
+                                    if (Directory.Exists(currentPath))
                                     {
-                                        //创建插件界面
-                                        PublicReporter.DisplayForm df = new PublicReporter.DisplayForm();
-                                        df.DestZipPath = zipFile;
-                                        df.FormClosed += df_FormClosed;
-                                        df.OnExportComplete += df_OnExportComplete;
-                                        df.loadPlugin(pluginDir);
-
-                                        //修改显示界面
-                                        modifyPluginDisplayForm(df);
-
-                                        //显示
-                                        df.Show();
-                                        df.BringToFront();
-                                        df.WindowState = FormWindowState.Maximized;
+                                        Directory.Delete(currentPath, true);
                                     }
-                                    catch (Exception ex)
+                                }
+                                catch (Exception ex) { }
+                                try
+                                {
+                                    Directory.CreateDirectory(currentPath);
+                                }
+                                catch (Exception ex) { }
+                                try
+                                {
+                                    new PublicReporterLib.Utility.ZipUtil().UnZipFile(zipFile, currentPath, string.Empty, true);
+                                }
+                                catch (Exception ex) { }
+                                #endregion
+
+                                senderForm.ReportProgress(90, 100);
+
+                                #region 显示填报插件窗体
+                                if (senderForm.IsHandleCreated)
+                                {
+                                    senderForm.Invoke(new MethodInvoker(delegate()
                                     {
-                                        MessageBox.Show("对不起，填报系统启动失败！Ex:" + ex.ToString());
-                                    }
+                                        try
+                                        {
+                                            //创建插件界面
+                                            PublicReporter.DisplayForm df = new PublicReporter.DisplayForm();
+                                            df.DestZipPath = zipFile;
+                                            df.FormClosed += df_FormClosed;
+                                            df.OnExportComplete += df_OnExportComplete;
+                                            df.loadPlugin(pluginDir);
 
+                                            //修改显示界面
+                                            modifyPluginDisplayForm(df);
+
+                                            //显示
+                                            df.Show();
+                                            df.BringToFront();
+                                            df.WindowState = FormWindowState.Maximized;
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MessageBox.Show("对不起，填报系统启动失败！Ex:" + ex.ToString());
+                                        }
+
+                                        btnReportEdit.Enabled = true;
+                                    }));
+                                }
+                                else
+                                {
                                     btnReportEdit.Enabled = true;
-                                }));
+                                }
+                                #endregion
+
+                                senderForm.ReportProgress(99, 100);
                             }
                             else
                             {
                                 btnReportEdit.Enabled = true;
+                                MessageBox.Show("对不起，没有找到填报插件！");
                             }
-                            #endregion
-
-                            senderForm.ReportProgress(99, 100);
-                        }
-                        else
-                        {
-                            btnReportEdit.Enabled = true;
-                            MessageBox.Show("对不起，没有找到填报插件！");
-                        }
-                    }));
+                        }));
+                    }
                 }
             }
         }
