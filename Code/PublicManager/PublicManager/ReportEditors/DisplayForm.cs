@@ -105,8 +105,16 @@ namespace PublicReporter
                         //导出数据包
                         exportPkg(e);
 
-                        //插件停止
-                        PluginLoader.CurrentPlugin.stop(e);
+                        //检查是否导出成功了,如果当前Cancel为true则说明失败了
+                        if (e.Cancel == true)
+                        {
+                            //导出失败
+                        }
+                        else
+                        {
+                            //导出成功，插件停止
+                            PluginLoader.CurrentPlugin.stop(e);
+                        }
                     }
                     else
                     {
@@ -115,6 +123,32 @@ namespace PublicReporter
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// 检查文件是否被占用(True=被占用,False=没有被占用)
+        /// </summary>
+        /// <param name="fileName">文件路径</param>
+        /// <returns></returns>
+        public static bool IsFileInUse(string fileName)
+        {
+            bool inUse = true;
+            FileStream fs = null;
+            try
+            {
+                fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None);
+                inUse = false;
+            }
+            catch
+            { }
+            finally
+            {
+                if (fs != null)
+                {
+                    fs.Close();
+                }
+            }
+            return inUse;//true表示正在使用,false没有使用  
         }
 
         private void exportPkg(FormClosingEventArgs e)
