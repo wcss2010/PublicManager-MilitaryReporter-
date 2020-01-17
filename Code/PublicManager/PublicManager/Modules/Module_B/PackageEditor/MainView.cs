@@ -18,6 +18,8 @@ namespace PublicManager.Modules.Module_B.PackageEditor
 {
     public partial class MainView : XtraUserControl
     {
+        public event ViewProjectDelegate OnViewProject;
+
         public MainView()
         {
             InitializeComponent();
@@ -321,6 +323,32 @@ namespace PublicManager.Modules.Module_B.PackageEditor
                     break;
             }
         }
+
+        private void dgvCatalogs_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvCatalogs.Rows.Count > e.RowIndex && e.RowIndex >= 0)
+            {
+                if (dgvCatalogs.Rows[e.RowIndex].Tag != null && dgvCatalogs.Rows[e.RowIndex].Tag is Project)
+                {
+                    Project proj = (Project)dgvCatalogs.Rows[e.RowIndex].Tag;
+                    if (OnViewProject != null)
+                    {
+                        OnViewProject(this, new ViewProjectEventArgs(proj));
+                    }
+                }
+            }
+        }
+    }
+
+    public delegate void ViewProjectDelegate(object sender, ViewProjectEventArgs args);
+    public class ViewProjectEventArgs : EventArgs
+    {
+        public ViewProjectEventArgs(Project proj)
+        {
+            ProjectObj = proj;
+        }
+
+        public Project ProjectObj { get; set; }
     }
 
     /// <summary>

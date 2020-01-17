@@ -69,10 +69,16 @@ namespace PublicManager.Modules.Module_A.PackageEditor
         {
             DisplayControl.Controls.Clear();
             tc = new MainView();
+            tc.OnViewProject += tc_OnViewProject;
             tc.Dock = DockStyle.Fill;
             DisplayControl.Controls.Add(tc);
 
             tc.updateCatalogs();
+        }
+
+        void tc_OnViewProject(object sender, ViewProjectEventArgs args)
+        {
+            btnReportEdit.PerformClick();
         }
 
         public override void stop()
